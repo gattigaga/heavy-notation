@@ -5,8 +5,10 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
+import { cn } from "@/lib/utils";
 
 type Props = {
+  blockId: string;
   defaultValue: string;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
@@ -15,7 +17,8 @@ type Props = {
   onBlockSelected?: (blockId: string) => void;
 };
 
-const TextBlock = ({
+const HeadingBlock = ({
+  blockId,
   defaultValue,
   onChange,
   onClickPlus,
@@ -25,12 +28,23 @@ const TextBlock = ({
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const refTextarea = useRef<HTMLTextAreaElement>(null);
 
-  const placeholder = isFocused
-    ? "Write something, or press '/' for commands..."
-    : "";
+  const placeholder = (() => {
+    switch (blockId) {
+      case "heading1":
+        return "Heading 1";
+
+      case "heading2":
+        return "Heading 2";
+
+      case "heading3":
+        return "Heading 3";
+
+      default:
+        return "";
+    }
+  })();
 
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
@@ -42,7 +56,13 @@ const TextBlock = ({
   return (
     <div className="group relative">
       {!isBlocksOpen && (
-        <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
+        <div
+          className={cn("absolute flex -translate-x-full items-center pr-1", {
+            "top-2": blockId === "heading1",
+            "top-1": blockId === "heading2",
+            "top-0": blockId === "heading3",
+          })}
+        >
           <BlockControls
             onClickPlus={onClickPlus}
             onAltClickPlus={onClickAltPlus}
@@ -58,10 +78,16 @@ const TextBlock = ({
       >
         <TextareaAutosize
           ref={refTextarea}
-          className="w-full resize-none text-lg font-medium text-foreground outline-none"
+          className={cn(
+            "w-full resize-none font-bold text-foreground outline-none",
+            {
+              "text-4xl leading-normal": blockId === "heading1",
+              "text-3xl leading-normal": blockId === "heading2",
+              "text-2xl leading-normal": blockId === "heading3",
+            },
+          )}
           value={value}
           placeholder={placeholder}
-          onFocus={() => setIsFocused(true)}
           onChange={(event) => {
             const newValue = event.target.value;
 
@@ -72,7 +98,6 @@ const TextBlock = ({
             }
           }}
           onBlur={() => {
-            setIsFocused(false);
             onChange?.(value);
           }}
           onKeyDown={(event) => {
@@ -87,4 +112,4 @@ const TextBlock = ({
   );
 };
 
-export default TextBlock;
+export default HeadingBlock;

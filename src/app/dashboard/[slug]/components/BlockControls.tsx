@@ -16,10 +16,10 @@ type Props = {
 
 const BlockControls = ({ onClickPlus, onAltClickPlus, onClickGrip }: Props) => {
   return (
-    <div className="opacity-0 flex items-center absolute -translate-x-full top-0 pr-1 -mt-1 group-hover:opacity-100">
+    <div className="opacity-0 group-hover:opacity-100">
       <Tooltip>
         <TooltipTrigger
-          className="p-1 rounded hover:bg-zinc-100"
+          className="rounded p-1 hover:bg-zinc-100"
           type="button"
           onClick={(event) => {
             if (event.altKey) {
@@ -44,7 +44,7 @@ const BlockControls = ({ onClickPlus, onAltClickPlus, onClickGrip }: Props) => {
       <Tooltip>
         {/* TODO: Need to trigger drag mode if this grip dragged by user. */}
         <TooltipTrigger
-          className="p-1 rounded hover:bg-zinc-100"
+          className="rounded p-1 hover:bg-zinc-100"
           type="button"
           onClick={onClickGrip}
         >
