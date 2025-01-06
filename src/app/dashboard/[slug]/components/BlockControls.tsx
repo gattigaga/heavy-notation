@@ -16,7 +16,7 @@ type Props = {
 
 const BlockControls = ({ onClickPlus, onAltClickPlus, onClickGrip }: Props) => {
   return (
-    <div className="hidden items-center absolute -translate-x-full top-0 pr-1 -mt-1 group-hover:flex">
+    <div className="opacity-0 flex items-center absolute -translate-x-full top-0 pr-1 -mt-1 group-hover:opacity-100">
       <Tooltip>
         <TooltipTrigger
           className="p-1 rounded hover:bg-zinc-100"
