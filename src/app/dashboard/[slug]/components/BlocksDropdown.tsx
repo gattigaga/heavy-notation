@@ -12,7 +12,7 @@ type Props = {
   children?: React.ReactNode;
   keyword?: string;
   isOpen?: boolean;
-  onChange?: (value: string) => void;
+  onChange?: (blockId: string) => void;
   onOpenChange?: (isOpen: boolean) => void;
 };
 
@@ -76,12 +76,12 @@ const BlocksDropdown = ({
   return (
     <Popover open={isOpen} onOpenChange={onOpenChange}>
       <PopoverAnchor>{children}</PopoverAnchor>
-      <PopoverContent className="w-96 max-h-72 p-0" side="bottom" align="start">
+      <PopoverContent className="max-h-72 w-96 p-0" side="bottom" align="start">
         {filteredBlockSections.length > 0 && (
           <ScrollArea className="h-72 pr-2">
             {filteredBlockSections.map((block) => (
               <Fragment key={block.id}>
-                <p className="font-semibold p-3 pb-1 text-sm text-zinc-400">
+                <p className="p-3 pb-1 text-sm font-semibold text-zinc-400">
                   {block.title}
                 </p>
                 <div className="flex flex-col p-2">
@@ -91,19 +91,19 @@ const BlocksDropdown = ({
                     return (
                       <button
                         key={item.id}
-                        className="p-2 rounded hover:bg-zinc-100 flex items-center gap-x-4"
+                        className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
                         type="button"
                         onClick={() => onChange?.(item.id)}
                       >
                         <div className="flex items-center gap-x-4">
-                          <div className="w-16 h-16 rounded border flex items-center justify-center bg-white">
+                          <div className="flex h-16 w-16 items-center justify-center rounded border bg-white">
                             <Icon size={40} />
                           </div>
                           <div>
-                            <p className="text-lg font-medium text-left">
+                            <p className="text-left text-lg font-medium">
                               {item.title}
                             </p>
-                            <p className="text-zinc-400 text-left text-sm">
+                            <p className="text-left text-sm text-zinc-400">
                               {item.description}
                             </p>
                           </div>
