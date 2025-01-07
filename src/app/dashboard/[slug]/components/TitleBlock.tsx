@@ -4,11 +4,13 @@ import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 type Props = {
+  defaultValue: string;
+  onPressEnter?: () => void;
   onChange?: (value: string) => void;
 };
 
-const TitleBlock = ({ onChange }: Props) => {
-  const [value, setValue] = useState("");
+const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
+  const [value, setValue] = useState(defaultValue);
 
   return (
     <TextareaAutosize
@@ -24,7 +26,7 @@ const TitleBlock = ({ onChange }: Props) => {
       onKeyDown={(event) => {
         if (event.key === "Enter") {
           event.preventDefault();
-          onChange?.(value);
+          onPressEnter?.();
         }
       }}
     />
