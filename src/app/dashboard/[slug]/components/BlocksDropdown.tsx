@@ -7,12 +7,26 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { BlockId } from "../types";
+
+type BlockItem = {
+  id: BlockId;
+  title: string;
+  description: string;
+  icon: React.ElementType;
+};
+
+type BlockSection = {
+  id: string;
+  title: string;
+  items: BlockItem[];
+};
 
 type Props = {
   children?: React.ReactNode;
   keyword?: string;
   isOpen?: boolean;
-  onChange?: (blockId: string) => void;
+  onChange?: (blockId: BlockId) => void;
   onOpenChange?: (isOpen: boolean) => void;
 };
 
@@ -23,7 +37,7 @@ const BlocksDropdown = ({
   onChange,
   onOpenChange,
 }: Props) => {
-  const blockSections = [
+  const blockSections: BlockSection[] = [
     {
       id: "basic",
       title: "Basic Blocks",

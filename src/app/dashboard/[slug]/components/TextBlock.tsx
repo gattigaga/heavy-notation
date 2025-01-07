@@ -5,6 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
+import { BlockId } from "../types";
 
 type Props = {
   defaultValue: string;
@@ -13,7 +14,7 @@ type Props = {
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
   onClickGrip?: () => void;
-  onBlockSelected?: (blockId: string) => void;
+  onBlockSelected?: (blockId: BlockId) => void;
 };
 
 const TextBlock = ({

@@ -5,17 +5,18 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
+import { BlockId } from "../types";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  blockId: string;
+  blockId: BlockId;
   defaultValue: string;
   onPressEnter?: () => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
   onClickGrip?: () => void;
-  onBlockSelected?: (blockId: string) => void;
+  onBlockSelected?: (blockId: BlockId) => void;
 };
 
 const HeadingBlock = ({

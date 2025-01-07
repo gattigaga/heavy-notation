@@ -1,26 +1,28 @@
 import { marked } from "marked";
 
+import { BlockId } from "../types";
+
 type Block = {
   id: number;
-  blockId: string;
+  blockId: BlockId;
   content: string;
 };
 
 export const parseMarkdownToBlocks = (markdown: string): Block[] => {
   const html = marked.parse(markdown) as string;
-  const lines = html.split("\n");
+  const lineElements = html.split("\n");
 
-  const result = lines.map((line, index) => {
-    const blockId = (() => {
-      if (line.startsWith("<h1>")) {
+  const result = lineElements.map((lineElement, index) => {
+    const blockId: BlockId = (() => {
+      if (lineElement.startsWith("<h1>")) {
         return "heading1";
       }
 
-      if (line.startsWith("<h2>")) {
+      if (lineElement.startsWith("<h2>")) {
         return "heading2";
       }
 
-      if (line.startsWith("<h3>")) {
+      if (lineElement.startsWith("<h3>")) {
         return "heading3";
       }
 
@@ -28,7 +30,7 @@ export const parseMarkdownToBlocks = (markdown: string): Block[] => {
     })();
 
     const parser = new DOMParser();
-    const doc = parser.parseFromString(line, "text/html");
+    const doc = parser.parseFromString(lineElement, "text/html");
     const content = doc.body.firstElementChild?.innerHTML || "";
 
     return {
