@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   blockId: string;
   defaultValue: string;
+  onPressEnter?: () => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
@@ -20,6 +21,7 @@ type Props = {
 const HeadingBlock = ({
   blockId,
   defaultValue,
+  onPressEnter,
   onChange,
   onClickPlus,
   onClickAltPlus,
@@ -103,7 +105,7 @@ const HeadingBlock = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onChange?.(value);
+              onPressEnter?.();
             }
           }}
         />

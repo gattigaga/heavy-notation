@@ -8,6 +8,7 @@ import BlocksDropdown from "./BlocksDropdown";
 
 type Props = {
   defaultValue: string;
+  onPressEnter?: () => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
@@ -17,6 +18,7 @@ type Props = {
 
 const TextBlock = ({
   defaultValue,
+  onPressEnter,
   onChange,
   onClickPlus,
   onClickAltPlus,
@@ -78,7 +80,7 @@ const TextBlock = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onChange?.(value);
+              onPressEnter?.();
             }
           }}
         />
