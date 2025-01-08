@@ -7,10 +7,10 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { BlockId } from "../types";
+import { BlockType } from "../types";
 
 type BlockItem = {
-  id: BlockId;
+  type: BlockType;
   title: string;
   description: string;
   icon: React.ElementType;
@@ -26,7 +26,7 @@ type Props = {
   children?: React.ReactNode;
   keyword?: string;
   isOpen?: boolean;
-  onChange?: (blockId: BlockId) => void;
+  onChange?: (type: BlockType) => void;
   onOpenChange?: (isOpen: boolean) => void;
 };
 
@@ -43,25 +43,25 @@ const BlocksDropdown = ({
       title: "Basic Blocks",
       items: [
         {
-          id: "text",
+          type: "text",
           title: "Text",
           description: "Just start writing with plain text.",
           icon: CaseSensitive,
         },
         {
-          id: "heading1",
+          type: "heading1",
           title: "Heading 1",
           description: "Big section heading.",
           icon: Heading1,
         },
         {
-          id: "heading2",
+          type: "heading2",
           title: "Heading 2",
           description: "Medium section heading.",
           icon: Heading2,
         },
         {
-          id: "heading3",
+          type: "heading3",
           title: "Heading 3",
           description: "Small section heading.",
           icon: Heading3,
@@ -104,10 +104,10 @@ const BlocksDropdown = ({
 
                     return (
                       <button
-                        key={item.id}
+                        key={item.type}
                         className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
                         type="button"
-                        onClick={() => onChange?.(item.id)}
+                        onClick={() => onChange?.(item.type)}
                       >
                         <div className="flex items-center gap-x-4">
                           <div className="flex h-16 w-16 items-center justify-center rounded border bg-white">

@@ -1,23 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { BlockId } from "../types";
+import { BlockType } from "../types";
 
 type Props = {
+  ref: RefObject<HTMLTextAreaElement | null>;
   defaultValue: string;
-  onPressEnter?: () => void;
+  onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
   onClickGrip?: () => void;
-  onBlockSelected?: (blockId: BlockId) => void;
+  onBlockSelected?: (type: BlockType) => void;
 };
 
 const TextBlock = ({
+  ref,
   defaultValue,
   onPressEnter,
   onChange,
@@ -29,7 +31,6 @@ const TextBlock = ({
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const refTextarea = useRef<HTMLTextAreaElement>(null);
 
   const placeholder = isFocused
     ? "Write something, or press '/' for commands..."
@@ -37,8 +38,8 @@ const TextBlock = ({
 
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
-    if (!isBlocksOpen && refTextarea.current) {
-      refTextarea.current.focus();
+    if (!isBlocksOpen && ref.current) {
+      ref.current.focus();
     }
   }, [isBlocksOpen]);
 
@@ -60,7 +61,7 @@ const TextBlock = ({
         onOpenChange={setIsBlocksOpen}
       >
         <TextareaAutosize
-          ref={refTextarea}
+          ref={ref}
           className="w-full resize-none text-lg font-medium text-foreground outline-none"
           value={value}
           placeholder={placeholder}
@@ -81,7 +82,7 @@ const TextBlock = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onPressEnter?.();
+              onPressEnter?.(value);
             }
           }}
         />

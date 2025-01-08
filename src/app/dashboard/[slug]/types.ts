@@ -1,1 +1,1 @@
-export type BlockId = "text" | "heading1" | "heading2" | "heading3";
+export type BlockType = "text" | "heading1" | "heading2" | "heading3";

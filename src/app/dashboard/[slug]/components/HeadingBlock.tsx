@@ -1,26 +1,28 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { BlockId } from "../types";
+import { BlockType } from "../types";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  blockId: BlockId;
+  ref: RefObject<HTMLTextAreaElement | null>;
+  type: BlockType;
   defaultValue: string;
-  onPressEnter?: () => void;
+  onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onClickAltPlus?: () => void;
   onClickGrip?: () => void;
-  onBlockSelected?: (blockId: BlockId) => void;
+  onBlockSelected?: (type: BlockType) => void;
 };
 
 const HeadingBlock = ({
-  blockId,
+  ref,
+  type,
   defaultValue,
   onPressEnter,
   onChange,
@@ -31,10 +33,9 @@ const HeadingBlock = ({
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
-  const refTextarea = useRef<HTMLTextAreaElement>(null);
 
   const placeholder = (() => {
-    switch (blockId) {
+    switch (type) {
       case "heading1":
         return "Heading 1";
 
@@ -51,8 +52,8 @@ const HeadingBlock = ({
 
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
-    if (!isBlocksOpen && refTextarea.current) {
-      refTextarea.current.focus();
+    if (!isBlocksOpen && ref.current) {
+      ref.current.focus();
     }
   }, [isBlocksOpen]);
 
@@ -61,9 +62,9 @@ const HeadingBlock = ({
       {!isBlocksOpen && (
         <div
           className={cn("absolute flex -translate-x-full items-center pr-1", {
-            "top-2": blockId === "heading1",
-            "top-1": blockId === "heading2",
-            "top-0": blockId === "heading3",
+            "top-2": type === "heading1",
+            "top-1": type === "heading2",
+            "top-0": type === "heading3",
           })}
         >
           <BlockControls
@@ -80,13 +81,13 @@ const HeadingBlock = ({
         onOpenChange={setIsBlocksOpen}
       >
         <TextareaAutosize
-          ref={refTextarea}
+          ref={ref}
           className={cn(
             "w-full resize-none font-bold text-foreground outline-none",
             {
-              "text-4xl leading-normal": blockId === "heading1",
-              "text-3xl leading-normal": blockId === "heading2",
-              "text-2xl leading-normal": blockId === "heading3",
+              "text-4xl leading-normal": type === "heading1",
+              "text-3xl leading-normal": type === "heading2",
+              "text-2xl leading-normal": type === "heading3",
             },
           )}
           value={value}
@@ -106,7 +107,7 @@ const HeadingBlock = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onPressEnter?.();
+              onPressEnter?.(value);
             }
           }}
         />

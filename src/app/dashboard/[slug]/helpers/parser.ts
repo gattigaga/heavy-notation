@@ -1,10 +1,10 @@
 import { marked } from "marked";
 
-import { BlockId } from "../types";
+import { BlockType } from "../types";
 
 type Block = {
   id: number;
-  blockId: BlockId;
+  type: BlockType;
   content: string;
 };
 
@@ -13,7 +13,7 @@ export const parseMarkdownToBlocks = (markdown: string): Block[] => {
   const lineElements = html.split("\n");
 
   const result = lineElements.map((lineElement, index) => {
-    const blockId: BlockId = (() => {
+    const type: BlockType = (() => {
       if (lineElement.startsWith("<h1>")) {
         return "heading1";
       }
@@ -35,8 +35,8 @@ export const parseMarkdownToBlocks = (markdown: string): Block[] => {
 
     return {
       id: index,
-      blockId: blockId,
-      content: content,
+      type,
+      content,
     };
   });
 
