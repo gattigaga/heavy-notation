@@ -1,44 +1,68 @@
-import { marked } from "marked";
+import { Block } from "../types";
 
-import { BlockType } from "../types";
+export const addBlock = ({
+  blocks,
+  block,
+}: {
+  blocks: Block[];
+  block: Block;
+}): Block[] => {
+  const beforeBlocks = blocks.slice(0, block.index);
+  const afterBlocks = blocks.slice(block.index);
 
-type Block = {
-  id: number;
-  type: BlockType;
-  content: string;
-};
-
-export const parseMarkdownToBlocks = (markdown: string): Block[] => {
-  const html = marked.parse(markdown) as string;
-  const lineElements = html.split("\n");
-
-  const result = lineElements.map((lineElement, index) => {
-    const type: BlockType = (() => {
-      if (lineElement.startsWith("<h1>")) {
-        return "heading1";
-      }
-
-      if (lineElement.startsWith("<h2>")) {
-        return "heading2";
-      }
-
-      if (lineElement.startsWith("<h3>")) {
-        return "heading3";
-      }
-
-      return "text";
-    })();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(lineElement, "text/html");
-    const content = doc.body.firstElementChild?.innerHTML || "";
-
-    return {
-      id: index,
-      type,
-      content,
-    };
-  });
+  const result = [...beforeBlocks, block, ...afterBlocks].map(
+    (block, index) => {
+      return {
+        ...block,
+        index,
+      };
+    },
+  );
 
   return result;
+};
+
+export const updateBlock = ({
+  blocks,
+  blockId,
+  data,
+}: {
+  blocks: Block[];
+  blockId: string;
+  data: Partial<Omit<Block, "id">>;
+}): Block[] => {
+  const newBlocks = blocks.map((block) => {
+    if (block.id === blockId) {
+      return {
+        ...block,
+        ...data,
+        id: blockId,
+      };
+    }
+
+    return block;
+  });
+
+  return newBlocks;
+};
+
+export const removeBlock = ({
+  blocks,
+  blockId,
+}: {
+  blocks: Block[];
+  blockId: string;
+}): Block[] => {
+  const newBlocks = blocks
+    .filter((block) => {
+      return block.id !== blockId;
+    })
+    .map((block, index) => {
+      return {
+        ...block,
+        index,
+      };
+    });
+
+  return newBlocks;
 };
