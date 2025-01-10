@@ -77,7 +77,10 @@ const HeadingBlock = ({
 
       <BlocksDropdown
         isOpen={isBlocksOpen}
-        onChange={onBlockSelected}
+        onChange={(type) => {
+          onBlockSelected?.(type);
+          setIsBlocksOpen(false);
+        }}
         onOpenChange={setIsBlocksOpen}
       >
         <TextareaAutosize
