@@ -13,7 +13,7 @@ type Props = {
   onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
-  onClickAltPlus?: () => void;
+  onAltClickPlus?: () => void;
   onClickGrip?: () => void;
   onBlockSelected?: (type: BlockType) => void;
 };
@@ -24,7 +24,7 @@ const TextBlock = ({
   onPressEnter,
   onChange,
   onClickPlus,
-  onClickAltPlus,
+  onAltClickPlus,
   onClickGrip,
   onBlockSelected,
 }: Props) => {
@@ -49,7 +49,7 @@ const TextBlock = ({
         <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
           <BlockControls
             onClickPlus={onClickPlus}
-            onAltClickPlus={onClickAltPlus}
+            onAltClickPlus={onAltClickPlus}
             onClickGrip={onClickGrip}
           />
         </div>

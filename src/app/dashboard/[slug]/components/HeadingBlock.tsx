@@ -15,7 +15,7 @@ type Props = {
   onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
-  onClickAltPlus?: () => void;
+  onAltClickPlus?: () => void;
   onClickGrip?: () => void;
   onBlockSelected?: (type: BlockType) => void;
 };
@@ -27,7 +27,7 @@ const HeadingBlock = ({
   onPressEnter,
   onChange,
   onClickPlus,
-  onClickAltPlus,
+  onAltClickPlus,
   onClickGrip,
   onBlockSelected,
 }: Props) => {
@@ -69,7 +69,7 @@ const HeadingBlock = ({
         >
           <BlockControls
             onClickPlus={onClickPlus}
-            onAltClickPlus={onClickAltPlus}
+            onAltClickPlus={onAltClickPlus}
             onClickGrip={onClickGrip}
           />
         </div>

@@ -95,19 +95,9 @@ const Content = ({}: Props) => {
                 ref={block.ref}
                 type={block.type}
                 defaultValue={block.content}
-                onPressEnter={(value) => {
-                  // Update current block.
-                  const newBlocks1 = updateBlock({
+                onPressEnter={() => {
+                  const newBlocks = addBlock({
                     blocks,
-                    blockId: block.id,
-                    data: {
-                      content: value,
-                    },
-                  });
-
-                  // Add new empty text block below it.
-                  const newBlocks2 = addBlock({
-                    blocks: newBlocks1,
                     block: {
                       id: uuid(),
                       index: index + 1,
@@ -116,7 +106,7 @@ const Content = ({}: Props) => {
                     },
                   });
 
-                  setBlocks(newBlocks2);
+                  setBlocks(newBlocks);
                 }}
                 onChange={(value) => {
                   const newBlocks = updateBlock({
@@ -129,11 +119,44 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickPlus={() => console.log("click plus")}
-                onClickAltPlus={() => console.log("click alt plus")}
+                onClickPlus={() => {
+                  const newBlocks = addBlock({
+                    blocks,
+                    block: {
+                      id: uuid(),
+                      index: index + 1,
+                      type: "text",
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
+                }}
+                onAltClickPlus={() => {
+                  const newBlocks = addBlock({
+                    blocks,
+                    block: {
+                      id: uuid(),
+                      index: index,
+                      type: "text",
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
+                }}
                 onClickGrip={() => console.log("click grip")}
                 onBlockSelected={(type) => {
-                  console.log(type);
+                  const newBlocks = updateBlock({
+                    blocks,
+                    blockId: block.id,
+                    data: {
+                      type: type,
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
                 }}
               />
             );
@@ -144,19 +167,9 @@ const Content = ({}: Props) => {
                 key={block.id}
                 ref={block.ref}
                 defaultValue={block.content}
-                onPressEnter={(value) => {
-                  // Update current block.
-                  const newBlocks1 = updateBlock({
+                onPressEnter={() => {
+                  const newBlocks = addBlock({
                     blocks,
-                    blockId: block.id,
-                    data: {
-                      content: value,
-                    },
-                  });
-
-                  // Add new empty text block below it.
-                  const newBlocks2 = addBlock({
-                    blocks: newBlocks1,
                     block: {
                       id: uuid(),
                       index: index + 1,
@@ -165,7 +178,7 @@ const Content = ({}: Props) => {
                     },
                   });
 
-                  setBlocks(newBlocks2);
+                  setBlocks(newBlocks);
                 }}
                 onChange={(value) => {
                   const newBlocks = updateBlock({
@@ -178,11 +191,44 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickPlus={() => console.log("click plus")}
-                onClickAltPlus={() => console.log("click alt plus")}
+                onClickPlus={() => {
+                  const newBlocks = addBlock({
+                    blocks,
+                    block: {
+                      id: uuid(),
+                      index: index + 1,
+                      type: "text",
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
+                }}
+                onAltClickPlus={() => {
+                  const newBlocks = addBlock({
+                    blocks,
+                    block: {
+                      id: uuid(),
+                      index: index,
+                      type: "text",
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
+                }}
                 onClickGrip={() => console.log("click grip")}
                 onBlockSelected={(type) => {
-                  console.log(type);
+                  const newBlocks = updateBlock({
+                    blocks,
+                    blockId: block.id,
+                    data: {
+                      type: type,
+                      content: "",
+                    },
+                  });
+
+                  setBlocks(newBlocks);
                 }}
               />
             );
