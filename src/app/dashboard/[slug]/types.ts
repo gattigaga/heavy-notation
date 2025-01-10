@@ -6,3 +6,5 @@ export type Block = {
   type: BlockType;
   content: string;
 };
+
+export type ActionType = "delete" | "duplicate";

@@ -6,8 +6,8 @@ import { v4 as uuid } from "uuid";
 import TitleBlock from "./TitleBlock";
 import TextBlock from "./TextBlock";
 import HeadingBlock from "./HeadingBlock";
-import { addBlock, updateBlock } from "../helpers/parser";
 import { Block } from "../types";
+import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
 
 type Props = Record<string, unknown>;
 
@@ -158,6 +158,39 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
+                onClickAction={(type) => {
+                  switch (type) {
+                    case "delete":
+                      (() => {
+                        const newBlocks = deleteBlock({
+                          blocks,
+                          blockId: block.id,
+                        });
+
+                        setBlocks(newBlocks);
+                      })();
+                      break;
+
+                    case "duplicate":
+                      (() => {
+                        const newBlocks = addBlock({
+                          blocks,
+                          block: {
+                            id: uuid(),
+                            index: index + 1,
+                            type: block.type,
+                            content: block.content,
+                          },
+                        });
+
+                        setBlocks(newBlocks);
+                      })();
+                      break;
+
+                    default:
+                      break;
+                  }
+                }}
               />
             );
 
@@ -229,6 +262,39 @@ const Content = ({}: Props) => {
                   });
 
                   setBlocks(newBlocks);
+                }}
+                onClickAction={(type) => {
+                  switch (type) {
+                    case "delete":
+                      (() => {
+                        const newBlocks = deleteBlock({
+                          blocks,
+                          blockId: block.id,
+                        });
+
+                        setBlocks(newBlocks);
+                      })();
+                      break;
+
+                    case "duplicate":
+                      (() => {
+                        const newBlocks = addBlock({
+                          blocks,
+                          block: {
+                            id: uuid(),
+                            index: index + 1,
+                            type: block.type,
+                            content: block.content,
+                          },
+                        });
+
+                        setBlocks(newBlocks);
+                      })();
+                      break;
+
+                    default:
+                      break;
+                  }
                 }}
               />
             );

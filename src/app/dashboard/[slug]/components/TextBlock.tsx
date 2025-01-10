@@ -5,7 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { BlockType } from "../types";
+import { ActionType, BlockType } from "../types";
 
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
@@ -15,6 +15,7 @@ type Props = {
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
   onClickGrip?: () => void;
+  onClickAction?: (type: ActionType) => void;
   onBlockSelected?: (type: BlockType) => void;
 };
 
@@ -26,6 +27,7 @@ const TextBlock = ({
   onClickPlus,
   onAltClickPlus,
   onClickGrip,
+  onClickAction,
   onBlockSelected,
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
@@ -51,6 +53,7 @@ const TextBlock = ({
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
             onClickGrip={onClickGrip}
+            onClickAction={onClickAction}
           />
         </div>
       )}

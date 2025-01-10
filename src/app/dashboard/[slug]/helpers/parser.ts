@@ -46,7 +46,7 @@ export const updateBlock = ({
   return newBlocks;
 };
 
-export const removeBlock = ({
+export const deleteBlock = ({
   blocks,
   blockId,
 }: {
