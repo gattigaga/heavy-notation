@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Copy, GripVertical, Plus, Trash } from "lucide-react";
 
 import {
@@ -16,22 +17,30 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import { ActionType } from "../types";
+import { cn } from "@/lib/utils";
 
 type Props = {
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
-  onClickGrip?: () => void;
-  onClickAction?: (type: ActionType) => void;
+  onClickGripAction?: (type: ActionType) => void;
 };
 
 const BlockControls = ({
   onClickPlus,
   onAltClickPlus,
-  onClickGrip,
-  onClickAction,
+  onClickGripAction,
 }: Props) => {
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
-    <div className="opacity-0 group-hover:opacity-100">
+    <div
+      className={cn(
+        isDropdownOpen && "opacity-100",
+        !isDropdownOpen && "opacity-0 group-hover:opacity-100",
+      )}
+    >
+      {/* Plus button */}
       <Tooltip>
         <TooltipTrigger
           className="rounded p-1 hover:bg-zinc-100"
@@ -56,25 +65,36 @@ const BlockControls = ({
           </p>
         </TooltipContent>
       </Tooltip>
-      <Tooltip>
+
+      {/* Grip button */}
+      <Tooltip
+        open={isTooltipOpen}
+        onOpenChange={(isOpen) => {
+          setIsTooltipOpen(isDropdownOpen ? false : isOpen);
+        }}
+      >
         {/* TODO: Need to trigger drag mode if this grip dragged by user. */}
-        <TooltipTrigger
-          className="rounded p-1 hover:bg-zinc-100"
-          type="button"
-          onClick={onClickGrip}
-        >
-          <DropdownMenu>
-            <DropdownMenuTrigger>
+        <TooltipTrigger className="rounded p-1 hover:bg-zinc-100">
+          <DropdownMenu
+            open={isDropdownOpen}
+            onOpenChange={(isOpen) => {
+              setIsDropdownOpen(isOpen);
+              setIsTooltipOpen(false);
+            }}
+          >
+            <DropdownMenuTrigger asChild={true}>
               <GripVertical className="text-zinc-400" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-64" side="left">
               <DropdownMenuGroup>
-                <DropdownMenuItem onClick={() => onClickAction?.("delete")}>
+                <DropdownMenuItem onClick={() => onClickGripAction?.("delete")}>
                   <Trash />
                   <span>Delete</span>
                   <DropdownMenuShortcut>Del</DropdownMenuShortcut>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onClickAction?.("duplicate")}>
+                <DropdownMenuItem
+                  onClick={() => onClickGripAction?.("duplicate")}
+                >
                   <Copy />
                   <span>Duplicate</span>
                   <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>

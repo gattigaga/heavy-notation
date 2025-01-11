@@ -16,8 +16,7 @@ type Props = {
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
-  onClickGrip?: () => void;
-  onClickAction?: (type: ActionType) => void;
+  onClickGripAction?: (type: ActionType) => void;
   onBlockSelected?: (type: BlockType) => void;
 };
 
@@ -29,9 +28,8 @@ const HeadingBlock = ({
   onChange,
   onClickPlus,
   onAltClickPlus,
-  onClickGrip,
+  onClickGripAction,
   onBlockSelected,
-  onClickAction,
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
@@ -72,8 +70,7 @@ const HeadingBlock = ({
           <BlockControls
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
-            onClickGrip={onClickGrip}
-            onClickAction={onClickAction}
+            onClickGripAction={onClickGripAction}
           />
         </div>
       )}

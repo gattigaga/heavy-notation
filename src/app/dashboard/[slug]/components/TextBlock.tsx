@@ -14,8 +14,7 @@ type Props = {
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
-  onClickGrip?: () => void;
-  onClickAction?: (type: ActionType) => void;
+  onClickGripAction?: (type: ActionType) => void;
   onBlockSelected?: (type: BlockType) => void;
 };
 
@@ -26,8 +25,7 @@ const TextBlock = ({
   onChange,
   onClickPlus,
   onAltClickPlus,
-  onClickGrip,
-  onClickAction,
+  onClickGripAction,
   onBlockSelected,
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
@@ -52,8 +50,7 @@ const TextBlock = ({
           <BlockControls
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
-            onClickGrip={onClickGrip}
-            onClickAction={onClickAction}
+            onClickGripAction={onClickGripAction}
           />
         </div>
       )}

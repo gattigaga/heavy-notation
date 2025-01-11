@@ -145,7 +145,6 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickGrip={() => console.log("click grip")}
                 onBlockSelected={(type) => {
                   const newBlocks = updateBlock({
                     blocks,
@@ -158,7 +157,7 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickAction={(type) => {
+                onClickGripAction={(type) => {
                   switch (type) {
                     case "delete":
                       (() => {
@@ -250,7 +249,6 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickGrip={() => console.log("click grip")}
                 onBlockSelected={(type) => {
                   const newBlocks = updateBlock({
                     blocks,
@@ -263,7 +261,7 @@ const Content = ({}: Props) => {
 
                   setBlocks(newBlocks);
                 }}
-                onClickAction={(type) => {
+                onClickGripAction={(type) => {
                   switch (type) {
                     case "delete":
                       (() => {
