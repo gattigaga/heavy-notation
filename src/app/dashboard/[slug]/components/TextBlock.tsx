@@ -2,6 +2,8 @@
 
 import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
@@ -9,6 +11,7 @@ import { ActionType, BlockType } from "../types";
 
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
+  id: string;
   defaultValue: string;
   onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
@@ -20,6 +23,7 @@ type Props = {
 
 const TextBlock = ({
   ref,
+  id,
   defaultValue,
   onPressEnter,
   onChange,
@@ -31,10 +35,20 @@ const TextBlock = ({
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const sortable = useSortable({ id });
 
   const placeholder = isFocused
     ? "Write something, or press '/' for commands..."
     : "";
+
+  const style = sortable.transform
+    ? {
+        transform: CSS.Translate.toString(sortable.transform),
+        transition: sortable.transition,
+        opacity: sortable.isDragging ? 0.25 : 1,
+        zIndex: 2,
+      }
+    : undefined;
 
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
@@ -44,10 +58,12 @@ const TextBlock = ({
   }, [isBlocksOpen]);
 
   return (
-    <div className="group relative">
+    <div ref={sortable.setNodeRef} className="group relative" style={style}>
       {!isBlocksOpen && (
         <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
           <BlockControls
+            id={id}
+            sortable={sortable}
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
             onClickGripAction={onClickGripAction}
@@ -65,7 +81,7 @@ const TextBlock = ({
       >
         <TextareaAutosize
           ref={ref}
-          className="w-full resize-none text-lg font-medium text-foreground outline-none"
+          className="w-full resize-none bg-transparent text-lg font-medium text-foreground outline-none"
           value={value}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

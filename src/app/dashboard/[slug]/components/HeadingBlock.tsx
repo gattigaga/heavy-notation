@@ -2,6 +2,8 @@
 
 import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
@@ -10,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
+  id: string;
   type: BlockType;
   defaultValue: string;
   onPressEnter?: (value: string) => void;
@@ -22,6 +25,7 @@ type Props = {
 
 const HeadingBlock = ({
   ref,
+  id,
   type,
   defaultValue,
   onPressEnter,
@@ -33,6 +37,7 @@ const HeadingBlock = ({
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
+  const sortable = useSortable({ id });
 
   const placeholder = (() => {
     switch (type) {
@@ -50,6 +55,15 @@ const HeadingBlock = ({
     }
   })();
 
+  const style = sortable.transform
+    ? {
+        transform: CSS.Translate.toString(sortable.transform),
+        transition: sortable.transition,
+        opacity: sortable.isDragging ? 0.25 : 1,
+        zIndex: 2,
+      }
+    : undefined;
+
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
     if (!isBlocksOpen && ref.current) {
@@ -58,7 +72,7 @@ const HeadingBlock = ({
   }, [isBlocksOpen]);
 
   return (
-    <div className="group relative">
+    <div ref={sortable.setNodeRef} className="group relative" style={style}>
       {!isBlocksOpen && (
         <div
           className={cn("absolute flex -translate-x-full items-center pr-1", {
@@ -68,6 +82,8 @@ const HeadingBlock = ({
           })}
         >
           <BlockControls
+            id={id}
+            sortable={sortable}
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
             onClickGripAction={onClickGripAction}
@@ -86,7 +102,7 @@ const HeadingBlock = ({
         <TextareaAutosize
           ref={ref}
           className={cn(
-            "w-full resize-none font-bold text-foreground outline-none",
+            "w-full resize-none bg-transparent font-bold text-foreground outline-none",
             {
               "text-4xl leading-normal": type === "heading1",
               "text-3xl leading-normal": type === "heading2",

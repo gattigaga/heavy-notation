@@ -5,7 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 type Props = {
   defaultValue: string;
-  onPressEnter?: () => void;
+  onPressEnter?: (value: string) => void;
   onChange?: (value: string) => void;
 };
 
@@ -14,7 +14,7 @@ const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
 
   return (
     <TextareaAutosize
-      className="w-full resize-none text-5xl font-bold leading-normal text-foreground outline-none"
+      className="w-full resize-none bg-transparent text-5xl font-bold leading-normal text-foreground outline-none"
       value={value}
       placeholder="New Page"
       onChange={(event) => {
@@ -26,7 +26,7 @@ const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
       onKeyDown={(event) => {
         if (event.key === "Enter") {
           event.preventDefault();
-          onPressEnter?.();
+          onPressEnter?.(value);
         }
       }}
     />
