@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, GripVertical, Plus, Trash } from "lucide-react";
+import { Copy, GripVertical, Plus, Trash2 } from "lucide-react";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import {
   DraggableAttributes,
@@ -138,7 +138,7 @@ const BlockControls = ({
             <DropdownMenuContent className="w-64" side="left">
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => onClickGripAction?.("delete")}>
-                  <Trash />
+                  <Trash2 />
                   <span>Delete</span>
                   <DropdownMenuShortcut>Del</DropdownMenuShortcut>
                 </DropdownMenuItem>
