@@ -14,7 +14,7 @@ const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
 
   return (
     <TextareaAutosize
-      className="w-full resize-none bg-transparent text-5xl font-bold leading-normal text-foreground outline-none"
+      className="w-full resize-none bg-transparent text-5xl font-bold leading-normal text-zinc-700 outline-none placeholder:text-zinc-400"
       value={value}
       placeholder="New Page"
       onChange={(event) => {

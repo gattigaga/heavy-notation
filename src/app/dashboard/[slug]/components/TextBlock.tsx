@@ -81,7 +81,7 @@ const TextBlock = ({
       >
         <TextareaAutosize
           ref={ref}
-          className="w-full resize-none bg-transparent text-lg font-medium text-foreground outline-none"
+          className="w-full resize-none bg-transparent text-lg font-medium text-zinc-700 outline-none placeholder:text-zinc-400"
           value={value}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

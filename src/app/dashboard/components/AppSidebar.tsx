@@ -44,14 +44,14 @@ const AppSidebar = (props: Props) => {
       id: "search",
       title: "Search",
       url: "#",
-      icon: <Search className="text-foreground" />,
+      icon: <Search className="text-zinc-700" />,
       isActive: false,
     },
     {
       id: "home",
       title: "Home",
       url: "/dashboard",
-      icon: <Home className="text-foreground" />,
+      icon: <Home className="text-zinc-700" />,
       isActive: pathname === "/dashboard",
     },
   ];
