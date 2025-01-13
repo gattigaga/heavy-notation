@@ -14,8 +14,8 @@ type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
   id: string;
   type: BlockType;
-  defaultValue: string;
-  onPressEnter?: (value: string) => void;
+  value: string;
+  onPressEnter?: (values: [string, string]) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
@@ -27,7 +27,7 @@ const HeadingBlock = ({
   ref,
   id,
   type,
-  defaultValue,
+  value,
   onPressEnter,
   onChange,
   onClickPlus,
@@ -35,7 +35,6 @@ const HeadingBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
-  const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const sortable = useSortable({ id });
 
@@ -115,19 +114,21 @@ const HeadingBlock = ({
           onChange={(event) => {
             const newValue = event.target.value;
 
-            setValue(newValue);
+            onChange?.(newValue);
 
             if (!value && newValue.startsWith("/")) {
               setIsBlocksOpen(true);
             }
           }}
-          onBlur={() => {
-            onChange?.(value);
-          }}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onPressEnter?.(value);
+
+              const cursorPosition = ref.current?.selectionStart;
+              const a = value.slice(0, cursorPosition);
+              const b = value.slice(cursorPosition);
+
+              onPressEnter?.([a, b]);
             }
           }}
         />

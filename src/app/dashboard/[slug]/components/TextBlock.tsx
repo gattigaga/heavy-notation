@@ -12,8 +12,8 @@ import { BlockType, GripAction } from "../types";
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
   id: string;
-  defaultValue: string;
-  onPressEnter?: (value: string) => void;
+  value: string;
+  onPressEnter?: (values: [string, string]) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
@@ -24,7 +24,7 @@ type Props = {
 const TextBlock = ({
   ref,
   id,
-  defaultValue,
+  value,
   onPressEnter,
   onChange,
   onClickPlus,
@@ -32,7 +32,6 @@ const TextBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
-  const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
@@ -89,20 +88,22 @@ const TextBlock = ({
           onChange={(event) => {
             const newValue = event.target.value;
 
-            setValue(newValue);
+            onChange?.(newValue);
 
             if (!value && newValue.startsWith("/")) {
               setIsBlocksOpen(true);
             }
           }}
-          onBlur={() => {
-            setIsFocused(false);
-            onChange?.(value);
-          }}
+          onBlur={() => setIsFocused(false)}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              onPressEnter?.(value);
+
+              const cursorPosition = ref.current?.selectionStart;
+              const a = value.slice(0, cursorPosition);
+              const b = value.slice(cursorPosition);
+
+              onPressEnter?.([a, b]);
             }
           }}
         />

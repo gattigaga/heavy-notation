@@ -152,15 +152,25 @@ const Content = ({}: Props) => {
                     ref={block.ref}
                     id={block.id}
                     type={block.type}
-                    defaultValue={block.content}
-                    onPressEnter={() => {
-                      const newBlocks = addBlock({
+                    value={block.content}
+                    onPressEnter={(values) => {
+                      let newBlocks = blocks;
+
+                      newBlocks = updateBlock({
                         blocks,
+                        blockId: block.id,
+                        data: {
+                          content: values[0],
+                        },
+                      });
+
+                      newBlocks = addBlock({
+                        blocks: newBlocks,
                         block: {
                           id: uuid(),
                           index: index + 1,
-                          type: "text",
-                          content: "",
+                          type: block.type,
+                          content: values[1],
                         },
                       });
 
@@ -351,15 +361,25 @@ const Content = ({}: Props) => {
                     key={block.id}
                     ref={block.ref}
                     id={block.id}
-                    defaultValue={block.content}
-                    onPressEnter={() => {
-                      const newBlocks = addBlock({
+                    value={block.content}
+                    onPressEnter={(values) => {
+                      let newBlocks = blocks;
+
+                      newBlocks = updateBlock({
                         blocks,
+                        blockId: block.id,
+                        data: {
+                          content: values[0],
+                        },
+                      });
+
+                      newBlocks = addBlock({
+                        blocks: newBlocks,
                         block: {
                           id: uuid(),
                           index: index + 1,
                           type: "text",
-                          content: "",
+                          content: values[1],
                         },
                       });
 
