@@ -113,7 +113,19 @@ const Content = ({}: Props) => {
       {/* Title */}
       <TitleBlock
         defaultValue={title}
-        onPressEnter={() => console.log("press enter")}
+        onPressEnter={() => {
+          const newBlocks = addBlock({
+            blocks,
+            block: {
+              id: uuid(),
+              index: 0,
+              type: "text",
+              content: "",
+            },
+          });
+
+          setBlocks(newBlocks);
+        }}
         onChange={setTitle}
       />
 
@@ -240,8 +252,6 @@ const Content = ({}: Props) => {
                                 type: action.data?.type,
                               },
                             });
-
-                            console.log(action);
 
                             setBlocks(newBlocks);
                           })();

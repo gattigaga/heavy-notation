@@ -4,8 +4,6 @@ export const formatToClientTimeAndAgo = (utcDateTime: string): string => {
   // Parse the UTC datetime
   const utcTime = DateTime.fromISO(utcDateTime, { zone: "utc" });
 
-  console.log(utcTime);
-
   // Convert to client's local timezone
   const localTime = utcTime.setZone(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
