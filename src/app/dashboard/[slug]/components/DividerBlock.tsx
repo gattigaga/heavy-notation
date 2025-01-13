@@ -44,7 +44,7 @@ const DividerBlock = ({
       </div>
 
       <div className="flex h-7 flex-col justify-center">
-        <hr />
+        <hr className="border-zinc-300" />
       </div>
     </div>
   );
