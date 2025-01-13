@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BlockType } from "../types";
+import BlocksDropdownItem from "./BlocksDropdownItem";
 
 type BlockItem = {
   type: BlockType;
@@ -100,29 +101,14 @@ const BlocksDropdown = ({
                 </p>
                 <div className="flex flex-col p-2">
                   {block.items.map((item) => {
-                    const Icon = item.icon;
-
                     return (
-                      <button
+                      <BlocksDropdownItem
                         key={item.type}
-                        className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
-                        type="button"
+                        title={item.title}
+                        description={item.description}
+                        icon={item.icon}
                         onClick={() => onChange?.(item.type)}
-                      >
-                        <div className="flex items-center gap-x-4">
-                          <div className="flex h-16 w-16 items-center justify-center rounded border bg-white">
-                            <Icon size={40} />
-                          </div>
-                          <div>
-                            <p className="text-left text-lg font-medium">
-                              {item.title}
-                            </p>
-                            <p className="text-left text-sm text-zinc-400">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      </button>
+                      />
                     );
                   })}
                 </div>
