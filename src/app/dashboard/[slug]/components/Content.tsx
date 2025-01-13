@@ -202,8 +202,8 @@ const Content = ({}: Props) => {
 
                       setBlocks(newBlocks);
                     }}
-                    onClickGripAction={(type) => {
-                      switch (type) {
+                    onClickGripAction={(action) => {
+                      switch (action.type) {
                         case "delete":
                           (() => {
                             const newBlocks = deleteBlock({
@@ -226,6 +226,22 @@ const Content = ({}: Props) => {
                                 content: block.content,
                               },
                             });
+
+                            setBlocks(newBlocks);
+                          })();
+                          break;
+
+                        case "turn_into":
+                          (() => {
+                            const newBlocks = updateBlock({
+                              blocks,
+                              blockId: block.id,
+                              data: {
+                                type: action.data?.type,
+                              },
+                            });
+
+                            console.log(action);
 
                             setBlocks(newBlocks);
                           })();
@@ -307,8 +323,8 @@ const Content = ({}: Props) => {
 
                       setBlocks(newBlocks);
                     }}
-                    onClickGripAction={(type) => {
-                      switch (type) {
+                    onClickGripAction={(action) => {
+                      switch (action.type) {
                         case "delete":
                           (() => {
                             const newBlocks = deleteBlock({
@@ -335,6 +351,19 @@ const Content = ({}: Props) => {
                             setBlocks(newBlocks);
                           })();
                           break;
+
+                        case "turn_into":
+                          (() => {
+                            const newBlocks = updateBlock({
+                              blocks,
+                              blockId: block.id,
+                              data: {
+                                type: action.data?.type,
+                              },
+                            });
+
+                            setBlocks(newBlocks);
+                          })();
 
                         default:
                           break;

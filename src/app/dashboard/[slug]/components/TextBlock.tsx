@@ -7,7 +7,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { ActionType, BlockType } from "../types";
+import { BlockType, GripAction } from "../types";
 
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
@@ -17,7 +17,7 @@ type Props = {
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
-  onClickGripAction?: (type: ActionType) => void;
+  onClickGripAction?: (action: GripAction) => void;
   onBlockSelected?: (type: BlockType) => void;
 };
 
@@ -63,6 +63,7 @@ const TextBlock = ({
         <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
           <BlockControls
             id={id}
+            type="text"
             sortable={sortable}
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}

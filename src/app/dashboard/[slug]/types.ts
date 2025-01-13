@@ -7,4 +7,9 @@ export type Block = {
   content: string;
 };
 
-export type ActionType = "delete" | "duplicate";
+export type ActionType = "delete" | "duplicate" | "turn_into";
+
+export type GripAction = {
+  type: ActionType;
+  data: { type: BlockType } | null;
+};

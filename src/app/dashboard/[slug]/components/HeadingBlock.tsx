@@ -7,7 +7,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { ActionType, BlockType } from "../types";
+import { BlockType, GripAction } from "../types";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
   onAltClickPlus?: () => void;
-  onClickGripAction?: (type: ActionType) => void;
+  onClickGripAction?: (action: GripAction) => void;
   onBlockSelected?: (type: BlockType) => void;
 };
 
@@ -83,6 +83,7 @@ const HeadingBlock = ({
         >
           <BlockControls
             id={id}
+            type={type}
             sortable={sortable}
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}
