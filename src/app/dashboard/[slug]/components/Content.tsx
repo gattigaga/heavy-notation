@@ -1,6 +1,6 @@
 "use client";
 
-import { createRef, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import {
   closestCenter,
@@ -108,6 +108,43 @@ const Content = ({}: Props) => {
       setBlocks(newBlocks);
     }
   };
+
+  // Handle keyboard focus navigation for blocks.
+  useEffect(() => {
+    const handleFocus = (event: KeyboardEvent) => {
+      if (
+        document.activeElement &&
+        document.activeElement instanceof HTMLTextAreaElement
+      ) {
+        const index = blockWithRefs.findIndex(
+          (block) => block.ref.current === document.activeElement,
+        );
+
+        switch (event.key) {
+          case "ArrowUp":
+            if (index > 0) {
+              blockWithRefs[index - 1].ref.current?.focus();
+            }
+            break;
+
+          case "ArrowDown":
+            if (index < blockWithRefs.length - 1) {
+              blockWithRefs[index + 1].ref.current?.focus();
+            }
+            break;
+
+          default:
+            break;
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleFocus);
+
+    return () => {
+      document.removeEventListener("keydown", handleFocus);
+    };
+  }, [blocks]);
 
   return (
     <div className="mx-auto max-w-3xl">
