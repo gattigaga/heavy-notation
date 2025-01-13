@@ -1,4 +1,10 @@
-import { CaseSensitive, Heading1, Heading2, Heading3 } from "lucide-react";
+import {
+  CaseSensitive,
+  Heading1,
+  Heading2,
+  Heading3,
+  SquareSplitVertical,
+} from "lucide-react";
 import { Fragment } from "react";
 
 import {
@@ -66,6 +72,12 @@ const BlocksDropdown = ({
           title: "Heading 3",
           description: "Small section heading.",
           icon: Heading3,
+        },
+        {
+          type: "divider",
+          title: "Divider",
+          description: "Visually divide blocks.",
+          icon: SquareSplitVertical,
         },
       ],
     },

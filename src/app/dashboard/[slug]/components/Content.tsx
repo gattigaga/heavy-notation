@@ -20,6 +20,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import TitleBlock from "./TitleBlock";
 import TextBlock from "./TextBlock";
 import HeadingBlock from "./HeadingBlock";
+import DividerBlock from "./DividerBlock";
 import { Block } from "../types";
 import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
 
@@ -256,6 +257,86 @@ const Content = ({}: Props) => {
                             setBlocks(newBlocks);
                           })();
                           break;
+
+                        default:
+                          break;
+                      }
+                    }}
+                  />
+                );
+
+              case "divider":
+                return (
+                  <DividerBlock
+                    key={block.id}
+                    id={block.id}
+                    onClickPlus={() => {
+                      const newBlocks = addBlock({
+                        blocks,
+                        block: {
+                          id: uuid(),
+                          index: index + 1,
+                          type: "text",
+                          content: "",
+                        },
+                      });
+
+                      setBlocks(newBlocks);
+                    }}
+                    onAltClickPlus={() => {
+                      const newBlocks = addBlock({
+                        blocks,
+                        block: {
+                          id: uuid(),
+                          index: index,
+                          type: "text",
+                          content: "",
+                        },
+                      });
+
+                      setBlocks(newBlocks);
+                    }}
+                    onClickGripAction={(action) => {
+                      switch (action.type) {
+                        case "delete":
+                          (() => {
+                            const newBlocks = deleteBlock({
+                              blocks,
+                              blockId: block.id,
+                            });
+
+                            setBlocks(newBlocks);
+                          })();
+                          break;
+
+                        case "duplicate":
+                          (() => {
+                            const newBlocks = addBlock({
+                              blocks,
+                              block: {
+                                id: uuid(),
+                                index: index + 1,
+                                type: block.type,
+                                content: block.content,
+                              },
+                            });
+
+                            setBlocks(newBlocks);
+                          })();
+                          break;
+
+                        case "turn_into":
+                          (() => {
+                            const newBlocks = updateBlock({
+                              blocks,
+                              blockId: block.id,
+                              data: {
+                                type: action.data?.type,
+                              },
+                            });
+
+                            setBlocks(newBlocks);
+                          })();
 
                         default:
                           break;

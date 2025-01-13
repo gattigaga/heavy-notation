@@ -18,10 +18,10 @@ const BlocksDropdownItem = ({ icon, title, description, onClick }: Props) => {
     >
       <div className="flex items-center gap-x-4">
         <div className="flex h-16 w-16 items-center justify-center rounded border bg-white">
-          <Icon size={40} />
+          <Icon className="text-zinc-700" size={40} />
         </div>
         <div>
-          <p className="text-left text-lg font-medium">{title}</p>
+          <p className="text-left text-lg font-medium text-zinc-700">{title}</p>
           <p className="text-left text-sm text-zinc-400">{description}</p>
         </div>
       </div>

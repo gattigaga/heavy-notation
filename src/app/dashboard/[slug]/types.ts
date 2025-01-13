@@ -1,4 +1,9 @@
-export type BlockType = "text" | "heading1" | "heading2" | "heading3";
+export type BlockType =
+  | "text"
+  | "heading1"
+  | "heading2"
+  | "heading3"
+  | "divider";
 
 export type Block = {
   id: string;
