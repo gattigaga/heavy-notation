@@ -102,7 +102,7 @@ const HeadingBlock = ({
         <TextareaAutosize
           ref={ref}
           className={cn(
-            "w-full resize-none bg-transparent font-bold text-zinc-700 outline-none placeholder:text-zinc-300",
+            "w-full resize-none bg-transparent font-bold text-zinc-700 outline-none placeholder:text-zinc-400",
             {
               "text-4xl leading-normal": type === "heading1",
               "text-3xl leading-normal": type === "heading2",
