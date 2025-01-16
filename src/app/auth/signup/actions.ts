@@ -1,8 +1,8 @@
 "use server";
 
-import crypto from "crypto";
 import { redirect } from "next/navigation";
 import { returnValidationErrors } from "next-safe-action";
+import md5 from "md5";
 
 import { prisma } from "@/helpers/prisma";
 import { actionClient } from "@/app/helpers/actions";
@@ -35,11 +35,7 @@ export const signUp = actionClient
       returnValidationErrors(signUpSchema, errors);
     }
 
-    const salt = crypto.randomBytes(16).toString("hex");
-
-    const hashedPassword = crypto
-      .pbkdf2Sync(password, salt, 1000, 64, "sha512")
-      .toString("hex");
+    const hashedPassword = md5(password);
 
     await prisma.user.create({
       data: {
@@ -47,7 +43,6 @@ export const signUp = actionClient
         username,
         email,
         password: hashedPassword,
-        passwordSalt: salt,
       },
     });
 
