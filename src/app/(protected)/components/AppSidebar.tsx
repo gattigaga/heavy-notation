@@ -50,9 +50,9 @@ const AppSidebar = (props: Props) => {
     {
       id: "home",
       title: "Home",
-      url: "/dashboard",
+      url: "/home",
       icon: <Home className="text-zinc-700" />,
-      isActive: pathname === "/dashboard",
+      isActive: pathname === "/home",
     },
   ];
 
@@ -60,14 +60,14 @@ const AppSidebar = (props: Props) => {
     {
       id: "page-1",
       title: "Untitled 1",
-      url: "/dashboard/page-1",
-      isActive: pathname === "/dashboard/page-1",
+      url: "/pages/page-1",
+      isActive: pathname === "/pages/page-1",
     },
     {
       id: "page-2",
       title: "Untitled Untitled Untitled Untitled 2",
-      url: "/dashboard/page-2",
-      isActive: pathname === "/dashboard/page-2",
+      url: "/pages/page-2",
+      isActive: pathname === "/pages/page-2",
     },
   ];
 

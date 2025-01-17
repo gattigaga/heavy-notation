@@ -29,6 +29,6 @@ export const signIn = actionClient
     }
 
     if (isSuccess) {
-      redirect("/dashboard");
+      redirect("/home");
     }
   });
