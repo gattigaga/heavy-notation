@@ -43,6 +43,10 @@ const SignUpForm = () => {
       if (signUpAction.result.validationErrors) {
         const validation = signUpAction.result.validationErrors;
 
+        if (validation._errors) {
+          toast.error(validation._errors?.[0]);
+        }
+
         if (validation.name) {
           form.setError("name", {
             type: "manual",
@@ -83,6 +87,8 @@ const SignUpForm = () => {
       if (signUpAction.result.serverError) {
         toast.error("Server can't process your request.");
       }
+
+      signUpAction.reset();
     }
   }, [signUpAction.hasErrored, signUpAction.result.validationErrors, form]);
 
