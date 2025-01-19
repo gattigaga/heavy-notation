@@ -26,18 +26,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type Props = React.ComponentProps<typeof Sidebar>;
+type Props = {
+  user: {
+    name: string;
+    email: string;
+  };
+};
 
-const AppSidebar = (props: Props) => {
+const AppSidebar = ({ user }: Props) => {
   const { isMobile } = useSidebar();
   const pathname = usePathname();
-
-  const user = {
-    name: "Gattigaga Hayyuta Dewa",
-    username: "gattigaga",
-    email: "gattigaga@heavy-notation.com",
-    avatar: "/avatars/gattigaga.jpg",
-  };
 
   const menuItems = [
     {
@@ -72,7 +70,7 @@ const AppSidebar = (props: Props) => {
   ];
 
   return (
-    <Sidebar {...props}>
+    <Sidebar>
       <SidebarHeader>
         <AuthMenu user={user} />
       </SidebarHeader>

@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { returnValidationErrors } from "next-safe-action";
 
-import * as auth from "@/helpers/auth";
+import * as authHelper from "@/helpers/auth";
 import { actionClient } from "@/app/helpers/actions";
 import { signInSchema } from "./validation";
 
@@ -13,7 +13,7 @@ export const signIn = actionClient
     let isSuccess = false;
 
     try {
-      await auth.signIn("credentials", {
+      await authHelper.signIn("credentials", {
         email,
         password,
         redirect: false,
@@ -21,7 +21,7 @@ export const signIn = actionClient
 
       isSuccess = true;
     } catch (error: any) {
-      if (error instanceof auth.InvalidCredentialsError) {
+      if (error instanceof authHelper.InvalidCredentialsError) {
         returnValidationErrors(signInSchema, {
           _errors: [error.message],
         });
