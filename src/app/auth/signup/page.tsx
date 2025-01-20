@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const SignUpPage = () => {
   return (
-    <main className="w-full min-h-screen bg-white flex flex-col items-center px-6 py-24">
+    <main className="min-h-screen w-full bg-white">
       <SignUpForm />
     </main>
   );
