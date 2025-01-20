@@ -1,15 +1,14 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { File, Home, MoreHorizontal, Search, Trash2 } from "lucide-react";
+import { File, Home, MoreHorizontal, Plus, Search, Trash2 } from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuAction,
@@ -34,6 +33,7 @@ type Props = {
 };
 
 const AppSidebar = ({ user }: Props) => {
+  const [isPagesSectionShow, setIsPagesSectionShow] = useState(true);
   const { isMobile } = useSidebar();
   const pathname = usePathname();
 
@@ -93,42 +93,59 @@ const AppSidebar = ({ user }: Props) => {
 
         {/* Pages */}
         <SidebarGroup>
-          <SidebarGroupLabel>Pages</SidebarGroupLabel>
           <SidebarMenu>
-            {pageItems.map((item) => (
-              <SidebarMenuItem key={item.id}>
-                <SidebarMenuButton isActive={item.isActive} asChild={true}>
-                  <Link href={item.url} title={item.title}>
-                    <File />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild={true}>
-                    <SidebarMenuAction showOnHover>
-                      <MoreHorizontal />
-                      <span className="sr-only">More</span>
-                    </SidebarMenuAction>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    className="w-56 rounded-lg"
-                    side={isMobile ? "bottom" : "right"}
-                    align={isMobile ? "end" : "start"}
-                  >
-                    <DropdownMenuItem>
-                      <Trash2 className="text-muted-foreground" />
-                      <span>Delete</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </SidebarMenuItem>
-            ))}
             <SidebarMenuItem>
-              <SidebarMenuButton className="text-sidebar-foreground/70">
-                <MoreHorizontal />
-                <span>More</span>
+              <SidebarMenuButton
+                onClick={() => setIsPagesSectionShow(!isPagesSectionShow)}
+              >
+                Pages
               </SidebarMenuButton>
+              <SidebarMenuAction
+                showOnHover={true}
+                onClick={() => {
+                  // TODO: Create new page.
+                }}
+              >
+                <Plus />
+              </SidebarMenuAction>
             </SidebarMenuItem>
+            {isPagesSectionShow && (
+              <>
+                {pageItems.map((item) => (
+                  <SidebarMenuItem key={item.id}>
+                    <SidebarMenuButton isActive={item.isActive} asChild={true}>
+                      <Link href={item.url} title={item.title}>
+                        <File />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild={true}>
+                        <SidebarMenuAction showOnHover={true}>
+                          <MoreHorizontal />
+                        </SidebarMenuAction>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        className="w-56 rounded-lg"
+                        side={isMobile ? "bottom" : "right"}
+                        align={isMobile ? "end" : "start"}
+                      >
+                        <DropdownMenuItem>
+                          <Trash2 className="text-muted-foreground" />
+                          <span>Delete</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </SidebarMenuItem>
+                ))}
+                <SidebarMenuItem>
+                  <SidebarMenuButton className="text-sidebar-foreground/70">
+                    <MoreHorizontal />
+                    <span>More</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </>
+            )}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
