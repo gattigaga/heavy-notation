@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { File, MoreHorizontal, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
@@ -26,6 +28,10 @@ const PageList = () => {
   const pathname = usePathname();
   const pagesQuery = usePagesQuery();
 
+  const addPage = () => {};
+
+  const removePage = () => {};
+
   return (
     <>
       {pagesQuery.isSuccess && (
@@ -37,12 +43,7 @@ const PageList = () => {
               >
                 Pages
               </SidebarMenuButton>
-              <SidebarMenuAction
-                showOnHover={true}
-                onClick={() => {
-                  // TODO: Create new page.
-                }}
-              >
+              <SidebarMenuAction showOnHover={true} onClick={addPage}>
                 <Plus />
               </SidebarMenuAction>
             </SidebarMenuItem>
@@ -71,7 +72,7 @@ const PageList = () => {
                           side={isMobile ? "bottom" : "right"}
                           align={isMobile ? "end" : "start"}
                         >
-                          <DropdownMenuItem>
+                          <DropdownMenuItem onClick={removePage}>
                             <Trash2 className="text-muted-foreground" />
                             <span>Delete</span>
                           </DropdownMenuItem>
@@ -95,6 +96,11 @@ const PageList = () => {
             )}
           </SidebarMenu>
         </SidebarGroup>
+      )}
+      {pagesQuery.isError && (
+        <div className="mt-4 px-2">
+          <p className="mx-2 text-xs text-red-500">Cannot fetch pages data.</p>
+        </div>
       )}
       {pagesQuery.isLoading && (
         <div className="mt-4 flex flex-col gap-y-2 px-4">
