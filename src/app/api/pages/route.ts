@@ -12,3 +12,27 @@ export async function GET() {
 
   return Response.json({ data: pages });
 }
+
+export async function POST(request: Request) {
+  const session = await auth();
+  const body = await request.json();
+
+  const page = await prisma.page.create({
+    data: {
+      userId: session?.user.id,
+      slug: body.slug,
+      title: body.title,
+    },
+  });
+
+  await prisma.block.create({
+    data: {
+      pageId: page.id,
+      index: 0,
+      type: "TEXT",
+      content: "",
+    },
+  });
+
+  return Response.json({ data: page });
+}

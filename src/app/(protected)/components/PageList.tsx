@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { File, MoreHorizontal, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { v4 as uuid } from "uuid";
+import { toast } from "sonner";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -21,14 +23,36 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import usePagesQuery from "../hooks/queries/use-pages-query";
+import useAddPageMutation from "../hooks/mutations/use-add-page-mutation";
 
 const PageList = () => {
   const [isPagesSectionShow, setIsPagesSectionShow] = useState(true);
   const { isMobile } = useSidebar();
   const pathname = usePathname();
+  const router = useRouter();
   const pagesQuery = usePagesQuery();
+  const addPageMutation = useAddPageMutation();
 
-  const addPage = () => {};
+  const addPage = () => {
+    const slug = `untitled-${uuid()}`;
+
+    addPageMutation.mutate(
+      {
+        slug: slug,
+        title: "",
+      },
+      {
+        onError: () => {
+          toast.error("Failed to add a new page.");
+        },
+        onSettled: () => {
+          addPageMutation.reset();
+        },
+      },
+    );
+
+    router.push(`/pages/${slug}`);
+  };
 
   const removePage = () => {};
 
@@ -43,13 +67,16 @@ const PageList = () => {
               >
                 Pages
               </SidebarMenuButton>
-              <SidebarMenuAction showOnHover={true} onClick={addPage}>
-                <Plus />
-              </SidebarMenuAction>
+              {!addPageMutation.isPending && (
+                <SidebarMenuAction showOnHover={true} onClick={addPage}>
+                  <Plus />
+                </SidebarMenuAction>
+              )}
             </SidebarMenuItem>
             {isPagesSectionShow && (
               <>
-                {pagesQuery.data.map((item) => {
+                {/* Only show the first 10 pages. */}
+                {pagesQuery.data.slice(0, 10).map((item) => {
                   const url = `/pages/${item.slug}`;
                   const isActive = pathname === url;
 
@@ -58,7 +85,7 @@ const PageList = () => {
                       <SidebarMenuButton isActive={isActive} asChild={true}>
                         <Link href={url} title={item.title}>
                           <File />
-                          <span>{item.title}</span>
+                          <span>{item.title || "Untitled"}</span>
                         </Link>
                       </SidebarMenuButton>
                       <DropdownMenu>
@@ -81,12 +108,30 @@ const PageList = () => {
                     </SidebarMenuItem>
                   );
                 })}
-                {pagesQuery.data.length === 0 && (
+                {/* Show the placeholder data when adding page. */}
+                {addPageMutation.isPending && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive={true} asChild={true}>
+                      <Link href={`/pages/${addPageMutation.variables.slug}`}>
+                        <File />
+                        <span>Untitled</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+                {/* Show empty data if have no pages yet and when not adding page. */}
+                {pagesQuery.data.length === 0 && !addPageMutation.isPending && (
                   <p className="mx-2 text-xs text-zinc-400">No pages found.</p>
                 )}
+                {/* Show a button that when clicked, it will show more remaining pages. */}
                 {pagesQuery.data.length > 10 && (
                   <SidebarMenuItem>
-                    <SidebarMenuButton className="text-sidebar-foreground/70">
+                    <SidebarMenuButton
+                      className="text-sidebar-foreground/70"
+                      onClick={() => {
+                        // TODO: Show more pages in popup.
+                      }}
+                    >
                       <MoreHorizontal />
                       <span>More</span>
                     </SidebarMenuButton>
