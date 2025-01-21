@@ -1,7 +1,7 @@
 import { auth } from "@/helpers/auth";
 import { prisma } from "@/helpers/prisma";
 
-export async function GET() {
+export const GET = async () => {
   const session = await auth();
 
   const pages = await prisma.page.findMany({
@@ -11,9 +11,9 @@ export async function GET() {
   });
 
   return Response.json({ data: pages });
-}
+};
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) => {
   const session = await auth();
   const body = await request.json();
 
@@ -35,4 +35,4 @@ export async function POST(request: Request) {
   });
 
   return Response.json({ data: page });
-}
+};

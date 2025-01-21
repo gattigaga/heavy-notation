@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import usePagesQuery from "../hooks/queries/use-pages-query";
 import useAddPageMutation from "../hooks/mutations/use-add-page-mutation";
+import useRemovePageMutation from "../hooks/mutations/use-remove-page-mutation";
 
 const PageList = () => {
   const [isPagesSectionShow, setIsPagesSectionShow] = useState(true);
@@ -32,6 +33,16 @@ const PageList = () => {
   const router = useRouter();
   const pagesQuery = usePagesQuery();
   const addPageMutation = useAddPageMutation();
+  const removePageMutation = useRemovePageMutation();
+
+  const pages =
+    pagesQuery.data?.slice(0, 10).filter((item) => {
+      if (item.slug === removePageMutation.variables?.slug) {
+        return false;
+      }
+
+      return true;
+    }) || [];
 
   const addPage = () => {
     const slug = `untitled-${uuid()}`;
@@ -54,7 +65,27 @@ const PageList = () => {
     router.push(`/pages/${slug}`);
   };
 
-  const removePage = () => {};
+  const removePage = (slug: string) => {
+    removePageMutation.mutate(
+      {
+        slug,
+      },
+      {
+        onError: () => {
+          toast.error("Failed to remove the page.");
+        },
+        onSettled: () => {
+          removePageMutation.reset();
+        },
+      },
+    );
+
+    const isCurrentPage = pathname === `/pages/${slug}`;
+
+    if (isCurrentPage) {
+      router.push("/home");
+    }
+  };
 
   return (
     <>
@@ -76,7 +107,7 @@ const PageList = () => {
             {isPagesSectionShow && (
               <>
                 {/* Only show the first 10 pages. */}
-                {pagesQuery.data.slice(0, 10).map((item) => {
+                {pages.map((item) => {
                   const url = `/pages/${item.slug}`;
                   const isActive = pathname === url;
 
@@ -99,7 +130,9 @@ const PageList = () => {
                           side={isMobile ? "bottom" : "right"}
                           align={isMobile ? "end" : "start"}
                         >
-                          <DropdownMenuItem onClick={removePage}>
+                          <DropdownMenuItem
+                            onClick={() => removePage(item.slug)}
+                          >
                             <Trash2 className="text-muted-foreground" />
                             <span>Delete</span>
                           </DropdownMenuItem>
@@ -120,11 +153,11 @@ const PageList = () => {
                   </SidebarMenuItem>
                 )}
                 {/* Show empty data if have no pages yet and when not adding page. */}
-                {pagesQuery.data.length === 0 && !addPageMutation.isPending && (
+                {pages.length === 0 && !addPageMutation.isPending && (
                   <p className="mx-2 text-xs text-zinc-400">No pages found.</p>
                 )}
                 {/* Show a button that when clicked, it will show more remaining pages. */}
-                {pagesQuery.data.length > 10 && (
+                {pages.length > 10 && (
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       className="text-sidebar-foreground/70"
