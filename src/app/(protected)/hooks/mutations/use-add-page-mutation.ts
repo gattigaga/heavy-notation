@@ -10,6 +10,8 @@ type Response = {
   userId: string;
   slug: string;
   title: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 const action = async ({ slug, title }: ActionPayload): Promise<Response> => {
