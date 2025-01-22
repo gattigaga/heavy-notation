@@ -45,7 +45,7 @@ const PageList = () => {
     }) || [];
 
   const addPage = () => {
-    const slug = `untitled-${uuid()}`;
+    const slug = `new-page-${uuid()}`;
 
     addPageMutation.mutate(
       {
@@ -116,7 +116,7 @@ const PageList = () => {
                       <SidebarMenuButton isActive={isActive} asChild={true}>
                         <Link href={url} title={item.title}>
                           <File />
-                          <span>{item.title || "Untitled"}</span>
+                          <span>{item.title || "New Page"}</span>
                         </Link>
                       </SidebarMenuButton>
                       <DropdownMenu>
@@ -147,7 +147,7 @@ const PageList = () => {
                     <SidebarMenuButton isActive={true} asChild={true}>
                       <Link href={`/pages/${addPageMutation.variables.slug}`}>
                         <File />
-                        <span>Untitled</span>
+                        <span>New Page</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -182,7 +182,7 @@ const PageList = () => {
       )}
       {pagesQuery.isLoading && (
         <div className="mt-4 flex flex-col gap-y-2 px-4">
-          <Skeleton className="h-6 w-full rounded-lg" />
+          <Skeleton className="h-6 w-1/2 rounded-lg" />
           {[...Array(10)].map((_, index) => (
             <div key={index} className="flex items-center gap-x-2">
               <Skeleton className="h-6 w-6 rounded-lg" />
