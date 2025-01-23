@@ -1,26 +1,16 @@
 import { Metadata } from "next";
 
-import Content from "./components/Content";
 import Header from "./components/Header";
+import Content from "./components/Content";
 
 export const metadata: Metadata = {
-  title: "Page Name Here | Heavy Notation",
+  title: "New Page | Heavy Notation",
 };
 
-type Props = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-const PageDetailPage = async ({ params }: Props) => {
-  const paramsResult = await params;
-  const title = paramsResult.slug.replace(/-/g, " ");
-  const updatedAt = "2025-01-10T05:00:00Z";
-
+const PageDetailPage = async () => {
   return (
     <div className="flex h-screen flex-col">
-      <Header title={title} updatedAt={updatedAt} />
+      <Header />
       <div className="flex-1 overflow-y-scroll">
         <main className="min-h-screen w-full py-24">
           <Content />
