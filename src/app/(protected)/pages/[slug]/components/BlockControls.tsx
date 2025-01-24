@@ -19,6 +19,7 @@ import {
   UniqueIdentifier,
   useDndMonitor,
 } from "@dnd-kit/core";
+import { BlockType } from "@prisma/client";
 
 import {
   Tooltip,
@@ -37,8 +38,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
-import { BlockType, GripAction } from "../types";
 import { cn } from "@/lib/utils";
+import { GripAction } from "../types";
 
 type BlockItem = {
   type: BlockType;
@@ -74,25 +75,25 @@ const BlockControls = ({
 
   const blocks: BlockItem[] = [
     {
-      type: "text",
+      type: "TEXT",
       title: "Text",
       description: "Just start writing with plain text.",
       icon: CaseSensitive,
     },
     {
-      type: "heading1",
+      type: "HEADING1",
       title: "Heading 1",
       description: "Big section heading.",
       icon: Heading1,
     },
     {
-      type: "heading2",
+      type: "HEADING2",
       title: "Heading 2",
       description: "Medium section heading.",
       icon: Heading2,
     },
     {
-      type: "heading3",
+      type: "HEADING3",
       title: "Heading 3",
       description: "Small section heading.",
       icon: Heading3,

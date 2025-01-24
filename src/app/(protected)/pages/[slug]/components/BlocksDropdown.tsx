@@ -6,6 +6,7 @@ import {
   SquareSplitVertical,
 } from "lucide-react";
 import { Fragment } from "react";
+import { BlockType } from "@prisma/client";
 
 import {
   Popover,
@@ -13,7 +14,6 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { BlockType } from "../types";
 import BlocksDropdownItem from "./BlocksDropdownItem";
 
 type BlockItem = {
@@ -50,31 +50,31 @@ const BlocksDropdown = ({
       title: "Basic Blocks",
       items: [
         {
-          type: "text",
+          type: "TEXT",
           title: "Text",
           description: "Just start writing with plain text.",
           icon: CaseSensitive,
         },
         {
-          type: "heading1",
+          type: "HEADING1",
           title: "Heading 1",
           description: "Big section heading.",
           icon: Heading1,
         },
         {
-          type: "heading2",
+          type: "HEADING2",
           title: "Heading 2",
           description: "Medium section heading.",
           icon: Heading2,
         },
         {
-          type: "heading3",
+          type: "HEADING3",
           title: "Heading 3",
           description: "Small section heading.",
           icon: Heading3,
         },
         {
-          type: "divider",
+          type: "DIVIDER",
           title: "Divider",
           description: "Visually divide blocks.",
           icon: SquareSplitVertical,

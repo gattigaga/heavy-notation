@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 type Props = {
@@ -11,6 +11,10 @@ type Props = {
 
 const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
   const [value, setValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <TextareaAutosize

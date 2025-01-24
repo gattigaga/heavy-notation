@@ -35,7 +35,7 @@ const DividerBlock = ({
       <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
         <BlockControls
           id={id}
-          type="text"
+          type="TEXT"
           sortable={sortable}
           onClickPlus={onClickPlus}
           onAltClickPlus={onAltClickPlus}

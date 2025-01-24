@@ -4,10 +4,11 @@ import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { BlockType } from "@prisma/client";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { BlockType, GripAction } from "../types";
+import { GripAction } from "../types";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -40,13 +41,13 @@ const HeadingBlock = ({
 
   const placeholder = (() => {
     switch (type) {
-      case "heading1":
+      case "HEADING1":
         return "Heading 1";
 
-      case "heading2":
+      case "HEADING2":
         return "Heading 2";
 
-      case "heading3":
+      case "HEADING3":
         return "Heading 3";
 
       default:
@@ -75,9 +76,9 @@ const HeadingBlock = ({
       {!isBlocksOpen && (
         <div
           className={cn("absolute flex -translate-x-full items-center pr-1", {
-            "top-2": type === "heading1",
-            "top-1": type === "heading2",
-            "top-0": type === "heading3",
+            "top-2": type === "HEADING1",
+            "top-1": type === "HEADING2",
+            "top-0": type === "HEADING3",
           })}
         >
           <BlockControls
@@ -104,9 +105,9 @@ const HeadingBlock = ({
           className={cn(
             "w-full resize-none bg-transparent font-bold text-zinc-700 outline-none placeholder:text-zinc-400",
             {
-              "text-4xl leading-normal": type === "heading1",
-              "text-3xl leading-normal": type === "heading2",
-              "text-2xl leading-normal": type === "heading3",
+              "text-4xl leading-normal": type === "HEADING1",
+              "text-3xl leading-normal": type === "HEADING2",
+              "text-2xl leading-normal": type === "HEADING3",
             },
           )}
           value={value}

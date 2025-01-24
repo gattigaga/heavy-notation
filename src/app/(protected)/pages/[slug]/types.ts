@@ -1,9 +1,4 @@
-export type BlockType =
-  | "text"
-  | "heading1"
-  | "heading2"
-  | "heading3"
-  | "divider";
+import { BlockType } from "@prisma/client";
 
 export type Block = {
   id: string;
