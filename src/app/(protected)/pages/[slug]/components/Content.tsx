@@ -27,28 +27,48 @@ import { Block } from "../types";
 import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
 import useBlocksQuery from "@/app/(protected)/hooks/queries/use-blocks-query";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
+import useAddBlockMutation from "@/app/(protected)/hooks/mutations/use-add-block-mutation";
 
 type Params = {
   slug: string;
 };
 
-type Props = Record<string, unknown>;
-
-const Content = ({}: Props) => {
+const Content = () => {
   const [title, setTitle] = useState("");
   const [blocks, setBlocks] = useState<Block[]>([]);
   const params = useParams<Params>();
   const pageQuery = usePageQuery({ slug: params.slug });
-  const blocksQuery = useBlocksQuery({ pageSlug: params.slug || "" });
+  const blocksQuery = useBlocksQuery({ pageSlug: params.slug });
+  const addBlockMutation = useAddBlockMutation();
 
   const blockWithRefs = useMemo(() => {
-    return blocks.map((block) => {
-      return {
-        ...block,
-        ref: createRef<HTMLTextAreaElement>(),
-      };
-    });
-  }, [blocks]);
+    const blocks =
+      blocksQuery.data?.map((block) => {
+        return {
+          ...block,
+          ref: createRef<HTMLTextAreaElement>(),
+        };
+      }) || [];
+
+    if (addBlockMutation.isPending) {
+      return [
+        ...blocks,
+        {
+          id: uuid(),
+          index: addBlockMutation.variables.index,
+          type: addBlockMutation.variables.type,
+          content: "",
+          ref: createRef<HTMLTextAreaElement>(),
+        },
+      ].sort((a, b) => a.index - b.index);
+    }
+
+    return blocks;
+  }, [
+    blocksQuery.data,
+    addBlockMutation.variables,
+    addBlockMutation.isPending,
+  ]);
 
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -129,17 +149,12 @@ const Content = ({}: Props) => {
           <TitleBlock
             defaultValue={title}
             onPressEnter={() => {
-              const newBlocks = addBlock({
-                blocks,
-                block: {
-                  id: uuid(),
-                  index: 0,
-                  type: "TEXT",
-                  content: "",
-                },
+              addBlockMutation.mutate({
+                pageSlug: params.slug,
+                index: 0,
+                type: "TEXT",
+                content: "",
               });
-
-              setBlocks(newBlocks);
             }}
             onChange={setTitle}
           />
@@ -202,30 +217,20 @@ const Content = ({}: Props) => {
                           setBlocks(newBlocks);
                         }}
                         onClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index + 1,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index + 1,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onAltClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onBlockSelected={(type) => {
                           const newBlocks = updateBlock({
@@ -254,17 +259,12 @@ const Content = ({}: Props) => {
 
                             case "duplicate":
                               (() => {
-                                const newBlocks = addBlock({
-                                  blocks,
-                                  block: {
-                                    id: uuid(),
-                                    index: index + 1,
-                                    type: block.type,
-                                    content: block.content,
-                                  },
+                                addBlockMutation.mutate({
+                                  pageSlug: params.slug,
+                                  index: index + 1,
+                                  type: block.type,
+                                  content: block.content,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
@@ -295,30 +295,20 @@ const Content = ({}: Props) => {
                         key={block.id}
                         id={block.id}
                         onClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index + 1,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index + 1,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onAltClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onClickGripAction={(action) => {
                           switch (action.type) {
@@ -335,17 +325,12 @@ const Content = ({}: Props) => {
 
                             case "duplicate":
                               (() => {
-                                const newBlocks = addBlock({
-                                  blocks,
-                                  block: {
-                                    id: uuid(),
-                                    index: index + 1,
-                                    type: block.type,
-                                    content: block.content,
-                                  },
+                                addBlockMutation.mutate({
+                                  pageSlug: params.slug,
+                                  index: index + 1,
+                                  type: block.type,
+                                  content: block.content,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
@@ -411,30 +396,20 @@ const Content = ({}: Props) => {
                           setBlocks(newBlocks);
                         }}
                         onClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index + 1,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index + 1,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onAltClickPlus={() => {
-                          const newBlocks = addBlock({
-                            blocks,
-                            block: {
-                              id: uuid(),
-                              index: index,
-                              type: "TEXT",
-                              content: "",
-                            },
+                          addBlockMutation.mutate({
+                            pageSlug: params.slug,
+                            index: index,
+                            type: "TEXT",
+                            content: "",
                           });
-
-                          setBlocks(newBlocks);
                         }}
                         onBlockSelected={(type) => {
                           const newBlocks = updateBlock({
@@ -463,17 +438,12 @@ const Content = ({}: Props) => {
 
                             case "duplicate":
                               (() => {
-                                const newBlocks = addBlock({
-                                  blocks,
-                                  block: {
-                                    id: uuid(),
-                                    index: index + 1,
-                                    type: block.type,
-                                    content: block.content,
-                                  },
+                                addBlockMutation.mutate({
+                                  pageSlug: params.slug,
+                                  index: index + 1,
+                                  type: block.type,
+                                  content: block.content,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
