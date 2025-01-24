@@ -4,10 +4,11 @@ import { RefObject, useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { BlockType } from "@prisma/client";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { BlockType, GripAction } from "../types";
+import { GripAction } from "../types";
 
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
@@ -62,7 +63,7 @@ const TextBlock = ({
         <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
           <BlockControls
             id={id}
-            type="text"
+            type="TEXT"
             sortable={sortable}
             onClickPlus={onClickPlus}
             onAltClickPlus={onAltClickPlus}

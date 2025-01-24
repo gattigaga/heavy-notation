@@ -39,9 +39,9 @@ const Header = () => {
   const params = useParams<Params>();
   const pageQuery = usePageQuery({ slug: params.slug });
 
-  const formattedDate = formatToClientTimeAndAgo(
-    pageQuery.data?.updatedAt || "",
-  );
+  const formattedDate = pageQuery.data?.updatedAt
+    ? formatToClientTimeAndAgo(pageQuery.data.updatedAt)
+    : "";
 
   const title = pageQuery.data?.title || "New Page";
 
@@ -74,7 +74,7 @@ const Header = () => {
       {/* Right navigation bar */}
       <div className="ml-auto flex items-center gap-2 text-sm">
         <div className="hidden font-medium text-muted-foreground md:inline-block">
-          Edited {formattedDate}
+          {formattedDate ? `Edited ${formattedDate}` : ""}
         </div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>

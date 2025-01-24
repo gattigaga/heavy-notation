@@ -16,69 +16,30 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useParams } from "next/navigation";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import TitleBlock from "./TitleBlock";
 import TextBlock from "./TextBlock";
 import HeadingBlock from "./HeadingBlock";
 import DividerBlock from "./DividerBlock";
 import { Block } from "../types";
 import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
+import useBlocksQuery from "@/app/(protected)/hooks/queries/use-blocks-query";
+import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
+
+type Params = {
+  slug: string;
+};
 
 type Props = Record<string, unknown>;
 
 const Content = ({}: Props) => {
   const [title, setTitle] = useState("");
-
-  const [blocks, setBlocks] = useState<Block[]>([
-    {
-      id: uuid(),
-      index: 0,
-      type: "heading1",
-      content: "Hello",
-    },
-    {
-      id: uuid(),
-      index: 1,
-      type: "text",
-      content: "This is a text.",
-    },
-    {
-      id: uuid(),
-      index: 2,
-      type: "text",
-      content: "",
-    },
-    {
-      id: uuid(),
-      index: 3,
-      type: "text",
-      content: "",
-    },
-    {
-      id: uuid(),
-      index: 4,
-      type: "heading2",
-      content: "World",
-    },
-    {
-      id: uuid(),
-      index: 5,
-      type: "text",
-      content: "",
-    },
-    {
-      id: uuid(),
-      index: 6,
-      type: "text",
-      content: "This is a text.",
-    },
-    {
-      id: uuid(),
-      index: 7,
-      type: "text",
-      content: "This is game.",
-    },
-  ]);
+  const [blocks, setBlocks] = useState<Block[]>([]);
+  const params = useParams<Params>();
+  const pageQuery = usePageQuery({ slug: params.slug });
+  const blocksQuery = useBlocksQuery({ pageSlug: params.slug || "" });
 
   const blockWithRefs = useMemo(() => {
     return blocks.map((block) => {
@@ -146,384 +107,415 @@ const Content = ({}: Props) => {
     };
   }, [blocks]);
 
+  // Initialize page title.
+  useEffect(() => {
+    if (pageQuery.isSuccess) {
+      setTitle(pageQuery.data.title);
+    }
+  }, [pageQuery.isSuccess, pageQuery.data?.title]);
+
+  // Initialize blocks.
+  useEffect(() => {
+    if (blocksQuery.isSuccess) {
+      setBlocks(blocksQuery.data);
+    }
+  }, [blocksQuery.isSuccess, blocksQuery.data]);
+
   return (
-    <div className="mx-auto max-w-3xl">
-      {/* Title */}
-      <TitleBlock
-        defaultValue={title}
-        onPressEnter={() => {
-          const newBlocks = addBlock({
-            blocks,
-            block: {
-              id: uuid(),
-              index: 0,
-              type: "text",
-              content: "",
-            },
-          });
+    <>
+      {pageQuery.isSuccess && (
+        <div className="mx-auto max-w-3xl">
+          {/* Title */}
+          <TitleBlock
+            defaultValue={title}
+            onPressEnter={() => {
+              const newBlocks = addBlock({
+                blocks,
+                block: {
+                  id: uuid(),
+                  index: 0,
+                  type: "TEXT",
+                  content: "",
+                },
+              });
 
-          setBlocks(newBlocks);
-        }}
-        onChange={setTitle}
-      />
+              setBlocks(newBlocks);
+            }}
+            onChange={setTitle}
+          />
 
-      {/* Body  */}
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        modifiers={[restrictToVerticalAxis]}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={blockWithRefs}
-          strategy={verticalListSortingStrategy}
-        >
-          {blockWithRefs.map((block, index) => {
-            switch (block.type) {
-              case "heading1":
-              case "heading2":
-              case "heading3":
-                return (
-                  <HeadingBlock
-                    key={block.id}
-                    ref={block.ref}
-                    id={block.id}
-                    type={block.type}
-                    value={block.content}
-                    onPressEnter={(values) => {
-                      let newBlocks = blocks;
+          {/* Body  */}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            modifiers={[restrictToVerticalAxis]}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={blockWithRefs}
+              strategy={verticalListSortingStrategy}
+            >
+              {blockWithRefs.map((block, index) => {
+                switch (block.type) {
+                  case "HEADING1":
+                  case "HEADING2":
+                  case "HEADING3":
+                    return (
+                      <HeadingBlock
+                        key={block.id}
+                        ref={block.ref}
+                        id={block.id}
+                        type={block.type}
+                        value={block.content}
+                        onPressEnter={(values) => {
+                          let newBlocks = blocks;
 
-                      newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          content: values[0],
-                        },
-                      });
+                          newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              content: values[0],
+                            },
+                          });
 
-                      newBlocks = addBlock({
-                        blocks: newBlocks,
-                        block: {
-                          id: uuid(),
-                          index: index + 1,
-                          type: block.type,
-                          content: values[1],
-                        },
-                      });
+                          newBlocks = addBlock({
+                            blocks: newBlocks,
+                            block: {
+                              id: uuid(),
+                              index: index + 1,
+                              type: block.type,
+                              content: values[1],
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onChange={(value) => {
-                      const newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          content: value,
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onChange={(value) => {
+                          const newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              content: value,
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index + 1,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index + 1,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onAltClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onAltClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onBlockSelected={(type) => {
-                      const newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          type: type,
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onBlockSelected={(type) => {
+                          const newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              type: type,
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onClickGripAction={(action) => {
-                      switch (action.type) {
-                        case "delete":
-                          (() => {
-                            const newBlocks = deleteBlock({
-                              blocks,
-                              blockId: block.id,
-                            });
+                          setBlocks(newBlocks);
+                        }}
+                        onClickGripAction={(action) => {
+                          switch (action.type) {
+                            case "delete":
+                              (() => {
+                                const newBlocks = deleteBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "duplicate":
-                          (() => {
-                            const newBlocks = addBlock({
-                              blocks,
-                              block: {
-                                id: uuid(),
-                                index: index + 1,
-                                type: block.type,
-                                content: block.content,
-                              },
-                            });
+                            case "duplicate":
+                              (() => {
+                                const newBlocks = addBlock({
+                                  blocks,
+                                  block: {
+                                    id: uuid(),
+                                    index: index + 1,
+                                    type: block.type,
+                                    content: block.content,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "turn_into":
-                          (() => {
-                            const newBlocks = updateBlock({
-                              blocks,
-                              blockId: block.id,
-                              data: {
-                                type: action.data?.type,
-                              },
-                            });
+                            case "turn_into":
+                              (() => {
+                                const newBlocks = updateBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                  data: {
+                                    type: action.data?.type,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        default:
-                          break;
-                      }
-                    }}
-                  />
-                );
+                            default:
+                              break;
+                          }
+                        }}
+                      />
+                    );
 
-              case "divider":
-                return (
-                  <DividerBlock
-                    key={block.id}
-                    id={block.id}
-                    onClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index + 1,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                  case "DIVIDER":
+                    return (
+                      <DividerBlock
+                        key={block.id}
+                        id={block.id}
+                        onClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index + 1,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onAltClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onAltClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onClickGripAction={(action) => {
-                      switch (action.type) {
-                        case "delete":
-                          (() => {
-                            const newBlocks = deleteBlock({
-                              blocks,
-                              blockId: block.id,
-                            });
+                          setBlocks(newBlocks);
+                        }}
+                        onClickGripAction={(action) => {
+                          switch (action.type) {
+                            case "delete":
+                              (() => {
+                                const newBlocks = deleteBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "duplicate":
-                          (() => {
-                            const newBlocks = addBlock({
-                              blocks,
-                              block: {
-                                id: uuid(),
-                                index: index + 1,
-                                type: block.type,
-                                content: block.content,
-                              },
-                            });
+                            case "duplicate":
+                              (() => {
+                                const newBlocks = addBlock({
+                                  blocks,
+                                  block: {
+                                    id: uuid(),
+                                    index: index + 1,
+                                    type: block.type,
+                                    content: block.content,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "turn_into":
-                          (() => {
-                            const newBlocks = updateBlock({
-                              blocks,
-                              blockId: block.id,
-                              data: {
-                                type: action.data?.type,
-                              },
-                            });
+                            case "turn_into":
+                              (() => {
+                                const newBlocks = updateBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                  data: {
+                                    type: action.data?.type,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
+                                setBlocks(newBlocks);
+                              })();
 
-                        default:
-                          break;
-                      }
-                    }}
-                  />
-                );
+                            default:
+                              break;
+                          }
+                        }}
+                      />
+                    );
 
-              default:
-                return (
-                  <TextBlock
-                    key={block.id}
-                    ref={block.ref}
-                    id={block.id}
-                    value={block.content}
-                    onPressEnter={(values) => {
-                      let newBlocks = blocks;
+                  default:
+                    return (
+                      <TextBlock
+                        key={block.id}
+                        ref={block.ref}
+                        id={block.id}
+                        value={block.content}
+                        onPressEnter={(values) => {
+                          let newBlocks = blocks;
 
-                      newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          content: values[0],
-                        },
-                      });
+                          newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              content: values[0],
+                            },
+                          });
 
-                      newBlocks = addBlock({
-                        blocks: newBlocks,
-                        block: {
-                          id: uuid(),
-                          index: index + 1,
-                          type: "text",
-                          content: values[1],
-                        },
-                      });
+                          newBlocks = addBlock({
+                            blocks: newBlocks,
+                            block: {
+                              id: uuid(),
+                              index: index + 1,
+                              type: "TEXT",
+                              content: values[1],
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onChange={(value) => {
-                      const newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          content: value,
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onChange={(value) => {
+                          const newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              content: value,
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index + 1,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index + 1,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onAltClickPlus={() => {
-                      const newBlocks = addBlock({
-                        blocks,
-                        block: {
-                          id: uuid(),
-                          index: index,
-                          type: "text",
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onAltClickPlus={() => {
+                          const newBlocks = addBlock({
+                            blocks,
+                            block: {
+                              id: uuid(),
+                              index: index,
+                              type: "TEXT",
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onBlockSelected={(type) => {
-                      const newBlocks = updateBlock({
-                        blocks,
-                        blockId: block.id,
-                        data: {
-                          type: type,
-                          content: "",
-                        },
-                      });
+                          setBlocks(newBlocks);
+                        }}
+                        onBlockSelected={(type) => {
+                          const newBlocks = updateBlock({
+                            blocks,
+                            blockId: block.id,
+                            data: {
+                              type: type,
+                              content: "",
+                            },
+                          });
 
-                      setBlocks(newBlocks);
-                    }}
-                    onClickGripAction={(action) => {
-                      switch (action.type) {
-                        case "delete":
-                          (() => {
-                            const newBlocks = deleteBlock({
-                              blocks,
-                              blockId: block.id,
-                            });
+                          setBlocks(newBlocks);
+                        }}
+                        onClickGripAction={(action) => {
+                          switch (action.type) {
+                            case "delete":
+                              (() => {
+                                const newBlocks = deleteBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "duplicate":
-                          (() => {
-                            const newBlocks = addBlock({
-                              blocks,
-                              block: {
-                                id: uuid(),
-                                index: index + 1,
-                                type: block.type,
-                                content: block.content,
-                              },
-                            });
+                            case "duplicate":
+                              (() => {
+                                const newBlocks = addBlock({
+                                  blocks,
+                                  block: {
+                                    id: uuid(),
+                                    index: index + 1,
+                                    type: block.type,
+                                    content: block.content,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
-                          break;
+                                setBlocks(newBlocks);
+                              })();
+                              break;
 
-                        case "turn_into":
-                          (() => {
-                            const newBlocks = updateBlock({
-                              blocks,
-                              blockId: block.id,
-                              data: {
-                                type: action.data?.type,
-                              },
-                            });
+                            case "turn_into":
+                              (() => {
+                                const newBlocks = updateBlock({
+                                  blocks,
+                                  blockId: block.id,
+                                  data: {
+                                    type: action.data?.type,
+                                  },
+                                });
 
-                            setBlocks(newBlocks);
-                          })();
+                                setBlocks(newBlocks);
+                              })();
 
-                        default:
-                          break;
-                      }
-                    }}
-                  />
-                );
-            }
-          })}
-        </SortableContext>
-      </DndContext>
-    </div>
+                            default:
+                              break;
+                          }
+                        }}
+                      />
+                    );
+                }
+              })}
+            </SortableContext>
+          </DndContext>
+        </div>
+      )}
+      {pageQuery.isError && (
+        <div className="flex w-full flex-col items-center justify-center">
+          <h1 className="mb-2 text-7xl font-bold text-zinc-700">404</h1>
+          <p className="text-center text-sm text-zinc-400">
+            The page you are looking for does not exist.
+          </p>
+        </div>
+      )}
+      {pageQuery.isLoading && (
+        <div className="mx-auto max-w-3xl">
+          <Skeleton className="h-12 w-full rounded-lg" />
+        </div>
+      )}
+    </>
   );
 };
 
