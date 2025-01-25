@@ -75,7 +75,6 @@ model VerificationToken {
 model Page {
   id     String  @id @default(cuid())
   userId String
-  slug   String
   title  String
   blocks Block[]
 
