@@ -24,11 +24,12 @@ import TextBlock from "./TextBlock";
 import HeadingBlock from "./HeadingBlock";
 import DividerBlock from "./DividerBlock";
 import { Block } from "../types";
-import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
+import { addBlock, updateBlock } from "../helpers/parser";
 import useBlocksQuery from "@/app/(protected)/hooks/queries/use-blocks-query";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
 import useUpdatePageMutation from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
 import useAddBlockMutation from "@/app/(protected)/hooks/mutations/use-add-block-mutation";
+import useRemoveBlockMutation from "@/app/(protected)/hooks/mutations/use-remove-block-mutation";
 
 type Params = {
   id: string;
@@ -41,15 +42,18 @@ const Content = () => {
   const blocksQuery = useBlocksQuery({ pageId: params.id });
   const updatePageMutation = useUpdatePageMutation();
   const addBlockMutation = useAddBlockMutation();
+  const removeBlockMutation = useRemoveBlockMutation();
 
   const blockWithRefs = useMemo(() => {
     const blocks =
-      blocksQuery.data?.map((block) => {
-        return {
-          ...block,
-          ref: createRef<HTMLTextAreaElement>(),
-        };
-      }) || [];
+      blocksQuery.data
+        ?.filter((block) => block.id !== removeBlockMutation.variables?.id)
+        .map((block) => {
+          return {
+            ...block,
+            ref: createRef<HTMLTextAreaElement>(),
+          };
+        }) || [];
 
     if (addBlockMutation.isPending) {
       return [
@@ -69,6 +73,7 @@ const Content = () => {
     blocksQuery.data,
     addBlockMutation.variables,
     addBlockMutation.isPending,
+    removeBlockMutation.variables,
   ]);
 
   const pointerSensor = useSensor(PointerSensor, {
@@ -256,12 +261,10 @@ const Content = () => {
                           switch (action.type) {
                             case "delete":
                               (() => {
-                                const newBlocks = deleteBlock({
-                                  blocks,
-                                  blockId: block.id,
+                                removeBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
@@ -322,12 +325,10 @@ const Content = () => {
                           switch (action.type) {
                             case "delete":
                               (() => {
-                                const newBlocks = deleteBlock({
-                                  blocks,
-                                  blockId: block.id,
+                                removeBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
@@ -435,12 +436,10 @@ const Content = () => {
                           switch (action.type) {
                             case "delete":
                               (() => {
-                                const newBlocks = deleteBlock({
-                                  blocks,
-                                  blockId: block.id,
+                                removeBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
                                 });
-
-                                setBlocks(newBlocks);
                               })();
                               break;
 
