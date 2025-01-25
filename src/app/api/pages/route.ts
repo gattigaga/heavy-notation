@@ -19,8 +19,8 @@ export const POST = async (request: Request) => {
 
   const page = await prisma.page.create({
     data: {
+      id: body.id,
       userId: session?.user.id,
-      slug: body.slug,
       title: body.title,
     },
   });
