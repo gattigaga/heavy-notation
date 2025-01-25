@@ -4,7 +4,7 @@ import { useState } from "react";
 import { File, MoreHorizontal, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { v4 as uuid } from "uuid";
+import { createId } from "@paralleldrive/cuid2";
 import { toast } from "sonner";
 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,7 +37,7 @@ const PageList = () => {
 
   const pages =
     pagesQuery.data?.slice(0, 10).filter((item) => {
-      if (item.slug === removePageMutation.variables?.slug) {
+      if (item.id === removePageMutation.variables?.id) {
         return false;
       }
 
@@ -45,11 +45,11 @@ const PageList = () => {
     }) || [];
 
   const addPage = () => {
-    const slug = `new-page-${uuid()}`;
+    const id = createId();
 
     addPageMutation.mutate(
       {
-        slug: slug,
+        id,
         title: "",
       },
       {
@@ -62,13 +62,13 @@ const PageList = () => {
       },
     );
 
-    router.push(`/pages/${slug}`);
+    router.push(`/pages/${id}`);
   };
 
-  const removePage = (slug: string) => {
+  const removePage = (id: string) => {
     removePageMutation.mutate(
       {
-        slug,
+        id,
       },
       {
         onError: () => {
@@ -80,7 +80,7 @@ const PageList = () => {
       },
     );
 
-    const isCurrentPage = pathname === `/pages/${slug}`;
+    const isCurrentPage = pathname === `/pages/${id}`;
 
     if (isCurrentPage) {
       router.push("/home");
@@ -108,7 +108,7 @@ const PageList = () => {
               <>
                 {/* Only show the first 10 pages. */}
                 {pages.map((item) => {
-                  const url = `/pages/${item.slug}`;
+                  const url = `/pages/${item.id}`;
                   const isActive = pathname === url;
 
                   return (
@@ -130,9 +130,7 @@ const PageList = () => {
                           side={isMobile ? "bottom" : "right"}
                           align={isMobile ? "end" : "start"}
                         >
-                          <DropdownMenuItem
-                            onClick={() => removePage(item.slug)}
-                          >
+                          <DropdownMenuItem onClick={() => removePage(item.id)}>
                             <Trash2 className="text-muted-foreground" />
                             <span>Delete</span>
                           </DropdownMenuItem>
@@ -145,7 +143,7 @@ const PageList = () => {
                 {addPageMutation.isPending && (
                   <SidebarMenuItem>
                     <SidebarMenuButton isActive={true} asChild={true}>
-                      <Link href={`/pages/${addPageMutation.variables.slug}`}>
+                      <Link href={`/pages/${addPageMutation.variables.id}`}>
                         <File />
                         <span>New Page</span>
                       </Link>

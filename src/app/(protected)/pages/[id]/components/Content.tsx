@@ -1,7 +1,6 @@
 "use client";
 
 import { createRef, useEffect, useMemo, useState } from "react";
-import { v4 as uuid } from "uuid";
 import {
   closestCenter,
   DndContext,
@@ -17,6 +16,7 @@ import {
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useParams } from "next/navigation";
+import { createId } from "@paralleldrive/cuid2";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import TitleBlock from "./TitleBlock";
@@ -27,18 +27,19 @@ import { Block } from "../types";
 import { addBlock, deleteBlock, updateBlock } from "../helpers/parser";
 import useBlocksQuery from "@/app/(protected)/hooks/queries/use-blocks-query";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
+import useUpdatePageMutation from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
 import useAddBlockMutation from "@/app/(protected)/hooks/mutations/use-add-block-mutation";
 
 type Params = {
-  slug: string;
+  id: string;
 };
 
 const Content = () => {
-  const [title, setTitle] = useState("");
   const [blocks, setBlocks] = useState<Block[]>([]);
   const params = useParams<Params>();
-  const pageQuery = usePageQuery({ slug: params.slug });
-  const blocksQuery = useBlocksQuery({ pageSlug: params.slug });
+  const pageQuery = usePageQuery({ id: params.id });
+  const blocksQuery = useBlocksQuery({ pageId: params.id });
+  const updatePageMutation = useUpdatePageMutation();
   const addBlockMutation = useAddBlockMutation();
 
   const blockWithRefs = useMemo(() => {
@@ -54,7 +55,7 @@ const Content = () => {
       return [
         ...blocks,
         {
-          id: uuid(),
+          id: createId(),
           index: addBlockMutation.variables.index,
           type: addBlockMutation.variables.type,
           content: "",
@@ -77,6 +78,10 @@ const Content = () => {
   });
 
   const sensors = useSensors(pointerSensor);
+
+  const title = updatePageMutation.isPending
+    ? updatePageMutation.variables.title
+    : pageQuery.data?.title || "";
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -127,13 +132,6 @@ const Content = () => {
     };
   }, [blocks]);
 
-  // Initialize page title.
-  useEffect(() => {
-    if (pageQuery.isSuccess) {
-      setTitle(pageQuery.data.title);
-    }
-  }, [pageQuery.isSuccess, pageQuery.data?.title]);
-
   // Initialize blocks.
   useEffect(() => {
     if (blocksQuery.isSuccess) {
@@ -148,15 +146,25 @@ const Content = () => {
           {/* Title */}
           <TitleBlock
             defaultValue={title}
-            onPressEnter={() => {
+            onPressEnter={(title) => {
+              updatePageMutation.mutate({
+                id: params.id,
+                title,
+              });
+
               addBlockMutation.mutate({
-                pageSlug: params.slug,
+                pageId: params.id,
                 index: 0,
                 type: "TEXT",
                 content: "",
               });
             }}
-            onChange={setTitle}
+            onChange={(title) => {
+              updatePageMutation.mutate({
+                id: params.id,
+                title,
+              });
+            }}
           />
 
           {/* Body  */}
@@ -196,7 +204,7 @@ const Content = () => {
                           newBlocks = addBlock({
                             blocks: newBlocks,
                             block: {
-                              id: uuid(),
+                              id: createId(),
                               index: index + 1,
                               type: block.type,
                               content: values[1],
@@ -218,7 +226,7 @@ const Content = () => {
                         }}
                         onClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
                             content: "",
@@ -226,7 +234,7 @@ const Content = () => {
                         }}
                         onAltClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index,
                             type: "TEXT",
                             content: "",
@@ -260,7 +268,7 @@ const Content = () => {
                             case "duplicate":
                               (() => {
                                 addBlockMutation.mutate({
-                                  pageSlug: params.slug,
+                                  pageId: params.id,
                                   index: index + 1,
                                   type: block.type,
                                   content: block.content,
@@ -296,7 +304,7 @@ const Content = () => {
                         id={block.id}
                         onClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
                             content: "",
@@ -304,7 +312,7 @@ const Content = () => {
                         }}
                         onAltClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index,
                             type: "TEXT",
                             content: "",
@@ -326,7 +334,7 @@ const Content = () => {
                             case "duplicate":
                               (() => {
                                 addBlockMutation.mutate({
-                                  pageSlug: params.slug,
+                                  pageId: params.id,
                                   index: index + 1,
                                   type: block.type,
                                   content: block.content,
@@ -375,7 +383,7 @@ const Content = () => {
                           newBlocks = addBlock({
                             blocks: newBlocks,
                             block: {
-                              id: uuid(),
+                              id: createId(),
                               index: index + 1,
                               type: "TEXT",
                               content: values[1],
@@ -397,7 +405,7 @@ const Content = () => {
                         }}
                         onClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
                             content: "",
@@ -405,7 +413,7 @@ const Content = () => {
                         }}
                         onAltClickPlus={() => {
                           addBlockMutation.mutate({
-                            pageSlug: params.slug,
+                            pageId: params.id,
                             index: index,
                             type: "TEXT",
                             content: "",
@@ -439,7 +447,7 @@ const Content = () => {
                             case "duplicate":
                               (() => {
                                 addBlockMutation.mutate({
-                                  pageSlug: params.slug,
+                                  pageId: params.id,
                                   index: index + 1,
                                   type: block.type,
                                   content: block.content,

@@ -2,7 +2,7 @@ import { BlockType } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 
 type ActionPayload = {
-  pageSlug: string;
+  pageId: string;
 };
 
 type QueryPayload = ActionPayload;
@@ -17,10 +17,10 @@ type Response = {
   updatedAt: string;
 }[];
 
-const action = async ({ pageSlug }: ActionPayload): Promise<Response> => {
+const action = async ({ pageId }: ActionPayload): Promise<Response> => {
   try {
     const queryString = new URLSearchParams({
-      pageSlug,
+      pageId,
     }).toString();
 
     const response = await fetch("/api/blocks?" + queryString, {
@@ -41,7 +41,7 @@ const action = async ({ pageSlug }: ActionPayload): Promise<Response> => {
 
 const useBlocksQuery = (payload: QueryPayload) => {
   return useQuery<Response, Error>({
-    queryKey: ["blocks", { pageSlug: payload.pageSlug }],
+    queryKey: ["blocks", { pageId: payload.pageId }],
     queryFn: () => action(payload),
   });
 };

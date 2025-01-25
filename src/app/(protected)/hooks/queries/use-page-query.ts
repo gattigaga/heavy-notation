@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 type ActionPayload = {
-  slug: string;
+  id: string;
 };
 
 type QueryPayload = ActionPayload;
@@ -9,15 +9,14 @@ type QueryPayload = ActionPayload;
 type Response = {
   id: string;
   userId: string;
-  slug: string;
   title: string;
   createdAt: string;
   updatedAt: string;
 };
 
-const action = async ({ slug }: ActionPayload): Promise<Response> => {
+const action = async ({ id }: ActionPayload): Promise<Response> => {
   try {
-    const response = await fetch(`/api/pages/${slug}`, {
+    const response = await fetch(`/api/pages/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,7 +38,7 @@ const action = async ({ slug }: ActionPayload): Promise<Response> => {
 
 const usePageQuery = (payload: QueryPayload) => {
   return useQuery<Response, Error>({
-    queryKey: ["pages", { slug: payload.slug }],
+    queryKey: ["pages", { id: payload.id }],
     queryFn: () => action(payload),
   });
 };

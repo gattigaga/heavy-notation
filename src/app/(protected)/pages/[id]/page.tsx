@@ -1,11 +1,5 @@
-import { Metadata } from "next";
-
 import Header from "./components/Header";
 import Content from "./components/Content";
-
-export const metadata: Metadata = {
-  title: "New Page | Heavy Notation",
-};
 
 const PageDetailPage = async () => {
   return (

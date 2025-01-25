@@ -2,7 +2,7 @@ import { BlockType } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type ActionPayload = {
-  pageSlug: string;
+  pageId: string;
   index: number;
   type: BlockType;
   content: string;
@@ -19,7 +19,7 @@ type Response = {
 };
 
 const action = async ({
-  pageSlug,
+  pageId,
   index,
   type,
   content,
@@ -28,7 +28,7 @@ const action = async ({
     const response = await fetch("/api/blocks", {
       method: "POST",
       body: JSON.stringify({
-        pageSlug,
+        pageId,
         index,
         type,
         content,
@@ -52,7 +52,7 @@ const useAddBlockMutation = () => {
     mutationFn: action,
     onSettled: async (data, error, variables) => {
       return await queryClient.invalidateQueries({
-        queryKey: ["blocks", { pageSlug: variables.pageSlug }],
+        queryKey: ["blocks", { pageId: variables.pageId }],
       });
     },
   });
