@@ -5,12 +5,12 @@ import { prisma } from "@/helpers/prisma";
 
 export const GET = async (request: NextRequest) => {
   const session = await auth();
-  const pageSlug = request.nextUrl.searchParams.get("pageSlug") || "";
+  const pageId = request.nextUrl.searchParams.get("pageId") || "";
 
   const page = await prisma.page.findFirst({
     where: {
+      id: pageId,
       userId: session?.user.id,
-      slug: pageSlug,
     },
   });
 
@@ -38,8 +38,8 @@ export const POST = async (request: Request) => {
 
   const page = await prisma.page.findFirst({
     where: {
+      id: body.pageId,
       userId: session?.user.id,
-      slug: body.pageSlug,
     },
   });
 
