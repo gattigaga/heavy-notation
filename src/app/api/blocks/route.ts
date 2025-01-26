@@ -27,6 +27,9 @@ export const GET = async (request: NextRequest) => {
     where: {
       pageId: page.id,
     },
+    orderBy: {
+      index: "asc",
+    },
   });
 
   return Response.json({ data: blocks });
@@ -52,21 +55,21 @@ export const POST = async (request: Request) => {
     );
   }
 
-  const block = await prisma.block.create({
-    data: {
-      pageId: page.id,
-      index: body.index,
-      type: body.type,
-      content: body.content,
-    },
-  });
-
   const blocks = await prisma.block.findMany({
     where: {
       pageId: page.id,
     },
     orderBy: {
       index: "asc",
+    },
+  });
+
+  const block = await prisma.block.create({
+    data: {
+      pageId: page.id,
+      index: body.index,
+      type: body.type,
+      content: body.content,
     },
   });
 
