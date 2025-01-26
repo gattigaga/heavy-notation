@@ -77,8 +77,8 @@ export const POST = async (request: Request) => {
   const afterBlocks = blocks.slice(body.index);
 
   const newBlocks = [...beforeBlocks, block, ...afterBlocks].map(
-    (post, index) => ({
-      ...post,
+    (block, index) => ({
+      ...block,
       index,
     }),
   );

@@ -15,7 +15,7 @@ type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
   id: string;
   type: BlockType;
-  value: string;
+  defaultValue: string;
   onPressEnter?: (values: [string, string]) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
@@ -28,7 +28,7 @@ const HeadingBlock = ({
   ref,
   id,
   type,
-  value,
+  defaultValue,
   onPressEnter,
   onChange,
   onClickPlus,
@@ -36,7 +36,9 @@ const HeadingBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
+  const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
 
   const placeholder = (() => {
@@ -70,6 +72,27 @@ const HeadingBlock = ({
       ref.current.focus();
     }
   }, [isBlocksOpen]);
+
+  // Apply value change when the textarea loses focus by clicking outside.
+  // This is needed to avoid running onChange() when user press Enter to add a new block below it.
+  // It's because we need to run sequential mutations in onPressEnter() and
+  // not run onPressEnter() and onChange() at the same time.
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        if (isFocused) {
+          onChange?.(value);
+          setIsFocused(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [isFocused, value]);
 
   return (
     <div ref={sortable.setNodeRef} className="group relative" style={style}>
@@ -112,15 +135,17 @@ const HeadingBlock = ({
           )}
           value={value}
           placeholder={placeholder}
+          onFocus={() => setIsFocused(true)}
           onChange={(event) => {
             const newValue = event.target.value;
 
-            onChange?.(newValue);
+            setValue(newValue);
 
             if (!value && newValue.startsWith("/")) {
               setIsBlocksOpen(true);
             }
           }}
+          onBlur={() => setIsFocused(false)}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
@@ -129,6 +154,7 @@ const HeadingBlock = ({
               const a = value.slice(0, cursorPosition);
               const b = value.slice(cursorPosition);
 
+              setValue(a);
               onPressEnter?.([a, b]);
             }
           }}

@@ -51,8 +51,8 @@ export const PUT = async (
     },
   });
 
-  const newBlocks = blocks.map((post, index) => ({
-    ...post,
+  const newBlocks = blocks.map((block, index) => ({
+    ...block,
     index,
   }));
 
@@ -114,8 +114,8 @@ export const DELETE = async (
     },
   });
 
-  const newBlocks = blocks.map((post, index) => ({
-    ...post,
+  const newBlocks = blocks.map((block, index) => ({
+    ...block,
     index,
   }));
 
