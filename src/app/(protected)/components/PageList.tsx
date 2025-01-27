@@ -36,7 +36,7 @@ const PageList = () => {
   const removePageMutation = useRemovePageMutation();
 
   const pages =
-    pagesQuery.data?.slice(0, 10).filter((item) => {
+    pagesQuery.data?.filter((item) => {
       if (item.id === removePageMutation.variables?.id) {
         return false;
       }
@@ -106,7 +106,7 @@ const PageList = () => {
             </SidebarMenuItem>
             {isPagesSectionShow && (
               <>
-                {/* Only show the first 10 pages. */}
+                {/* Show all pages. */}
                 {pages.map((item) => {
                   const url = `/pages/${item.id}`;
                   const isActive = pathname === url;
@@ -154,20 +154,6 @@ const PageList = () => {
                 {pages.length === 0 && !addPageMutation.isPending && (
                   <p className="mx-2 text-xs text-zinc-400">No pages found.</p>
                 )}
-                {/* Show a button that when clicked, it will show more remaining pages. */}
-                {pages.length > 10 && (
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      className="text-sidebar-foreground/70"
-                      onClick={() => {
-                        // TODO: Show more pages in popup.
-                      }}
-                    >
-                      <MoreHorizontal />
-                      <span>More</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )}
               </>
             )}
           </SidebarMenu>
@@ -181,7 +167,7 @@ const PageList = () => {
       {pagesQuery.isLoading && (
         <div className="mt-4 flex flex-col gap-y-2 px-4">
           <Skeleton className="h-6 w-1/2 rounded-lg" />
-          {[...Array(10)].map((_, index) => (
+          {[...Array(20)].map((_, index) => (
             <div key={index} className="flex items-center gap-x-2">
               <Skeleton className="h-6 w-6 rounded-lg" />
               <Skeleton className="h-6 flex-1 rounded-lg" />

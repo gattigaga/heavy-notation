@@ -19,7 +19,7 @@ const Layout = async ({ children }: Props) => {
 
   return (
     <SidebarProvider>
-      <AppSidebar user={session.user} />
+      <AppSidebar />
       <SidebarInset>{children}</SidebarInset>
     </SidebarProvider>
   );
