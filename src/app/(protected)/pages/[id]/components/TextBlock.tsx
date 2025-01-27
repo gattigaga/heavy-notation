@@ -13,7 +13,7 @@ import { GripAction } from "../types";
 type Props = {
   ref: RefObject<HTMLTextAreaElement | null>;
   id: string;
-  value: string;
+  defaultValue: string;
   onPressEnter?: (values: [string, string]) => void;
   onChange?: (value: string) => void;
   onClickPlus?: () => void;
@@ -25,7 +25,7 @@ type Props = {
 const TextBlock = ({
   ref,
   id,
-  value,
+  defaultValue,
   onPressEnter,
   onChange,
   onClickPlus,
@@ -33,6 +33,7 @@ const TextBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
+  const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
@@ -56,6 +57,27 @@ const TextBlock = ({
       ref.current.focus();
     }
   }, [isBlocksOpen]);
+
+  // Apply value change when the textarea loses focus by clicking outside.
+  // This is needed to avoid running onChange() when user press Enter to add a new block below it.
+  // It's because we need to run sequential mutations in onPressEnter() and
+  // not run onPressEnter() and onChange() at the same time.
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        if (isFocused) {
+          onChange?.(value);
+          setIsFocused(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [isFocused, value]);
 
   return (
     <div ref={sortable.setNodeRef} className="group relative" style={style}>
@@ -89,7 +111,7 @@ const TextBlock = ({
           onChange={(event) => {
             const newValue = event.target.value;
 
-            onChange?.(newValue);
+            setValue(newValue);
 
             if (!value && newValue.startsWith("/")) {
               setIsBlocksOpen(true);
@@ -104,6 +126,7 @@ const TextBlock = ({
               const a = value.slice(0, cursorPosition);
               const b = value.slice(cursorPosition);
 
+              setValue(a);
               onPressEnter?.([a, b]);
             }
           }}

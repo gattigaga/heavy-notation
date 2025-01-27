@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-type ActionPayload = {
+export type ActionPayload = {
   id: string;
+  title: string;
 };
 
 type Response = {
@@ -12,26 +13,28 @@ type Response = {
   updatedAt: string;
 };
 
-const action = async ({ id }: ActionPayload): Promise<Response> => {
+const action = async ({ id, title }: ActionPayload): Promise<Response> => {
   try {
     const response = await fetch(`/api/pages/${id}`, {
-      method: "DELETE",
+      method: "PUT",
+      body: JSON.stringify({ id, title }),
     });
 
     const json = await response.json();
 
     return json.data;
   } catch (error: any) {
-    console.error("USE REMOVE PAGE MUTATION ERROR: ", error);
+    console.error("USE UPDATE PAGE MUTATION ERROR: ", error);
 
     throw error;
   }
 };
 
-const useRemovePageMutation = () => {
+const useUpdatePageMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
+    mutationKey: ["updatePage"],
     mutationFn: action,
     onSettled: async () => {
       return await queryClient.invalidateQueries({ queryKey: ["pages"] });
@@ -39,4 +42,4 @@ const useRemovePageMutation = () => {
   });
 };
 
-export default useRemovePageMutation;
+export default useUpdatePageMutation;

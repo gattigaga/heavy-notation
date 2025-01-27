@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import { Helmet } from "react-helmet-async";
+import { useMutationState } from "@tanstack/react-query";
 
 import {
   Breadcrumb,
@@ -29,21 +30,38 @@ import {
 } from "@/components/ui/popover";
 import { formatToClientTimeAndAgo } from "../helpers/datetime";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
+import { ActionPayload as UpdatePageActionPayload } from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
 
 type Params = {
-  slug: string;
+  id: string;
 };
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams<Params>();
-  const pageQuery = usePageQuery({ slug: params.slug });
+  const pageQuery = usePageQuery({ id: params.id });
+
+  const variables = useMutationState({
+    filters: {
+      mutationKey: ["updatePage"],
+      status: "pending",
+    },
+    select: (mutation) => {
+      return mutation.state.variables as UpdatePageActionPayload;
+    },
+  });
 
   const formattedDate = pageQuery.data?.updatedAt
     ? formatToClientTimeAndAgo(pageQuery.data.updatedAt)
     : "";
 
-  const title = pageQuery.data?.title || "New Page";
+  const title = (() => {
+    const variable = variables.find((variable) => {
+      return variable.id === params.id;
+    });
+
+    return variable?.title || pageQuery.data?.title || "New Page";
+  })();
 
   const menuItems = [
     [

@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 type Response = {
   id: string;
   userId: string;
-  slug: string;
   title: string;
   createdAt: string;
   updatedAt: string;
