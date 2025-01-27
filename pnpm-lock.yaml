@@ -83,9 +83,6 @@ importers:
       luxon:
         specifier: ^3.5.0
         version: 3.5.0
-      marked:
-        specifier: ^15.0.6
-        version: 15.0.6
       md5:
         specifier: ^2.3.0
         version: 2.3.0
@@ -1981,11 +1978,6 @@ packages:
   luxon@3.5.0:
     resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
     engines: {node: '>=12'}
-
-  marked@15.0.6:
-    resolution: {integrity: sha512-Y07CUOE+HQXbVDCGl3LXggqJDbXDP2pArc2C1N1RRMN0ONiShoSsIInMd5Gsxupe7fKLpgimTV+HOJ9r7bA+pg==}
-    engines: {node: '>= 18'}
-    hasBin: true
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -4827,8 +4819,6 @@ snapshots:
       react: 19.0.0
 
   luxon@3.5.0: {}
-
-  marked@15.0.6: {}
 
   math-intrinsics@1.1.0: {}
 
