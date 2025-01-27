@@ -33,6 +33,7 @@
     "array-move": "^4.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "1.0.0",
     "lucide-react": "^0.469.0",
     "luxon": "^3.5.0",
     "md5": "^2.3.0",

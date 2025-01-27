@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import {
   Sidebar,
@@ -16,8 +17,10 @@ import {
 } from "@/components/ui/sidebar";
 import AuthMenu from "./AuthMenu";
 import PageList from "./PageList";
+import PopupSearch from "./PopupSearch";
 
 const AppSidebar = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
   const menuItems = [
@@ -37,6 +40,22 @@ const AppSidebar = () => {
     },
   ];
 
+  // Toggle search when ⌘K is pressed.
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        setIsSearchOpen(!isSearchOpen);
+      }
+    };
+
+    document.addEventListener("keydown", handler);
+
+    return () => {
+      document.removeEventListener("keydown", handler);
+    };
+  }, [isSearchOpen]);
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -46,22 +65,37 @@ const AppSidebar = () => {
         {/* Main */}
         <SidebarGroup>
           <SidebarMenu>
-            {menuItems.map((item) => (
-              <SidebarMenuItem key={item.id}>
-                <SidebarMenuButton isActive={item.isActive} asChild={true}>
-                  <Link href={item.url} title={item.title}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            {menuItems.map((item) => {
+              return (
+                <SidebarMenuItem key={item.id}>
+                  {item.id === "search" && (
+                    <SidebarMenuButton
+                      isActive={item.isActive}
+                      onClick={() => setIsSearchOpen(true)}
+                    >
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  )}
+                  {item.id === "home" && (
+                    <SidebarMenuButton isActive={item.isActive} asChild={true}>
+                      <Link href={item.url} title={item.title}>
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  )}
+                </SidebarMenuItem>
+              );
+            })}
           </SidebarMenu>
         </SidebarGroup>
 
         <div className="flex-1 overflow-y-auto border-t">
           <PageList />
         </div>
+
+        <PopupSearch isOpen={isSearchOpen} onOpenChange={setIsSearchOpen} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
