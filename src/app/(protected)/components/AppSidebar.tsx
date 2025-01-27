@@ -17,14 +17,7 @@ import {
 import AuthMenu from "./AuthMenu";
 import PageList from "./PageList";
 
-type Props = {
-  user: {
-    name: string;
-    email: string;
-  };
-};
-
-const AppSidebar = ({ user }: Props) => {
+const AppSidebar = () => {
   const pathname = usePathname();
 
   const menuItems = [
@@ -47,7 +40,7 @@ const AppSidebar = ({ user }: Props) => {
   return (
     <Sidebar>
       <SidebarHeader>
-        <AuthMenu user={user} />
+        <AuthMenu />
       </SidebarHeader>
       <SidebarContent>
         {/* Main */}

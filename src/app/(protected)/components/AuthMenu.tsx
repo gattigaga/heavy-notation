@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import {
   DropdownMenu,
@@ -21,15 +22,14 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { signOut } from "../actions";
 
-type Props = {
-  user: {
-    name: string;
-    email: string;
-  };
-};
-
-const AuthMenu = ({ user }: Props) => {
+const AuthMenu = () => {
   const { isMobile } = useSidebar();
+  const { data: session } = useSession();
+
+  const user = session?.user || {
+    name: "",
+    email: "",
+  };
 
   return (
     <SidebarMenu>
@@ -42,7 +42,7 @@ const AuthMenu = ({ user }: Props) => {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarFallback className="rounded-lg">
-                  {user.name[0].toUpperCase()}
+                  {user.name[0]?.toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -62,7 +62,7 @@ const AuthMenu = ({ user }: Props) => {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarFallback className="rounded-lg">
-                    {user.name[0].toUpperCase()}
+                    {user.name[0]?.toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
