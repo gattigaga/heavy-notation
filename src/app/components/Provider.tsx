@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
+import { SessionProvider } from "next-auth/react";
 
 const queryClient = new QueryClient();
 
@@ -11,9 +12,13 @@ type Props = {
 
 const Provider = ({ children }: Props) => {
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </HelmetProvider>
+    <SessionProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </HelmetProvider>
+    </SessionProvider>
   );
 };
 
