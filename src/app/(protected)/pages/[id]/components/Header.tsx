@@ -28,7 +28,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { formatToClientTimeAndAgo } from "../helpers/datetime";
+import { formatToClientTimeAndAgo } from "../../../helpers/datetime";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
 import { ActionPayload as UpdatePageActionPayload } from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
 
