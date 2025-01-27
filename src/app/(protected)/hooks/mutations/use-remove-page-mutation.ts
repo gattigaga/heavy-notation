@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-type ActionPayload = {
+export type ActionPayload = {
   id: string;
 };
 
@@ -32,6 +32,7 @@ const useRemovePageMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
+    mutationKey: ["removePage"],
     mutationFn: action,
     onSettled: async () => {
       return await queryClient.invalidateQueries({ queryKey: ["pages"] });
