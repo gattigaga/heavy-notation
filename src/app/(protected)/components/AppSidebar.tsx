@@ -42,7 +42,7 @@ const AppSidebar = () => {
       <SidebarHeader>
         <AuthMenu />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="gap-y-0 overflow-hidden">
         {/* Main */}
         <SidebarGroup>
           <SidebarMenu>
@@ -59,7 +59,9 @@ const AppSidebar = () => {
           </SidebarMenu>
         </SidebarGroup>
 
-        <PageList />
+        <div className="flex-1 overflow-y-auto border-t">
+          <PageList />
+        </div>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
