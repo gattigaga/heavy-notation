@@ -1,6 +1,6 @@
 "use client";
 
-import { createRef, useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo } from "react";
 import {
   closestCenter,
   DndContext,
@@ -23,7 +23,6 @@ import TitleBlock from "./TitleBlock";
 import TextBlock from "./TextBlock";
 import HeadingBlock from "./HeadingBlock";
 import DividerBlock from "./DividerBlock";
-import { Block } from "../types";
 import useBlocksQuery from "@/app/(protected)/hooks/queries/use-blocks-query";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
 import useUpdatePageMutation from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
@@ -36,7 +35,6 @@ type Params = {
 };
 
 const Content = () => {
-  const [blocks, setBlocks] = useState<Block[]>([]);
   const params = useParams<Params>();
   const pageQuery = usePageQuery({ id: params.id });
   const blocksQuery = useBlocksQuery({ pageId: params.id });
@@ -46,7 +44,7 @@ const Content = () => {
   const removeBlockMutation = useRemoveBlockMutation();
 
   const blockWithRefs = useMemo(() => {
-    const blocks =
+    let blocks =
       blocksQuery.data
         ?.filter((block) => {
           if (
@@ -63,11 +61,6 @@ const Content = () => {
             updateBlockMutation.isPending &&
             block.id === updateBlockMutation.variables?.id
           ) {
-            const index =
-              updateBlockMutation.variables?.index !== undefined
-                ? updateBlockMutation.variables.index
-                : block.index;
-
             const type =
               updateBlockMutation.variables?.type !== undefined
                 ? updateBlockMutation.variables.type
@@ -80,7 +73,6 @@ const Content = () => {
 
             return {
               ...block,
-              index,
               type,
               content,
               ref: createRef<HTMLTextAreaElement>(),
@@ -92,6 +84,26 @@ const Content = () => {
             ref: createRef<HTMLTextAreaElement>(),
           };
         }) || [];
+
+    if (
+      updateBlockMutation.isPending &&
+      updateBlockMutation.variables?.index !== undefined
+    ) {
+      const oldIndex = blocks.findIndex(
+        (block) => block.id === updateBlockMutation.variables.id,
+      );
+
+      blocks = arrayMove(
+        blocks,
+        oldIndex,
+        updateBlockMutation.variables.index,
+      ).map((block, index) => {
+        return {
+          ...block,
+          index,
+        };
+      });
+    }
 
     if (addBlockMutation.isPending) {
       const block = {
@@ -144,11 +156,19 @@ const Content = () => {
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      const oldIndex = blocks.findIndex((block) => block.id === active.id);
-      const newIndex = blocks.findIndex((block) => block.id === over?.id);
-      const newBlocks = arrayMove(blocks, oldIndex, newIndex);
+      const block = blockWithRefs.find((block) => block.id === active.id);
 
-      setBlocks(newBlocks);
+      const newIndex = blockWithRefs.findIndex(
+        (block) => block.id === over?.id,
+      );
+
+      if (block) {
+        updateBlockMutation.mutate({
+          id: block.id,
+          pageId: params.id,
+          index: newIndex,
+        });
+      }
     }
   };
 
@@ -187,14 +207,7 @@ const Content = () => {
     return () => {
       document.removeEventListener("keydown", handleFocus);
     };
-  }, [blocks]);
-
-  // Initialize blocks.
-  useEffect(() => {
-    if (blocksQuery.isSuccess) {
-      setBlocks(blocksQuery.data);
-    }
-  }, [blocksQuery.isSuccess, blocksQuery.data]);
+  }, [blockWithRefs]);
 
   return (
     <>
