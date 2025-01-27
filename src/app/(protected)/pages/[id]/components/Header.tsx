@@ -28,7 +28,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { formatToClientTimeAndAgo } from "../helpers/datetime";
+import { formatToClientTimeAndAgo } from "../../../helpers/datetime";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
 import { ActionPayload as UpdatePageActionPayload } from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
 
@@ -41,7 +41,7 @@ const Header = () => {
   const params = useParams<Params>();
   const pageQuery = usePageQuery({ id: params.id });
 
-  const variables = useMutationState({
+  const updatePageMutationVariables = useMutationState({
     filters: {
       mutationKey: ["updatePage"],
       status: "pending",
@@ -56,7 +56,7 @@ const Header = () => {
     : "";
 
   const title = (() => {
-    const variable = variables.find((variable) => {
+    const variable = updatePageMutationVariables.find((variable) => {
       return variable.id === params.id;
     });
 
