@@ -1,6 +1,9 @@
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
+import { auth } from "@/helpers/auth";
 import { Button } from "@/components/ui/button";
 import LogoDuckDuckGo from "./components/LogoDuckDuckGo";
 import LogoTwitch from "./components/LogoTwitch";
@@ -12,13 +15,20 @@ import LogoTrello from "./components/LogoTrello";
 import LogoAsana from "./components/LogoAsana";
 import LogoConfluence from "./components/LogoConfluence";
 import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Your workspace solution for projects | Heavy Notation",
 };
 
-export default function Home() {
+const Home = async () => {
+  const session = await auth();
+
+  // If user is authenticated,
+  // redirect them to the home page in protected routes.
+  if (session) {
+    redirect("/home");
+  }
+
   return (
     <>
       <header className="flex h-16 items-center justify-between px-4">
@@ -193,4 +203,6 @@ export default function Home() {
       </footer>
     </>
   );
-}
+};
+
+export default Home;
