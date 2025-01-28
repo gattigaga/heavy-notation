@@ -22,11 +22,13 @@ export default function Home() {
   return (
     <>
       <header className="flex h-16 items-center justify-between px-4">
-        <Image
-          src={imgLogoHeavyNotation}
-          alt="Heavy Notation logo"
-          className="h-8 w-auto"
-        />
+        <Link href="/">
+          <Image
+            src={imgLogoHeavyNotation}
+            alt="Heavy Notation logo"
+            className="h-8 w-auto"
+          />
+        </Link>
         <Button
           className="font-semibold text-zinc-700"
           type="button"

@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 const HomePage = async () => {
   return (
-    <main className="min-h-screen w-full py-24">
+    <div className="min-h-screen w-full py-24">
       <div className="mx-auto flex max-w-5xl flex-col gap-y-4">
         <Greeting />
         <PageList />
       </div>
-    </main>
+    </div>
   );
 };
 
