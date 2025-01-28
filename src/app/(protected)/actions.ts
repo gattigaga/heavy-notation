@@ -7,3 +7,9 @@ export const signOut = async () => {
     redirectTo: "/auth/signin",
   });
 };
+
+export const signInWithOAuth = async (provider: string) => {
+  await authHelper.signIn(provider, {
+    redirectTo: "/home",
+  });
+};
