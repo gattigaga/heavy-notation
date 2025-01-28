@@ -73,7 +73,7 @@ const SignInForm = () => {
       {!signInAction.isPending && (
         <div className="flex flex-col items-center px-6 py-24">
           <div className="min-w-80 max-w-sm">
-            <h1 className="text-2xl font-semibold tracking-tight">
+            <h1 className="text-2xl font-semibold tracking-tight text-zinc-700">
               Heavy Notation.
             </h1>
             <p className="mb-8 text-2xl font-semibold text-zinc-400">
@@ -91,9 +91,10 @@ const SignInForm = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-zinc-700">Email</FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your email"
                               type="email"
                               {...field}
@@ -110,9 +111,12 @@ const SignInForm = () => {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel className="text-zinc-700">
+                            Password
+                          </FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your password"
                               type="password"
                               {...field}
@@ -123,11 +127,11 @@ const SignInForm = () => {
                       )}
                     />
                   </div>
-                  <Button type="submit" className="mt-4 w-full">
+                  <Button type="submit" className="mt-4 w-full bg-blue-500">
                     Sign In
                   </Button>
                 </div>
-                <div className="mt-4 text-center text-sm">
+                <div className="mt-4 text-center text-sm text-zinc-700">
                   Don&apos;t have an account?{" "}
                   <Link href="/auth/signup" className="underline">
                     Sign Up
