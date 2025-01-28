@@ -97,7 +97,7 @@ const SignUpForm = () => {
       {!signUpAction.isPending && (
         <div className="flex flex-col items-center px-6 py-24">
           <div className="min-w-80 max-w-sm">
-            <h1 className="text-2xl font-semibold tracking-tight">
+            <h1 className="text-2xl font-semibold tracking-tight text-zinc-700">
               Heavy Notation.
             </h1>
             <p className="mb-8 text-2xl font-semibold text-zinc-400">
@@ -115,9 +115,10 @@ const SignUpForm = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Name</FormLabel>
+                          <FormLabel className="text-zinc-700">Name</FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your name"
                               type="text"
                               {...field}
@@ -134,9 +135,12 @@ const SignUpForm = () => {
                       name="username"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Username</FormLabel>
+                          <FormLabel className="text-zinc-700">
+                            Username
+                          </FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your username"
                               type="text"
                               {...field}
@@ -153,9 +157,10 @@ const SignUpForm = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-zinc-700">Email</FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your email"
                               type="text"
                               {...field}
@@ -172,9 +177,12 @@ const SignUpForm = () => {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel className="text-zinc-700">
+                            Password
+                          </FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your password"
                               type="password"
                               {...field}
@@ -191,9 +199,12 @@ const SignUpForm = () => {
                       name="confirmPassword"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Confirm Password</FormLabel>
+                          <FormLabel className="text-zinc-700">
+                            Confirm Password
+                          </FormLabel>
                           <FormControl>
                             <Input
+                              className="text-sm text-zinc-700"
                               placeholder="Enter your password again"
                               type="password"
                               {...field}
@@ -204,11 +215,11 @@ const SignUpForm = () => {
                       )}
                     />
                   </div>
-                  <Button type="submit" className="mt-4 w-full">
+                  <Button type="submit" className="mt-4 w-full bg-blue-500">
                     Sign Up
                   </Button>
                 </div>
-                <div className="mt-4 text-center text-sm">
+                <div className="mt-4 text-center text-sm text-zinc-700">
                   Already have an account?{" "}
                   <Link href="/auth/signin" className="underline">
                     Sign In

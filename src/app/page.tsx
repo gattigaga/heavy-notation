@@ -1,101 +1,182 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+import LogoDuckDuckGo from "./components/LogoDuckDuckGo";
+import LogoTwitch from "./components/LogoTwitch";
+import LogoShopify from "./components/LogoShopify";
+import LogoDiscord from "./components/LogoDiscord";
+import LogoEvernote from "./components/LogoEvernote";
+import LogoCoda from "./components/LogoCoda";
+import LogoTrello from "./components/LogoTrello";
+import LogoAsana from "./components/LogoAsana";
+import LogoConfluence from "./components/LogoConfluence";
+import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Your workspace solution for projects | Heavy Notation",
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <header className="flex h-16 items-center justify-between px-4">
+        <Link href="/">
+          <Image
+            src={imgLogoHeavyNotation}
+            alt="Heavy Notation logo"
+            className="h-8 w-auto"
+          />
+        </Link>
+        <Button
+          className="font-semibold text-zinc-700"
+          type="button"
+          variant="outline"
+        >
+          <Link href="/auth/signin">Sign In</Link>
+        </Button>
+      </header>
+      <div className="flex max-w-screen-2xl flex-col gap-y-24 px-8 pt-4 md:gap-y-40 md:px-16 md:pt-10 lg:px-24 lg:pt-16 2xl:mx-auto 2xl:px-40">
+        <div className="flex flex-col">
+          <h1 className="mb-4 whitespace-pre text-5xl font-bold tracking-tighter text-zinc-700 md:text-center md:text-7xl lg:text-left">
+            The happier{"\n"}workspace
+          </h1>
+          <p className="mb-4 whitespace-pre text-2xl font-medium text-zinc-700 md:text-center lg:text-left">
+            Think. Write. Plan your ideas{"\n"}in a better way.
+          </p>
+          <Button
+            className="mb-8 mt-4 h-12 w-full bg-blue-500 text-base font-semibold md:w-fit md:self-center lg:mb-8 lg:w-auto lg:self-start"
+            type="button"
+          >
+            <Link href="/auth/signup">Start Writing Now</Link>
+          </Button>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <p className="mb-2 text-base text-zinc-400 md:text-center lg:text-left">
+            Trusted by teams at
+          </p>
+          <div className="mb-8 flex flex-wrap gap-4 md:justify-center lg:justify-start lg:gap-8">
+            <div className="flex items-center gap-x-2">
+              <LogoDuckDuckGo
+                className="shrink-0"
+                width={24}
+                height={24}
+                fill="#a1a1aa"
+              />
+              <p className="text-base font-semibold text-zinc-400">
+                DuckDuckGo
+              </p>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <LogoTwitch
+                className="shrink-0"
+                width={24}
+                height={24}
+                fill="#a1a1aa"
+              />
+              <p className="text-base font-semibold text-zinc-400">Twitch</p>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <LogoShopify
+                className="shrink-0"
+                width={24}
+                height={24}
+                fill="#a1a1aa"
+              />
+              <p className="text-base font-semibold text-zinc-400">Shopify</p>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <LogoDiscord
+                className="shrink-0"
+                width={24}
+                height={24}
+                fill="#a1a1aa"
+              />
+              <p className="text-base font-semibold text-zinc-400">Discord</p>
+            </div>
+          </div>
+
+          <div className="aspect-video w-full rounded-lg bg-zinc-200" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        <div>
+          <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
+            Build perfect{"\n"}docs, together.
+          </h2>
+          <p className="mb-8 text-xl font-medium text-zinc-400">
+            Capture your ideas, get feedback from teammates, and ask AI to add
+            the finishing touches.
+          </p>
+          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <div className="flex flex-wrap gap-x-4 gap-y-3">
+            <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
+              Replaces
+            </p>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoEvernote width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Evernote</p>
+            </div>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoCoda width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Coda</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
+            Your workflow.{"\n"}Your way.
+          </h2>
+          <p className="mb-8 text-xl font-medium text-zinc-400">
+            All your projects, goals, calendars, roadmaps, and more—in one
+            tool—personalized to how you and your team work.
+          </p>
+          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <div className="flex flex-wrap gap-x-4 gap-y-3">
+            <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
+              Replaces
+            </p>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoTrello width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Trello</p>
+            </div>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoAsana width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Asana</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
+            Find everything.{"\n"}Instantly.
+          </h2>
+          <p className="mb-8 text-xl font-medium text-zinc-400">
+            No more endless searching. Our built-in AI finds what you{"'"}re
+            looking for, whether its stored in Heavy Notation or one of your
+            other apps.
+          </p>
+          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <div className="flex flex-wrap gap-x-4 gap-y-3">
+            <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
+              Replaces
+            </p>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoConfluence width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Confluence</p>
+            </div>
+            <div className="col-span-1 flex items-center gap-x-2">
+              <LogoAsana width={24} height={24} fill="#a1a1aa" />
+              <p className="text-base text-zinc-400">Asana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer className="mt-8 flex h-24 items-center justify-center">
+        <p className="text-center text-sm text-zinc-700 md:text-base">
+          © {new Date().getFullYear()} Gattigaga Hayyuta Dewa
+        </p>
       </footer>
-    </div>
+    </>
   );
 }

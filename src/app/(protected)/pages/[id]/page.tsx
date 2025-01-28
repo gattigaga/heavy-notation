@@ -6,9 +6,9 @@ const PageDetailPage = async () => {
     <div className="flex h-screen flex-col">
       <Header />
       <div className="flex-1 overflow-y-scroll">
-        <main className="min-h-screen w-full py-24">
+        <div className="min-h-screen w-full py-24">
           <Content />
-        </main>
+        </div>
       </div>
     </div>
   );
