@@ -1,0 +1,152 @@
+"use client";
+
+import { BlockType } from "@prisma/client";
+
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  Bold,
+  CaseSensitive,
+  Check,
+  ChevronDown,
+  Heading1,
+  Heading2,
+  Heading3,
+  Italic,
+  Strikethrough,
+  Underline,
+} from "lucide-react";
+
+type BlockItem = {
+  type: BlockType;
+  title: string;
+  description: string;
+  icon: React.ElementType;
+};
+
+type Style = "bold" | "italic" | "underline" | "strikethrough";
+
+type Options = {
+  type: BlockType;
+  styles: Style[];
+};
+
+type Props = {
+  options?: Options;
+  onChange?: (options: Options) => void;
+};
+
+export const Toolbar = ({ options, onChange }: Props) => {
+  const blocks: BlockItem[] = [
+    {
+      type: "TEXT",
+      title: "Text",
+      description: "Just start writing with plain text.",
+      icon: CaseSensitive,
+    },
+    {
+      type: "HEADING1",
+      title: "Heading 1",
+      description: "Big section heading.",
+      icon: Heading1,
+    },
+    {
+      type: "HEADING2",
+      title: "Heading 2",
+      description: "Medium section heading.",
+      icon: Heading2,
+    },
+    {
+      type: "HEADING3",
+      title: "Heading 3",
+      description: "Small section heading.",
+      icon: Heading3,
+    },
+  ];
+
+  const typeLabel = blocks.find((block) => block.type === options?.type)?.title;
+
+  return (
+    <Menubar className="h-12 w-fit">
+      <MenubarMenu>
+        <MenubarTrigger>
+          <span className="mr-2 text-base text-zinc-700">
+            {typeLabel || "Text"}
+          </span>
+          <ChevronDown className="text-zinc-700" size={16} />
+        </MenubarTrigger>
+        <MenubarContent>
+          {blocks.map((block) => {
+            const Icon = block.icon;
+
+            return (
+              <MenubarItem
+                key={block.type}
+                className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
+                onClick={() => {
+                  const newOptions: Options = {
+                    type: block.type,
+                    styles: options?.styles || [],
+                  };
+
+                  onChange?.(newOptions);
+                }}
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded border bg-white">
+                  <Icon className="text-zinc-700" size={24} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-left text-base font-medium">
+                    {block.title}
+                  </p>
+                  <p className="text-left text-sm text-zinc-400">
+                    {block.description}
+                  </p>
+                </div>
+                {block.type === options?.type && (
+                  <Check className="ml-auto text-zinc-700" size={20} />
+                )}
+              </MenubarItem>
+            );
+          })}
+        </MenubarContent>
+      </MenubarMenu>
+      <ToggleGroup
+        type="multiple"
+        value={options?.styles || []}
+        onValueChange={(values) => {
+          const newOptions: Options = {
+            type: (options?.type || "TEXT") as BlockType,
+            styles: values as Style[],
+          };
+
+          onChange?.(newOptions);
+        }}
+      >
+        <ToggleGroupItem value="bold" aria-label="Toggle bold">
+          <Bold size={16} />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="italic" aria-label="Toggle italic">
+          <Italic size={16} />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="underline" aria-label="Toggle underline">
+          <Underline size={16} />
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          value="strikethrough"
+          aria-label="Toggle strikethrough"
+        >
+          <Strikethrough size={16} />
+        </ToggleGroupItem>
+      </ToggleGroup>
+    </Menubar>
+  );
+};
+
+export default Toolbar;
