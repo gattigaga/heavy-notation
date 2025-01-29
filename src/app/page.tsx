@@ -198,7 +198,7 @@ const Home = async () => {
       </div>
       <footer className="flex h-16 items-center justify-center border-t">
         <p className="text-center text-sm text-zinc-700 md:text-base">
-          {new Date().getFullYear()} Gattigaga Hayyuta Dewa
+          © {new Date().getFullYear()} Gattigaga Hayyuta Dewa
         </p>
       </footer>
     </>

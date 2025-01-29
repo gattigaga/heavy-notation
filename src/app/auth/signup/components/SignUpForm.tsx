@@ -235,7 +235,7 @@ const SignUpForm = () => {
                     fill="#3f3f46"
                   />
                 </svg>
-                Login with Google
+                Sign in with Google
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-zinc-700">
