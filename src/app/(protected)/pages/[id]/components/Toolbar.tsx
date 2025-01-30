@@ -1,15 +1,6 @@
 "use client";
 
 import { BlockType } from "@prisma/client";
-
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Bold,
   CaseSensitive,
@@ -22,6 +13,16 @@ import {
   Strikethrough,
   Underline,
 } from "lucide-react";
+
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { cn } from "@/lib/utils";
 
 type BlockItem = {
   type: BlockType;
@@ -38,11 +39,15 @@ type Options = {
 };
 
 type Props = {
+  position: {
+    x: number;
+    y: number;
+  };
   options?: Options;
   onChange?: (options: Options) => void;
 };
 
-export const Toolbar = ({ options, onChange }: Props) => {
+export const Toolbar = ({ position, options, onChange }: Props) => {
   const blocks: BlockItem[] = [
     {
       type: "TEXT",
@@ -73,7 +78,13 @@ export const Toolbar = ({ options, onChange }: Props) => {
   const typeLabel = blocks.find((block) => block.type === options?.type)?.title;
 
   return (
-    <Menubar className="h-12 w-fit">
+    <Menubar
+      className={cn("fixed z-10 h-12 w-fit")}
+      style={{
+        top: position.y,
+        left: position.x,
+      }}
+    >
       <MenubarMenu>
         <MenubarTrigger>
           <span className="mr-2 text-base text-zinc-700">
