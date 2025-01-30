@@ -49,6 +49,9 @@ const RichTextInput = ({
         quill.setContents(value);
       }
 
+      // Prevent create a new line break when press enter.
+      quill.keyboard.bindings["Enter"] = [];
+
       quill.on(Quill.events.TEXT_CHANGE, (...args) => {
         onChange?.(...args);
       });
