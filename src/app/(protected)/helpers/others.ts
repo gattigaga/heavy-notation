@@ -1,4 +1,4 @@
-export const getCursorCoordinates = () => {
+export const getCursorPosition = () => {
   const selection = window.getSelection();
 
   if (selection && selection.rangeCount > 0) {
