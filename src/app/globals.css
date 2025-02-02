@@ -88,7 +88,11 @@ body {
 }
 
 .ql-container {
-  @apply w-full !text-lg !font-medium text-zinc-700;
+  @apply !h-fit !w-full !text-lg !font-medium !text-zinc-700;
+}
+
+.ql-editor {
+  @apply !p-0;
 }
 
 .ql-editor.ql-blank::before {

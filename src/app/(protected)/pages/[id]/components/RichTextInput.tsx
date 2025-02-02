@@ -1,19 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import Quill, { Delta, EmitterSource, Op, Range } from "quill";
+import Quill, { Delta, EmitterSource, Range } from "quill";
 import "quill/dist/quill.snow.css";
 
 type Props = {
   ref: React.RefObject<Quill | null>;
   placeholder?: string;
-  value?: Delta | Op[];
-  onTextChange?: (
-    delta: Delta,
-    oldContent: Delta,
-    source: EmitterSource,
-  ) => void;
+  defaultValue?: string;
+  onTextChange?: (rawValue: string, value: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onKeyDown?: (event: KeyboardEvent) => void;
+  onPressEnter?: (rawValues: [string, string]) => void;
   onSelectionChange?: (
     range: Range,
     oldRange: Range,
@@ -23,37 +19,39 @@ type Props = {
 
 const RichTextInput = ({
   ref,
-  value,
   placeholder,
-  onTextChange: onChange,
+  defaultValue,
+  onTextChange,
   onBlur,
   onFocus,
-  onKeyDown,
+  onPressEnter,
   onSelectionChange,
 }: Props) => {
   const refContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (refContainer.current) {
-      const editorContainer = refContainer.current.appendChild(
-        refContainer.current.ownerDocument.createElement("div"),
-      );
-
-      const quill = new Quill(editorContainer, {
+      const quill = new Quill(refContainer.current, {
         placeholder,
       });
 
       ref.current = quill;
 
-      if (value) {
-        quill.setContents(value);
+      if (defaultValue) {
+        const content = defaultValue ? JSON.parse(defaultValue) : new Delta();
+
+        ref.current.setContents(content);
       }
 
       // Prevent create a new line break when press enter.
       quill.keyboard.bindings["Enter"] = [];
 
-      quill.on(Quill.events.TEXT_CHANGE, (...args) => {
-        onChange?.(...args);
+      quill.on(Quill.events.TEXT_CHANGE, (delta, oldContent) => {
+        const content = oldContent.compose(delta);
+        const stringified = JSON.stringify(content);
+        const innerValue = content.ops[0]?.insert as string;
+
+        onTextChange?.(stringified, innerValue);
       });
 
       quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
@@ -69,7 +67,21 @@ const RichTextInput = ({
       });
 
       quill.root.addEventListener("keydown", (event) => {
-        onKeyDown?.(event);
+        if (event.key === "Enter") {
+          event.preventDefault();
+
+          const selection = ref.current?.getSelection();
+          const before = ref.current?.getContents(0, selection?.index);
+          const after = ref.current?.getContents(selection?.index);
+
+          const a = JSON.stringify(before);
+          const b = JSON.stringify(after);
+
+          if (before && after) {
+            ref.current?.setContents(before);
+            onPressEnter?.([a, b]);
+          }
+        }
       });
     }
 
@@ -82,12 +94,7 @@ const RichTextInput = ({
     };
   }, []);
 
-  return (
-    <div
-      ref={refContainer}
-      className="w-full bg-transparent text-zinc-700 placeholder:text-zinc-400"
-    />
-  );
+  return <div ref={refContainer} />;
 };
 
 export default RichTextInput;
