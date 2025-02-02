@@ -368,19 +368,23 @@ const Content = () => {
                         key={block.id}
                         id={block.id}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {
