@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { BlockType } from "@prisma/client";
 import {
   Bold,
@@ -47,9 +48,17 @@ type Props = {
   };
   options: Options;
   onChange?: (options: Options) => void;
+  onRequestClose?: () => void;
 };
 
-export const Toolbar = ({ position, options, onChange }: Props) => {
+export const Toolbar = ({
+  position,
+  options,
+  onChange,
+  onRequestClose,
+}: Props) => {
+  const refContainer = useRef<HTMLDivElement>(null);
+
   const blocks: BlockItem[] = [
     {
       type: "TEXT",
@@ -83,8 +92,27 @@ export const Toolbar = ({ position, options, onChange }: Props) => {
     .filter(([, isActive]) => isActive)
     .map(([style]) => style);
 
+  // Close the toolbar when clicking outside of it.
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      if (
+        refContainer.current &&
+        !refContainer.current.contains(event.target as Node)
+      ) {
+        onRequestClose?.();
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
+
   return (
     <Menubar
+      ref={refContainer}
       className={cn("fixed z-10 h-12 w-fit")}
       style={{
         top: position.y,
