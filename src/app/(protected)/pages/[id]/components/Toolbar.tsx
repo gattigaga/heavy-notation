@@ -31,11 +31,13 @@ type BlockItem = {
   icon: React.ElementType;
 };
 
-type Style = "bold" | "italic" | "underline" | "strikethrough";
+type Style = "bold" | "italic" | "underline" | "strike";
 
 type Options = {
   type: BlockType;
-  styles: Style[];
+  styles: {
+    [style in Style]: boolean;
+  };
 };
 
 type Props = {
@@ -43,7 +45,7 @@ type Props = {
     x: number;
     y: number;
   };
-  options?: Options;
+  options: Options;
   onChange?: (options: Options) => void;
 };
 
@@ -75,7 +77,11 @@ export const Toolbar = ({ position, options, onChange }: Props) => {
     },
   ];
 
-  const typeLabel = blocks.find((block) => block.type === options?.type)?.title;
+  const typeLabel = blocks.find((block) => block.type === options.type)?.title;
+
+  const activeStyles = Object.entries(options.styles)
+    .filter(([, isActive]) => isActive)
+    .map(([style]) => style);
 
   return (
     <Menubar
@@ -130,11 +136,16 @@ export const Toolbar = ({ position, options, onChange }: Props) => {
       </MenubarMenu>
       <ToggleGroup
         type="multiple"
-        value={options?.styles || []}
-        onValueChange={(values) => {
+        value={activeStyles}
+        onValueChange={(values: Style[]) => {
           const newOptions: Options = {
-            type: (options?.type || "TEXT") as BlockType,
-            styles: values as Style[],
+            type: options.type,
+            styles: {
+              bold: values.includes("bold"),
+              italic: values.includes("italic"),
+              underline: values.includes("underline"),
+              strike: values.includes("strike"),
+            },
           };
 
           onChange?.(newOptions);
@@ -149,10 +160,7 @@ export const Toolbar = ({ position, options, onChange }: Props) => {
         <ToggleGroupItem value="underline" aria-label="Toggle underline">
           <Underline size={16} />
         </ToggleGroupItem>
-        <ToggleGroupItem
-          value="strikethrough"
-          aria-label="Toggle strikethrough"
-        >
+        <ToggleGroupItem value="strike" aria-label="Toggle strikethrough">
           <Strikethrough size={16} />
         </ToggleGroupItem>
       </ToggleGroup>
