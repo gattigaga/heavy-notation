@@ -1,18 +1,26 @@
 "use client";
 
 import { RefObject, useEffect, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { BlockType } from "@prisma/client";
+import Quill from "quill";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
+import RichTextInput from "./RichTextInput";
+import Toolbar from "./Toolbar";
 import { GripAction } from "../types";
 import { cn } from "@/lib/utils";
+import { getCursorPosition } from "@/app/(protected)/helpers/others";
+
+type Position = {
+  x: number;
+  y: number;
+};
 
 type Props = {
-  ref: RefObject<HTMLTextAreaElement | null>;
+  ref: RefObject<Quill | null>;
   id: string;
   type: BlockType;
   defaultValue: string;
@@ -36,7 +44,7 @@ const HeadingBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
-  const [value, setValue] = useState(defaultValue);
+  const [toolbarPosition, setToolbarPosition] = useState<Position | null>(null);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
@@ -79,10 +87,13 @@ const HeadingBlock = ({
   // not run onPressEnter() and onChange() at the same time.
   useEffect(() => {
     const handler = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (ref.current && !ref.current.root.contains(event.target as Node)) {
         if (isFocused) {
-          onChange?.(value);
+          const content = JSON.stringify(ref.current?.getContents());
+
+          onChange?.(content);
           setIsFocused(false);
+          setToolbarPosition(null);
         }
       }
     };
@@ -92,7 +103,7 @@ const HeadingBlock = ({
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, [isFocused, value]);
+  }, [isFocused]);
 
   return (
     <div ref={sortable.setNodeRef} className="group relative" style={style}>
@@ -123,42 +134,47 @@ const HeadingBlock = ({
         }}
         onOpenChange={setIsBlocksOpen}
       >
-        <TextareaAutosize
+        <RichTextInput
           ref={ref}
           className={cn(
-            "w-full resize-none bg-transparent font-bold text-zinc-700 outline-none placeholder:text-zinc-400",
+            "!placeholder:text-zinc-400 !w-full !font-bold !text-zinc-700",
             {
-              "text-4xl leading-normal": type === "HEADING1",
-              "text-3xl leading-normal": type === "HEADING2",
-              "text-2xl leading-normal": type === "HEADING3",
+              "!text-4xl !leading-normal": type === "HEADING1",
+              "!text-3xl !leading-normal": type === "HEADING2",
+              "!text-2xl !leading-normal": type === "HEADING3",
             },
           )}
-          value={value}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
-          onChange={(event) => {
-            const newValue = event.target.value;
+          onTextChange={(rawValue, value) => {
+            const isBlocksWillOpen = value.replace(/\s/g, "") === "/";
 
-            setValue(newValue);
-
-            if (!value && newValue.startsWith("/")) {
+            if (isBlocksWillOpen) {
               setIsBlocksOpen(true);
             }
           }}
-          onBlur={() => setIsFocused(false)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
+          onBlur={() => {
+            setIsFocused(false);
+            setToolbarPosition(null);
+          }}
+          onPressEnter={onPressEnter}
+          onSelectionChange={(range) => {
+            if (range?.length > 0) {
+              const cursorPosition = getCursorPosition();
 
-              const cursorPosition = ref.current?.selectionStart;
-              const a = value.slice(0, cursorPosition);
-              const b = value.slice(cursorPosition);
-
-              setValue(a);
-              onPressEnter?.([a, b]);
+              setToolbarPosition(cursorPosition);
             }
           }}
         />
+        {toolbarPosition && (
+          <Toolbar
+            position={{
+              x: toolbarPosition.x - 40,
+              y: toolbarPosition.y - 56,
+            }}
+          />
+        )}
       </BlocksDropdown>
     </div>
   );

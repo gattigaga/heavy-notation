@@ -115,6 +115,7 @@ const TextBlock = ({
       >
         <RichTextInput
           ref={ref}
+          className="!h-fit !w-full !text-lg !font-medium !text-zinc-700"
           defaultValue={defaultValue}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

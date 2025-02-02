@@ -268,7 +268,7 @@ const Content = () => {
                             {
                               pageId: params.id,
                               index: index + 1,
-                              type: block.type,
+                              type: "TEXT",
                               content: values[1],
                             },
                             {
@@ -294,27 +294,33 @@ const Content = () => {
                           });
                         }}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onBlockSelected={(type) => {
+                          const delta = new Delta();
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {

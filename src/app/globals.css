@@ -92,5 +92,5 @@ body {
 }
 
 .ql-editor.ql-blank::before {
-  @apply !not-italic !text-zinc-400;
+  @apply !left-0 !not-italic !text-zinc-400;
 }
