@@ -31,7 +31,11 @@ const DividerBlock = ({
     : undefined;
 
   return (
-    <div ref={sortable.setNodeRef} className="group relative" style={style}>
+    <div
+      ref={sortable.setNodeRef}
+      className="group relative py-1"
+      style={style}
+    >
       <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
         <BlockControls
           id={id}
@@ -44,7 +48,7 @@ const DividerBlock = ({
       </div>
 
       <div className="flex h-7 flex-col justify-center">
-        <hr className="border-zinc-300" />
+        <hr className="border-zinc-200" />
       </div>
     </div>
   );

@@ -87,7 +87,11 @@ const TextBlock = ({
   }, [isFocused]);
 
   return (
-    <div ref={sortable.setNodeRef} className="group relative" style={style}>
+    <div
+      ref={sortable.setNodeRef}
+      className="group relative py-1"
+      style={style}
+    >
       {!isBlocksOpen && (
         <div className="absolute -top-0.5 flex -translate-x-full items-center pr-1">
           <BlockControls
