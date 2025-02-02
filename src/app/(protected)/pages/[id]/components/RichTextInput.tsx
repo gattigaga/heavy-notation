@@ -4,6 +4,7 @@ import "quill/dist/quill.snow.css";
 
 type Props = {
   ref: React.RefObject<Quill | null>;
+  className?: string;
   placeholder?: string;
   defaultValue?: string;
   onTextChange?: (rawValue: string, value: string) => void;
@@ -19,6 +20,7 @@ type Props = {
 
 const RichTextInput = ({
   ref,
+  className,
   placeholder,
   defaultValue,
   onTextChange,
@@ -34,6 +36,13 @@ const RichTextInput = ({
       const quill = new Quill(refContainer.current, {
         placeholder,
       });
+
+      const quillContainer =
+        refContainer.current.querySelector(".ql-container");
+
+      if (quillContainer) {
+        quillContainer.className = className || "";
+      }
 
       ref.current = quill;
 
@@ -94,7 +103,7 @@ const RichTextInput = ({
     };
   }, []);
 
-  return <div ref={refContainer} />;
+  return <div ref={refContainer} className={className} />;
 };
 
 export default RichTextInput;

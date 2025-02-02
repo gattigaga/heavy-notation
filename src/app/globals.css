@@ -87,10 +87,6 @@ body {
   }
 }
 
-.ql-container {
-  @apply !h-fit !w-full !text-lg !font-medium !text-zinc-700;
-}
-
 .ql-editor {
   @apply !p-0;
 }
