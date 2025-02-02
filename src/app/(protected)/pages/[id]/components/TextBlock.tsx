@@ -46,10 +46,6 @@ const TextBlock = ({
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
 
-  const placeholder = isFocused
-    ? "Write something, or press '/' for commands..."
-    : "";
-
   const style = sortable.transform
     ? {
         transform: CSS.Translate.toString(sortable.transform),
@@ -117,7 +113,8 @@ const TextBlock = ({
           ref={ref}
           className="!h-fit !w-full !text-lg !font-medium !text-zinc-700"
           defaultValue={defaultValue}
-          placeholder={placeholder}
+          placeholder="Write something, or press '/' for commands..."
+          isPlaceholderHiddenWhenBlur={true}
           onFocus={() => setIsFocused(true)}
           onTextChange={(rawValue, value) => {
             const isBlocksWillOpen = value.replace(/\s/g, "") === "/";

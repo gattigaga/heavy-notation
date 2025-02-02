@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   defaultValue?: string;
+  isPlaceholderHiddenWhenBlur?: boolean;
   onTextChange?: (rawValue: string, value: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
@@ -23,6 +24,7 @@ const RichTextInput = ({
   className,
   placeholder,
   defaultValue,
+  isPlaceholderHiddenWhenBlur,
   onTextChange,
   onBlur,
   onFocus,
@@ -68,10 +70,15 @@ const RichTextInput = ({
       });
 
       quill.root.addEventListener("blur", () => {
+        if (isPlaceholderHiddenWhenBlur) {
+          quill.root.setAttribute("data-placeholder", "");
+        }
+
         onBlur?.();
       });
 
       quill.root.addEventListener("focus", () => {
+        quill.root.setAttribute("data-placeholder", placeholder || "");
         onFocus?.();
       });
 

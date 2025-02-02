@@ -146,6 +146,7 @@ const HeadingBlock = ({
           )}
           defaultValue={defaultValue}
           placeholder={placeholder}
+          isPlaceholderHiddenWhenBlur={false}
           onFocus={() => setIsFocused(true)}
           onTextChange={(rawValue, value) => {
             const isBlocksWillOpen = value.replace(/\s/g, "") === "/";
