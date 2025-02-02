@@ -17,6 +17,7 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useParams } from "next/navigation";
 import { createId } from "@paralleldrive/cuid2";
+import Quill, { Delta } from "quill";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import TitleBlock from "./TitleBlock";
@@ -75,13 +76,13 @@ const Content = () => {
               ...block,
               type,
               content,
-              ref: createRef<HTMLTextAreaElement>(),
+              ref: createRef<Quill>(),
             };
           }
 
           return {
             ...block,
-            ref: createRef<HTMLTextAreaElement>(),
+            ref: createRef<Quill>(),
           };
         }) || [];
 
@@ -111,7 +112,7 @@ const Content = () => {
         index: addBlockMutation.variables.index,
         type: addBlockMutation.variables.type,
         content: addBlockMutation.variables.content,
-        ref: createRef<HTMLTextAreaElement>(),
+        ref: createRef<Quill>(),
       };
 
       const beforeBlocks = blocks.slice(0, block.index);
@@ -217,6 +218,8 @@ const Content = () => {
           <TitleBlock
             defaultValue={title}
             onPressEnter={(title) => {
+              const delta = new Delta();
+
               updatePageMutation.mutate({
                 id: params.id,
                 title,
@@ -226,7 +229,7 @@ const Content = () => {
                 pageId: params.id,
                 index: 0,
                 type: "TEXT",
-                content: "",
+                content: JSON.stringify(delta),
               });
             }}
             onChange={(title) => {
@@ -450,27 +453,33 @@ const Content = () => {
                           });
                         }}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onBlockSelected={(type) => {
+                          const delta = new Delta();
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {
