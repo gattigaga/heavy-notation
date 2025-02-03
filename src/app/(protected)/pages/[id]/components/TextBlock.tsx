@@ -1,16 +1,16 @@
 "use client";
 
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { BlockType } from "@prisma/client";
-import Quill from "quill";
+import Quill, { Range } from "quill";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
 import RichTextInput from "./RichTextInput";
 import Toolbar from "./Toolbar";
-import { GripAction } from "../types";
+import { GripAction, ToolbarOptions } from "../types";
 import { getCursorPosition } from "@/app/(protected)/helpers/others";
 
 type Position = {
@@ -19,7 +19,6 @@ type Position = {
 };
 
 type Props = {
-  ref: RefObject<Quill | null>;
   id: string;
   defaultValue: string;
   onPressEnter?: (values: [string, string]) => void;
@@ -31,7 +30,6 @@ type Props = {
 };
 
 const TextBlock = ({
-  ref,
   id,
   defaultValue,
   onPressEnter,
@@ -41,10 +39,23 @@ const TextBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
-  const [toolbarPosition, setToolbarPosition] = useState<Position | null>(null);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
+  const refInput = useRef<Quill>(null);
+
+  const [selection, setSelection] = useState<Range | null>(null);
+  const [toolbarPosition, setToolbarPosition] = useState<Position | null>(null);
+
+  const [toolbarOptions, setToolbarOptions] = useState<ToolbarOptions>({
+    type: "TEXT",
+    styles: {
+      bold: false,
+      italic: false,
+      underline: false,
+      strike: false,
+    },
+  });
 
   const style = sortable.transform
     ? {
@@ -57,8 +68,8 @@ const TextBlock = ({
 
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
-    if (!isBlocksOpen && ref.current) {
-      ref.current.focus();
+    if (!isBlocksOpen && refInput.current) {
+      refInput.current.focus();
     }
   }, [isBlocksOpen]);
 
@@ -68,13 +79,15 @@ const TextBlock = ({
   // not run onPressEnter() and onChange() at the same time.
   useEffect(() => {
     const handler = (event: MouseEvent) => {
-      if (ref.current && !ref.current.root.contains(event.target as Node)) {
+      if (
+        refInput.current &&
+        !refInput.current.root.contains(event.target as Node)
+      ) {
         if (isFocused) {
-          const content = JSON.stringify(ref.current?.getContents());
+          const content = JSON.stringify(refInput.current?.getContents());
 
           onChange?.(content);
           setIsFocused(false);
-          setToolbarPosition(null);
         }
       }
     };
@@ -114,7 +127,7 @@ const TextBlock = ({
         onOpenChange={setIsBlocksOpen}
       >
         <RichTextInput
-          ref={ref}
+          ref={refInput}
           className="!h-fit !w-full !text-lg !font-medium !text-zinc-700"
           defaultValue={defaultValue}
           placeholder="Write something, or press '/' for commands..."
@@ -129,14 +142,29 @@ const TextBlock = ({
           }}
           onBlur={() => {
             setIsFocused(false);
-            setToolbarPosition(null);
           }}
           onPressEnter={onPressEnter}
           onSelectionChange={(range) => {
-            if (range?.length > 0) {
+            if (refInput.current && range?.length > 0) {
               const cursorPosition = getCursorPosition();
 
+              const styles = refInput.current.getFormat(
+                range.index,
+                range.length,
+              );
+
+              setToolbarOptions({
+                type: "TEXT",
+                styles: {
+                  bold: styles.bold as boolean,
+                  italic: styles.italic as boolean,
+                  underline: styles.underline as boolean,
+                  strike: styles.strike as boolean,
+                },
+              });
+
               setToolbarPosition(cursorPosition);
+              setSelection(range);
             }
           }}
         />
@@ -144,7 +172,26 @@ const TextBlock = ({
           <Toolbar
             position={{
               x: toolbarPosition.x - 40,
-              y: toolbarPosition.y - 56,
+              y: toolbarPosition.y + 32,
+            }}
+            options={toolbarOptions}
+            onChange={(options) => {
+              if (options.type !== "TEXT") {
+                // TODO: Change block type.
+              }
+
+              if (refInput.current && selection) {
+                refInput.current.formatText(
+                  selection.index,
+                  selection.length,
+                  options.styles,
+                );
+              }
+
+              setToolbarOptions(options);
+            }}
+            onRequestClose={() => {
+              setToolbarPosition(null);
             }}
           />
         )}
