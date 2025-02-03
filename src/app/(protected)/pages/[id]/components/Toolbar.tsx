@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/menubar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
+import { ToolbarOptions, ToolbarStyle } from "../types";
 
 type BlockItem = {
   type: BlockType;
@@ -32,22 +33,13 @@ type BlockItem = {
   icon: React.ElementType;
 };
 
-type Style = "bold" | "italic" | "underline" | "strike";
-
-type Options = {
-  type: BlockType;
-  styles: {
-    [style in Style]: boolean;
-  };
-};
-
 type Props = {
   position: {
     x: number;
     y: number;
   };
-  options: Options;
-  onChange?: (options: Options) => void;
+  options: ToolbarOptions;
+  onChange?: (options: ToolbarOptions) => void;
   onRequestClose?: () => void;
 };
 
@@ -135,9 +127,9 @@ export const Toolbar = ({
                 key={block.type}
                 className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
                 onClick={() => {
-                  const newOptions: Options = {
+                  const newOptions: ToolbarOptions = {
                     type: block.type,
-                    styles: options?.styles || [],
+                    styles: options.styles,
                   };
 
                   onChange?.(newOptions);
@@ -165,8 +157,8 @@ export const Toolbar = ({
       <ToggleGroup
         type="multiple"
         value={activeStyles}
-        onValueChange={(values: Style[]) => {
-          const newOptions: Options = {
+        onValueChange={(values: ToolbarStyle[]) => {
+          const newOptions: ToolbarOptions = {
             type: options.type,
             styles: {
               bold: values.includes("bold"),
