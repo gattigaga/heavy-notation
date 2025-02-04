@@ -81,13 +81,13 @@ const Header = () => {
               onError: () => {
                 toast.error("Failed to remove the page.");
               },
-              onSettled: () => {
-                removePageMutation.reset();
+              onSuccess: () => {
+                toast.success("Page successfully removed.");
               },
             },
           );
 
-          router.push("/home");
+          router.replace("/home");
         },
       },
     ],
