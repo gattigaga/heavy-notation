@@ -66,6 +66,30 @@ const TextBlock = ({
       }
     : undefined;
 
+  const showToolbar = (selection: Range) => {
+    if (refInput.current && selection?.length > 0) {
+      const cursorPosition = getCursorPosition();
+
+      const styles = refInput.current.getFormat(
+        selection.index,
+        selection.length,
+      );
+
+      setToolbarOptions({
+        type: "TEXT",
+        styles: {
+          bold: styles.bold as boolean,
+          italic: styles.italic as boolean,
+          underline: styles.underline as boolean,
+          strike: styles.strike as boolean,
+        },
+      });
+
+      setToolbarPosition(cursorPosition);
+      setSelection(selection);
+    }
+  };
+
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
     if (!isBlocksOpen && refInput.current) {
@@ -133,6 +157,7 @@ const TextBlock = ({
           placeholder="Write something, or press '/' for commands..."
           isPlaceholderHiddenWhenBlur={true}
           onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           onTextChange={(rawValue, value) => {
             const isBlocksWillOpen = value.replace(/\s/g, "") === "/";
 
@@ -140,33 +165,8 @@ const TextBlock = ({
               setIsBlocksOpen(true);
             }
           }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
           onPressEnter={onPressEnter}
-          onSelectionChange={(range) => {
-            if (refInput.current && range?.length > 0) {
-              const cursorPosition = getCursorPosition();
-
-              const styles = refInput.current.getFormat(
-                range.index,
-                range.length,
-              );
-
-              setToolbarOptions({
-                type: "TEXT",
-                styles: {
-                  bold: styles.bold as boolean,
-                  italic: styles.italic as boolean,
-                  underline: styles.underline as boolean,
-                  strike: styles.strike as boolean,
-                },
-              });
-
-              setToolbarPosition(cursorPosition);
-              setSelection(range);
-            }
-          }}
+          onSelectionChange={showToolbar}
         />
         {toolbarPosition && (
           <Toolbar
@@ -177,7 +177,7 @@ const TextBlock = ({
             options={toolbarOptions}
             onChange={(options) => {
               if (options.type !== "TEXT") {
-                // TODO: Change block type.
+                onBlockSelected?.(options.type);
               }
 
               if (refInput.current && selection) {

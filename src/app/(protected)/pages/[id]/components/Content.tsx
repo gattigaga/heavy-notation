@@ -268,13 +268,10 @@ const Content = () => {
                           });
                         }}
                         onBlockSelected={(type) => {
-                          const delta = new Delta();
-
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {
@@ -436,13 +433,10 @@ const Content = () => {
                           });
                         }}
                         onBlockSelected={(type) => {
-                          const delta = new Delta();
-
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {

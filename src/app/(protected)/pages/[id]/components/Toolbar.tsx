@@ -50,6 +50,7 @@ export const Toolbar = ({
   onRequestClose,
 }: Props) => {
   const refContainer = useRef<HTMLDivElement>(null);
+  const refContent = useRef<HTMLDivElement>(null);
 
   const blocks: BlockItem[] = [
     {
@@ -87,9 +88,12 @@ export const Toolbar = ({
   // Close the toolbar when clicking outside of it.
   useEffect(() => {
     const handler = (event: MouseEvent) => {
+      const target = event.target as Node;
+
       if (
         refContainer.current &&
-        !refContainer.current.contains(event.target as Node)
+        !refContainer.current.contains(target) &&
+        !(refContent.current && refContent.current.contains(target))
       ) {
         onRequestClose?.();
       }
@@ -118,7 +122,7 @@ export const Toolbar = ({
           </span>
           <ChevronDown className="text-zinc-700" size={16} />
         </MenubarTrigger>
-        <MenubarContent>
+        <MenubarContent ref={refContent}>
           {blocks.map((block) => {
             const Icon = block.icon;
 
@@ -126,7 +130,7 @@ export const Toolbar = ({
               <MenubarItem
                 key={block.type}
                 className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
-                onClick={() => {
+                onSelect={() => {
                   const newOptions: ToolbarOptions = {
                     type: block.type,
                     styles: options.styles,
