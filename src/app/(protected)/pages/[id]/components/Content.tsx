@@ -1,6 +1,6 @@
 "use client";
 
-import { createRef, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import {
   closestCenter,
   DndContext,
@@ -17,6 +17,7 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useParams } from "next/navigation";
 import { createId } from "@paralleldrive/cuid2";
+import { Delta } from "quill";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import TitleBlock from "./TitleBlock";
@@ -43,7 +44,7 @@ const Content = () => {
   const updateBlockMutation = useUpdateBlockMutation();
   const removeBlockMutation = useRemoveBlockMutation();
 
-  const blockWithRefs = useMemo(() => {
+  const blocks = useMemo(() => {
     let blocks =
       blocksQuery.data
         ?.filter((block) => {
@@ -75,14 +76,10 @@ const Content = () => {
               ...block,
               type,
               content,
-              ref: createRef<HTMLTextAreaElement>(),
             };
           }
 
-          return {
-            ...block,
-            ref: createRef<HTMLTextAreaElement>(),
-          };
+          return block;
         }) || [];
 
     if (
@@ -111,7 +108,6 @@ const Content = () => {
         index: addBlockMutation.variables.index,
         type: addBlockMutation.variables.type,
         content: addBlockMutation.variables.content,
-        ref: createRef<HTMLTextAreaElement>(),
       };
 
       const beforeBlocks = blocks.slice(0, block.index);
@@ -156,11 +152,8 @@ const Content = () => {
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      const block = blockWithRefs.find((block) => block.id === active.id);
-
-      const newIndex = blockWithRefs.findIndex(
-        (block) => block.id === over?.id,
-      );
+      const block = blocks.find((block) => block.id === active.id);
+      const newIndex = blocks.findIndex((block) => block.id === over?.id);
 
       if (block) {
         updateBlockMutation.mutate({
@@ -172,43 +165,6 @@ const Content = () => {
     }
   };
 
-  // Handle keyboard focus navigation for blocks.
-  useEffect(() => {
-    const handleFocus = (event: KeyboardEvent) => {
-      if (
-        document.activeElement &&
-        document.activeElement instanceof HTMLTextAreaElement
-      ) {
-        const index = blockWithRefs.findIndex(
-          (block) => block.ref.current === document.activeElement,
-        );
-
-        switch (event.key) {
-          case "ArrowUp":
-            if (index > 0) {
-              blockWithRefs[index - 1].ref.current?.focus();
-            }
-            break;
-
-          case "ArrowDown":
-            if (index < blockWithRefs.length - 1) {
-              blockWithRefs[index + 1].ref.current?.focus();
-            }
-            break;
-
-          default:
-            break;
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleFocus);
-
-    return () => {
-      document.removeEventListener("keydown", handleFocus);
-    };
-  }, [blockWithRefs]);
-
   return (
     <>
       {pageQuery.isSuccess && (
@@ -217,6 +173,8 @@ const Content = () => {
           <TitleBlock
             defaultValue={title}
             onPressEnter={(title) => {
+              const delta = new Delta();
+
               updatePageMutation.mutate({
                 id: params.id,
                 title,
@@ -226,10 +184,14 @@ const Content = () => {
                 pageId: params.id,
                 index: 0,
                 type: "TEXT",
-                content: "",
+                content: JSON.stringify(delta),
               });
             }}
             onChange={(title) => {
+              if (pageQuery.data?.title === title) {
+                return;
+              }
+
               updatePageMutation.mutate({
                 id: params.id,
                 title,
@@ -245,10 +207,10 @@ const Content = () => {
             onDragEnd={handleDragEnd}
           >
             <SortableContext
-              items={blockWithRefs}
+              items={blocks}
               strategy={verticalListSortingStrategy}
             >
-              {blockWithRefs.map((block, index) => {
+              {blocks.map((block, index) => {
                 switch (block.type) {
                   case "HEADING1":
                   case "HEADING2":
@@ -256,7 +218,6 @@ const Content = () => {
                     return (
                       <HeadingBlock
                         key={block.id}
-                        ref={block.ref}
                         id={block.id}
                         type={block.type}
                         defaultValue={block.content}
@@ -265,24 +226,28 @@ const Content = () => {
                             {
                               pageId: params.id,
                               index: index + 1,
-                              type: block.type,
+                              type: "TEXT",
                               content: values[1],
                             },
                             {
                               onSuccess: () => {
-                                if (block.content !== values[0]) {
-                                  updateBlockMutation.mutate({
-                                    id: block.id,
-                                    pageId: params.id,
-                                    content: values[0],
-                                  });
+                                if (block.content === values[0]) {
+                                  return;
                                 }
+
+                                updateBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
+                                  content: values[0],
+                                });
                               },
                             },
                           );
                         }}
                         onChange={(value) => {
-                          if (block.content === value) return;
+                          if (block.content === value) {
+                            return;
+                          }
 
                           updateBlockMutation.mutate({
                             id: block.id,
@@ -291,27 +256,34 @@ const Content = () => {
                           });
                         }}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onBlockSelected={(type) => {
+                          if (block.type === type) {
+                            return;
+                          }
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: "",
                           });
                         }}
                         onClickGripAction={(action) => {
@@ -338,6 +310,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,
@@ -359,19 +335,23 @@ const Content = () => {
                         key={block.id}
                         id={block.id}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onClickGripAction={(action) => {
@@ -398,6 +378,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,
@@ -416,7 +400,6 @@ const Content = () => {
                     return (
                       <TextBlock
                         key={block.id}
-                        ref={block.ref}
                         id={block.id}
                         defaultValue={block.content}
                         onPressEnter={(values) => {
@@ -429,19 +412,23 @@ const Content = () => {
                             },
                             {
                               onSuccess: () => {
-                                if (block.content !== values[0]) {
-                                  updateBlockMutation.mutate({
-                                    id: block.id,
-                                    pageId: params.id,
-                                    content: values[0],
-                                  });
+                                if (block.content === values[0]) {
+                                  return;
                                 }
+
+                                updateBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
+                                  content: values[0],
+                                });
                               },
                             },
                           );
                         }}
                         onChange={(value) => {
-                          if (block.content === value) return;
+                          if (block.content === value) {
+                            return;
+                          }
 
                           updateBlockMutation.mutate({
                             id: block.id,
@@ -450,27 +437,34 @@ const Content = () => {
                           });
                         }}
                         onClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index + 1,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onAltClickPlus={() => {
+                          const delta = new Delta();
+
                           addBlockMutation.mutate({
                             pageId: params.id,
                             index: index,
                             type: "TEXT",
-                            content: "",
+                            content: JSON.stringify(delta),
                           });
                         }}
                         onBlockSelected={(type) => {
+                          if (block.type === type) {
+                            return;
+                          }
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
                             type: type,
-                            content: "",
                           });
                         }}
                         onClickGripAction={(action) => {
@@ -497,6 +491,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,

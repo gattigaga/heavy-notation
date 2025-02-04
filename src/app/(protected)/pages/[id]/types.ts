@@ -13,3 +13,12 @@ export type GripAction = {
   type: ActionType;
   data: { type: BlockType } | null;
 };
+
+export type ToolbarStyle = "bold" | "italic" | "underline" | "strike";
+
+export type ToolbarOptions = {
+  type: BlockType;
+  styles: {
+    [style in ToolbarStyle]: boolean;
+  };
+};

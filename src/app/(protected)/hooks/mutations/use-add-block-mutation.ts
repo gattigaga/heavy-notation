@@ -51,9 +51,14 @@ const useAddBlockMutation = () => {
   return useMutation({
     mutationFn: action,
     onSettled: async (data, error, variables) => {
-      return await queryClient.invalidateQueries({
-        queryKey: ["blocks", { pageId: variables.pageId }],
-      });
+      return await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ["pages", { id: variables.pageId }],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ["blocks", { pageId: variables.pageId }],
+        }),
+      ]);
     },
   });
 };

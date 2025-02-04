@@ -1,18 +1,25 @@
 "use client";
 
-import { RefObject, useEffect, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
+import { useEffect, useRef, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { BlockType } from "@prisma/client";
+import Quill, { Range } from "quill";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
-import { GripAction } from "../types";
+import RichTextInput from "./RichTextInput";
+import Toolbar from "./Toolbar";
+import { GripAction, ToolbarOptions } from "../types";
 import { cn } from "@/lib/utils";
+import { getCursorPosition } from "@/app/(protected)/helpers/others";
+
+type Position = {
+  x: number;
+  y: number;
+};
 
 type Props = {
-  ref: RefObject<HTMLTextAreaElement | null>;
   id: string;
   type: BlockType;
   defaultValue: string;
@@ -25,7 +32,6 @@ type Props = {
 };
 
 const HeadingBlock = ({
-  ref,
   id,
   type,
   defaultValue,
@@ -36,10 +42,23 @@ const HeadingBlock = ({
   onClickGripAction,
   onBlockSelected,
 }: Props) => {
-  const [value, setValue] = useState(defaultValue);
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const sortable = useSortable({ id });
+  const refInput = useRef<Quill>(null);
+
+  const [selection, setSelection] = useState<Range | null>(null);
+  const [toolbarPosition, setToolbarPosition] = useState<Position | null>(null);
+
+  const [toolbarOptions, setToolbarOptions] = useState<ToolbarOptions>({
+    type: type,
+    styles: {
+      bold: false,
+      italic: false,
+      underline: false,
+      strike: false,
+    },
+  });
 
   const placeholder = (() => {
     switch (type) {
@@ -66,10 +85,34 @@ const HeadingBlock = ({
       }
     : undefined;
 
+  const showToolbar = (selection: Range) => {
+    if (refInput.current && selection?.length > 0) {
+      const cursorPosition = getCursorPosition();
+
+      const styles = refInput.current.getFormat(
+        selection.index,
+        selection.length,
+      );
+
+      setToolbarOptions({
+        type: type,
+        styles: {
+          bold: styles.bold as boolean,
+          italic: styles.italic as boolean,
+          underline: styles.underline as boolean,
+          strike: styles.strike as boolean,
+        },
+      });
+
+      setToolbarPosition(cursorPosition);
+      setSelection(selection);
+    }
+  };
+
   // Refocus to the textarea when the dropdown is closed.
   useEffect(() => {
-    if (!isBlocksOpen && ref.current) {
-      ref.current.focus();
+    if (!isBlocksOpen && refInput.current) {
+      refInput.current.focus();
     }
   }, [isBlocksOpen]);
 
@@ -79,9 +122,14 @@ const HeadingBlock = ({
   // not run onPressEnter() and onChange() at the same time.
   useEffect(() => {
     const handler = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (
+        refInput.current &&
+        !refInput.current.root.contains(event.target as Node)
+      ) {
         if (isFocused) {
-          onChange?.(value);
+          const content = JSON.stringify(refInput.current?.getContents());
+
+          onChange?.(content);
           setIsFocused(false);
         }
       }
@@ -92,10 +140,14 @@ const HeadingBlock = ({
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, [isFocused, value]);
+  }, [isFocused]);
 
   return (
-    <div ref={sortable.setNodeRef} className="group relative" style={style}>
+    <div
+      ref={sortable.setNodeRef}
+      className="group relative py-1"
+      style={style}
+    >
       {!isBlocksOpen && (
         <div
           className={cn("absolute flex -translate-x-full items-center pr-1", {
@@ -123,42 +175,58 @@ const HeadingBlock = ({
         }}
         onOpenChange={setIsBlocksOpen}
       >
-        <TextareaAutosize
-          ref={ref}
+        <RichTextInput
+          ref={refInput}
           className={cn(
-            "w-full resize-none bg-transparent font-bold text-zinc-700 outline-none placeholder:text-zinc-400",
+            "!placeholder:text-zinc-400 !w-full !font-bold !text-zinc-700",
             {
-              "text-4xl leading-normal": type === "HEADING1",
-              "text-3xl leading-normal": type === "HEADING2",
-              "text-2xl leading-normal": type === "HEADING3",
+              "!text-4xl !leading-normal": type === "HEADING1",
+              "!text-3xl !leading-normal": type === "HEADING2",
+              "!text-2xl !leading-normal": type === "HEADING3",
             },
           )}
-          value={value}
+          defaultValue={defaultValue}
           placeholder={placeholder}
+          isPlaceholderHiddenWhenBlur={false}
           onFocus={() => setIsFocused(true)}
-          onChange={(event) => {
-            const newValue = event.target.value;
+          onBlur={() => setIsFocused(false)}
+          onTextChange={(rawValue, value) => {
+            const isBlocksWillOpen = value.replace(/\s/g, "") === "/";
 
-            setValue(newValue);
-
-            if (!value && newValue.startsWith("/")) {
+            if (isBlocksWillOpen) {
               setIsBlocksOpen(true);
             }
           }}
-          onBlur={() => setIsFocused(false)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-
-              const cursorPosition = ref.current?.selectionStart;
-              const a = value.slice(0, cursorPosition);
-              const b = value.slice(cursorPosition);
-
-              setValue(a);
-              onPressEnter?.([a, b]);
-            }
-          }}
+          onPressEnter={onPressEnter}
+          onSelectionChange={showToolbar}
         />
+        {toolbarPosition && (
+          <Toolbar
+            position={{
+              x: toolbarPosition.x - 40,
+              y: toolbarPosition.y + 32,
+            }}
+            options={toolbarOptions}
+            onChange={(options) => {
+              if (options.type !== type) {
+                onBlockSelected?.(options.type);
+              }
+
+              if (refInput.current && selection) {
+                refInput.current.formatText(
+                  selection.index,
+                  selection.length,
+                  options.styles,
+                );
+              }
+
+              setToolbarOptions(options);
+            }}
+            onRequestClose={() => {
+              setToolbarPosition(null);
+            }}
+          />
+        )}
       </BlocksDropdown>
     </div>
   );

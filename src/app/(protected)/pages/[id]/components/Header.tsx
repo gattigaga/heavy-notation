@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { MoreHorizontal, Trash2 } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Helmet } from "react-helmet-async";
 import { useMutationState } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 import {
   Breadcrumb,
@@ -31,6 +32,7 @@ import {
 import { formatToClientTimeAndAgo } from "../../../helpers/datetime";
 import usePageQuery from "@/app/(protected)/hooks/queries/use-page-query";
 import { ActionPayload as UpdatePageActionPayload } from "@/app/(protected)/hooks/mutations/use-update-page-mutation";
+import useRemovePageMutation from "@/app/(protected)/hooks/mutations/use-remove-page-mutation";
 
 type Params = {
   id: string;
@@ -39,7 +41,9 @@ type Params = {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams<Params>();
+  const router = useRouter();
   const pageQuery = usePageQuery({ id: params.id });
+  const removePageMutation = useRemovePageMutation();
 
   const updatePageMutationVariables = useMutationState({
     filters: {
@@ -68,6 +72,23 @@ const Header = () => {
       {
         label: "Delete",
         icon: Trash2,
+        onClick: () => {
+          removePageMutation.mutate(
+            {
+              id: params.id,
+            },
+            {
+              onError: () => {
+                toast.error("Failed to remove the page.");
+              },
+              onSuccess: () => {
+                toast.success("Page successfully removed.");
+              },
+            },
+          );
+
+          router.replace("/home");
+        },
       },
     ],
   ];
@@ -122,7 +143,7 @@ const Header = () => {
 
                           return (
                             <SidebarMenuItem key={index}>
-                              <SidebarMenuButton>
+                              <SidebarMenuButton onClick={item.onClick}>
                                 <Icon /> <span>{item.label}</span>
                               </SidebarMenuButton>
                             </SidebarMenuItem>

@@ -74,6 +74,9 @@ const PageList = () => {
         onError: () => {
           toast.error("Failed to remove the page.");
         },
+        onSuccess: () => {
+          toast.success("Page successfully removed.");
+        },
         onSettled: () => {
           removePageMutation.reset();
         },
@@ -83,7 +86,7 @@ const PageList = () => {
     const isCurrentPage = pathname === `/pages/${id}`;
 
     if (isCurrentPage) {
-      router.push("/home");
+      router.replace("/home");
     }
   };
 

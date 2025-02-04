@@ -94,5 +94,14 @@ export const POST = async (request: Request) => {
     });
   }
 
+  await prisma.page.update({
+    where: {
+      id: page.id,
+    },
+    data: {
+      updatedAt: new Date(),
+    },
+  });
+
   return Response.json({ data: block });
 };

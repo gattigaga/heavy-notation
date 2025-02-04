@@ -80,6 +80,15 @@ export const PUT = async (
     }
   }
 
+  await prisma.page.update({
+    where: {
+      id: page.id,
+    },
+    data: {
+      updatedAt: new Date(),
+    },
+  });
+
   return Response.json({ data: newBlock });
 };
 
@@ -142,6 +151,15 @@ export const DELETE = async (
       },
     });
   }
+
+  await prisma.page.update({
+    where: {
+      id: page.id,
+    },
+    data: {
+      updatedAt: new Date(),
+    },
+  });
 
   return Response.json({ data: block });
 };

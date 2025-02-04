@@ -86,3 +86,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.ql-editor {
+  @apply !p-0;
+}
+
+.ql-editor.ql-blank::before {
+  @apply !left-0 !not-italic !text-zinc-400;
+}
