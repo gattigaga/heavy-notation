@@ -188,6 +188,10 @@ const Content = () => {
               });
             }}
             onChange={(title) => {
+              if (pageQuery.data?.title === title) {
+                return;
+              }
+
               updatePageMutation.mutate({
                 id: params.id,
                 title,
@@ -227,19 +231,23 @@ const Content = () => {
                             },
                             {
                               onSuccess: () => {
-                                if (block.content !== values[0]) {
-                                  updateBlockMutation.mutate({
-                                    id: block.id,
-                                    pageId: params.id,
-                                    content: values[0],
-                                  });
+                                if (block.content === values[0]) {
+                                  return;
                                 }
+
+                                updateBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
+                                  content: values[0],
+                                });
                               },
                             },
                           );
                         }}
                         onChange={(value) => {
-                          if (block.content === value) return;
+                          if (block.content === value) {
+                            return;
+                          }
 
                           updateBlockMutation.mutate({
                             id: block.id,
@@ -268,6 +276,10 @@ const Content = () => {
                           });
                         }}
                         onBlockSelected={(type) => {
+                          if (block.type === type) {
+                            return;
+                          }
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
@@ -298,6 +310,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,
@@ -362,6 +378,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,
@@ -392,19 +412,23 @@ const Content = () => {
                             },
                             {
                               onSuccess: () => {
-                                if (block.content !== values[0]) {
-                                  updateBlockMutation.mutate({
-                                    id: block.id,
-                                    pageId: params.id,
-                                    content: values[0],
-                                  });
+                                if (block.content === values[0]) {
+                                  return;
                                 }
+
+                                updateBlockMutation.mutate({
+                                  id: block.id,
+                                  pageId: params.id,
+                                  content: values[0],
+                                });
                               },
                             },
                           );
                         }}
                         onChange={(value) => {
-                          if (block.content === value) return;
+                          if (block.content === value) {
+                            return;
+                          }
 
                           updateBlockMutation.mutate({
                             id: block.id,
@@ -433,6 +457,10 @@ const Content = () => {
                           });
                         }}
                         onBlockSelected={(type) => {
+                          if (block.type === type) {
+                            return;
+                          }
+
                           updateBlockMutation.mutate({
                             id: block.id,
                             pageId: params.id,
@@ -463,6 +491,10 @@ const Content = () => {
 
                             case "turn_into":
                               (() => {
+                                if (block.type === action.data?.type) {
+                                  return;
+                                }
+
                                 updateBlockMutation.mutate({
                                   id: block.id,
                                   pageId: params.id,
