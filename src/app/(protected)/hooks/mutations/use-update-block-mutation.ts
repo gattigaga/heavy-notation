@@ -1,7 +1,7 @@
 import { BlockType } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export type ActionPayload = {
+type ActionPayload = {
   id: string;
   pageId: string;
   index?: number;
@@ -45,12 +45,16 @@ const useUpdateBlockMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["updateBlock"],
     mutationFn: action,
     onSettled: async (data, error, variables) => {
-      return await queryClient.invalidateQueries({
-        queryKey: ["blocks", { pageId: variables.pageId }],
-      });
+      return await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ["pages", { id: variables.pageId }],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ["blocks", { pageId: variables.pageId }],
+        }),
+      ]);
     },
   });
 };
