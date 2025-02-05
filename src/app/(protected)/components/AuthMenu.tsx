@@ -1,13 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
@@ -71,13 +70,6 @@ const AuthMenu = () => {
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={signOut}>
               <LogOut />
