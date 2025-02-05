@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { Helmet } from "react-helmet-async";
 import { useMutationState } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -93,12 +92,12 @@ const Header = () => {
     ],
   ];
 
+  useEffect(() => {
+    document.title = `${title} | Heavy Notation`;
+  }, [title]);
+
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 px-4">
-      <Helmet>
-        <title>{`${title} | Heavy Notation`}</title>
-      </Helmet>
-
       {/* Left navigation bar */}
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="mr-2 h-4" />

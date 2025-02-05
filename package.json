@@ -47,7 +47,6 @@
     "quill": "2.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.54.2",
     "react-textarea-autosize": "^8.5.6",
     "sonner": "^1.7.2",
