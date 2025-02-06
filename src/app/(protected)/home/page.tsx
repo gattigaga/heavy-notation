@@ -17,7 +17,7 @@ const HomePage = async () => {
         <Separator orientation="vertical" className="mr-2 h-4" />
       </header>
       <div className="flex-1 overflow-y-scroll">
-        <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col gap-y-4 py-20">
+        <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col gap-y-4 px-4 py-20 md:px-16">
           <Greeting />
           <PageList />
         </div>
