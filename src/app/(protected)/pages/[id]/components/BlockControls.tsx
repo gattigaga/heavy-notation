@@ -154,10 +154,10 @@ const BlockControls = ({
             <Plus className="text-zinc-400" />
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            <p className="text-center text-sm font-medium">
+            <p className="text-center text-sm">
               <strong>Click</strong> to add below
             </p>
-            <p className="text-center text-sm font-medium">
+            <p className="text-center text-sm">
               <strong>Alt-click</strong> to add above
             </p>
           </TooltipContent>
@@ -240,7 +240,7 @@ const BlockControls = ({
                               <Icon className="text-zinc-700" size={24} />
                             </div>
                             <div className="flex-1">
-                              <p className="text-left text-base font-medium">
+                              <p className="text-left text-base">
                                 {block.title}
                               </p>
                               <p className="text-left text-sm text-zinc-400">
@@ -264,10 +264,10 @@ const BlockControls = ({
           </DropdownMenu>
         </TooltipTrigger>
         <TooltipContent side="bottom">
-          <p className="text-center text-sm font-medium">
+          <p className="text-center text-sm">
             <strong>Drag</strong> to move
           </p>
-          <p className="text-center text-sm font-medium">
+          <p className="text-center text-sm">
             <strong>Click</strong> to open menu
           </p>
         </TooltipContent>

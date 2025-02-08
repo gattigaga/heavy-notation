@@ -143,9 +143,7 @@ export const Toolbar = ({
                   <Icon className="text-zinc-700" size={24} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-left text-base font-medium">
-                    {block.title}
-                  </p>
+                  <p className="text-left text-base">{block.title}</p>
                   <p className="text-left text-sm text-zinc-400">
                     {block.description}
                   </p>

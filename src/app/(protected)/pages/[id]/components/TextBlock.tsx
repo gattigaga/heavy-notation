@@ -152,9 +152,9 @@ const TextBlock = ({
       >
         <RichTextInput
           ref={refInput}
-          className="!h-fit !w-full !text-lg !font-medium !text-zinc-700"
+          className="!h-fit !w-full !text-lg !text-zinc-700"
           defaultValue={defaultValue}
-          placeholder="Write something, or press '/' for commands..."
+          placeholder="Write something, or type /"
           isPlaceholderHiddenWhenBlur={true}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

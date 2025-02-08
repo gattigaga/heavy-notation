@@ -130,7 +130,7 @@ const BlocksDropdown = ({
                             <Icon className="h-6 w-6 text-zinc-700 md:h-8 md:w-8" />
                           </div>
                           <div>
-                            <p className="text-left text-base font-medium text-zinc-700 md:text-lg">
+                            <p className="text-left text-base text-zinc-700 md:text-lg">
                               {item.title}
                             </p>
                             <p className="text-left text-sm text-zinc-400">

@@ -168,7 +168,7 @@ const Content = () => {
   return (
     <>
       {pageQuery.isSuccess && (
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-xl px-20 md:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
           {/* Title */}
           <TitleBlock
             defaultValue={title}
@@ -523,7 +523,7 @@ const Content = () => {
         </div>
       )}
       {pageQuery.isLoading && (
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-xl px-20 md:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
           <Skeleton className="h-12 w-full rounded-lg" />
         </div>
       )}

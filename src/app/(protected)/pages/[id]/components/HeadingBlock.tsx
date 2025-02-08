@@ -180,9 +180,12 @@ const HeadingBlock = ({
           className={cn(
             "!placeholder:text-zinc-400 !w-full !font-bold !text-zinc-700",
             {
-              "!text-4xl !leading-normal": type === "HEADING1",
-              "!text-3xl !leading-normal": type === "HEADING2",
-              "!text-2xl !leading-normal": type === "HEADING3",
+              "!text-3xl !leading-tight md:!text-4xl md:!leading-tight":
+                type === "HEADING1",
+              "!text-2xl !leading-tight md:!text-3xl md:!leading-tight":
+                type === "HEADING2",
+              "!text-xl !leading-tight md:!text-2xl md:!leading-tight":
+                type === "HEADING3",
             },
           )}
           defaultValue={defaultValue}

@@ -63,7 +63,9 @@ const Header = () => {
       return variable.id === params.id;
     });
 
-    return variable?.title || pageQuery.data?.title || "New Page";
+    const result = variable?.title || pageQuery.data?.title || "New Page";
+
+    return result.length > 26 ? `${result.slice(0, 26)}...` : result;
   })();
 
   const menuItems = [
@@ -103,15 +105,13 @@ const Header = () => {
       <Separator orientation="vertical" className="mr-2 h-4" />
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem className="hidden text-zinc-700 md:block">
-            {title}
-          </BreadcrumbItem>
+          <BreadcrumbItem className="text-zinc-700">{title}</BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
       {/* Right navigation bar */}
       <div className="ml-auto flex items-center gap-2 text-sm">
-        <div className="hidden font-medium text-muted-foreground md:inline-block">
+        <div className="hidden text-muted-foreground md:inline-block">
           {formattedDate ? `Edited ${formattedDate}` : ""}
         </div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
