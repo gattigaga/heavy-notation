@@ -172,19 +172,19 @@ const Content = () => {
           {/* Title */}
           <TitleBlock
             defaultValue={title}
-            onPressEnter={(title) => {
-              const delta = new Delta();
-
-              updatePageMutation.mutate({
-                id: params.id,
-                title,
-              });
+            onPressEnter={(values) => {
+              if (pageQuery.data?.title !== values[0]) {
+                updatePageMutation.mutate({
+                  id: params.id,
+                  title: values[0],
+                });
+              }
 
               addBlockMutation.mutate({
                 pageId: params.id,
                 index: 0,
                 type: "TEXT",
-                content: JSON.stringify(delta),
+                content: values[1],
               });
             }}
             onChange={(title) => {

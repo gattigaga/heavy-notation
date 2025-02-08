@@ -1,37 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
+import Quill, { Delta } from "quill";
+import { useRef } from "react";
+
+import RichTextInput from "./RichTextInput";
 
 type Props = {
   defaultValue: string;
-  onPressEnter?: (value: string) => void;
+  onPressEnter?: (values: [string, string]) => void;
   onChange?: (value: string) => void;
 };
 
 const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
-  const [value, setValue] = useState(defaultValue);
-
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
+  const refInput = useRef<Quill>(null);
 
   return (
-    <TextareaAutosize
-      className="w-full resize-none bg-transparent text-5xl font-bold leading-normal text-zinc-700 outline-none placeholder:text-zinc-400"
-      value={value}
+    <RichTextInput
+      ref={refInput}
+      className="!placeholder:text-zinc-400 !mb-4 !h-fit !w-full !text-4xl !font-bold !leading-tight !text-zinc-700 md:!text-5xl md:!leading-tight"
+      defaultValue={JSON.stringify(new Delta().insert(defaultValue))}
       placeholder="New Page"
-      onChange={(event) => {
-        const newValue = event.target.value;
+      onBlur={() => {
+        const content = refInput.current?.getContents().ops[0]?.insert;
 
-        setValue(newValue);
-      }}
-      onBlur={() => onChange?.(value)}
-      onKeyDown={(event) => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          onPressEnter?.(value);
+        if (typeof content === "string") {
+          onChange?.(content);
         }
+      }}
+      onPressEnter={(values) => {
+        const title = JSON.parse(values[0]).ops[0].insert;
+
+        onPressEnter?.([title, values[1]]);
       }}
     />
   );
