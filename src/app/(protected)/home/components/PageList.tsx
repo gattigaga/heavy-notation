@@ -12,8 +12,11 @@ import usePagesQuery from "../../hooks/queries/use-pages-query";
 import { ActionPayload as RemovePageActionPayload } from "../../hooks/mutations/use-remove-page-mutation";
 import useAddPageMutation from "../../hooks/mutations/use-add-page-mutation";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSidebar } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 const PageList = () => {
+  const sidebar = useSidebar();
   const router = useRouter();
   const { data: session } = useSession();
   const pagesQuery = usePagesQuery();
@@ -70,7 +73,14 @@ const PageList = () => {
   return (
     <>
       {pagesQuery.isSuccess && (
-        <div className="grid grid-cols-5 gap-4">
+        <div
+          className={cn("grid grid-cols-2 gap-4 xl:grid-cols-4", {
+            "md:grid-cols-2": sidebar.state === "expanded",
+            "md:grid-cols-3": sidebar.state === "collapsed",
+            "lg:grid-cols-3": sidebar.state === "expanded",
+            "lg:grid-cols-4": sidebar.state === "collapsed",
+          })}
+        >
           {pages.map((page) => (
             <div key={page.id} className="col-span-1">
               <PageCard
@@ -97,7 +107,14 @@ const PageList = () => {
         </div>
       )}
       {pagesQuery.isLoading && (
-        <div className="grid grid-cols-5 gap-4">
+        <div
+          className={cn("grid grid-cols-2 gap-4 xl:grid-cols-4", {
+            "md:grid-cols-2": sidebar.state === "expanded",
+            "md:grid-cols-3": sidebar.state === "collapsed",
+            "lg:grid-cols-3": sidebar.state === "expanded",
+            "lg:grid-cols-4": sidebar.state === "collapsed",
+          })}
+        >
           {[...Array(10)].map((_, index) => (
             <Skeleton key={index} className="col-span-1 h-52 rounded-lg" />
           ))}

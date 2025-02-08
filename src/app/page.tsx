@@ -52,7 +52,7 @@ const Home = async () => {
           <h1 className="mb-4 whitespace-pre text-5xl font-bold tracking-tighter text-zinc-700 md:text-center md:text-7xl lg:text-left">
             The happier{"\n"}workspace
           </h1>
-          <p className="mb-4 whitespace-pre text-2xl font-medium text-zinc-700 md:text-center lg:text-left">
+          <p className="mb-4 whitespace-pre text-2xl text-zinc-700 md:text-center lg:text-left">
             Think. Write. Plan your ideas{"\n"}in a better way.
           </p>
           <Button
@@ -113,7 +113,7 @@ const Home = async () => {
           <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
             Build perfect{"\n"}docs.
           </h2>
-          <p className="mb-8 text-xl font-medium text-zinc-400">
+          <p className="mb-8 text-xl text-zinc-400">
             Capture your ideas and create perfect documentation with our simple
             and intuitive interface.
           </p>
@@ -137,7 +137,7 @@ const Home = async () => {
           <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
             Your workflow.{"\n"}Your way.
           </h2>
-          <p className="mb-8 text-xl font-medium text-zinc-400">
+          <p className="mb-8 text-xl text-zinc-400">
             All your projects, goals, calendars, roadmaps, and more—in one
             tool—personalized to how you work.
           </p>
@@ -161,7 +161,7 @@ const Home = async () => {
           <h2 className="mb-4 whitespace-pre text-4xl font-bold text-zinc-700 md:text-6xl">
             Find everything.{"\n"}Instantly.
           </h2>
-          <p className="mb-8 text-xl font-medium text-zinc-400">
+          <p className="mb-8 text-xl text-zinc-400">
             Find what you need quickly with our powerful search. Access your
             content stored in Heavy Notation.
           </p>
@@ -185,7 +185,7 @@ const Home = async () => {
         <h2 className="mb-4 whitespace-pre text-center text-4xl font-bold text-zinc-700 md:text-6xl">
           Get Started.
         </h2>
-        <p className="mb-8 text-center text-xl font-medium text-zinc-400">
+        <p className="mb-8 text-center text-xl text-zinc-400">
           Start organizing your work better. Access your content easily with our
           powerful search features.
         </p>

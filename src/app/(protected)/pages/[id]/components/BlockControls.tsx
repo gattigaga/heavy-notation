@@ -38,6 +38,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
+import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { GripAction } from "../types";
 
@@ -72,6 +73,7 @@ const BlockControls = ({
   const [draggedId, setDraggedId] = useState<UniqueIdentifier | null>(null);
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { isMobile } = useSidebar();
 
   const blocks: BlockItem[] = [
     {
@@ -99,6 +101,16 @@ const BlockControls = ({
       icon: Heading3,
     },
   ];
+
+  const alignOffset = isMobile ? -(blocks.length * 32) : 0;
+
+  const sideOffset = (() => {
+    if (typeof window == "undefined") {
+      return 0;
+    }
+
+    return isMobile ? -(window.innerWidth * 0.62) : 0;
+  })();
 
   // Prevent tooltip and dropdown to open when dragging.
   useDndMonitor({
@@ -154,10 +166,10 @@ const BlockControls = ({
             <Plus className="text-zinc-400" />
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            <p className="text-center text-sm font-medium">
+            <p className="text-center text-sm">
               <strong>Click</strong> to add below
             </p>
-            <p className="text-center text-sm font-medium">
+            <p className="text-center text-sm">
               <strong>Alt-click</strong> to add above
             </p>
           </TooltipContent>
@@ -219,7 +231,10 @@ const BlockControls = ({
                     <span>Turn into</span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
+                    <DropdownMenuSubContent
+                      alignOffset={alignOffset}
+                      sideOffset={sideOffset}
+                    >
                       {blocks.map((block) => {
                         const Icon = block.icon;
 
@@ -240,7 +255,7 @@ const BlockControls = ({
                               <Icon className="text-zinc-700" size={24} />
                             </div>
                             <div className="flex-1">
-                              <p className="text-left text-base font-medium">
+                              <p className="text-left text-base">
                                 {block.title}
                               </p>
                               <p className="text-left text-sm text-zinc-400">
@@ -264,10 +279,10 @@ const BlockControls = ({
           </DropdownMenu>
         </TooltipTrigger>
         <TooltipContent side="bottom">
-          <p className="text-center text-sm font-medium">
+          <p className="text-center text-sm">
             <strong>Drag</strong> to move
           </p>
-          <p className="text-center text-sm font-medium">
+          <p className="text-center text-sm">
             <strong>Click</strong> to open menu
           </p>
         </TooltipContent>

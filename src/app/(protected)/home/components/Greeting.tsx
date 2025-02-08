@@ -16,8 +16,9 @@ const Greeting = () => {
   })();
 
   return (
-    <h1 className="mb-8 text-center text-4xl font-semibold text-zinc-700">
-      {greeting}, {session?.user?.name}
+    <h1 className="mb-8 whitespace-pre text-center text-2xl font-semibold text-zinc-700 md:text-4xl">
+      {greeting},{"\n"}
+      {session?.user?.name}
     </h1>
   );
 };

@@ -14,7 +14,6 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import BlocksDropdownItem from "./BlocksDropdownItem";
 
 type BlockItem = {
   type: BlockType;
@@ -103,7 +102,11 @@ const BlocksDropdown = ({
   return (
     <Popover open={isOpen} onOpenChange={onOpenChange}>
       <PopoverAnchor>{children}</PopoverAnchor>
-      <PopoverContent className="max-h-72 w-96 p-0" side="bottom" align="start">
+      <PopoverContent
+        className="max-h-72 w-72 p-0 md:w-96"
+        side="bottom"
+        align="start"
+      >
         {filteredBlockSections.length > 0 && (
           <ScrollArea className="h-72 pr-2">
             {filteredBlockSections.map((block) => (
@@ -113,14 +116,29 @@ const BlocksDropdown = ({
                 </p>
                 <div className="flex flex-col p-2">
                   {block.items.map((item) => {
+                    const Icon = item.icon;
+
                     return (
-                      <BlocksDropdownItem
+                      <button
                         key={item.type}
-                        title={item.title}
-                        description={item.description}
-                        icon={item.icon}
+                        className="flex items-center gap-x-4 rounded p-2 hover:bg-zinc-100"
+                        type="button"
                         onClick={() => onChange?.(item.type)}
-                      />
+                      >
+                        <div className="flex items-center gap-x-4">
+                          <div className="flex h-12 w-12 items-center justify-center rounded border bg-white md:h-16 md:w-16">
+                            <Icon className="h-6 w-6 text-zinc-700 md:h-8 md:w-8" />
+                          </div>
+                          <div>
+                            <p className="text-left text-base text-zinc-700 md:text-lg">
+                              {item.title}
+                            </p>
+                            <p className="text-left text-sm text-zinc-400">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
                     );
                   })}
                 </div>
