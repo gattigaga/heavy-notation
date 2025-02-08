@@ -38,6 +38,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
+import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { GripAction } from "../types";
 
@@ -72,6 +73,7 @@ const BlockControls = ({
   const [draggedId, setDraggedId] = useState<UniqueIdentifier | null>(null);
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { isMobile } = useSidebar();
 
   const blocks: BlockItem[] = [
     {
@@ -99,6 +101,16 @@ const BlockControls = ({
       icon: Heading3,
     },
   ];
+
+  const alignOffset = isMobile ? -(blocks.length * 32) : 0;
+
+  const sideOffset = (() => {
+    if (typeof window == "undefined") {
+      return 0;
+    }
+
+    return isMobile ? -(window.innerWidth * 0.62) : 0;
+  })();
 
   // Prevent tooltip and dropdown to open when dragging.
   useDndMonitor({
@@ -219,7 +231,10 @@ const BlockControls = ({
                     <span>Turn into</span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
+                    <DropdownMenuSubContent
+                      alignOffset={alignOffset}
+                      sideOffset={sideOffset}
+                    >
                       {blocks.map((block) => {
                         const Icon = block.icon;
 
