@@ -6,21 +6,18 @@
 - [Techstacks](#techstacks)
 - [Other Resources](#other-resources)
 
-## About
+## 🚀 About
 
-Heavy Notation is a simplified web-based note-taking application inspired by Notion.
+Heavy Notation is a minimal note-taking web application inspired by Notion, designed as a learning project to explore modern frontend web development technologies. While not a full-featured clone, it demonstrates core note-taking functionality with a simple, clean approach.
 
-The application provides users with the following features:
+Key features include:
+- 📝 Basic page creation and management
+- 🧩 Simple block-based content editing
+- 🔍 Basic search functionality
+- 🔐 User authentication
+- 📱 Responsive design
 
-- User authentication
-- Page creation and deletion
-- Page title editing
-- Page search
-- Block creation and deletion
-- Block content editing
-- Block reordering within a page
-
-The project is deployed on Vercel.
+The project serves as a practical exploration of frontend development concepts, showcasing fundamental note-taking application capabilities.
 
 ## 💡 Motivation
 
