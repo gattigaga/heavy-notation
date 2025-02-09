@@ -22,15 +22,15 @@ The application provides users with the following features:
 
 The project is deployed on Vercel.
 
-## Motivation
+## 💡 Motivation
 
 Heavy Notation is more than just a note-taking app—it's my playground for exploring modern web technologies and pushing my frontend development skills.
 
 Inspired by tools like Notion, I wanted to create an application that demonstrates:
-- Complex state management
-- Seamless user interactions
-- Modern React ecosystem best practices
-- Responsive web design
+- 🧩 Complex state management
+- ✨ Seamless user interactions
+- 🚀 Modern React ecosystem best practices
+- 📱 Responsive web design
 
 This project represents my commitment to building intuitive, performant web applications.
 
