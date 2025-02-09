@@ -111,7 +111,7 @@ const Home = async () => {
           </div>
 
           <Image
-            className="aspect-video w-full rounded-lg bg-zinc-200"
+            className="aspect-video w-full rounded-lg"
             src={img1}
             alt="Vintage page sheet background by Annie Spratt"
           />
@@ -126,7 +126,7 @@ const Home = async () => {
             and intuitive interface.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            className="mb-8 aspect-video w-full rounded-lg"
             src={img2}
             alt="Folder stack by Beatriz Perez Moya"
           />
@@ -154,7 +154,7 @@ const Home = async () => {
             tool—personalized to how you work.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            className="mb-8 aspect-video w-full rounded-lg"
             src={img3}
             alt="Document stack by Arisa Chattasa"
           />
@@ -182,7 +182,7 @@ const Home = async () => {
             content stored in Heavy Notation.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            className="mb-8 aspect-video w-full rounded-lg"
             src={img4}
             alt="Bunch of documents by Wesley Tingey"
           />
@@ -200,23 +200,25 @@ const Home = async () => {
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col items-center rounded-lg bg-zinc-100 p-8 md:p-16 lg:p-24">
+          <h2 className="mb-4 whitespace-pre text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+            Get Started.
+          </h2>
+          <p className="mb-8 text-center text-base text-zinc-400">
+            Start organizing your work better. Access your content easily with
+            our powerful search features.
+          </p>
+          <Button
+            className="h-12 w-full bg-blue-500 text-base font-semibold md:w-fit md:self-center lg:w-auto"
+            type="button"
+          >
+            <Link href="/auth/signup">Start Writing Now</Link>
+          </Button>
+        </div>
       </div>
-      <div className="mt-24 flex flex-col items-center bg-zinc-200 p-8 md:p-16 lg:p-24">
-        <h2 className="mb-4 whitespace-pre text-center text-4xl font-bold text-zinc-700 md:text-6xl">
-          Get Started.
-        </h2>
-        <p className="mb-8 text-center text-xl text-zinc-400">
-          Start organizing your work better. Access your content easily with our
-          powerful search features.
-        </p>
-        <Button
-          className="h-12 w-full bg-blue-500 text-base font-semibold md:w-fit md:self-center lg:w-auto"
-          type="button"
-        >
-          <Link href="/auth/signup">Start Writing Now</Link>
-        </Button>
-      </div>
-      <footer className="flex h-16 items-center justify-center border-t">
+
+      <footer className="flex h-16 items-center justify-center">
         <p className="text-center text-sm text-zinc-700 md:text-base">
           © {new Date().getFullYear()} Gattigaga Hayyuta Dewa
         </p>
