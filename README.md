@@ -1,6 +1,6 @@
 ![Heavy Notation Logo](./docs/images/logo-text-heavy-notation.png)
 
-## Table of Contents
+## 📚 Table of Contents
 
 - [About](#about)
 - [Techstacks](#techstacks)
@@ -31,9 +31,9 @@ Inspired by tools like Notion, I wanted to create an application that demonstrat
 
 This project represents my commitment to building intuitive, performant web applications.
 
-## Techstacks
+## 🛠️ Tech Stacks
 
-The project is built using the following techstacks:
+The project is built using the following tech stacks:
 
 - [Next.js](https://nextjs.org)
 - [TypeScript](https://www.typescriptlang.org)
@@ -55,6 +55,6 @@ The project is built using the following techstacks:
 - [Husky](https://typicode.github.io/husky)
 - [Lint Staged](https://github.com/okonet/lint-staged)
 
-## Other Resources
+## 🌟 Other Resources
 
 - [How to Run Locally](./docs/how-to-run-locally.md)
