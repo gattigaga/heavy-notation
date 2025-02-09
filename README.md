@@ -59,6 +59,6 @@ The project is built using the following tech stacks:
 
 - [How to Run Locally](./docs/how-to-run-locally.md)
 
-## License
+## 📝 License
 
 This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. See the [LICENSE](./LICENSE) file for details.
