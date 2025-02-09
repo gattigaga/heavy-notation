@@ -15,6 +15,10 @@ import LogoTrello from "./components/LogoTrello";
 import LogoAsana from "./components/LogoAsana";
 import LogoConfluence from "./components/LogoConfluence";
 import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
+import img1 from "../../public/images/home/annie-spratt-5cFwQ-WMcJU-unsplash.webp";
+import img2 from "../../public/images/home/beatriz-perez-moya-XN4T2PVUUgk-unsplash.webp";
+import img3 from "../../public/images/home/arisa-chattasa-0LaBRkmH4fM-unsplash.webp";
+import img4 from "../../public/images/home/wesley-tingey-snNHKZ-mGfE-unsplash.webp";
 
 export const metadata: Metadata = {
   title: "Your workspace solution for projects | Heavy Notation",
@@ -106,7 +110,11 @@ const Home = async () => {
             </div>
           </div>
 
-          <div className="aspect-video w-full rounded-lg bg-zinc-200" />
+          <Image
+            className="aspect-video w-full rounded-lg bg-zinc-200"
+            src={img1}
+            alt="Vintage page sheet background by Annie Spratt"
+          />
         </div>
 
         <div>
@@ -117,7 +125,11 @@ const Home = async () => {
             Capture your ideas and create perfect documentation with our simple
             and intuitive interface.
           </p>
-          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <Image
+            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            src={img2}
+            alt="Folder stack by Beatriz Perez Moya"
+          />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
@@ -141,7 +153,11 @@ const Home = async () => {
             All your projects, goals, calendars, roadmaps, and more—in one
             tool—personalized to how you work.
           </p>
-          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <Image
+            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            src={img3}
+            alt="Document stack by Arisa Chattasa"
+          />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
@@ -165,7 +181,11 @@ const Home = async () => {
             Find what you need quickly with our powerful search. Access your
             content stored in Heavy Notation.
           </p>
-          <div className="mb-8 aspect-video w-full rounded-lg bg-zinc-200" />
+          <Image
+            className="mb-8 aspect-video w-full rounded-lg bg-zinc-200"
+            src={img4}
+            alt="Bunch of documents by Wesley Tingey"
+          />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
