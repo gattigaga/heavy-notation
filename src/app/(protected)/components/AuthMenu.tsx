@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useEffect } from "react";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -23,12 +23,16 @@ import { signOut } from "../actions";
 
 const AuthMenu = () => {
   const { isMobile } = useSidebar();
-  const { data: session } = useSession();
+  const { data: session, update: updateSession } = useSession();
 
   const user = session?.user || {
     name: "",
     email: "",
   };
+
+  useEffect(() => {
+    updateSession();
+  }, []);
 
   return (
     <SidebarMenu>
