@@ -60,7 +60,7 @@ const Home = async () => {
             Think. Write. Plan your ideas{"\n"}in a better way.
           </p>
           <Button
-            className="mb-8 mt-4 h-12 w-full bg-blue-500 text-base font-semibold md:w-fit md:self-center lg:mb-8 lg:w-auto lg:self-start"
+            className="mb-8 mt-4 h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:mb-8 lg:w-auto lg:self-start"
             type="button"
           >
             <Link href="/auth/signup">Start Writing Now</Link>
@@ -210,7 +210,7 @@ const Home = async () => {
             our powerful search features.
           </p>
           <Button
-            className="h-12 w-full bg-blue-500 text-base font-semibold md:w-fit md:self-center lg:w-auto"
+            className="h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
             type="button"
           >
             <Link href="/auth/signup">Start Writing Now</Link>
