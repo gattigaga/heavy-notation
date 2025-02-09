@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:db-migrate": "dotenvx run -f .env.development -- prisma migrate dev",
+    "dev:db-reset": "dotenvx run -f .env.development -- prisma migrate reset"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
@@ -54,6 +56,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@dotenvx/dotenvx": "^1.35.0",
     "@eslint/eslintrc": "^3",
     "@types/luxon": "^3.4.2",
     "@types/md5": "^2.3.5",
