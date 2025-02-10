@@ -1,8 +1,10 @@
 ![Heavy Notation Logo](./docs/images/logo-text-heavy-notation.png)
 
+![Demo](./docs/images/demo.gif)
+[Demo](https://heavynotation.vercel.app/)
+
 ## 📚 Table of Contents
 
-- [Demo](https://heavynotation.vercel.app/)
 - [About](#about)
 - [Techstacks](#techstacks)
 - [Other Resources](#other-resources)
