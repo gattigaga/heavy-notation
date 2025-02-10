@@ -1,17 +1,29 @@
-# How to Run on Vercel
+# How to Deploy on Vercel
 
-This is a guide for running this project production on Vercel.
+This is a guide for deploy this project production on Vercel.
+
+## Prerequisites
+
+Prepare your environment variables first in `.env.production` file and make sure all these variables has value. Later we need to copy it to Vercel when we deploy.
+
+```
+TURSO_DATABASE_URL=
+TURSO_AUTH_TOKEN=
+AUTH_SECRET=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+```
 
 ## Deployment
 
-Follow these steps to run this project on Vercel.
+Follow these steps to deploy this project on Vercel.
 
 1. Import this project on Vercel from GitHub. If we can't found it, you need to configure it to allow Vercel to access the repo of this project from GitHub.
 
 ![Repo not found](./images/repo-not-found.png)
 ![Repo found](./images/repo-found.png)
 
-2. Fill up production environment variables here and click "Deploy" button.
+2. Fill up production environment variables here and click "Deploy" button. You can copy from your `.env.production` file and paste it in this form.
 
 ![Environment variables](./images/fill-env-vars.png)
 

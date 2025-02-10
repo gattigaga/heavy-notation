@@ -59,7 +59,8 @@ The project is built using the following tech stacks:
 ## 🌟 Other Resources
 
 - [How to Run Locally](./docs/how-to-run-locally.md)
-- [How to Run on Vercel](./docs/how-to-run-on-vercel.md)
+- [How to Setup Turso](./docs/how-to-setup-turso.md)
+- [How to Deploy on Vercel](./docs/how-to-deploy-on-vercel.md)
 
 ## 📝 License
 
