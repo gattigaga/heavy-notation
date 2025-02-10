@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
+    "postinstall": "prisma generate",
     "dev:db-show": "dotenvx run -f .env.development -- prisma studio",
     "dev:db-migrate": "dotenvx run -f .env.development -- prisma migrate dev",
     "dev:db-reset": "dotenvx run -f .env.development -- prisma migrate reset"
