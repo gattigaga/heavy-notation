@@ -2,6 +2,7 @@
 
 ## 📚 Table of Contents
 
+- [Demo](https://heavynotation.vercel.app/)
 - [About](#about)
 - [Techstacks](#techstacks)
 - [Other Resources](#other-resources)
@@ -58,6 +59,7 @@ The project is built using the following tech stacks:
 ## 🌟 Other Resources
 
 - [How to Run Locally](./docs/how-to-run-locally.md)
+- [How to Run on Vercel](./docs/how-to-run-on-vercel.md)
 
 ## 📝 License
 
