@@ -5,9 +5,11 @@
 
 ## 📚 Table of Contents
 
-- [About](#about)
-- [Techstacks](#techstacks)
-- [Other Resources](#other-resources)
+- [About](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#-about)
+- [Motivation](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#-motivation)
+- [Tech Stacks](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#%EF%B8%8F-tech-stacks)
+- [Other Resources](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#-other-resources)
+- [License](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#-license)
 
 ## 🚀 About
 
