@@ -1,7 +1,18 @@
-![Heavy Notation Logo](./docs/images/logo-text-heavy-notation.png)
+<p align="center">
+  <img src="./docs/images/logo-text-heavy-notation.png" width="320">
+</p>
+
+<p align="center">
+  Minimal note-taking web application inspired by Notion.
+</p>
 
 ![Demo](./docs/images/demo.gif)
-[Demo](https://heavynotation.vercel.app/)
+
+<p align="center">
+  <a href="https://heavynotation.vercel.app">
+    Demo
+  </a>
+</p>
 
 ## 📚 Table of Contents
 
@@ -16,6 +27,7 @@
 Heavy Notation is a minimal note-taking web application inspired by Notion, designed as a learning project to explore modern frontend web development technologies. While not a full-featured clone, it demonstrates core note-taking functionality with a simple, clean approach.
 
 Key features include:
+
 - 📝 Basic page creation and management
 - 🧩 Simple block-based content editing
 - 🔍 Basic search functionality
@@ -29,6 +41,7 @@ The project serves as a practical exploration of frontend development concepts, 
 Heavy Notation is more than just a note-taking app—it's my playground for exploring modern web technologies and pushing my frontend development skills.
 
 Inspired by tools like Notion, I wanted to create an application that demonstrates:
+
 - 🧩 Complex state management
 - ✨ Seamless user interactions
 - 🚀 Modern React ecosystem best practices
