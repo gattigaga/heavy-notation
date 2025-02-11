@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         alt: "Heavy Notation website homepage",
       },
     ],
-    url: "https://heavynotation.vercel.app",
+    url: "/",
   },
 };
 

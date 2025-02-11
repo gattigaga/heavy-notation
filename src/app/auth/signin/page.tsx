@@ -9,6 +9,22 @@ import { auth } from "@/helpers/auth";
 
 export const metadata: Metadata = {
   title: "Sign In | Heavy Notation",
+  description: "Sign in to your Heavy Notation account.",
+  openGraph: {
+    title: "Sign In | Heavy Notation",
+    description: "Sign in to your Heavy Notation account.",
+    type: "website",
+    images: [
+      {
+        url: "/images/home/screenshot.webp",
+        type: "image/webp",
+        width: 1665,
+        height: 951,
+        alt: "Heavy Notation website homepage",
+      },
+    ],
+    url: "/auth/signin",
+  },
 };
 
 const SignInPage = async () => {
