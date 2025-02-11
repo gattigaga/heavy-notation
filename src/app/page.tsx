@@ -66,7 +66,9 @@ const Home = async () => {
           type="button"
           variant="outline"
         >
-          <Link href="/auth/signin">Sign In</Link>
+          <Link href="/auth/signin" prefetch={true}>
+            Sign In
+          </Link>
         </Button>
       </header>
       <div className="flex max-w-screen-2xl flex-col gap-y-24 px-8 pt-4 md:gap-y-40 md:px-16 md:pt-10 lg:px-24 lg:pt-16 2xl:mx-auto 2xl:px-40">
@@ -81,7 +83,9 @@ const Home = async () => {
             className="mb-8 mt-4 h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:mb-8 lg:w-auto lg:self-start"
             type="button"
           >
-            <Link href="/auth/signup">Start Writing Now</Link>
+            <Link href="/auth/signup" prefetch={true}>
+              Start Writing Now
+            </Link>
           </Button>
 
           <p className="mb-2 text-base text-zinc-700 md:text-center lg:text-left">
@@ -235,7 +239,9 @@ const Home = async () => {
             className="h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
             type="button"
           >
-            <Link href="/auth/signup">Start Writing Now</Link>
+            <Link href="/auth/signup" prefetch={true}>
+              Start Writing Now
+            </Link>
           </Button>
         </div>
       </div>

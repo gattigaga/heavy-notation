@@ -241,7 +241,7 @@ const SignUpForm = () => {
             </form>
             <div className="mt-4 text-center text-sm text-zinc-700">
               Already have an account?{" "}
-              <Link href="/auth/signin" className="underline">
+              <Link className="underline" href="/auth/signin" prefetch={true}>
                 Sign In
               </Link>
             </div>

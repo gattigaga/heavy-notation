@@ -153,7 +153,7 @@ const SignInForm = () => {
             </form>
             <div className="mt-4 text-center text-sm text-zinc-700">
               Don&apos;t have an account?{" "}
-              <Link href="/auth/signup" className="underline">
+              <Link className="underline" href="/auth/signup" prefetch={true}>
                 Sign Up
               </Link>
             </div>

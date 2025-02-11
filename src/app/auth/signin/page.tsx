@@ -39,7 +39,7 @@ const SignInPage = async () => {
   return (
     <div className="min-h-screen w-full bg-white">
       <header className="flex h-16 items-center px-4">
-        <Link href="/">
+        <Link href="/" prefetch={true}>
           <Image
             src={imgLogoHeavyNotation}
             alt="Heavy Notation logo"
