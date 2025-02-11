@@ -28,7 +28,7 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-11/12 rounded-lg p-0 md:w-auto">
+      <DialogContent className="w-11/12 rounded-lg p-0 md:w-1/2 lg:w-1/3">
         <DialogTitle className="hidden">Search a page</DialogTitle>
         <Command>
           <CommandInput
