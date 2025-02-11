@@ -34,7 +34,7 @@ const PageCard = ({ user, title, updatedAt, href }: Props) => {
           <div className="flex items-center gap-x-2">
             <Avatar className="h-6 w-6">
               <AvatarFallback className="text-sm">
-                {user.name[0]?.toUpperCase()}
+                {user?.name[0]?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <p className="text-sm text-zinc-400">{formattedDate}</p>
