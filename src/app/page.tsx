@@ -22,6 +22,24 @@ import img4 from "../../public/images/home/wesley-tingey-snNHKZ-mGfE-unsplash.we
 
 export const metadata: Metadata = {
   title: "Your workspace solution for projects | Heavy Notation",
+  description:
+    "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you.",
+  openGraph: {
+    title: "Your workspace solution for projects | Heavy Notation",
+    description:
+      "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you.",
+    type: "website",
+    images: [
+      {
+        url: "/images/home/screenshot.webp",
+        type: "image/webp",
+        width: 1665,
+        height: 951,
+        alt: "Heavy Notation website homepage",
+      },
+    ],
+    url: "https://heavynotation.vercel.app",
+  },
 };
 
 const Home = async () => {
@@ -114,6 +132,7 @@ const Home = async () => {
             className="aspect-video w-full rounded-lg"
             src={img1}
             alt="Vintage page sheet background by Annie Spratt"
+            priority={true}
           />
         </div>
 
@@ -129,6 +148,7 @@ const Home = async () => {
             className="mb-8 aspect-video w-full rounded-lg"
             src={img2}
             alt="Folder stack by Beatriz Perez Moya"
+            loading="lazy"
           />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
@@ -157,6 +177,7 @@ const Home = async () => {
             className="mb-8 aspect-video w-full rounded-lg"
             src={img3}
             alt="Document stack by Arisa Chattasa"
+            loading="lazy"
           />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
@@ -185,6 +206,7 @@ const Home = async () => {
             className="mb-8 aspect-video w-full rounded-lg"
             src={img4}
             alt="Bunch of documents by Wesley Tingey"
+            loading="lazy"
           />
           <div className="flex flex-wrap gap-x-4 gap-y-3">
             <p className="w-full shrink-0 text-base font-semibold text-zinc-700 md:w-auto">
