@@ -47,8 +47,6 @@ Inspired by tools like Notion, I wanted to create an application that demonstrat
 - 🚀 Modern React ecosystem best practices
 - 📱 Responsive web design
 
-This project represents my commitment to building intuitive, performant web applications.
-
 ## 🛠️ Tech Stacks
 
 The project is built using the following tech stacks:
