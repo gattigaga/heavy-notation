@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createId } from "@paralleldrive/cuid2";
 import { toast } from "sonner";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -34,6 +35,7 @@ const PageList = () => {
   const pagesQuery = usePagesQuery();
   const addPageMutation = useAddPageMutation();
   const removePageMutation = useRemovePageMutation();
+  const { t } = useLingui();
 
   const pages =
     pagesQuery.data?.filter((item) => {
@@ -54,7 +56,7 @@ const PageList = () => {
       },
       {
         onError: () => {
-          toast.error("Failed to add a new page.");
+          toast.error(t`Failed to add a new page.`);
         },
         onSettled: () => {
           addPageMutation.reset();
@@ -72,10 +74,10 @@ const PageList = () => {
       },
       {
         onError: () => {
-          toast.error("Failed to remove the page.");
+          toast.error(t`Failed to remove the page.`);
         },
         onSuccess: () => {
-          toast.success("Page successfully removed.");
+          toast.success(t`Page successfully removed.`);
         },
         onSettled: () => {
           removePageMutation.reset();
@@ -99,7 +101,7 @@ const PageList = () => {
               <SidebarMenuButton
                 onClick={() => setIsPagesSectionShow(!isPagesSectionShow)}
               >
-                Pages
+                <Trans>Pages</Trans>
               </SidebarMenuButton>
               {!addPageMutation.isPending && (
                 <SidebarMenuAction showOnHover={true} onClick={addPage}>
@@ -119,7 +121,7 @@ const PageList = () => {
                       <SidebarMenuButton isActive={isActive} asChild={true}>
                         <Link href={url} title={item.title}>
                           <File />
-                          <span>{item.title || "New Page"}</span>
+                          <span>{item.title || <Trans>New Page</Trans>}</span>
                         </Link>
                       </SidebarMenuButton>
                       <DropdownMenu>
@@ -135,7 +137,9 @@ const PageList = () => {
                         >
                           <DropdownMenuItem onClick={() => removePage(item.id)}>
                             <Trash2 className="text-muted-foreground" />
-                            <span>Delete</span>
+                            <span>
+                              <Trans>Delete</Trans>
+                            </span>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -148,14 +152,18 @@ const PageList = () => {
                     <SidebarMenuButton isActive={true} asChild={true}>
                       <Link href={`/pages/${addPageMutation.variables.id}`}>
                         <File />
-                        <span>New Page</span>
+                        <span>
+                          <Trans>New Page</Trans>
+                        </span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )}
                 {/* Show empty data if have no pages yet and when not adding page. */}
                 {pages.length === 0 && !addPageMutation.isPending && (
-                  <p className="mx-2 text-xs text-zinc-400">No pages found.</p>
+                  <p className="mx-2 text-xs text-zinc-400">
+                    <Trans>No pages found.</Trans>
+                  </p>
                 )}
               </>
             )}
@@ -164,7 +172,9 @@ const PageList = () => {
       )}
       {pagesQuery.isError && (
         <div className="mt-4 px-2">
-          <p className="mx-2 text-xs text-red-500">Cannot fetch pages data.</p>
+          <p className="mx-2 text-xs text-red-500">
+            <Trans>Cannot fetch pages data.</Trans>
+          </p>
         </div>
       )}
       {pagesQuery.isLoading && (

@@ -2,6 +2,7 @@
 
 import { File } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 import {
   Command,
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
+  const { t } = useLingui();
   const router = useRouter();
   const pagesQuery = usePagesQuery();
 
@@ -29,18 +31,22 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="w-11/12 rounded-lg p-0 md:w-1/2 lg:w-1/3">
-        <DialogTitle className="hidden">Search a page</DialogTitle>
+        <DialogTitle className="hidden">
+          <Trans>Search a page</Trans>
+        </DialogTitle>
         <Command>
           <CommandInput
             className="h-16 text-base"
-            placeholder="Search a page..."
+            placeholder={t`Search a page...`}
           />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Pages">
+            <CommandEmpty>
+              <Trans>No results found.</Trans>
+            </CommandEmpty>
+            <CommandGroup heading={t`Pages`}>
               {pages.map((page) => {
                 const formattedTitle = (() => {
-                  if (!page.title) return "New Page";
+                  if (!page.title) return t`New Page`;
 
                   return page.title.length > 26
                     ? `${page.title.slice(0, 26)}...`

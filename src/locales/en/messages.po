@@ -6,3 +6,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/app/(protected)/helpers/datetime.ts:27
+msgid "{days} days ago"
+msgstr "{days} days ago"
+
+#: src/app/(protected)/helpers/datetime.ts:24
+msgid "{hours} hours ago"
+msgstr "{hours} hours ago"
+
+#: src/app/(protected)/helpers/datetime.ts:21
+msgid "{minutes} minutes ago"
+msgstr "{minutes} minutes ago"
+
+#: src/app/(protected)/helpers/datetime.ts:33
+msgid "{months} months ago"
+msgstr "{months} months ago"
+
+#: src/app/(protected)/helpers/datetime.ts:18
+msgid "{seconds} seconds ago"
+msgstr "{seconds} seconds ago"
+
+#: src/app/(protected)/helpers/datetime.ts:30
+msgid "{weeks} weeks ago"
+msgstr "{weeks} weeks ago"
+
+#: src/app/(protected)/helpers/datetime.ts:36
+msgid "{years} years ago"
+msgstr "{years} years ago"
+
+#: src/app/(protected)/components/PageList.tsx:176
+msgid "Cannot fetch pages data."
+msgstr "Cannot fetch pages data."
+
+#: src/app/(protected)/components/PageList.tsx:141
+msgid "Delete"
+msgstr "Delete"
+
+#: src/app/(protected)/components/PageList.tsx:59
+msgid "Failed to add a new page."
+msgstr "Failed to add a new page."
+
+#: src/app/(protected)/components/PageList.tsx:77
+msgid "Failed to remove the page."
+msgstr "Failed to remove the page."
+
+#: src/app/(protected)/components/AppSidebar.tsx:38
+msgid "Home"
+msgstr "Home"
+
+#: src/app/(protected)/components/PopupSearch.tsx:49
+#: src/app/(protected)/components/PageList.tsx:124
+#: src/app/(protected)/components/PageList.tsx:156
+msgid "New Page"
+msgstr "New Page"
+
+#: src/app/(protected)/components/PageList.tsx:165
+msgid "No pages found."
+msgstr "No pages found."
+
+#: src/app/(protected)/components/PopupSearch.tsx:44
+msgid "No results found."
+msgstr "No results found."
+
+#: src/app/(protected)/components/PageList.tsx:80
+msgid "Page successfully removed."
+msgstr "Page successfully removed."
+
+#: src/app/(protected)/components/PopupSearch.tsx:46
+#: src/app/(protected)/components/PageList.tsx:104
+msgid "Pages"
+msgstr "Pages"
+
+#: src/app/(protected)/components/AppSidebar.tsx:31
+msgid "Search"
+msgstr "Search"
+
+#: src/app/(protected)/components/PopupSearch.tsx:35
+msgid "Search a page"
+msgstr "Search a page"
+
+#: src/app/(protected)/components/PopupSearch.tsx:40
+msgid "Search a page..."
+msgstr "Search a page..."
+
+#: src/app/(protected)/components/AuthMenu.tsx:81
+msgid "Sign Out"
+msgstr "Sign Out"
