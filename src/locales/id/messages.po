@@ -41,6 +41,11 @@ msgstr "{weeks} minggu lalu"
 msgid "{years} years ago"
 msgstr "{years} tahun lalu"
 
+#: src/app/(protected)/home/components/PageList.tsx:103
+msgid "Add new page"
+msgstr "Tambah halaman baru"
+
+#: src/app/(protected)/home/components/PageList.tsx:111
 #: src/app/(protected)/components/PageList.tsx:176
 msgid "Cannot fetch pages data."
 msgstr "Gagal mengambil data halaman."
@@ -49,6 +54,7 @@ msgstr "Gagal mengambil data halaman."
 msgid "Delete"
 msgstr "Hapus"
 
+#: src/app/(protected)/home/components/PageList.tsx:64
 #: src/app/(protected)/components/PageList.tsx:59
 msgid "Failed to add a new page."
 msgstr "Gagal menambahkan halaman baru."
@@ -57,10 +63,27 @@ msgstr "Gagal menambahkan halaman baru."
 msgid "Failed to remove the page."
 msgstr "Gagal menghapus halaman."
 
+#: src/app/(protected)/home/components/Greeting.tsx:14
+msgid "Good afternoon"
+msgstr "Siang"
+
+#: src/app/(protected)/home/components/Greeting.tsx:15
+msgid "Good evening"
+msgstr "Sore"
+
+#: src/app/(protected)/home/components/Greeting.tsx:13
+msgid "Good morning"
+msgstr "Pagi"
+
+#: src/app/(protected)/home/components/Greeting.tsx:17
+msgid "Good night"
+msgstr "Malam"
+
 #: src/app/(protected)/components/AppSidebar.tsx:38
 msgid "Home"
 msgstr "Beranda"
 
+#: src/app/(protected)/home/components/PageCard.tsx:21
 #: src/app/(protected)/components/PopupSearch.tsx:49
 #: src/app/(protected)/components/PageList.tsx:124
 #: src/app/(protected)/components/PageList.tsx:156

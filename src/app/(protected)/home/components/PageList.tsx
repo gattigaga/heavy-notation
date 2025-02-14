@@ -6,6 +6,7 @@ import { Plus } from "lucide-react";
 import { createId } from "@paralleldrive/cuid2";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useLingui, Trans } from "@lingui/react/macro";
 
 import PageCard from "./PageCard";
 import usePagesQuery from "../../hooks/queries/use-pages-query";
@@ -16,6 +17,7 @@ import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 const PageList = () => {
+  const { t } = useLingui();
   const sidebar = useSidebar();
   const router = useRouter();
   const { data: session } = useSession();
@@ -59,7 +61,7 @@ const PageList = () => {
       },
       {
         onError: () => {
-          toast.error("Failed to add a new page.");
+          toast.error(t`Failed to add a new page.`);
         },
         onSettled: () => {
           addPageMutation.reset();
@@ -97,13 +99,17 @@ const PageList = () => {
             onClick={addPage}
           >
             <Plus className="mb-4 text-zinc-700" size={48} />
-            <p className="text-base text-zinc-700">Add new page</p>
+            <p className="text-base text-zinc-700">
+              <Trans>Add new page</Trans>
+            </p>
           </button>
         </div>
       )}
       {pagesQuery.isError && (
         <div className="mt-4 px-2">
-          <p className="mx-2 text-xs text-red-500">Cannot fetch pages data.</p>
+          <p className="mx-2 text-xs text-red-500">
+            <Trans>Cannot fetch pages data.</Trans>
+          </p>
         </div>
       )}
       {pagesQuery.isLoading && (

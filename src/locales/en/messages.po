@@ -41,6 +41,11 @@ msgstr "{weeks} weeks ago"
 msgid "{years} years ago"
 msgstr "{years} years ago"
 
+#: src/app/(protected)/home/components/PageList.tsx:103
+msgid "Add new page"
+msgstr "Add new page"
+
+#: src/app/(protected)/home/components/PageList.tsx:111
 #: src/app/(protected)/components/PageList.tsx:176
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
@@ -49,6 +54,7 @@ msgstr "Cannot fetch pages data."
 msgid "Delete"
 msgstr "Delete"
 
+#: src/app/(protected)/home/components/PageList.tsx:64
 #: src/app/(protected)/components/PageList.tsx:59
 msgid "Failed to add a new page."
 msgstr "Failed to add a new page."
@@ -57,10 +63,27 @@ msgstr "Failed to add a new page."
 msgid "Failed to remove the page."
 msgstr "Failed to remove the page."
 
+#: src/app/(protected)/home/components/Greeting.tsx:14
+msgid "Good afternoon"
+msgstr "Good afternoon"
+
+#: src/app/(protected)/home/components/Greeting.tsx:15
+msgid "Good evening"
+msgstr "Good evening"
+
+#: src/app/(protected)/home/components/Greeting.tsx:13
+msgid "Good morning"
+msgstr "Good morning"
+
+#: src/app/(protected)/home/components/Greeting.tsx:17
+msgid "Good night"
+msgstr "Good night"
+
 #: src/app/(protected)/components/AppSidebar.tsx:38
 msgid "Home"
 msgstr "Home"
 
+#: src/app/(protected)/home/components/PageCard.tsx:21
 #: src/app/(protected)/components/PopupSearch.tsx:49
 #: src/app/(protected)/components/PageList.tsx:124
 #: src/app/(protected)/components/PageList.tsx:156
