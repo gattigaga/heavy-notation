@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Fragment } from "react";
 import { BlockType } from "@prisma/client";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 import {
   Popover,
@@ -43,39 +44,40 @@ const BlocksDropdown = ({
   onChange,
   onOpenChange,
 }: Props) => {
+  const { t } = useLingui();
   const blockSections: BlockSection[] = [
     {
       id: "basic",
-      title: "Basic Blocks",
+      title: t`Basic Blocks`,
       items: [
         {
           type: "TEXT",
-          title: "Text",
-          description: "Just start writing with plain text.",
+          title: t`Text`,
+          description: t`Just start writing with plain text.`,
           icon: CaseSensitive,
         },
         {
           type: "HEADING1",
-          title: "Heading 1",
-          description: "Big section heading.",
+          title: t`Heading 1`,
+          description: t`Big section heading.`,
           icon: Heading1,
         },
         {
           type: "HEADING2",
-          title: "Heading 2",
-          description: "Medium section heading.",
+          title: t`Heading 2`,
+          description: t`Medium section heading.`,
           icon: Heading2,
         },
         {
           type: "HEADING3",
-          title: "Heading 3",
-          description: "Small section heading.",
+          title: t`Heading 3`,
+          description: t`Small section heading.`,
           icon: Heading3,
         },
         {
           type: "DIVIDER",
-          title: "Divider",
-          description: "Visually divide blocks.",
+          title: t`Divider`,
+          description: t`Visually divide blocks.`,
           icon: SquareSplitVertical,
         },
       ],
@@ -147,7 +149,9 @@ const BlocksDropdown = ({
           </ScrollArea>
         )}
         {filteredBlockSections.length === 0 && (
-          <div className="p-3 text-sm text-zinc-400">No results found.</div>
+          <div className="p-3 text-sm text-zinc-400">
+            <Trans>No results found.</Trans>
+          </div>
         )}
       </PopoverContent>
     </Popover>

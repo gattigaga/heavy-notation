@@ -14,6 +14,7 @@ import {
   Strikethrough,
   Underline,
 } from "lucide-react";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 import {
   Menubar,
@@ -49,6 +50,7 @@ export const Toolbar = ({
   onChange,
   onRequestClose,
 }: Props) => {
+  const { t } = useLingui();
   const refContainer = useRef<HTMLDivElement>(null);
   const refContent = useRef<HTMLDivElement>(null);
 
@@ -56,25 +58,25 @@ export const Toolbar = ({
     {
       type: "TEXT",
       title: "Text",
-      description: "Just start writing with plain text.",
+      description: t`Just start writing with plain text.`,
       icon: CaseSensitive,
     },
     {
       type: "HEADING1",
       title: "Heading 1",
-      description: "Big section heading.",
+      description: t`Big section heading.`,
       icon: Heading1,
     },
     {
       type: "HEADING2",
       title: "Heading 2",
-      description: "Medium section heading.",
+      description: t`Medium section heading.`,
       icon: Heading2,
     },
     {
       type: "HEADING3",
       title: "Heading 3",
-      description: "Small section heading.",
+      description: t`Small section heading.`,
       icon: Heading3,
     },
   ];
@@ -118,7 +120,7 @@ export const Toolbar = ({
       <MenubarMenu>
         <MenubarTrigger>
           <span className="mr-2 text-base text-zinc-700">
-            {typeLabel || "Text"}
+            {typeLabel || <Trans>Text</Trans>}
           </span>
           <ChevronDown className="text-zinc-700" size={16} />
         </MenubarTrigger>
@@ -173,16 +175,16 @@ export const Toolbar = ({
           onChange?.(newOptions);
         }}
       >
-        <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <ToggleGroupItem value="bold" aria-label={t`Toggle bold`}>
           <Bold size={16} />
         </ToggleGroupItem>
-        <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <ToggleGroupItem value="italic" aria-label={t`Toggle italic`}>
           <Italic size={16} />
         </ToggleGroupItem>
-        <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <ToggleGroupItem value="underline" aria-label={t`Toggle underline`}>
           <Underline size={16} />
         </ToggleGroupItem>
-        <ToggleGroupItem value="strike" aria-label="Toggle strikethrough">
+        <ToggleGroupItem value="strike" aria-label={t`Toggle strikethrough`}>
           <Strikethrough size={16} />
         </ToggleGroupItem>
       </ToggleGroup>

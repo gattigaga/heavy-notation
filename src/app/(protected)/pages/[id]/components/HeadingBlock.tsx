@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { BlockType } from "@prisma/client";
 import Quill, { Range } from "quill";
+import { useLingui } from "@lingui/react/macro";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
@@ -44,6 +45,7 @@ const HeadingBlock = ({
 }: Props) => {
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const { t } = useLingui();
   const sortable = useSortable({ id });
   const refInput = useRef<Quill>(null);
 
@@ -63,13 +65,13 @@ const HeadingBlock = ({
   const placeholder = (() => {
     switch (type) {
       case "HEADING1":
-        return "Heading 1";
+        return t`Heading 1`;
 
       case "HEADING2":
-        return "Heading 2";
+        return t`Heading 2`;
 
       case "HEADING3":
-        return "Heading 3";
+        return t`Heading 3`;
 
       default:
         return "";

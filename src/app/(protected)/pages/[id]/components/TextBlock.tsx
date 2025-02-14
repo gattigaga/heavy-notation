@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { BlockType } from "@prisma/client";
 import Quill, { Range } from "quill";
+import { useLingui } from "@lingui/react/macro";
 
 import BlockControls from "./BlockControls";
 import BlocksDropdown from "./BlocksDropdown";
@@ -41,6 +42,7 @@ const TextBlock = ({
 }: Props) => {
   const [isBlocksOpen, setIsBlocksOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const { t } = useLingui();
   const sortable = useSortable({ id });
   const refInput = useRef<Quill>(null);
 
@@ -154,7 +156,7 @@ const TextBlock = ({
           ref={refInput}
           className="!h-fit !w-full !text-lg !text-zinc-700"
           defaultValue={defaultValue}
-          placeholder="Write something, or type /"
+          placeholder={t`Write something, or type /`}
           isPlaceholderHiddenWhenBlur={true}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

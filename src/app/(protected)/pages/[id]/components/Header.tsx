@@ -5,6 +5,7 @@ import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useMutationState } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useLingui, Trans } from "@lingui/react/macro";
 
 import {
   Breadcrumb,
@@ -39,6 +40,7 @@ type Params = {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLingui();
   const params = useParams<Params>();
   const router = useRouter();
   const pageQuery = usePageQuery({ id: params.id });
@@ -63,7 +65,7 @@ const Header = () => {
       return variable.id === params.id;
     });
 
-    const result = variable?.title || pageQuery.data?.title || "New Page";
+    const result = variable?.title || pageQuery.data?.title || t`New Page`;
 
     return result.length > 26 ? `${result.slice(0, 26)}...` : result;
   })();
@@ -71,7 +73,7 @@ const Header = () => {
   const menuItems = [
     [
       {
-        label: "Delete",
+        label: t`Delete`,
         icon: Trash2,
         onClick: () => {
           removePageMutation.mutate(
@@ -80,10 +82,10 @@ const Header = () => {
             },
             {
               onError: () => {
-                toast.error("Failed to remove the page.");
+                toast.error(t`Failed to remove the page.`);
               },
               onSuccess: () => {
-                toast.success("Page successfully removed.");
+                toast.success(t`Page successfully removed.`);
               },
             },
           );
@@ -112,7 +114,7 @@ const Header = () => {
       {/* Right navigation bar */}
       <div className="ml-auto flex items-center gap-2 text-sm">
         <div className="hidden text-muted-foreground md:inline-block">
-          {formattedDate ? `Edited ${formattedDate}` : ""}
+          {formattedDate ? <Trans>Edited {formattedDate}</Trans> : ""}
         </div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
