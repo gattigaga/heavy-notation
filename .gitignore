@@ -43,3 +43,6 @@ next-env.d.ts
 # sqlite database
 /prisma/dev.db
 /prisma/dev.db-*
+
+# compiled messages by lingui
+/src/locales/**/*.ts
