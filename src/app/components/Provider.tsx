@@ -27,7 +27,7 @@ const Provider = ({ children }: Props) => {
   const language = useStore((state) => state.language);
 
   useEffect(() => {
-    i18n.activate(language);
+    i18n.activate(language.toLowerCase());
   }, [language]);
 
   return (

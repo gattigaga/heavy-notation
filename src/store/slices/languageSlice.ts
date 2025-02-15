@@ -1,6 +1,5 @@
+import { Language } from "@prisma/client";
 import { StateCreator } from "zustand";
-
-type Language = "en" | "id";
 
 export type LanguageSlice = {
   language: Language;
@@ -13,6 +12,6 @@ export const createLanguageSlice: StateCreator<
   [],
   LanguageSlice
 > = (set) => ({
-  language: "en",
+  language: "EN",
   setLanguage: (language) => set({ language }),
 });

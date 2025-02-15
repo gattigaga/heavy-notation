@@ -9,6 +9,7 @@ import { useLingui } from "@lingui/react/macro";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -19,6 +20,7 @@ import {
 import AuthMenu from "./AuthMenu";
 import PageList from "./PageList";
 import PopupSearch from "./PopupSearch";
+import LanguageMenu from "./LanguageMenu";
 
 const AppSidebar = () => {
   const { t } = useLingui();
@@ -99,6 +101,9 @@ const AppSidebar = () => {
 
         <PopupSearch isOpen={isSearchOpen} onOpenChange={setIsSearchOpen} />
       </SidebarContent>
+      <SidebarFooter>
+        <LanguageMenu />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
