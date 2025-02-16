@@ -1,0 +1,243 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-02-15 01:43+0700\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/app/(protected)/helpers/datetime.ts:27
+msgid "{days} days ago"
+msgstr "{days} days ago"
+
+#: src/app/(protected)/helpers/datetime.ts:24
+msgid "{hours} hours ago"
+msgstr "{hours} hours ago"
+
+#: src/app/(protected)/helpers/datetime.ts:21
+msgid "{minutes} minutes ago"
+msgstr "{minutes} minutes ago"
+
+#: src/app/(protected)/helpers/datetime.ts:33
+msgid "{months} months ago"
+msgstr "{months} months ago"
+
+#: src/app/(protected)/helpers/datetime.ts:18
+msgid "{seconds} seconds ago"
+msgstr "{seconds} seconds ago"
+
+#: src/app/(protected)/helpers/datetime.ts:30
+msgid "{weeks} weeks ago"
+msgstr "{weeks} weeks ago"
+
+#: src/app/(protected)/helpers/datetime.ts:36
+msgid "{years} years ago"
+msgstr "{years} years ago"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:177
+msgid "<0>Alt-click</0> to add above"
+msgstr "<0>Alt-click</0> to add above"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:172
+msgid "<0>Click</0> to add below"
+msgstr "<0>Click</0> to add below"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:300
+msgid "<0>Click</0> to open menu"
+msgstr "<0>Click</0> to open menu"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:295
+msgid "<0>Drag</0> to move"
+msgstr "<0>Drag</0> to move"
+
+#: src/app/(protected)/home/components/PageList.tsx:103
+msgid "Add new page"
+msgstr "Add new page"
+
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:51
+msgid "Basic Blocks"
+msgstr "Basic Blocks"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:67
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:62
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:90
+msgid "Big section heading."
+msgstr "Big section heading."
+
+#: src/app/(protected)/home/components/PageList.tsx:111
+#: src/app/(protected)/components/PageList.tsx:176
+msgid "Cannot fetch pages data."
+msgstr "Cannot fetch pages data."
+
+#: src/app/(protected)/pages/[id]/components/Header.tsx:76
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:220
+#: src/app/(protected)/components/PageList.tsx:141
+msgid "Delete"
+msgstr "Delete"
+
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:79
+msgid "Divider"
+msgstr "Divider"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:234
+msgid "Duplicate"
+msgstr "Duplicate"
+
+#: src/app/(protected)/pages/[id]/components/Header.tsx:117
+msgid "Edited {formattedDate}"
+msgstr "Edited {formattedDate}"
+
+#: src/app/(protected)/home/components/PageList.tsx:64
+#: src/app/(protected)/components/PageList.tsx:59
+msgid "Failed to add a new page."
+msgstr "Failed to add a new page."
+
+#: src/app/(protected)/pages/[id]/components/Header.tsx:85
+#: src/app/(protected)/components/PageList.tsx:77
+msgid "Failed to remove the page."
+msgstr "Failed to remove the page."
+
+#: src/app/(protected)/home/components/Greeting.tsx:14
+msgid "Good afternoon"
+msgstr "Good afternoon"
+
+#: src/app/(protected)/home/components/Greeting.tsx:15
+msgid "Good evening"
+msgstr "Good evening"
+
+#: src/app/(protected)/home/components/Greeting.tsx:13
+msgid "Good morning"
+msgstr "Good morning"
+
+#: src/app/(protected)/home/components/Greeting.tsx:17
+msgid "Good night"
+msgstr "Good night"
+
+#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:68
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:61
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:89
+msgid "Heading 1"
+msgstr "Heading 1"
+
+#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:71
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:67
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:95
+msgid "Heading 2"
+msgstr "Heading 2"
+
+#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:74
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:73
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:101
+msgid "Heading 3"
+msgstr "Heading 3"
+
+#: src/app/(protected)/components/AppSidebar.tsx:38
+msgid "Home"
+msgstr "Home"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:61
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:56
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:84
+msgid "Just start writing with plain text."
+msgstr "Just start writing with plain text."
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:73
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:68
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:96
+msgid "Medium section heading."
+msgstr "Medium section heading."
+
+#: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:24
+#: src/app/(protected)/pages/[id]/components/Header.tsx:68
+#: src/app/(protected)/home/components/PageCard.tsx:21
+#: src/app/(protected)/components/PopupSearch.tsx:49
+#: src/app/(protected)/components/PageList.tsx:124
+#: src/app/(protected)/components/PageList.tsx:156
+msgid "New Page"
+msgstr "New Page"
+
+#: src/app/(protected)/components/PageList.tsx:165
+msgid "No pages found."
+msgstr "No pages found."
+
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:153
+#: src/app/(protected)/components/PopupSearch.tsx:44
+msgid "No results found."
+msgstr "No results found."
+
+#: src/app/(protected)/pages/[id]/components/Header.tsx:88
+#: src/app/(protected)/components/PageList.tsx:80
+msgid "Page successfully removed."
+msgstr "Page successfully removed."
+
+#: src/app/(protected)/components/PopupSearch.tsx:46
+#: src/app/(protected)/components/PageList.tsx:104
+msgid "Pages"
+msgstr "Pages"
+
+#: src/app/(protected)/components/AppSidebar.tsx:31
+msgid "Search"
+msgstr "Search"
+
+#: src/app/(protected)/components/PopupSearch.tsx:35
+msgid "Search a page"
+msgstr "Search a page"
+
+#: src/app/(protected)/components/PopupSearch.tsx:40
+msgid "Search a page..."
+msgstr "Search a page..."
+
+#: src/app/(protected)/components/AuthMenu.tsx:81
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:79
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:74
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:102
+msgid "Small section heading."
+msgstr "Small section heading."
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:123
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:55
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:83
+msgid "Text"
+msgstr "Text"
+
+#: src/app/(protected)/pages/[id]/components/Content.tsx:522
+msgid "The page you are looking for does not exist."
+msgstr "The page you are looking for does not exist."
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:178
+msgid "Toggle bold"
+msgstr "Toggle bold"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:181
+msgid "Toggle italic"
+msgstr "Toggle italic"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:187
+msgid "Toggle strikethrough"
+msgstr "Toggle strikethrough"
+
+#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:184
+msgid "Toggle underline"
+msgstr "Toggle underline"
+
+#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:242
+msgid "Turn into"
+msgstr "Turn into"
+
+#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:80
+msgid "Visually divide blocks."
+msgstr "Visually divide blocks."
+
+#: src/app/(protected)/pages/[id]/components/TextBlock.tsx:159
+msgid "Write something, or type /"
+msgstr "Write something, or type /"

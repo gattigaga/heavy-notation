@@ -18,6 +18,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useParams } from "next/navigation";
 import { createId } from "@paralleldrive/cuid2";
 import { Delta } from "quill";
+import { Trans } from "@lingui/react/macro";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import TitleBlock from "./TitleBlock";
@@ -518,7 +519,7 @@ const Content = () => {
         <div className="flex w-full flex-col items-center justify-center">
           <h1 className="mb-2 text-7xl font-bold text-zinc-700">404</h1>
           <p className="text-center text-sm text-zinc-400">
-            The page you are looking for does not exist.
+            <Trans>The page you are looking for does not exist.</Trans>
           </p>
         </div>
       )}

@@ -20,6 +20,7 @@ import {
   useDndMonitor,
 } from "@dnd-kit/core";
 import { BlockType } from "@prisma/client";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 import {
   Tooltip,
@@ -70,6 +71,7 @@ const BlockControls = ({
   onAltClickPlus,
   onClickGripAction,
 }: Props) => {
+  const { t } = useLingui();
   const [draggedId, setDraggedId] = useState<UniqueIdentifier | null>(null);
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -78,26 +80,26 @@ const BlockControls = ({
   const blocks: BlockItem[] = [
     {
       type: "TEXT",
-      title: "Text",
-      description: "Just start writing with plain text.",
+      title: t`Text`,
+      description: t`Just start writing with plain text.`,
       icon: CaseSensitive,
     },
     {
       type: "HEADING1",
-      title: "Heading 1",
-      description: "Big section heading.",
+      title: t`Heading 1`,
+      description: t`Big section heading.`,
       icon: Heading1,
     },
     {
       type: "HEADING2",
-      title: "Heading 2",
-      description: "Medium section heading.",
+      title: t`Heading 2`,
+      description: t`Medium section heading.`,
       icon: Heading2,
     },
     {
       type: "HEADING3",
-      title: "Heading 3",
-      description: "Small section heading.",
+      title: t`Heading 3`,
+      description: t`Small section heading.`,
       icon: Heading3,
     },
   ];
@@ -167,10 +169,14 @@ const BlockControls = ({
           </TooltipTrigger>
           <TooltipContent side="bottom">
             <p className="text-center text-sm">
-              <strong>Click</strong> to add below
+              <Trans>
+                <strong>Click</strong> to add below
+              </Trans>
             </p>
             <p className="text-center text-sm">
-              <strong>Alt-click</strong> to add above
+              <Trans>
+                <strong>Alt-click</strong> to add above
+              </Trans>
             </p>
           </TooltipContent>
         </Tooltip>
@@ -210,7 +216,9 @@ const BlockControls = ({
                   }}
                 >
                   <Trash2 />
-                  <span>Delete</span>
+                  <span>
+                    <Trans>Delete</Trans>
+                  </span>
                   <DropdownMenuShortcut>Del</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem
@@ -222,13 +230,17 @@ const BlockControls = ({
                   }}
                 >
                   <Copy />
-                  <span>Duplicate</span>
+                  <span>
+                    <Trans>Duplicate</Trans>
+                  </span>
                   <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>
                     <RefreshCw />
-                    <span>Turn into</span>
+                    <span>
+                      <Trans>Turn into</Trans>
+                    </span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent
@@ -280,10 +292,14 @@ const BlockControls = ({
         </TooltipTrigger>
         <TooltipContent side="bottom">
           <p className="text-center text-sm">
-            <strong>Drag</strong> to move
+            <Trans>
+              <strong>Drag</strong> to move
+            </Trans>
           </p>
           <p className="text-center text-sm">
-            <strong>Click</strong> to open menu
+            <Trans>
+              <strong>Click</strong> to open menu
+            </Trans>
           </p>
         </TooltipContent>
       </Tooltip>

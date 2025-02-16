@@ -23,6 +23,7 @@ model User {
   password      String?
   passwordSalt  String?
   image         String?
+  lang          Language? @default(EN)
   accounts      Account[]
   sessions      Session[]
   pages         Page[]
@@ -103,4 +104,9 @@ enum BlockType {
   HEADING2
   HEADING3
   DIVIDER
+}
+
+enum Language {
+  EN
+  ID
 }

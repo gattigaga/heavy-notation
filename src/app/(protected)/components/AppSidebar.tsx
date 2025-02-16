@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLingui } from "@lingui/react/macro";
 
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -18,22 +20,24 @@ import {
 import AuthMenu from "./AuthMenu";
 import PageList from "./PageList";
 import PopupSearch from "./PopupSearch";
+import LanguageMenu from "./LanguageMenu";
 
 const AppSidebar = () => {
+  const { t } = useLingui();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
   const menuItems = [
     {
       id: "search",
-      title: "Search",
+      title: t`Search`,
       url: "#",
       icon: <Search className="text-zinc-700" />,
       isActive: false,
     },
     {
       id: "home",
-      title: "Home",
+      title: t`Home`,
       url: "/home",
       icon: <Home className="text-zinc-700" />,
       isActive: pathname === "/home",
@@ -97,6 +101,9 @@ const AppSidebar = () => {
 
         <PopupSearch isOpen={isSearchOpen} onOpenChange={setIsSearchOpen} />
       </SidebarContent>
+      <SidebarFooter>
+        <LanguageMenu />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );

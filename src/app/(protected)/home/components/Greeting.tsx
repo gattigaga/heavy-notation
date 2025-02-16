@@ -1,18 +1,20 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useLingui } from "@lingui/react/macro";
 
 const Greeting = () => {
+  const { t } = useLingui();
   const { data: session } = useSession();
 
   const hour = new Date().getHours();
 
   const greeting = (() => {
-    if (hour < 12) return "Good morning";
-    if (hour < 18) return "Good afternoon";
-    if (hour < 22) return "Good evening";
+    if (hour < 12) return t`Good morning`;
+    if (hour < 18) return t`Good afternoon`;
+    if (hour < 22) return t`Good evening`;
 
-    return "Good night";
+    return t`Good night`;
   })();
 
   return (

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { File } from "lucide-react";
+import { useLingui } from "@lingui/react/macro";
 
 import { formatToClientTimeAndAgo } from "../../helpers/datetime";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -14,8 +15,10 @@ type Props = {
 };
 
 const PageCard = ({ user, title, updatedAt, href }: Props) => {
+  const { t } = useLingui();
+
   const formattedTitle = (() => {
-    if (!title) return "New Page";
+    if (!title) return t`New Page`;
 
     return title.length > 26 ? `${title.slice(0, 26)}...` : title;
   })();

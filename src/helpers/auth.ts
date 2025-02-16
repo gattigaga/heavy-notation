@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { Adapter } from "next-auth/adapters";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { Language } from "@prisma/client";
 import md5 from "md5";
 
 import { prisma } from "./prisma";
@@ -52,10 +53,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Google,
   ],
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, trigger, session }) => {
       if (user) {
         token.id = user.id;
         token.username = user.username;
+        token.lang = user.lang;
+      }
+
+      if (trigger === "update" && session?.lang) {
+        token.lang = session.lang;
       }
 
       return token;
@@ -64,6 +70,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.id as string;
         session.user.username = token.username as string;
+        session.user.lang = token.lang as Language;
       }
 
       return session;

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { Trans } from "@lingui/react/macro";
 
 import {
   DropdownMenu,
@@ -77,7 +78,7 @@ const AuthMenu = () => {
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={signOut}>
               <LogOut />
-              Sign Out
+              <Trans>Sign Out</Trans>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
