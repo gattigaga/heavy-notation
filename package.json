@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && pnpm lingui:compile",
     "lingui:extract": "lingui extract",
     "lingui:compile": "lingui compile --typescript",
     "dev:db-show": "dotenvx run -f .env.development -- prisma studio",
