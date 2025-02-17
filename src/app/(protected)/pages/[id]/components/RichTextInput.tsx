@@ -54,6 +54,10 @@ const RichTextInput = ({
         ref.current.setContents(content);
       }
 
+      if (isPlaceholderHiddenWhenBlur) {
+        quill.root.setAttribute("data-placeholder", "");
+      }
+
       // Prevent create a new line break when press enter.
       quill.keyboard.bindings["Enter"] = [];
 
@@ -108,7 +112,7 @@ const RichTextInput = ({
         refContainer.current.innerHTML = "";
       }
     };
-  }, []);
+  }, [placeholder]);
 
   return <div ref={refContainer} className={className} />;
 };

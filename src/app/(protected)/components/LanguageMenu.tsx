@@ -37,9 +37,8 @@ const LanguageMenu = () => {
     },
   ];
 
-  const currentLanguage = languages.find(
-    (item) => item.code === (session?.user.lang || "EN"),
-  );
+  const currentLanguage =
+    languages.find((item) => item.code === session?.user.lang) || languages[0];
 
   const changeLanguage = async (code: Language) => {
     updateLanguageMutation.mutate(
@@ -60,8 +59,8 @@ const LanguageMenu = () => {
 
   // Activate the current language on mount.
   useEffect(() => {
-    i18n.activate(session?.user.lang.toLowerCase() || "en");
-  }, [session?.user.lang]);
+    i18n.activate(currentLanguage.code.toLowerCase());
+  }, [currentLanguage.code]);
 
   return (
     <SidebarMenu>
