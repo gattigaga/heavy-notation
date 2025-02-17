@@ -14,6 +14,7 @@ import LogoCoda from "./components/LogoCoda";
 import LogoTrello from "./components/LogoTrello";
 import LogoAsana from "./components/LogoAsana";
 import LogoConfluence from "./components/LogoConfluence";
+import GoogleTagScript from "./components/GoogleTagScript";
 import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
 import img1 from "../../public/images/home/annie-spratt-5cFwQ-WMcJU-unsplash.webp";
 import img2 from "../../public/images/home/beatriz-perez-moya-XN4T2PVUUgk-unsplash.webp";
@@ -53,6 +54,8 @@ const Home = async () => {
 
   return (
     <>
+      <GoogleTagScript />
+
       <header className="flex h-16 items-center justify-between px-4">
         <Link href="/">
           <Image
