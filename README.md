@@ -32,6 +32,7 @@ Key features include:
 - 🧩 Simple block-based content editing
 - 🔍 Basic search functionality
 - 🔐 User authentication
+- 🌐 Client-side localization
 - 📱 Responsive design
 
 The project serves as a practical exploration of frontend development concepts, showcasing fundamental note-taking application capabilities.
@@ -59,6 +60,7 @@ The project is built using the following tech stacks:
 - [Shadcn UI](https://ui.shadcn.com)
 - [Next Safe Action](https://next-safe-action.dev)
 - [Turso](https://turso.tech)
+- [Lingui.js](https://lingui.dev)
 - [Lucide Icons](https://lucide.dev)
 - [DND-Kit](https://dndkit.com)
 - [Zod](https://zod.dev)
