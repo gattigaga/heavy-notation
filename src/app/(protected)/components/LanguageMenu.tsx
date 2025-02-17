@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { ChevronsUpDown } from "lucide-react";
 import { Language } from "@prisma/client";
-import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { useLingui } from "@lingui/react/macro";
 
 import {
   DropdownMenu,
@@ -17,14 +18,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useStore } from "@/store/store";
 import useUpdateUserMutation from "../hooks/mutations/use-update-user-mutation";
 
 const LanguageMenu = () => {
-  const language = useStore((state) => state.language);
-  const setLanguage = useStore((state) => state.setLanguage);
   const { data: session, update: updateSession } = useSession();
   const { isMobile } = useSidebar();
+  const { i18n } = useLingui();
   const updateLanguageMutation = useUpdateUserMutation();
 
   const languages: { name: string; code: Language }[] = [
@@ -38,7 +37,8 @@ const LanguageMenu = () => {
     },
   ];
 
-  const currentLanguage = languages.find((item) => item.code === language);
+  const currentLanguage =
+    languages.find((item) => item.code === session?.user.lang) || languages[0];
 
   const changeLanguage = async (code: Language) => {
     updateLanguageMutation.mutate(
@@ -54,13 +54,13 @@ const LanguageMenu = () => {
       },
     );
 
-    setLanguage(code);
+    i18n.activate(code.toLowerCase());
   };
 
-  // Set the initial language.
+  // Activate the current language on mount.
   useEffect(() => {
-    setLanguage(session?.user.lang || "EN");
-  }, [session?.user.lang]);
+    i18n.activate(currentLanguage.code.toLowerCase());
+  }, [currentLanguage.code]);
 
   return (
     <SidebarMenu>
