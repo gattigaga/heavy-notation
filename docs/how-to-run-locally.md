@@ -23,6 +23,10 @@ AUTH_SECRET=run_command_to_get_it
 AUTH_GOOGLE_ID=get_it_by_yourself
 AUTH_GOOGLE_SECRET=get_it_by_yourself
 
+SENTRY_AUTH_TOKEN=
+SENTRY_ORG=
+SENTRY_DSN=
+
 DATABASE_URL=file:./dev.db
 ```
 
@@ -33,6 +37,9 @@ Descriptions:
 - AUTH_SECRET: The random token used to encrypt cookies and tokens by AuthJS. Please run `npx auth secret --raw` to get it and paste it in `.env.development` file.
 - AUTH_GOOGLE_ID: The ID of the Google OAuth client.
 - AUTH_GOOGLE_SECRET: The secret key of the Google OAuth client.
+- SENTRY_AUTH_TOKEN: The authentication token for Sentry. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
+- SENTRY_ORG: The organization you created on Sentry. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
+- SENTRY_DSN: The DSN (Data Source Name) of Sentry and it tells the SDK where to send events. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
 - DATABASE_URL: The URL of the local sqlite database and it will be used by Prisma to apply migrations.
 
 3. Run this command in the terminal to install the node_modules.
