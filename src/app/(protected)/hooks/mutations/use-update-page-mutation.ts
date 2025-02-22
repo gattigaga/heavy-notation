@@ -3,21 +3,27 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 export type ActionPayload = {
   id: string;
   title: string;
+  body: string;
 };
 
 type Response = {
   id: string;
   userId: string;
   title: string;
+  body: string;
   createdAt: string;
   updatedAt: string;
 };
 
-const action = async ({ id, title }: ActionPayload): Promise<Response> => {
+const action = async ({
+  id,
+  title,
+  body,
+}: ActionPayload): Promise<Response> => {
   try {
     const response = await fetch(`/api/pages/${id}`, {
       method: "PUT",
-      body: JSON.stringify({ id, title }),
+      body: JSON.stringify({ id, title, body }),
     });
 
     const json = await response.json();
