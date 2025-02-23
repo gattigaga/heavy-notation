@@ -124,7 +124,7 @@ const Content = () => {
 
               updatePageMutation.mutate(payload);
 
-              editor.insertBlock("Paragraph", {
+              const blockId = editor.insertBlock("Paragraph", {
                 at: 0,
                 blockData: {
                   value: [
@@ -140,6 +140,8 @@ const Content = () => {
                   ],
                 },
               });
+
+              editor.focusBlock(blockId);
             }}
             onChange={(title) => {
               if (pageQuery.data?.title === title) {
