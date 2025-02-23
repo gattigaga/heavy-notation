@@ -9,7 +9,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "postinstall": "prisma generate && pnpm lingui:compile",
-    "lingui:extract": "lingui extract",
+    "lingui:extract": "lingui extract --clean",
     "lingui:compile": "lingui compile --typescript",
     "dev:db-show": "dotenvx run -f .env.development -- prisma studio",
     "dev:db-migrate": "dotenvx run -f .env.development -- prisma migrate dev",
