@@ -87,14 +87,6 @@ body {
   }
 }
 
-.ql-editor {
-  @apply !p-0;
-}
-
-.ql-editor.ql-blank::before {
-  @apply !left-0 !not-italic !text-zinc-400;
-}
-
 /* Yoopta Editor */
 
 .yoopta-toolbar-item,
@@ -115,12 +107,36 @@ body {
   @apply !bg-blue-500;
 }
 
-.yoopta-paragraph {
+.yoopta-paragraph,
+.yoopta-blockquote,
+.yoopta-callout-theme-default,
+.yoopta-numbered-list,
+.yoopta-bulleted-list,
+.yoopta-todo-list {
   @apply !text-lg !text-zinc-700;
 }
 
-.yoopta-paragraph .yoopta-placeholder::after {
+.yoopta-callout-theme-info,
+.yoopta-callout-theme-success,
+.yoopta-callout-theme-warning,
+.yoopta-callout-theme-error {
+  @apply !text-lg;
+}
+
+.yoopta-paragraph .yoopta-placeholder::after,
+.yoopta-blockquote .yoopta-placeholder::after,
+.yoopta-callout-theme-default .yoopta-placeholder::after,
+.yoopta-numbered-list .yoopta-placeholder::after,
+.yoopta-bulleted-list .yoopta-placeholder::after,
+.yoopta-todo-list .yoopta-placeholder::after {
   @apply !text-lg !tracking-normal !text-zinc-400;
+}
+
+.yoopta-callout-theme-info .yoopta-placeholder::after,
+.yoopta-callout-theme-success .yoopta-placeholder::after,
+.yoopta-callout-theme-warning .yoopta-placeholder::after,
+.yoopta-callout-theme-error .yoopta-placeholder::after {
+  @apply !text-lg !tracking-normal;
 }
 
 .yoopta-heading-one {

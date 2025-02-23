@@ -17,10 +17,14 @@ import {
   Strike,
   Highlight,
 } from "@yoopta/marks";
+import Blockquote from "@yoopta/blockquote";
+import Callout from "@yoopta/callout";
+import Code from "@yoopta/code";
 import Divider from "@yoopta/divider";
 import Link from "@yoopta/link";
 import Paragraph from "@yoopta/paragraph";
 import { HeadingOne, HeadingTwo, HeadingThree } from "@yoopta/headings";
+import { NumberedList, BulletedList, TodoList } from "@yoopta/lists";
 import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import ActionMenu, { DefaultActionMenuRender } from "@yoopta/action-menu-list";
 import Toolbar, { DefaultToolbarRender } from "@yoopta/toolbar";
@@ -39,6 +43,12 @@ const plugins = [
   HeadingThree,
   Divider,
   Link,
+  NumberedList,
+  BulletedList,
+  TodoList,
+  Blockquote,
+  Callout,
+  Code,
 ];
 
 const marks = [Bold, Italic, CodeMark, Underline, Strike, Highlight];
@@ -70,9 +80,15 @@ const Content = () => {
   const editor = useMemo(() => createYooptaEditor(), []);
 
   const updateContent = useDebouncedCallback((value: YooptaContentValue) => {
+    const body = JSON.stringify(value);
+
+    if (pageQuery.data?.body === body) {
+      return;
+    }
+
     updatePageMutation.mutate({
       id: params.id,
-      body: JSON.stringify(value),
+      body,
     });
   }, 1000);
 
