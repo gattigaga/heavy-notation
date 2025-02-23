@@ -39,6 +39,7 @@ type Params = {
 };
 
 const Header = () => {
+  const [formattedDate, setFormattedDate] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLingui();
   const params = useParams<Params>();
@@ -55,10 +56,6 @@ const Header = () => {
       return mutation.state.variables as UpdatePageActionPayload;
     },
   });
-
-  const formattedDate = pageQuery.data?.updatedAt
-    ? formatToClientTimeAndAgo(pageQuery.data.updatedAt)
-    : "";
 
   const title = (() => {
     const variable = updatePageMutationVariables.find((variable) => {
@@ -96,9 +93,25 @@ const Header = () => {
     ],
   ];
 
+  // Set page title in the head.
   useEffect(() => {
     document.title = `${title} | Heavy Notation`;
   }, [title]);
+
+  // Update formatted date every 1 second.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const formattedDate = pageQuery.data?.updatedAt
+        ? formatToClientTimeAndAgo(pageQuery.data.updatedAt)
+        : "";
+
+      setFormattedDate(formattedDate);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [pageQuery.data?.updatedAt]);
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 px-4">
