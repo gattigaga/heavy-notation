@@ -77,33 +77,12 @@ model Page {
   id     String  @id @default(cuid())
   userId String
   title  String
-  blocks Block[]
+  body   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id])
-}
-
-model Block {
-  id      String    @id @default(cuid())
-  pageId  String
-  index   Int
-  type    BlockType
-  content String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  page Page @relation(fields: [pageId], references: [id])
-}
-
-enum BlockType {
-  TEXT
-  HEADING1
-  HEADING2
-  HEADING3
-  DIVIDER
 }
 
 enum Language {

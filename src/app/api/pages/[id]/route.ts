@@ -57,6 +57,7 @@ export const PUT = async (
     },
     data: {
       title: body.title,
+      body: body.body,
     },
   });
 
@@ -85,12 +86,6 @@ export const DELETE = async (
       },
     );
   }
-
-  await prisma.block.deleteMany({
-    where: {
-      pageId: page.id,
-    },
-  });
 
   await prisma.page.delete({
     where: {

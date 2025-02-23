@@ -58,6 +58,7 @@ const PageList = () => {
       {
         id,
         title: "",
+        body: "",
       },
       {
         onError: () => {

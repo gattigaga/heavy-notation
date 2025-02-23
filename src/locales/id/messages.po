@@ -41,66 +41,31 @@ msgstr "{weeks} minggu yang lalu"
 msgid "{years} years ago"
 msgstr "{years} tahun yang lalu"
 
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:177
-msgid "<0>Alt-click</0> to add above"
-msgstr "<0>Alt-klik</0> untuk menambahkan di atas"
-
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:172
-msgid "<0>Click</0> to add below"
-msgstr "<0>Klik</0> untuk menambahkan di bawah"
-
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:300
-msgid "<0>Click</0> to open menu"
-msgstr "<0>Klik</0> untuk membuka menu"
-
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:295
-msgid "<0>Drag</0> to move"
-msgstr "<0>Seret</0> untuk memindahkan"
-
-#: src/app/(protected)/home/components/PageList.tsx:103
+#: src/app/(protected)/home/components/PageList.tsx:104
 msgid "Add new page"
 msgstr "Tambah halaman baru"
 
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:51
-msgid "Basic Blocks"
-msgstr "Blok Dasar"
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:67
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:62
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:90
-msgid "Big section heading."
-msgstr "Judul besar."
-
-#: src/app/(protected)/home/components/PageList.tsx:111
-#: src/app/(protected)/components/PageList.tsx:176
+#: src/app/(protected)/home/components/PageList.tsx:112
+#: src/app/(protected)/components/PageList.tsx:177
 msgid "Cannot fetch pages data."
 msgstr "Tidak dapat mengambil data halaman."
 
-#: src/app/(protected)/pages/[id]/components/Header.tsx:76
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:220
-#: src/app/(protected)/components/PageList.tsx:141
+#: src/app/(protected)/pages/[id]/components/Header.tsx:73
+#: src/app/(protected)/components/PageList.tsx:142
 msgid "Delete"
 msgstr "Hapus"
 
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:79
-msgid "Divider"
-msgstr "Pembatas"
-
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:234
-msgid "Duplicate"
-msgstr "Duplikat"
-
-#: src/app/(protected)/pages/[id]/components/Header.tsx:117
+#: src/app/(protected)/pages/[id]/components/Header.tsx:130
 msgid "Edited {formattedDate}"
 msgstr "Diubah {formattedDate}"
 
-#: src/app/(protected)/home/components/PageList.tsx:64
-#: src/app/(protected)/components/PageList.tsx:59
+#: src/app/(protected)/home/components/PageList.tsx:65
+#: src/app/(protected)/components/PageList.tsx:60
 msgid "Failed to add a new page."
 msgstr "Gagal menambahkan halaman baru."
 
-#: src/app/(protected)/pages/[id]/components/Header.tsx:85
-#: src/app/(protected)/components/PageList.tsx:77
+#: src/app/(protected)/pages/[id]/components/Header.tsx:82
+#: src/app/(protected)/components/PageList.tsx:78
 msgid "Failed to remove the page."
 msgstr "Gagal menghapus halaman."
 
@@ -120,69 +85,38 @@ msgstr "Selamat pagi"
 msgid "Good night"
 msgstr "Selamat malam"
 
-#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:68
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:61
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:89
-msgid "Heading 1"
-msgstr "Judul 1"
-
-#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:71
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:67
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:95
-msgid "Heading 2"
-msgstr "Judul 2"
-
-#: src/app/(protected)/pages/[id]/components/HeadingBlock.tsx:74
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:73
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:101
-msgid "Heading 3"
-msgstr "Judul 3"
-
-#: src/app/(protected)/components/AppSidebar.tsx:38
+#: src/app/(protected)/components/AppSidebar.tsx:40
 msgid "Home"
 msgstr "Beranda"
 
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:61
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:56
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:84
-msgid "Just start writing with plain text."
-msgstr "Mulai menulis dengan teks biasa."
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:73
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:68
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:96
-msgid "Medium section heading."
-msgstr "Judul sedang."
-
-#: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:24
-#: src/app/(protected)/pages/[id]/components/Header.tsx:68
+#: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:22
+#: src/app/(protected)/pages/[id]/components/Header.tsx:65
 #: src/app/(protected)/home/components/PageCard.tsx:21
 #: src/app/(protected)/components/PopupSearch.tsx:49
-#: src/app/(protected)/components/PageList.tsx:124
-#: src/app/(protected)/components/PageList.tsx:156
+#: src/app/(protected)/components/PageList.tsx:125
+#: src/app/(protected)/components/PageList.tsx:157
 msgid "New Page"
 msgstr "Halaman Baru"
 
-#: src/app/(protected)/components/PageList.tsx:165
+#: src/app/(protected)/components/PageList.tsx:166
 msgid "No pages found."
 msgstr "Tidak ada halaman yang ditemukan."
 
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:153
 #: src/app/(protected)/components/PopupSearch.tsx:44
 msgid "No results found."
 msgstr "Tidak ada hasil yang ditemukan."
 
-#: src/app/(protected)/pages/[id]/components/Header.tsx:88
-#: src/app/(protected)/components/PageList.tsx:80
+#: src/app/(protected)/pages/[id]/components/Header.tsx:85
+#: src/app/(protected)/components/PageList.tsx:81
 msgid "Page successfully removed."
 msgstr "Halaman berhasil dihapus."
 
 #: src/app/(protected)/components/PopupSearch.tsx:46
-#: src/app/(protected)/components/PageList.tsx:104
+#: src/app/(protected)/components/PageList.tsx:105
 msgid "Pages"
 msgstr "Halaman"
 
-#: src/app/(protected)/components/AppSidebar.tsx:31
+#: src/app/(protected)/components/AppSidebar.tsx:33
 msgid "Search"
 msgstr "Cari"
 
@@ -198,46 +132,6 @@ msgstr "Cari halaman..."
 msgid "Sign Out"
 msgstr "Keluar"
 
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:79
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:74
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:102
-msgid "Small section heading."
-msgstr "Judul kecil."
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:123
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:55
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:83
-msgid "Text"
-msgstr "Teks"
-
-#: src/app/(protected)/pages/[id]/components/Content.tsx:522
+#: src/app/(protected)/pages/[id]/components/Content.tsx:170
 msgid "The page you are looking for does not exist."
 msgstr "Halaman yang Anda cari tidak ada."
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:178
-msgid "Toggle bold"
-msgstr "Tebalkan"
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:181
-msgid "Toggle italic"
-msgstr "Miringkan"
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:187
-msgid "Toggle strikethrough"
-msgstr "Coret"
-
-#: src/app/(protected)/pages/[id]/components/Toolbar.tsx:184
-msgid "Toggle underline"
-msgstr "Garis bawahi"
-
-#: src/app/(protected)/pages/[id]/components/BlockControls.tsx:242
-msgid "Turn into"
-msgstr "Ubah menjadi"
-
-#: src/app/(protected)/pages/[id]/components/BlocksDropdown.tsx:80
-msgid "Visually divide blocks."
-msgstr "Batasi blok secara visual."
-
-#: src/app/(protected)/pages/[id]/components/TextBlock.tsx:159
-msgid "Write something, or type /"
-msgstr "Tulis sesuatu, atau ketik /"

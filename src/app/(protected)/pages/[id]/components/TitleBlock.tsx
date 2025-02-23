@@ -1,10 +1,8 @@
 "use client";
 
-import Quill, { Delta } from "quill";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useLingui } from "@lingui/react/macro";
-
-import RichTextInput from "./RichTextInput";
+import TextareaAutosize from "react-textarea-autosize";
 
 type Props = {
   defaultValue: string;
@@ -13,26 +11,46 @@ type Props = {
 };
 
 const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
+  const [value, setValue] = useState(defaultValue);
   const { t } = useLingui();
-  const refInput = useRef<Quill>(null);
+  const refInput = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <RichTextInput
+    <TextareaAutosize
       ref={refInput}
-      className="!placeholder:text-zinc-400 !mb-4 !h-fit !w-full !text-4xl !font-bold !leading-tight !text-zinc-700 md:!text-5xl md:!leading-tight"
-      defaultValue={JSON.stringify(new Delta().insert(defaultValue))}
+      className="mb-4 h-fit w-full resize-none text-4xl font-bold leading-tight text-zinc-700 outline-none placeholder:text-zinc-400 md:text-5xl md:leading-tight"
       placeholder={t`New Page`}
-      onBlur={() => {
-        const content = refInput.current?.getContents().ops[0]?.insert;
-
-        if (typeof content === "string") {
-          onChange?.(content);
-        }
+      value={value}
+      onChange={(event) => {
+        setValue(event.target.value);
       }}
-      onPressEnter={(values) => {
-        const title = JSON.parse(values[0]).ops[0].insert;
+      onBlur={() => {
+        const content = refInput.current?.value;
 
-        onPressEnter?.([title, values[1]]);
+        if (content === undefined) {
+          return;
+        }
+
+        onChange?.(content);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter") {
+          // Prevent the default action of adding a new line.
+          event.preventDefault();
+
+          const content = value;
+          const cursorPosition = refInput.current?.selectionStart;
+
+          if (content === undefined || cursorPosition === undefined) {
+            return;
+          }
+
+          const a = content.slice(0, cursorPosition);
+          const b = content.slice(cursorPosition);
+
+          setValue(a);
+          onPressEnter?.([a, b]);
+        }
       }}
     />
   );

@@ -22,15 +22,7 @@ export const POST = async (request: Request) => {
       id: body.id,
       userId: session?.user.id,
       title: body.title,
-    },
-  });
-
-  await prisma.block.create({
-    data: {
-      pageId: page.id,
-      index: 0,
-      type: "TEXT",
-      content: "",
+      body: body.body,
     },
   });
 
