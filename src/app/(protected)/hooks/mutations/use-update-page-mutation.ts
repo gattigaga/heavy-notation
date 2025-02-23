@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export type ActionPayload = {
   id: string;
-  title: string;
-  body: string;
+  title?: string;
+  body?: string;
 };
 
 type Response = {
