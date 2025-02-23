@@ -77,3 +77,4 @@ The following npm scripts are available:
 - `dev:db-show`: Open the database viewer (Prisma Studio) in the browser.
 - `dev:db-migrate`: Apply the migrations to the local sqlite database.
 - `dev:db-reset`: Reset the local sqlite database.
+- `production:db-shell`: Connect to your database on Turso.

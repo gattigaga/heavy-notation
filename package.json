@@ -13,7 +13,8 @@
     "lingui:compile": "lingui compile --typescript",
     "dev:db-show": "dotenvx run -f .env.development -- prisma studio",
     "dev:db-migrate": "dotenvx run -f .env.development -- prisma migrate dev",
-    "dev:db-reset": "dotenvx run -f .env.development -- prisma migrate reset"
+    "dev:db-reset": "dotenvx run -f .env.development -- prisma migrate reset",
+    "production:db-shell": "turso db shell heavy-notation"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
