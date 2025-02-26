@@ -142,7 +142,7 @@ const Home = async () => {
           <p className="mb-2 text-center text-base text-zinc-700">
             Trusted by teams at
           </p>
-          <div className="mb-8 flex flex-wrap justify-center gap-4 lg:gap-8">
+          <div className="mb-4 flex flex-wrap justify-center gap-4 lg:gap-8">
             <div className="flex items-center gap-x-2">
               <LogoDuckDuckGo
                 className="shrink-0"
@@ -182,6 +182,10 @@ const Home = async () => {
               <p className="text-base font-semibold text-zinc-700">Discord</p>
             </div>
           </div>
+          <p className="mx-auto mb-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2">
+            Note that these company logos are used only for demonstration
+            purposes and do not imply any real-world endorsement or affiliation.
+          </p>
 
           <video
             className="aspect-[1678/912] w-full rounded-lg border shadow-lg"
