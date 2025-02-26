@@ -19,9 +19,9 @@ import LogoConfluence from "./components/LogoConfluence";
 import GoogleTagScript from "./components/GoogleTagScript";
 import ReviewCard from "./components/ReviewCard";
 import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
-import img2 from "../../public/images/home/beatriz-perez-moya-XN4T2PVUUgk-unsplash.webp";
-import img3 from "../../public/images/home/arisa-chattasa-0LaBRkmH4fM-unsplash.webp";
-import img4 from "../../public/images/home/wesley-tingey-snNHKZ-mGfE-unsplash.webp";
+import img2 from "../../public/images/home/feature-editor.webp";
+import img3 from "../../public/images/home/feature-home.webp";
+import img4 from "../../public/images/home/feature-search.webp";
 
 export const metadata: Metadata = {
   title: "Your workspace solution for projects | Heavy Notation",
@@ -205,9 +205,9 @@ const Home = async () => {
             and intuitive interface.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg"
+            className="mb-8 aspect-video w-full rounded-lg object-cover"
             src={img2}
-            alt="Folder stack by Beatriz Perez Moya"
+            alt="Editor feature"
             loading="lazy"
           />
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -230,13 +230,13 @@ const Home = async () => {
             Your workflow. Your way.
           </h2>
           <p className="mb-8 text-center text-xl text-zinc-400">
-            All your projects, goals, calendars, roadmaps, and more—in one
+            All your projects, goals, roadmaps, and more—in one
             tool—personalized to how you work.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg"
+            className="mb-8 aspect-video w-full rounded-lg object-cover"
             src={img3}
-            alt="Document stack by Arisa Chattasa"
+            alt="Home feature"
             loading="lazy"
           />
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -263,9 +263,9 @@ const Home = async () => {
             content stored in Heavy Notation.
           </p>
           <Image
-            className="mb-8 aspect-video w-full rounded-lg"
+            className="mb-8 aspect-video w-full rounded-lg object-cover"
             src={img4}
-            alt="Bunch of documents by Wesley Tingey"
+            alt="Search feature"
             loading="lazy"
           />
           <div className="flex flex-wrap items-center justify-center gap-4">
