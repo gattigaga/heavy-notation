@@ -75,6 +75,7 @@
     "@dotenvx/dotenvx": "^1.35.0",
     "@eslint/eslintrc": "^3",
     "@lingui/cli": "^5.2.0",
+    "@lingui/loader": "^5.2.0",
     "@lingui/swc-plugin": "^5.1.0",
     "@types/luxon": "^3.4.2",
     "@types/md5": "^2.3.5",

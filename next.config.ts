@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
         },
       ],
     ],
+    turbo: {
+      rules: {
+        "*.po": {
+          loaders: ["@lingui/loader"],
+          as: "*.ts",
+        },
+      },
+    },
   },
 };
 
