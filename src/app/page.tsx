@@ -19,9 +19,12 @@ import LogoConfluence from "./components/LogoConfluence";
 import GoogleTagScript from "./components/GoogleTagScript";
 import ReviewCard from "./components/ReviewCard";
 import imgLogoHeavyNotation from "../../public/images/logo-text-heavy-notation.png";
-import img2 from "../../public/images/home/feature-editor.webp";
-import img3 from "../../public/images/home/feature-home.webp";
-import img4 from "../../public/images/home/feature-search.webp";
+import imgFeatureEditorMobile from "../../public/images/home/feature-editor-mobile.webp";
+import imgFeatureHomeMobile from "../../public/images/home/feature-home-mobile.webp";
+import imgFeatureSearchMobile from "../../public/images/home/feature-search-mobile.webp";
+import imgFeatureEditorDesktop from "../../public/images/home/feature-editor-desktop.webp";
+import imgFeatureHomeDesktop from "../../public/images/home/feature-home-desktop.webp";
+import imgFeatureSearchDesktop from "../../public/images/home/feature-search-desktop.webp";
 
 export const metadata: Metadata = {
   title: "Your workspace solution for projects | Heavy Notation",
@@ -208,12 +211,18 @@ const Home = async () => {
             Capture your ideas and create perfect documentation with our simple
             and intuitive interface.
           </p>
-          <Image
-            className="mb-8 aspect-video w-full rounded-lg object-cover"
-            src={img2}
-            alt="Editor feature"
-            loading="lazy"
-          />
+          <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
+            <source
+              srcSet={imgFeatureEditorDesktop.src}
+              media="(min-width: 768px)"
+            />
+            <Image
+              className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
+              src={imgFeatureEditorMobile}
+              alt="Editor feature"
+              loading="lazy"
+            />
+          </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
@@ -237,12 +246,18 @@ const Home = async () => {
             All your projects, goals, roadmaps, and more—in one
             tool—personalized to how you work.
           </p>
-          <Image
-            className="mb-8 aspect-video w-full rounded-lg object-cover"
-            src={img3}
-            alt="Home feature"
-            loading="lazy"
-          />
+          <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
+            <source
+              srcSet={imgFeatureHomeDesktop.src}
+              media="(min-width: 768px)"
+            />
+            <Image
+              className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
+              src={imgFeatureHomeMobile}
+              alt="Editor feature"
+              loading="lazy"
+            />
+          </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
@@ -266,12 +281,18 @@ const Home = async () => {
             Find what you need quickly with our powerful search. Access your
             content stored in Heavy Notation.
           </p>
-          <Image
-            className="mb-8 aspect-video w-full rounded-lg object-cover"
-            src={img4}
-            alt="Search feature"
-            loading="lazy"
-          />
+          <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
+            <source
+              srcSet={imgFeatureSearchDesktop.src}
+              media="(min-width: 768px)"
+            />
+            <Image
+              className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
+              src={imgFeatureSearchMobile}
+              alt="Editor feature"
+              loading="lazy"
+            />
+          </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
               Replaces
