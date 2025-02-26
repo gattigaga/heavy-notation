@@ -14,6 +14,8 @@
   </a>
 </p>
 
+> Note that the company logos in the "Trusted by teams at" section on the home page are used only for demonstration purposes and do not imply any real-world endorsement or affiliation.
+
 ## 📚 Table of Contents
 
 - [About](https://github.com/gattigaga/heavy-notation/tree/main?tab=readme-ov-file#-about)
