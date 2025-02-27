@@ -45,15 +45,31 @@ msgstr "{years} tahun yang lalu"
 msgid "Add new page"
 msgstr "Tambah halaman baru"
 
+#: src/app/components/HomeTemplate.tsx:224
+msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
+msgstr "Semua proyek, tujuan, roadmap, dan lain-lain—dalam satu alat—khusus untuk bagaimana Anda bekerja."
+
+#: src/app/components/HomeTemplate.tsx:184
+msgid "Build perfect docs."
+msgstr "Buat dokumen yang sempurna."
+
 #: src/app/(protected)/home/components/PageList.tsx:112
 #: src/app/(protected)/components/PageList.tsx:177
 msgid "Cannot fetch pages data."
 msgstr "Tidak dapat mengambil data halaman."
 
+#: src/app/components/HomeTemplate.tsx:187
+msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
+msgstr "Kami menyediakan antarmuka yang mudah digunakan dan sederhana untuk membantu Anda menghasilkan dokumen yang sempurna."
+
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
 #: src/app/(protected)/components/PageList.tsx:142
 msgid "Delete"
 msgstr "Hapus"
+
+#: src/app/components/HomeTemplate.tsx:295
+msgid "Don't just take our word for it."
+msgstr "Lihat apa yang mereka katakan tentang kami."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:130
 msgid "Edited {formattedDate}"
@@ -68,6 +84,18 @@ msgstr "Gagal menambahkan halaman baru."
 #: src/app/(protected)/components/PageList.tsx:78
 msgid "Failed to remove the page."
 msgstr "Gagal menghapus halaman."
+
+#: src/app/components/HomeTemplate.tsx:258
+msgid "Find everything. Instantly."
+msgstr "Temukan semua. Secara instan."
+
+#: src/app/components/HomeTemplate.tsx:261
+msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
+msgstr "Temukan apa yang Anda butuhkan dengan cepat dengan fitur pencarian. Akses konten Anda yang disimpan dalam Heavy Notation."
+
+#: src/app/components/HomeTemplate.tsx:321
+msgid "Get Started."
+msgstr "Mulai"
 
 #: src/app/(protected)/home/components/Greeting.tsx:14
 msgid "Good afternoon"
@@ -84,6 +112,10 @@ msgstr "Selamat pagi"
 #: src/app/(protected)/home/components/Greeting.tsx:17
 msgid "Good night"
 msgstr "Selamat malam"
+
+#: src/app/components/HomeTemplate.tsx:298
+msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
+msgstr "Kita bisa mendengar dari orang-orang yang telah menggunakan Heavy Notation untuk mengolah tulisan dan pikiran mereka lebih baik."
 
 #: src/app/(protected)/components/AppSidebar.tsx:40
 msgid "Home"
@@ -106,6 +138,14 @@ msgstr "Tidak ada halaman yang ditemukan."
 msgid "No results found."
 msgstr "Tidak ada hasil yang ditemukan."
 
+#: src/app/components/HomeTemplate.tsx:162
+msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
+msgstr "Perhatian bahwa logo perusahaan ini hanya digunakan untuk tujuan demonstrasi dan tidak ada afiliasi dari pihak yang sebenarnya."
+
+#: src/app/components/HomeTemplate.tsx:101
+msgid "Organize your thoughts, notes and ideas in one place"
+msgstr "Atur pikiran, catatan, dan ide Anda dalam satu tempat"
+
 #: src/app/(protected)/pages/[id]/components/Header.tsx:85
 #: src/app/(protected)/components/PageList.tsx:81
 msgid "Page successfully removed."
@@ -115,6 +155,12 @@ msgstr "Halaman berhasil dihapus."
 #: src/app/(protected)/components/PageList.tsx:105
 msgid "Pages"
 msgstr "Halaman"
+
+#: src/app/components/HomeTemplate.tsx:206
+#: src/app/components/HomeTemplate.tsx:243
+#: src/app/components/HomeTemplate.tsx:280
+msgid "Replaces"
+msgstr "Menggantikan"
 
 #: src/app/(protected)/components/AppSidebar.tsx:33
 msgid "Search"
@@ -128,10 +174,39 @@ msgstr "Cari halaman"
 msgid "Search a page..."
 msgstr "Cari halaman..."
 
+#: src/app/components/HomeTemplate.tsx:90
+msgid "Sign In"
+msgstr "Masuk"
+
 #: src/app/(protected)/components/AuthMenu.tsx:81
 msgid "Sign Out"
 msgstr "Keluar"
 
-#: src/app/(protected)/pages/[id]/components/Content.tsx:170
+#: src/app/components/HomeTemplate.tsx:324
+msgid "Start organizing your work better. Access your content easily with our powerful search features."
+msgstr "Mulai mengatur pekerjaan Anda lebih baik. Akses konten Anda dengan mudah dengan fitur pencarian yang kuat."
+
+#: src/app/components/HomeTemplate.tsx:114
+#: src/app/components/HomeTemplate.tsx:334
+msgid "Start Writing Now"
+msgstr "Mulai Menulis Sekarang"
+
+#: src/app/(protected)/pages/[id]/components/Content.tsx:172
 msgid "The page you are looking for does not exist."
 msgstr "Halaman yang Anda cari tidak ada."
+
+#: src/app/components/HomeTemplate.tsx:119
+msgid "Trusted by teams at"
+msgstr "Dipercaya oleh tim di"
+
+#: src/app/components/HomeTemplate.tsx:104
+msgid "Write documents, create knowledge bases, and organize your thoughts."
+msgstr "Tulis dokumen, buat basis pengetahuan, dan atur pikiran Anda."
+
+#: src/app/components/HomeTemplate.tsx:178
+msgid "Your browser does not support the video tag."
+msgstr "Browser Anda tidak mendukung video tag."
+
+#: src/app/components/HomeTemplate.tsx:221
+msgid "Your workflow. Your way."
+msgstr "Alur kerja Anda. Cara Anda."

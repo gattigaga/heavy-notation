@@ -45,15 +45,31 @@ msgstr "{years} years ago"
 msgid "Add new page"
 msgstr "Add new page"
 
+#: src/app/components/HomeTemplate.tsx:224
+msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
+msgstr "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
+
+#: src/app/components/HomeTemplate.tsx:184
+msgid "Build perfect docs."
+msgstr "Build perfect docs."
+
 #: src/app/(protected)/home/components/PageList.tsx:112
 #: src/app/(protected)/components/PageList.tsx:177
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
 
+#: src/app/components/HomeTemplate.tsx:187
+msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
+msgstr "Capture your ideas and create perfect documentation with our simple and intuitive interface."
+
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
 #: src/app/(protected)/components/PageList.tsx:142
 msgid "Delete"
 msgstr "Delete"
+
+#: src/app/components/HomeTemplate.tsx:295
+msgid "Don't just take our word for it."
+msgstr "Don't just take our word for it."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:130
 msgid "Edited {formattedDate}"
@@ -68,6 +84,18 @@ msgstr "Failed to add a new page."
 #: src/app/(protected)/components/PageList.tsx:78
 msgid "Failed to remove the page."
 msgstr "Failed to remove the page."
+
+#: src/app/components/HomeTemplate.tsx:258
+msgid "Find everything. Instantly."
+msgstr "Find everything. Instantly."
+
+#: src/app/components/HomeTemplate.tsx:261
+msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
+msgstr "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
+
+#: src/app/components/HomeTemplate.tsx:321
+msgid "Get Started."
+msgstr "Get Started."
 
 #: src/app/(protected)/home/components/Greeting.tsx:14
 msgid "Good afternoon"
@@ -84,6 +112,10 @@ msgstr "Good morning"
 #: src/app/(protected)/home/components/Greeting.tsx:17
 msgid "Good night"
 msgstr "Good night"
+
+#: src/app/components/HomeTemplate.tsx:298
+msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
+msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
 #: src/app/(protected)/components/AppSidebar.tsx:40
 msgid "Home"
@@ -106,6 +138,14 @@ msgstr "No pages found."
 msgid "No results found."
 msgstr "No results found."
 
+#: src/app/components/HomeTemplate.tsx:162
+msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
+msgstr "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
+
+#: src/app/components/HomeTemplate.tsx:101
+msgid "Organize your thoughts, notes and ideas in one place"
+msgstr "Organize your thoughts, notes and ideas in one place"
+
 #: src/app/(protected)/pages/[id]/components/Header.tsx:85
 #: src/app/(protected)/components/PageList.tsx:81
 msgid "Page successfully removed."
@@ -115,6 +155,12 @@ msgstr "Page successfully removed."
 #: src/app/(protected)/components/PageList.tsx:105
 msgid "Pages"
 msgstr "Pages"
+
+#: src/app/components/HomeTemplate.tsx:206
+#: src/app/components/HomeTemplate.tsx:243
+#: src/app/components/HomeTemplate.tsx:280
+msgid "Replaces"
+msgstr "Replaces"
 
 #: src/app/(protected)/components/AppSidebar.tsx:33
 msgid "Search"
@@ -128,10 +174,39 @@ msgstr "Search a page"
 msgid "Search a page..."
 msgstr "Search a page..."
 
+#: src/app/components/HomeTemplate.tsx:90
+msgid "Sign In"
+msgstr "Sign In"
+
 #: src/app/(protected)/components/AuthMenu.tsx:81
 msgid "Sign Out"
 msgstr "Sign Out"
 
-#: src/app/(protected)/pages/[id]/components/Content.tsx:170
+#: src/app/components/HomeTemplate.tsx:324
+msgid "Start organizing your work better. Access your content easily with our powerful search features."
+msgstr "Start organizing your work better. Access your content easily with our powerful search features."
+
+#: src/app/components/HomeTemplate.tsx:114
+#: src/app/components/HomeTemplate.tsx:334
+msgid "Start Writing Now"
+msgstr "Start Writing Now"
+
+#: src/app/(protected)/pages/[id]/components/Content.tsx:172
 msgid "The page you are looking for does not exist."
 msgstr "The page you are looking for does not exist."
+
+#: src/app/components/HomeTemplate.tsx:119
+msgid "Trusted by teams at"
+msgstr "Trusted by teams at"
+
+#: src/app/components/HomeTemplate.tsx:104
+msgid "Write documents, create knowledge bases, and organize your thoughts."
+msgstr "Write documents, create knowledge bases, and organize your thoughts."
+
+#: src/app/components/HomeTemplate.tsx:178
+msgid "Your browser does not support the video tag."
+msgstr "Your browser does not support the video tag."
+
+#: src/app/components/HomeTemplate.tsx:221
+msgid "Your workflow. Your way."
+msgstr "Your workflow. Your way."
