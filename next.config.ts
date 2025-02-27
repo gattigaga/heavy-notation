@@ -2,7 +2,6 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     swcPlugins: [
       [
@@ -20,6 +19,14 @@ const nextConfig: NextConfig = {
         },
       },
     },
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.po/,
+      loader: "@lingui/loader",
+    });
+
+    return config;
   },
 };
 
