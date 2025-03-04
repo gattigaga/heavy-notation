@@ -1,36 +1,33 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
+import { useEffect, useState } from "react";
 import { I18nProvider } from "@lingui/react";
-import { i18n } from "@lingui/core";
-
-import { messages as enMessages } from "@/locales/en/messages";
-import { messages as idMessages } from "@/locales/id/messages";
-
-i18n.load({
-  en: enMessages,
-  id: idMessages,
-});
-
-i18n.activate("en");
-
-const queryClient = new QueryClient();
+import { Messages, setupI18n } from "@lingui/core";
+import Cookies from "js-cookie";
 
 type Props = {
   children: React.ReactNode;
+  locale: string;
+  messages: Messages;
 };
 
-const Provider = ({ children }: Props) => {
-  return (
-    <I18nProvider i18n={i18n}>
-      <SessionProvider>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      </SessionProvider>
-    </I18nProvider>
-  );
+const Provider = ({ children, locale, messages }: Props) => {
+  const [i18n] = useState(() => {
+    return setupI18n({
+      locale,
+      messages: { [locale]: messages },
+    });
+  });
+
+  // Set locale to cookie to allow it accessible on the server-side.
+  // NextJS built-in cookies() helper from "next/headers" won't allow me
+  // to set cookie from the client/server component. So I have to use
+  // the "js-cookie" package.
+  useEffect(() => {
+    Cookies.set("locale", locale);
+  }, [locale]);
+
+  return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 };
 
 export default Provider;

@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { setI18n } from "@lingui/react/server";
 
 import { auth } from "@/helpers/auth";
 import SignInTemplate from "@/app/components/SignInTemplate";
+import { getI18nInstance } from "@/app/helpers/i18n";
 
 export const metadata: Metadata = {
   title: "Sign In | Heavy Notation",
@@ -24,7 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
-const SignInPage = async () => {
+type Props = {
+  params: Promise<{ lang: string }>;
+};
+
+const SignInPage = async ({ params }: Props) => {
   const session = await auth();
 
   // If user is authenticated,
@@ -33,7 +39,12 @@ const SignInPage = async () => {
     redirect("/home");
   }
 
-  return <SignInTemplate />;
+  const lang = (await params).lang;
+  const i18n = getI18nInstance(lang);
+
+  setI18n(i18n);
+
+  return <SignInTemplate lang={lang} />;
 };
 
 export default SignInPage;

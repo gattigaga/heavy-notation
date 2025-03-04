@@ -1,0 +1,52 @@
+import { redirect } from "next/navigation";
+import { Geist, Geist_Mono } from "next/font/google";
+import { setI18n } from "@lingui/react/server";
+
+import { auth } from "@/helpers/auth";
+import { getI18nInstance } from "../helpers/i18n";
+import { Toaster } from "@/components/ui/sonner";
+import Provider from "../components/Provider";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+type Props = {
+  children: React.ReactNode;
+};
+
+const Layout = async ({ children }: Props) => {
+  const session = await auth();
+
+  // If user is authenticated,
+  // redirect them to the home page in protected routes.
+  if (session) {
+    redirect("/home");
+  }
+
+  const lang = "en";
+  const i18n = getI18nInstance(lang);
+
+  setI18n(i18n);
+
+  return (
+    <html lang={lang}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Provider locale={lang} messages={i18n.messages}>
+          {children}
+        </Provider>
+        <Toaster />
+      </body>
+    </html>
+  );
+};
+
+export default Layout;
