@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-const Home = async () => {
+const HomePage = async () => {
   const session = await auth();
 
   // If user is authenticated,
@@ -61,7 +61,7 @@ const Home = async () => {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider locale={lang} messages={i18n.messages}>
-          <HomeTemplate lang="en" />
+          <HomeTemplate />
         </Provider>
         <Toaster />
       </body>
@@ -69,4 +69,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -3,17 +3,15 @@ import { redirect } from "next/navigation";
 import { setI18n } from "@lingui/react/server";
 
 import { auth } from "@/helpers/auth";
-import HomeTemplate from "../components/HomeTemplate";
-import { getI18nInstance } from "../helpers/i18n";
+import SignUpTemplate from "@/app/components/SignUpTemplate";
+import { getI18nInstance } from "@/app/helpers/i18n";
 
 export const metadata: Metadata = {
-  title: "Your workspace solution for projects | Heavy Notation",
-  description:
-    "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you.",
+  title: "Sign Up | Heavy Notation",
+  description: "Create a new Heavy Notation account.",
   openGraph: {
-    title: "Your workspace solution for projects | Heavy Notation",
-    description:
-      "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you.",
+    title: "Sign Up | Heavy Notation",
+    description: "Create a new Heavy Notation account.",
     type: "website",
     images: [
       {
@@ -24,7 +22,7 @@ export const metadata: Metadata = {
         alt: "Heavy Notation website homepage",
       },
     ],
-    url: "https://heavynotation.vercel.app",
+    url: "https://heavynotation.vercel.app/auth/signup",
   },
 };
 
@@ -32,7 +30,7 @@ type Props = {
   params: Promise<{ lang: string }>;
 };
 
-const HomePage = async ({ params }: Props) => {
+const SignUpPage = async ({ params }: Props) => {
   const session = await auth();
 
   // If user is authenticated,
@@ -46,7 +44,7 @@ const HomePage = async ({ params }: Props) => {
 
   setI18n(i18n);
 
-  return <HomeTemplate lang={lang} />;
+  return <SignUpTemplate lang={lang} />;
 };
 
-export default HomePage;
+export default SignUpPage;

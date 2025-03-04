@@ -45,11 +45,15 @@ msgstr "{years} years ago"
 msgid "Add new page"
 msgstr "Add new page"
 
-#: src/app/components/HomeTemplate.tsx:224
+#: src/app/components/HomeTemplate.tsx:229
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 
-#: src/app/components/HomeTemplate.tsx:184
+#: src/app/components/SignUpForm.tsx:251
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: src/app/components/HomeTemplate.tsx:189
 msgid "Build perfect docs."
 msgstr "Build perfect docs."
 
@@ -58,22 +62,98 @@ msgstr "Build perfect docs."
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
 
-#: src/app/components/HomeTemplate.tsx:187
+#: src/app/components/HomeTemplate.tsx:192
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Capture your ideas and create perfect documentation with our simple and intuitive interface."
+
+#: src/app/components/SignUpForm.tsx:214
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: src/app/validations.ts:34
+msgid "Confirm Password is mismatch"
+msgstr "Confirm Password is mismatch"
+
+#: src/app/validations.ts:31
+msgid "Confirm Password is required"
+msgstr "Confirm Password is required"
+
+#: src/app/components/SignUpForm.tsx:111
+msgid "Create a new account"
+msgstr "Create a new account"
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
 #: src/app/(protected)/components/PageList.tsx:142
 msgid "Delete"
 msgstr "Delete"
 
-#: src/app/components/HomeTemplate.tsx:295
+#: src/app/components/SignInForm.tsx:161
+msgid "Don't have an account? <0>Sign Up</0>"
+msgstr "Don't have an account? <0>Sign Up</0>"
+
+#: src/app/components/HomeTemplate.tsx:300
 msgid "Don't just take our word for it."
 msgstr "Don't just take our word for it."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:130
 msgid "Edited {formattedDate}"
 msgstr "Edited {formattedDate}"
+
+#: src/app/components/SignUpForm.tsx:170
+#: src/app/components/SignInForm.tsx:102
+msgid "Email"
+msgstr "Email"
+
+#: src/app/actions.ts:55
+msgid "Email already registered"
+msgstr "Email already registered"
+
+#: src/app/validations.ts:21
+#: src/app/validations.ts:44
+msgid "Email format is invalid"
+msgstr "Email format is invalid"
+
+#: src/app/validations.ts:20
+#: src/app/validations.ts:43
+msgid "Email is required"
+msgstr "Email is required"
+
+#: src/helpers/auth.ts:51
+#: src/helpers/auth.ts:59
+msgid "Email or password is incorrect."
+msgstr "Email or password is incorrect."
+
+#: src/app/validations.ts:22
+#: src/app/validations.ts:45
+msgid "Email should be at least 10 characters"
+msgstr "Email should be at least 10 characters"
+
+#: src/app/validations.ts:23
+#: src/app/validations.ts:46
+msgid "Email should be at most 50 characters"
+msgstr "Email should be at most 50 characters"
+
+#: src/app/components/SignUpForm.tsx:175
+#: src/app/components/SignInForm.tsx:107
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: src/app/components/SignUpForm.tsx:131
+msgid "Enter your name"
+msgstr "Enter your name"
+
+#: src/app/components/SignUpForm.tsx:197
+#: src/app/components/SignInForm.tsx:129
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: src/app/components/SignUpForm.tsx:219
+msgid "Enter your password again"
+msgstr "Enter your password again"
+
+#: src/app/components/SignUpForm.tsx:153
+msgid "Enter your username"
+msgstr "Enter your username"
 
 #: src/app/(protected)/home/components/PageList.tsx:65
 #: src/app/(protected)/components/PageList.tsx:60
@@ -85,15 +165,15 @@ msgstr "Failed to add a new page."
 msgid "Failed to remove the page."
 msgstr "Failed to remove the page."
 
-#: src/app/components/HomeTemplate.tsx:258
+#: src/app/components/HomeTemplate.tsx:263
 msgid "Find everything. Instantly."
 msgstr "Find everything. Instantly."
 
-#: src/app/components/HomeTemplate.tsx:261
+#: src/app/components/HomeTemplate.tsx:266
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:321
+#: src/app/components/HomeTemplate.tsx:326
 msgid "Get Started."
 msgstr "Get Started."
 
@@ -113,13 +193,29 @@ msgstr "Good morning"
 msgid "Good night"
 msgstr "Good night"
 
-#: src/app/components/HomeTemplate.tsx:298
+#: src/app/components/HomeTemplate.tsx:303
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
 #: src/app/(protected)/components/AppSidebar.tsx:40
 msgid "Home"
 msgstr "Home"
+
+#: src/app/components/SignUpForm.tsx:126
+msgid "Name"
+msgstr "Name"
+
+#: src/app/validations.ts:10
+msgid "Name is required"
+msgstr "Name is required"
+
+#: src/app/validations.ts:11
+msgid "Name should be at least 5 characters"
+msgstr "Name should be at least 5 characters"
+
+#: src/app/validations.ts:12
+msgid "Name should be at most 50 characters"
+msgstr "Name should be at most 50 characters"
 
 #: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:22
 #: src/app/(protected)/pages/[id]/components/Header.tsx:65
@@ -138,11 +234,16 @@ msgstr "No pages found."
 msgid "No results found."
 msgstr "No results found."
 
-#: src/app/components/HomeTemplate.tsx:162
+#: src/app/components/HomeTemplate.tsx:167
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 
-#: src/app/components/HomeTemplate.tsx:101
+#: src/app/components/SignUpForm.tsx:237
+#: src/app/components/SignInForm.tsx:147
+msgid "Or continue with"
+msgstr "Or continue with"
+
+#: src/app/components/HomeTemplate.tsx:106
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Organize your thoughts, notes and ideas in one place"
 
@@ -156,9 +257,29 @@ msgstr "Page successfully removed."
 msgid "Pages"
 msgstr "Pages"
 
-#: src/app/components/HomeTemplate.tsx:206
-#: src/app/components/HomeTemplate.tsx:243
-#: src/app/components/HomeTemplate.tsx:280
+#: src/app/components/SignUpForm.tsx:192
+#: src/app/components/SignInForm.tsx:124
+msgid "Password"
+msgstr "Password"
+
+#: src/app/validations.ts:26
+#: src/app/validations.ts:49
+msgid "Password is required"
+msgstr "Password is required"
+
+#: src/app/validations.ts:27
+#: src/app/validations.ts:50
+msgid "Password should be at least 8 characters"
+msgstr "Password should be at least 8 characters"
+
+#: src/app/validations.ts:28
+#: src/app/validations.ts:51
+msgid "Password should be at most 50 characters"
+msgstr "Password should be at most 50 characters"
+
+#: src/app/components/HomeTemplate.tsx:211
+#: src/app/components/HomeTemplate.tsx:248
+#: src/app/components/HomeTemplate.tsx:285
 msgid "Replaces"
 msgstr "Replaces"
 
@@ -174,39 +295,84 @@ msgstr "Search a page"
 msgid "Search a page..."
 msgstr "Search a page..."
 
-#: src/app/components/HomeTemplate.tsx:90
+#: src/app/components/SignUpForm.tsx:95
+#: src/app/components/SignInForm.tsx:71
+msgid "Server can't process your request."
+msgstr "Server can't process your request."
+
+#: src/app/components/SignUpForm.tsx:253
+#: src/app/components/SignInForm.tsx:140
+#: src/app/components/HomeTemplate.tsx:95
 msgid "Sign In"
 msgstr "Sign In"
+
+#: src/app/components/SignInForm.tsx:87
+msgid "Sign in to your account"
+msgstr "Sign in to your account"
+
+#: src/app/components/SignUpForm.tsx:247
+#: src/app/components/SignInForm.tsx:157
+msgid "Sign in with Google"
+msgstr "Sign in with Google"
 
 #: src/app/(protected)/components/AuthMenu.tsx:81
 msgid "Sign Out"
 msgstr "Sign Out"
 
-#: src/app/components/HomeTemplate.tsx:324
+#: src/app/components/SignUpForm.tsx:230
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: src/app/components/HomeTemplate.tsx:329
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Start organizing your work better. Access your content easily with our powerful search features."
 
-#: src/app/components/HomeTemplate.tsx:114
-#: src/app/components/HomeTemplate.tsx:334
+#: src/app/components/HomeTemplate.tsx:119
+#: src/app/components/HomeTemplate.tsx:339
 msgid "Start Writing Now"
 msgstr "Start Writing Now"
+
+#: src/app/components/SignUpForm.tsx:263
+#: src/app/components/SignInForm.tsx:175
+msgid "Submitting..."
+msgstr "Submitting..."
 
 #: src/app/(protected)/pages/[id]/components/Content.tsx:172
 msgid "The page you are looking for does not exist."
 msgstr "The page you are looking for does not exist."
 
-#: src/app/components/HomeTemplate.tsx:119
+#: src/app/components/HomeTemplate.tsx:124
 msgid "Trusted by teams at"
 msgstr "Trusted by teams at"
 
-#: src/app/components/HomeTemplate.tsx:104
+#: src/app/components/SignUpForm.tsx:148
+msgid "Username"
+msgstr "Username"
+
+#: src/app/actions.ts:61
+msgid "Username already registered"
+msgstr "Username already registered"
+
+#: src/app/validations.ts:15
+msgid "Username is required"
+msgstr "Username is required"
+
+#: src/app/validations.ts:16
+msgid "Username should be at least 8 characters"
+msgstr "Username should be at least 8 characters"
+
+#: src/app/validations.ts:17
+msgid "Username should be at most 10 characters"
+msgstr "Username should be at most 10 characters"
+
+#: src/app/components/HomeTemplate.tsx:109
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Write documents, create knowledge bases, and organize your thoughts."
 
-#: src/app/components/HomeTemplate.tsx:178
+#: src/app/components/HomeTemplate.tsx:183
 msgid "Your browser does not support the video tag."
 msgstr "Your browser does not support the video tag."
 
-#: src/app/components/HomeTemplate.tsx:221
+#: src/app/components/HomeTemplate.tsx:226
 msgid "Your workflow. Your way."
 msgstr "Your workflow. Your way."

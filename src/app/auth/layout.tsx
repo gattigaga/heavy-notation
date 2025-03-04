@@ -1,8 +1,11 @@
+import { redirect } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
+import { setI18n } from "@lingui/react/server";
 
+import { auth } from "@/helpers/auth";
+import { getI18nInstance } from "../helpers/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import Provider from "../components/Provider";
-import { getI18nInstance } from "../helpers/i18n";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,12 +19,21 @@ const geistMono = Geist_Mono({
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
 };
 
-const Layout = async ({ children, params }: Props) => {
-  const lang = (await params).lang;
+const Layout = async ({ children }: Props) => {
+  const session = await auth();
+
+  // If user is authenticated,
+  // redirect them to the home page in protected routes.
+  if (session) {
+    redirect("/home");
+  }
+
+  const lang = "en";
   const i18n = getI18nInstance(lang);
+
+  setI18n(i18n);
 
   return (
     <html lang={lang}>

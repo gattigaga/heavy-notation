@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -23,11 +24,14 @@ type Props = {
 
 const Layout = async ({ children }: Props) => {
   const session = await auth();
+  const cookieStore = await cookies();
+
+  const locale = cookieStore.get("locale")?.value || "en";
 
   // If user isn't authenticated,
   // redirect them back to the sign in page.
   if (!session) {
-    redirect("/auth/signin");
+    redirect(locale !== "en" ? `/${locale}/auth/signin` : "/auth/signin");
   }
 
   return (

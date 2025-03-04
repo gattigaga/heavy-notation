@@ -3,11 +3,14 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { Adapter } from "next-auth/adapters";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { cookies } from "next/headers";
 import { Language } from "@prisma/client";
+import { t } from "@lingui/core/macro";
 import md5 from "md5";
 
 import { prisma } from "./prisma";
-import { signInSchema } from "@/app/auth/signin/validation";
+import { getI18nInstance } from "@/app/helpers/i18n";
+import { getSignInSchema } from "@/app/validations";
 
 export class InvalidCredentialsError extends AuthError {
   constructor(message?: any, errorOptions?: any) {
@@ -29,7 +32,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        const { email, password } = await signInSchema.parseAsync(credentials);
+        const cookieStore = await cookies();
+
+        const locale = cookieStore.get("locale")?.value || "en";
+        const i18n = getI18nInstance(locale);
+        const schema = getSignInSchema(i18n);
+
+        const { email, password } = await schema.parseAsync(credentials);
 
         const user = await prisma.user.findUnique({
           where: {
@@ -38,13 +47,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
 
         if (!user) {
-          throw new InvalidCredentialsError("Email or password is incorrect.");
+          throw new InvalidCredentialsError(
+            t(i18n)`Email or password is incorrect.`,
+          );
         }
 
         const isValid = md5(password) === user.password;
 
         if (!isValid) {
-          throw new InvalidCredentialsError("Email or password is incorrect.");
+          throw new InvalidCredentialsError(
+            t(i18n)`Email or password is incorrect.`,
+          );
         }
 
         return user;

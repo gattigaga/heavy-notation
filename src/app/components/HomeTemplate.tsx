@@ -26,10 +26,10 @@ import imgFeatureHomeDesktop from "../../../public/images/home/feature-home-desk
 import imgFeatureSearchDesktop from "../../../public/images/home/feature-search-desktop.webp";
 
 type Props = {
-  lang: string;
+  lang?: string;
 };
 
-const HomeTemplate = ({ lang }: Props) => {
+const HomeTemplate = ({ lang = "en" }: Props) => {
   const { t } = useLingui();
 
   const reviews = [
@@ -79,7 +79,7 @@ const HomeTemplate = ({ lang }: Props) => {
       <GoogleTagScript />
 
       <header className="flex h-16 items-center justify-between px-4">
-        <Link href="/">
+        <Link href={lang !== "en" ? `/${lang}` : "/"}>
           <Image
             src={imgLogoHeavyNotation}
             alt="Heavy Notation logo"
@@ -91,7 +91,10 @@ const HomeTemplate = ({ lang }: Props) => {
           type="button"
           variant="outline"
         >
-          <Link href="/auth/signin" prefetch={true}>
+          <Link
+            href={lang !== "en" ? `/${lang}/auth/signin` : "/auth/signin"}
+            prefetch={true}
+          >
             <Trans>Sign In</Trans>
           </Link>
         </Button>
@@ -115,7 +118,10 @@ const HomeTemplate = ({ lang }: Props) => {
             className="mb-12 h-12 w-full self-center bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit lg:w-auto"
             type="button"
           >
-            <Link href="/auth/signup" prefetch={true}>
+            <Link
+              href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}
+              prefetch={true}
+            >
               <Trans>Start Writing Now</Trans>
             </Link>
           </Button>
@@ -335,7 +341,10 @@ const HomeTemplate = ({ lang }: Props) => {
             className="h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
             type="button"
           >
-            <Link href="/auth/signup" prefetch={true}>
+            <Link
+              href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}
+              prefetch={true}
+            >
               <Trans>Start Writing Now</Trans>
             </Link>
           </Button>
