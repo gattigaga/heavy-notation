@@ -41,19 +41,23 @@ msgstr "{weeks} weeks ago"
 msgid "{years} years ago"
 msgstr "{years} years ago"
 
+#: src/app/[lang]/page.tsx:19
+msgid "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you."
+msgstr "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you."
+
 #: src/app/(protected)/home/components/PageList.tsx:104
 msgid "Add new page"
 msgstr "Add new page"
 
-#: src/app/components/HomeTemplate.tsx:229
+#: src/app/components/HomeTemplate.tsx:235
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 
-#: src/app/components/SignUpForm.tsx:251
+#: src/app/components/SignUpForm.tsx:255
 msgid "Already have an account?"
 msgstr "Already have an account?"
 
-#: src/app/components/HomeTemplate.tsx:189
+#: src/app/components/HomeTemplate.tsx:195
 msgid "Build perfect docs."
 msgstr "Build perfect docs."
 
@@ -62,11 +66,11 @@ msgstr "Build perfect docs."
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
 
-#: src/app/components/HomeTemplate.tsx:192
+#: src/app/components/HomeTemplate.tsx:198
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 
-#: src/app/components/SignUpForm.tsx:214
+#: src/app/components/SignUpForm.tsx:218
 msgid "Confirm Password"
 msgstr "Confirm Password"
 
@@ -78,20 +82,24 @@ msgstr "Confirm Password is mismatch"
 msgid "Confirm Password is required"
 msgstr "Confirm Password is required"
 
-#: src/app/components/SignUpForm.tsx:111
+#: src/app/components/SignUpForm.tsx:115
 msgid "Create a new account"
 msgstr "Create a new account"
+
+#: src/app/[lang]/auth/signup/page.tsx:17
+msgid "Create a new Heavy Notation account."
+msgstr "Create a new Heavy Notation account."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
 #: src/app/(protected)/components/PageList.tsx:142
 msgid "Delete"
 msgstr "Delete"
 
-#: src/app/components/SignInForm.tsx:161
+#: src/app/components/SignInForm.tsx:165
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Don't have an account? <0>Sign Up</0>"
 
-#: src/app/components/HomeTemplate.tsx:300
+#: src/app/components/HomeTemplate.tsx:306
 msgid "Don't just take our word for it."
 msgstr "Don't just take our word for it."
 
@@ -99,8 +107,8 @@ msgstr "Don't just take our word for it."
 msgid "Edited {formattedDate}"
 msgstr "Edited {formattedDate}"
 
-#: src/app/components/SignUpForm.tsx:170
-#: src/app/components/SignInForm.tsx:102
+#: src/app/components/SignUpForm.tsx:174
+#: src/app/components/SignInForm.tsx:106
 msgid "Email"
 msgstr "Email"
 
@@ -133,25 +141,25 @@ msgstr "Email should be at least 10 characters"
 msgid "Email should be at most 50 characters"
 msgstr "Email should be at most 50 characters"
 
-#: src/app/components/SignUpForm.tsx:175
-#: src/app/components/SignInForm.tsx:107
+#: src/app/components/SignUpForm.tsx:179
+#: src/app/components/SignInForm.tsx:111
 msgid "Enter your email"
 msgstr "Enter your email"
 
-#: src/app/components/SignUpForm.tsx:131
+#: src/app/components/SignUpForm.tsx:135
 msgid "Enter your name"
 msgstr "Enter your name"
 
-#: src/app/components/SignUpForm.tsx:197
-#: src/app/components/SignInForm.tsx:129
+#: src/app/components/SignUpForm.tsx:201
+#: src/app/components/SignInForm.tsx:133
 msgid "Enter your password"
 msgstr "Enter your password"
 
-#: src/app/components/SignUpForm.tsx:219
+#: src/app/components/SignUpForm.tsx:223
 msgid "Enter your password again"
 msgstr "Enter your password again"
 
-#: src/app/components/SignUpForm.tsx:153
+#: src/app/components/SignUpForm.tsx:157
 msgid "Enter your username"
 msgstr "Enter your username"
 
@@ -165,15 +173,15 @@ msgstr "Failed to add a new page."
 msgid "Failed to remove the page."
 msgstr "Failed to remove the page."
 
-#: src/app/components/HomeTemplate.tsx:263
+#: src/app/components/HomeTemplate.tsx:269
 msgid "Find everything. Instantly."
 msgstr "Find everything. Instantly."
 
-#: src/app/components/HomeTemplate.tsx:266
+#: src/app/components/HomeTemplate.tsx:272
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:326
+#: src/app/components/HomeTemplate.tsx:332
 msgid "Get Started."
 msgstr "Get Started."
 
@@ -193,7 +201,7 @@ msgstr "Good morning"
 msgid "Good night"
 msgstr "Good night"
 
-#: src/app/components/HomeTemplate.tsx:303
+#: src/app/components/HomeTemplate.tsx:309
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
@@ -201,7 +209,7 @@ msgstr "Hear from people who have used Heavy Notation to revolutionize their wri
 msgid "Home"
 msgstr "Home"
 
-#: src/app/components/SignUpForm.tsx:126
+#: src/app/components/SignUpForm.tsx:130
 msgid "Name"
 msgstr "Name"
 
@@ -234,16 +242,16 @@ msgstr "No pages found."
 msgid "No results found."
 msgstr "No results found."
 
-#: src/app/components/HomeTemplate.tsx:167
+#: src/app/components/HomeTemplate.tsx:173
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 
-#: src/app/components/SignUpForm.tsx:237
-#: src/app/components/SignInForm.tsx:147
+#: src/app/components/SignUpForm.tsx:241
+#: src/app/components/SignInForm.tsx:151
 msgid "Or continue with"
 msgstr "Or continue with"
 
-#: src/app/components/HomeTemplate.tsx:106
+#: src/app/components/HomeTemplate.tsx:109
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Organize your thoughts, notes and ideas in one place"
 
@@ -257,8 +265,8 @@ msgstr "Page successfully removed."
 msgid "Pages"
 msgstr "Pages"
 
-#: src/app/components/SignUpForm.tsx:192
-#: src/app/components/SignInForm.tsx:124
+#: src/app/components/SignUpForm.tsx:196
+#: src/app/components/SignInForm.tsx:128
 msgid "Password"
 msgstr "Password"
 
@@ -277,9 +285,9 @@ msgstr "Password should be at least 8 characters"
 msgid "Password should be at most 50 characters"
 msgstr "Password should be at most 50 characters"
 
-#: src/app/components/HomeTemplate.tsx:211
-#: src/app/components/HomeTemplate.tsx:248
-#: src/app/components/HomeTemplate.tsx:285
+#: src/app/components/HomeTemplate.tsx:217
+#: src/app/components/HomeTemplate.tsx:254
+#: src/app/components/HomeTemplate.tsx:291
 msgid "Replaces"
 msgstr "Replaces"
 
@@ -295,23 +303,28 @@ msgstr "Search a page"
 msgid "Search a page..."
 msgstr "Search a page..."
 
-#: src/app/components/SignUpForm.tsx:95
-#: src/app/components/SignInForm.tsx:71
+#: src/app/components/SignUpForm.tsx:99
+#: src/app/components/SignInForm.tsx:75
 msgid "Server can't process your request."
 msgstr "Server can't process your request."
 
-#: src/app/components/SignUpForm.tsx:253
-#: src/app/components/SignInForm.tsx:140
-#: src/app/components/HomeTemplate.tsx:95
+#: src/app/components/SignUpForm.tsx:261
+#: src/app/components/SignInForm.tsx:144
+#: src/app/components/HomeTemplate.tsx:98
+#: src/app/[lang]/auth/signin/page.tsx:16
 msgid "Sign In"
 msgstr "Sign In"
 
-#: src/app/components/SignInForm.tsx:87
+#: src/app/components/SignInForm.tsx:91
 msgid "Sign in to your account"
 msgstr "Sign in to your account"
 
-#: src/app/components/SignUpForm.tsx:247
-#: src/app/components/SignInForm.tsx:157
+#: src/app/[lang]/auth/signin/page.tsx:17
+msgid "Sign in to your Heavy Notation account."
+msgstr "Sign in to your Heavy Notation account."
+
+#: src/app/components/SignUpForm.tsx:251
+#: src/app/components/SignInForm.tsx:161
 msgid "Sign in with Google"
 msgstr "Sign in with Google"
 
@@ -319,21 +332,22 @@ msgstr "Sign in with Google"
 msgid "Sign Out"
 msgstr "Sign Out"
 
-#: src/app/components/SignUpForm.tsx:230
+#: src/app/components/SignUpForm.tsx:234
+#: src/app/[lang]/auth/signup/page.tsx:16
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: src/app/components/HomeTemplate.tsx:329
+#: src/app/components/HomeTemplate.tsx:335
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Start organizing your work better. Access your content easily with our powerful search features."
 
-#: src/app/components/HomeTemplate.tsx:119
-#: src/app/components/HomeTemplate.tsx:339
+#: src/app/components/HomeTemplate.tsx:125
+#: src/app/components/HomeTemplate.tsx:348
 msgid "Start Writing Now"
 msgstr "Start Writing Now"
 
-#: src/app/components/SignUpForm.tsx:263
-#: src/app/components/SignInForm.tsx:175
+#: src/app/components/SignUpForm.tsx:271
+#: src/app/components/SignInForm.tsx:183
 msgid "Submitting..."
 msgstr "Submitting..."
 
@@ -341,11 +355,11 @@ msgstr "Submitting..."
 msgid "The page you are looking for does not exist."
 msgstr "The page you are looking for does not exist."
 
-#: src/app/components/HomeTemplate.tsx:124
+#: src/app/components/HomeTemplate.tsx:130
 msgid "Trusted by teams at"
 msgstr "Trusted by teams at"
 
-#: src/app/components/SignUpForm.tsx:148
+#: src/app/components/SignUpForm.tsx:152
 msgid "Username"
 msgstr "Username"
 
@@ -365,14 +379,18 @@ msgstr "Username should be at least 8 characters"
 msgid "Username should be at most 10 characters"
 msgstr "Username should be at most 10 characters"
 
-#: src/app/components/HomeTemplate.tsx:109
+#: src/app/components/HomeTemplate.tsx:112
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Write documents, create knowledge bases, and organize your thoughts."
 
-#: src/app/components/HomeTemplate.tsx:183
+#: src/app/components/HomeTemplate.tsx:189
 msgid "Your browser does not support the video tag."
 msgstr "Your browser does not support the video tag."
 
-#: src/app/components/HomeTemplate.tsx:226
+#: src/app/components/HomeTemplate.tsx:232
 msgid "Your workflow. Your way."
 msgstr "Your workflow. Your way."
+
+#: src/app/[lang]/page.tsx:17
+msgid "Your workspace solution for projects"
+msgstr "Your workspace solution for projects"
