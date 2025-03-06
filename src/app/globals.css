@@ -166,3 +166,59 @@ body {
 .yoopta-link {
   @apply !text-blue-500;
 }
+
+/* Yoopta Editor */
+
+.yoopta-toolbar-item,
+.yoopta-toolbar-item-mark:not([aria-label="Highlight"]),
+.yoopta-action-menu-list-content,
+.yoopta-link-tool-label,
+.yoopta-link-tool-input,
+.yoopta-link-tool .yoopta-button:nth-child(2),
+.yoo-toolbar-text-gray-600 {
+  @apply !text-zinc-700;
+}
+
+.yoopta-link-tool-input::placeholder {
+  @apply !text-zinc-400;
+}
+
+.yoopta-link-tool .yoopta-button:nth-child(1) {
+  @apply !bg-blue-500;
+}
+
+.yoopta-paragraph {
+  @apply !text-lg !text-zinc-700;
+}
+
+.yoopta-paragraph .yoopta-placeholder::after {
+  @apply !text-lg !tracking-normal !text-zinc-400;
+}
+
+.yoopta-heading-one {
+  @apply !text-3xl !font-bold !leading-tight !text-zinc-700 md:!text-4xl md:!leading-tight;
+}
+
+.yoopta-heading-one .yoopta-placeholder::after {
+  @apply !text-3xl !font-bold !leading-tight !text-zinc-400 md:!text-4xl md:!leading-tight;
+}
+
+.yoopta-heading-two {
+  @apply !text-2xl !font-bold !leading-tight !text-zinc-700 md:!text-3xl md:!leading-tight;
+}
+
+.yoopta-heading-two .yoopta-placeholder::after {
+  @apply !text-2xl !font-bold !leading-tight !text-zinc-400 md:!text-3xl md:!leading-tight;
+}
+
+.yoopta-heading-three {
+  @apply !text-xl !font-bold !leading-tight !text-zinc-700 md:!text-2xl md:!leading-tight;
+}
+
+.yoopta-heading-three .yoopta-placeholder::after {
+  @apply !text-xl !font-bold !leading-tight !text-zinc-400 md:!text-2xl md:!leading-tight;
+}
+
+.yoopta-link {
+  @apply !text-blue-500;
+}

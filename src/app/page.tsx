@@ -58,7 +58,7 @@ const HomePage = async () => {
   return (
     <html lang={lang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-white antialiased dark:bg-zinc-900`}
       >
         <Provider locale={lang} messages={i18n.messages}>
           <HomeTemplate />

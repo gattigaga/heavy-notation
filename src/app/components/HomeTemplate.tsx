@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Trans, useLingui } from "@lingui/react/macro";
@@ -24,6 +26,7 @@ import imgFeatureSearchMobile from "../../../public/images/home/feature-search-m
 import imgFeatureEditorDesktop from "../../../public/images/home/feature-editor-desktop.webp";
 import imgFeatureHomeDesktop from "../../../public/images/home/feature-home-desktop.webp";
 import imgFeatureSearchDesktop from "../../../public/images/home/feature-search-desktop.webp";
+import useColorScheme from "@/hooks/use-color-scheme";
 
 type Props = {
   lang?: string;
@@ -31,6 +34,7 @@ type Props = {
 
 const HomeTemplate = ({ lang = "en" }: Props) => {
   const { t } = useLingui();
+  const theme = useColorScheme();
 
   const reviews = [
     {
@@ -83,11 +87,11 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           <Image
             src={imgLogoHeavyNotation}
             alt="Heavy Notation logo"
-            className="h-8 w-auto"
+            className="h-8 w-auto dark:invert"
           />
         </Link>
         <Button
-          className="font-semibold text-zinc-700"
+          className="bg-white font-semibold text-zinc-700 dark:bg-zinc-900 dark:text-white"
           type="button"
           variant="outline"
         >
@@ -102,20 +106,20 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
       <div className="flex max-w-screen-2xl flex-col gap-y-24 px-8 pt-4 md:gap-y-40 md:pt-10 lg:pt-16 2xl:mx-auto">
         <div className="flex flex-col md:px-16 lg:px-24 2xl:px-40">
           <TypingAnimation
-            className="mb-4 text-center text-5xl font-bold tracking-tighter text-zinc-700 md:text-7xl"
+            className="mb-4 text-center text-5xl font-bold tracking-tighter text-zinc-700 md:text-7xl dark:text-white"
             as="h1"
             duration={50}
           >
             {t`Organize your thoughts, notes and ideas in one place`}
           </TypingAnimation>
-          <p className="mb-12 text-center text-2xl text-zinc-400">
+          <p className="mb-12 text-center text-2xl text-zinc-400 dark:text-zinc-500">
             <Trans>
               Write documents, create knowledge bases, and organize your
               thoughts.
             </Trans>
           </p>
           <Button
-            className="mb-12 h-12 w-full self-center bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit lg:w-auto"
+            className="mb-12 h-12 w-full self-center bg-blue-500 text-base font-semibold text-white hover:bg-blue-600 md:w-fit lg:w-auto"
             type="button"
           >
             <Link
@@ -126,7 +130,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             </Link>
           </Button>
 
-          <p className="mb-2 text-center text-base text-zinc-700">
+          <p className="mb-2 text-center text-base text-zinc-700 dark:text-white">
             <Trans>Trusted by teams at</Trans>
           </p>
           <div className="mb-4 flex flex-wrap justify-center gap-4 lg:gap-8">
@@ -135,9 +139,9 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
                 className="shrink-0"
                 width={24}
                 height={24}
-                fill="#3f3f46"
+                fill={theme === "dark" ? "#fff" : "#3f3f46"}
               />
-              <p className="text-base font-semibold text-zinc-700">
+              <p className="text-base font-semibold text-zinc-700 dark:text-white">
                 DuckDuckGo
               </p>
             </div>
@@ -146,30 +150,36 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
                 className="shrink-0"
                 width={24}
                 height={24}
-                fill="#3f3f46"
+                fill={theme === "dark" ? "#fff" : "#3f3f46"}
               />
-              <p className="text-base font-semibold text-zinc-700">Twitch</p>
+              <p className="text-base font-semibold text-zinc-700 dark:text-white">
+                Twitch
+              </p>
             </div>
             <div className="flex items-center gap-x-2">
               <LogoShopify
                 className="shrink-0"
                 width={24}
                 height={24}
-                fill="#3f3f46"
+                fill={theme === "dark" ? "#fff" : "#3f3f46"}
               />
-              <p className="text-base font-semibold text-zinc-700">Shopify</p>
+              <p className="text-base font-semibold text-zinc-700 dark:text-white">
+                Shopify
+              </p>
             </div>
             <div className="flex items-center gap-x-2">
               <LogoDiscord
                 className="shrink-0"
                 width={24}
                 height={24}
-                fill="#3f3f46"
+                fill={theme === "dark" ? "#fff" : "#3f3f46"}
               />
-              <p className="text-base font-semibold text-zinc-700">Discord</p>
+              <p className="text-base font-semibold text-zinc-700 dark:text-white">
+                Discord
+              </p>
             </div>
           </div>
-          <p className="mx-auto mb-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2">
+          <p className="mx-auto mb-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2 dark:text-zinc-500">
             <Trans>
               Note that these company logos are used only for demonstration
               purposes and do not imply any real-world endorsement or
@@ -191,10 +201,10 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
         </div>
 
         <div className="md:px-16 lg:px-24 2xl:px-40">
-          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl dark:text-white">
             <Trans>Build perfect docs.</Trans>
           </h2>
-          <p className="mb-8 text-center text-xl text-zinc-400">
+          <p className="mb-8 text-center text-xl text-zinc-400 dark:text-zinc-500">
             <Trans>
               Capture your ideas and create perfect documentation with our
               simple and intuitive interface.
@@ -213,25 +223,35 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             />
           </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
+            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
               <Trans>Replaces</Trans>
             </p>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoEvernote width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Evernote</p>
+              <LogoEvernote
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">
+                Evernote
+              </p>
             </div>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoCoda width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Coda</p>
+              <LogoCoda
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">Coda</p>
             </div>
           </div>
         </div>
 
         <div className="md:px-16 lg:px-24 2xl:px-40">
-          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl dark:text-white">
             <Trans>Your workflow. Your way.</Trans>
           </h2>
-          <p className="mb-8 text-center text-xl text-zinc-400">
+          <p className="mb-8 text-center text-xl text-zinc-400 dark:text-zinc-500">
             <Trans>
               All your projects, goals, roadmaps, and more—in one
               tool—personalized to how you work.
@@ -250,25 +270,37 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             />
           </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
+            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
               <Trans>Replaces</Trans>
             </p>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoTrello width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Trello</p>
+              <LogoTrello
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">
+                Trello
+              </p>
             </div>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoAsana width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Asana</p>
+              <LogoAsana
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">
+                Asana
+              </p>
             </div>
           </div>
         </div>
 
         <div className="md:px-16 lg:px-24 2xl:px-40">
-          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+          <h2 className="mb-4 text-center text-4xl font-bold text-zinc-700 md:text-6xl dark:text-white">
             <Trans>Find everything. Instantly.</Trans>
           </h2>
-          <p className="mb-8 text-center text-xl text-zinc-400">
+          <p className="mb-8 text-center text-xl text-zinc-400 dark:text-zinc-500">
             <Trans>
               Find what you need quickly with our powerful search. Access your
               content stored in Heavy Notation.
@@ -287,25 +319,37 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             />
           </picture>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto">
+            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
               <Trans>Replaces</Trans>
             </p>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoConfluence width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Confluence</p>
+              <LogoConfluence
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">
+                Confluence
+              </p>
             </div>
             <div className="col-span-1 flex items-center gap-x-2">
-              <LogoAsana width={24} height={24} fill="#a1a1aa" />
-              <p className="text-base text-zinc-400">Asana</p>
+              <LogoAsana
+                width={24}
+                height={24}
+                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
+              />
+              <p className="text-base text-zinc-400 dark:text-zinc-500">
+                Asana
+              </p>
             </div>
           </div>
         </div>
 
         <div className="flex w-full flex-col">
-          <h2 className="mb-4 w-1/2 self-center text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+          <h2 className="mb-4 w-1/2 self-center text-center text-4xl font-bold text-zinc-700 md:text-6xl dark:text-white">
             <Trans>Don&apos;t just take our word for it.</Trans>
           </h2>
-          <p className="mb-8 w-1/2 self-center text-center text-xl text-zinc-400">
+          <p className="mb-8 w-1/2 self-center text-center text-xl text-zinc-400 dark:text-zinc-500">
             <Trans>
               Hear from people who have used Heavy Notation to revolutionize
               their writing and thinking.
@@ -322,23 +366,23 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
                 <ReviewCard key={review.username} {...review} />
               ))}
             </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-zinc-900"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-zinc-900"></div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center rounded-lg bg-zinc-100 p-8 md:p-16 lg:p-24">
-          <h2 className="mb-4 whitespace-pre text-center text-4xl font-bold text-zinc-700 md:text-6xl">
+        <div className="flex flex-col items-center rounded-lg bg-zinc-100 p-8 md:p-16 lg:p-24 dark:bg-zinc-800">
+          <h2 className="mb-4 whitespace-pre text-center text-4xl font-bold text-zinc-700 md:text-6xl dark:text-white">
             <Trans>Get Started.</Trans>
           </h2>
-          <p className="mb-8 text-center text-base text-zinc-400">
+          <p className="mb-8 text-center text-base text-zinc-400 dark:text-zinc-500">
             <Trans>
               Start organizing your work better. Access your content easily with
               our powerful search features.
             </Trans>
           </p>
           <Button
-            className="h-12 w-full bg-blue-500 text-base font-semibold hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
+            className="h-12 w-full bg-blue-500 text-base font-semibold text-white hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
             type="button"
           >
             <Link
@@ -352,24 +396,24 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
       </div>
 
       <footer className="flex h-16 items-center justify-between px-24">
-        <p className="text-center text-sm text-zinc-700">
+        <p className="text-center text-sm text-zinc-700 dark:text-white">
           © {new Date().getFullYear()} Gattigaga Hayyuta Dewa
         </p>
         <div className="flex items-center gap-x-2">
           <Link
             className={cn(
-              "text-sm text-zinc-700 hover:text-zinc-400",
-              lang === "en" && "text-zinc-400",
+              "text-sm text-zinc-700 hover:text-zinc-400 dark:text-white hover:dark:text-zinc-500",
+              lang === "en" && "text-zinc-400 dark:text-zinc-700",
             )}
             href="/"
           >
             English
           </Link>
-          <span className="text-zinc-400">|</span>
+          <span className="text-zinc-400 dark:text-zinc-500">|</span>
           <Link
             className={cn(
-              "text-sm text-zinc-700 hover:text-zinc-400",
-              lang === "id" && "text-zinc-400",
+              "text-sm text-zinc-700 hover:text-zinc-400 dark:text-white hover:dark:text-zinc-500",
+              lang === "id" && "text-zinc-400 dark:text-zinc-700",
             )}
             href="/id"
           >
