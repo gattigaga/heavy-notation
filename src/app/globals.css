@@ -87,6 +87,10 @@ body {
   }
 }
 
+[cmdk-input-wrapper] svg {
+  @apply text-zinc-700 dark:text-white;
+}
+
 /* Yoopta Editor */
 
 .yoopta-toolbar-item,
