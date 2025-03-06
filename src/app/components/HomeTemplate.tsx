@@ -91,7 +91,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           />
         </Link>
         <Button
-          className="bg-white font-semibold text-zinc-700 dark:bg-zinc-900 dark:text-white"
+          className="border-zinc-200 bg-white font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white hover:dark:bg-zinc-800 hover:dark:text-white"
           type="button"
           variant="outline"
         >

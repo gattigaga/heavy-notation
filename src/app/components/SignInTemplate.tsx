@@ -14,13 +14,13 @@ const SignInTemplate = async ({ lang = "en" }: Props) => {
     <>
       <GoogleTagScript />
 
-      <div className="min-h-screen w-full bg-white">
+      <div className="min-h-screen w-full bg-white dark:bg-zinc-900">
         <header className="flex h-16 items-center px-4">
           <Link href={lang !== "en" ? `/${lang}` : "/"} prefetch={true}>
             <Image
               src={imgLogoHeavyNotation}
               alt="Heavy Notation logo"
-              className="h-8 w-auto"
+              className="h-8 w-auto dark:invert"
             />
           </Link>
         </header>
