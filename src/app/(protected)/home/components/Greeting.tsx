@@ -18,7 +18,7 @@ const Greeting = () => {
   })();
 
   return (
-    <h1 className="mb-8 whitespace-pre text-center text-2xl font-semibold text-zinc-700 md:text-4xl">
+    <h1 className="mb-8 whitespace-pre text-center text-2xl font-semibold text-zinc-700 md:text-4xl dark:text-white">
       {greeting},{"\n"}
       {session?.user?.name}
     </h1>
