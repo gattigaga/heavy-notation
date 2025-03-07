@@ -63,20 +63,22 @@ const LanguageMenu = () => {
   }, [currentLanguage.code]);
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="bg-zinc-100 dark:bg-zinc-800">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="hover:bg-zinc-200 data-[state=open]:bg-zinc-100 data-[state=open]:text-zinc-700 hover:dark:bg-zinc-700 data-[state=open]:dark:bg-zinc-700 data-[state=open]:dark:text-white"
             >
-              <p>{currentLanguage?.name}</p>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <p className="text-zinc-700 dark:text-white">
+                {currentLanguage?.name}
+              </p>
+              <ChevronsUpDown className="ml-auto size-4 text-zinc-700 dark:text-white" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -84,6 +86,7 @@ const LanguageMenu = () => {
             {languages.map((item) => (
               <DropdownMenuItem
                 key={item.code}
+                className="text-zinc-700 focus:bg-zinc-200 focus:text-zinc-700 dark:text-white focus:dark:bg-zinc-700 focus:dark:text-white"
                 onClick={() => changeLanguage(item.code)}
               >
                 {item.name}

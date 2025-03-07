@@ -100,13 +100,14 @@ const PageList = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
+                className="text-xs text-zinc-500 dark:text-zinc-400"
                 onClick={() => setIsPagesSectionShow(!isPagesSectionShow)}
               >
                 <Trans>Pages</Trans>
               </SidebarMenuButton>
               {!addPageMutation.isPending && (
                 <SidebarMenuAction showOnHover={true} onClick={addPage}>
-                  <Plus />
+                  <Plus className="text-zinc-700 dark:text-white" />
                 </SidebarMenuAction>
               )}
             </SidebarMenuItem>
@@ -119,25 +120,35 @@ const PageList = () => {
 
                   return (
                     <SidebarMenuItem key={item.id}>
-                      <SidebarMenuButton isActive={isActive} asChild={true}>
+                      <SidebarMenuButton
+                        className="!text-zinc-500 hover:!bg-zinc-200 hover:!text-zinc-700 data-[active=true]:!bg-zinc-200 dark:!text-zinc-400 dark:hover:!bg-zinc-700 dark:hover:!text-white data-[active=true]:dark:!bg-zinc-700"
+                        isActive={isActive}
+                        asChild={true}
+                      >
                         <Link href={url} title={item.title}>
-                          <File />
+                          <File className="text-zinc-700 dark:text-white" />
                           <span>{item.title || <Trans>New Page</Trans>}</span>
                         </Link>
                       </SidebarMenuButton>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild={true}>
-                          <SidebarMenuAction showOnHover={true}>
-                            <MoreHorizontal />
+                          <SidebarMenuAction
+                            className="hover:bg-transparent"
+                            showOnHover={true}
+                          >
+                            <MoreHorizontal className="text-zinc-700 dark:text-white" />
                           </SidebarMenuAction>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
-                          className="w-56 rounded-lg"
+                          className="w-56 rounded-lg border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800"
                           side={isMobile ? "bottom" : "right"}
                           align={isMobile ? "end" : "start"}
                         >
-                          <DropdownMenuItem onClick={() => removePage(item.id)}>
-                            <Trash2 className="text-muted-foreground" />
+                          <DropdownMenuItem
+                            className="text-zinc-700 focus:bg-zinc-200 focus:text-zinc-700 dark:text-white focus:dark:bg-zinc-700 focus:dark:text-white"
+                            onClick={() => removePage(item.id)}
+                          >
+                            <Trash2 className="text-zinc-700 dark:text-white" />
                             <span>
                               <Trans>Delete</Trans>
                             </span>
@@ -150,9 +161,13 @@ const PageList = () => {
                 {/* Show the placeholder data when adding page. */}
                 {addPageMutation.isPending && (
                   <SidebarMenuItem>
-                    <SidebarMenuButton isActive={true} asChild={true}>
+                    <SidebarMenuButton
+                      className="!text-zinc-500 hover:!bg-zinc-200 hover:!text-zinc-700 data-[active=true]:!bg-zinc-200 dark:!text-zinc-400 dark:hover:!bg-zinc-700 dark:hover:!text-white data-[active=true]:dark:!bg-zinc-700"
+                      isActive={true}
+                      asChild={true}
+                    >
                       <Link href={`/pages/${addPageMutation.variables.id}`}>
-                        <File />
+                        <File className="text-zinc-700 dark:text-white" />
                         <span>
                           <Trans>New Page</Trans>
                         </span>
@@ -162,7 +177,7 @@ const PageList = () => {
                 )}
                 {/* Show empty data if have no pages yet and when not adding page. */}
                 {pages.length === 0 && !addPageMutation.isPending && (
-                  <p className="mx-2 text-xs text-zinc-400">
+                  <p className="mx-2 text-xs text-zinc-500 dark:text-zinc-400">
                     <Trans>No pages found.</Trans>
                   </p>
                 )}

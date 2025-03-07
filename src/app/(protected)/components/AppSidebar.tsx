@@ -32,14 +32,14 @@ const AppSidebar = () => {
       id: "search",
       title: t`Search`,
       url: "#",
-      icon: <Search className="text-zinc-700" />,
+      icon: <Search className="text-zinc-700 dark:text-white" />,
       isActive: false,
     },
     {
       id: "home",
       title: t`Home`,
       url: "/home",
-      icon: <Home className="text-zinc-700" />,
+      icon: <Home className="text-zinc-700 dark:text-white" />,
       isActive: pathname === "/home",
     },
   ];
@@ -61,11 +61,11 @@ const AppSidebar = () => {
   }, [isSearchOpen]);
 
   return (
-    <Sidebar>
-      <SidebarHeader>
+    <Sidebar className="border-zinc-200 dark:border-zinc-700">
+      <SidebarHeader className="bg-zinc-100 dark:bg-zinc-800">
         <AuthMenu />
       </SidebarHeader>
-      <SidebarContent className="gap-y-0 overflow-hidden">
+      <SidebarContent className="gap-y-0 overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {/* Main */}
         <SidebarGroup>
           <SidebarMenu>
@@ -74,6 +74,7 @@ const AppSidebar = () => {
                 <SidebarMenuItem key={item.id}>
                   {item.id === "search" && (
                     <SidebarMenuButton
+                      className="!text-zinc-500 hover:!bg-zinc-200 hover:!text-zinc-700 data-[active=true]:!bg-zinc-200 dark:!text-zinc-400 dark:hover:!bg-zinc-700 dark:hover:!text-white data-[active=true]:dark:!bg-zinc-700"
                       isActive={item.isActive}
                       onClick={() => setIsSearchOpen(true)}
                     >
@@ -82,7 +83,11 @@ const AppSidebar = () => {
                     </SidebarMenuButton>
                   )}
                   {item.id === "home" && (
-                    <SidebarMenuButton isActive={item.isActive} asChild={true}>
+                    <SidebarMenuButton
+                      className="!text-zinc-500 hover:!bg-zinc-200 hover:!text-zinc-700 data-[active=true]:!bg-zinc-200 dark:!text-zinc-400 dark:hover:!bg-zinc-700 dark:hover:!text-white data-[active=true]:dark:!bg-zinc-700"
+                      isActive={item.isActive}
+                      asChild={true}
+                    >
                       <Link href={item.url} title={item.title}>
                         {item.icon}
                         <span>{item.title}</span>
@@ -95,16 +100,16 @@ const AppSidebar = () => {
           </SidebarMenu>
         </SidebarGroup>
 
-        <div className="flex-1 overflow-y-auto border-t">
+        <div className="flex-1 overflow-y-auto border-t border-zinc-200 dark:border-zinc-700">
           <PageList />
         </div>
 
         <PopupSearch isOpen={isSearchOpen} onOpenChange={setIsSearchOpen} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-zinc-100 dark:bg-zinc-800">
         <LanguageMenu />
       </SidebarFooter>
-      <SidebarRail />
+      <SidebarRail className="hover:after:bg-zinc-200 hover:after:dark:bg-zinc-700" />
     </Sidebar>
   );
 };
