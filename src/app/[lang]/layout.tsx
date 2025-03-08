@@ -41,7 +41,11 @@ const Layout = async ({ children, params }: Props) => {
         <Provider locale={lang} messages={i18n.messages}>
           {children}
         </Provider>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            className: "bg-zinc-100 dark:bg-zinc-800",
+          }}
+        />
       </body>
     </html>
   );

@@ -63,7 +63,11 @@ const HomePage = async () => {
         <Provider locale={lang} messages={i18n.messages}>
           <HomeTemplate />
         </Provider>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            className: "bg-zinc-100 dark:bg-zinc-800",
+          }}
+        />
       </body>
     </html>
   );
