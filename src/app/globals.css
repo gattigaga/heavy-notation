@@ -93,6 +93,18 @@ body {
 
 /* Yoopta Editor */
 
+.yoopta-toolbar-root {
+  @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
+}
+
+.yoopta-toolbar-separator {
+  @apply !bg-zinc-200 dark:!bg-zinc-700;
+}
+
+.yoopta-link-tool {
+  @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
+}
+
 .yoopta-toolbar-item,
 .yoopta-toolbar-item-mark:not([aria-label="Highlight"]),
 .yoopta-action-menu-list-content,
@@ -100,15 +112,23 @@ body {
 .yoopta-link-tool-input,
 .yoopta-link-tool .yoopta-button:nth-child(2),
 .yoo-toolbar-text-gray-600 {
-  @apply !text-zinc-700;
+  @apply !text-zinc-700 dark:!text-white;
+}
+
+.yoopta-link-tool-input {
+  @apply !border-zinc-200 !bg-zinc-100 dark:!border-zinc-700 dark:!bg-zinc-800;
 }
 
 .yoopta-link-tool-input::placeholder {
-  @apply !text-zinc-400;
+  @apply !text-zinc-400 dark:!text-zinc-500;
 }
 
 .yoopta-link-tool .yoopta-button:nth-child(1) {
   @apply !bg-blue-500;
+}
+
+.yoopta-link-tool .yoopta-button:nth-child(2) {
+  @apply !bg-zinc-200 dark:!bg-zinc-700;
 }
 
 .yoopta-paragraph,
@@ -117,7 +137,7 @@ body {
 .yoopta-numbered-list,
 .yoopta-bulleted-list,
 .yoopta-todo-list {
-  @apply !text-lg !text-zinc-700;
+  @apply !text-lg !text-zinc-700 dark:!text-white;
 }
 
 .yoopta-callout-theme-info,
@@ -133,7 +153,7 @@ body {
 .yoopta-numbered-list .yoopta-placeholder::after,
 .yoopta-bulleted-list .yoopta-placeholder::after,
 .yoopta-todo-list .yoopta-placeholder::after {
-  @apply !text-lg !tracking-normal !text-zinc-400;
+  @apply !text-lg !tracking-normal !text-zinc-400 dark:!text-zinc-500;
 }
 
 .yoopta-callout-theme-info .yoopta-placeholder::after,
@@ -144,85 +164,89 @@ body {
 }
 
 .yoopta-heading-one {
-  @apply !text-3xl !font-bold !leading-tight !text-zinc-700 md:!text-4xl md:!leading-tight;
+  @apply !text-3xl !font-bold !leading-tight !text-zinc-700 md:!text-4xl md:!leading-tight dark:!text-white;
 }
 
 .yoopta-heading-one .yoopta-placeholder::after {
-  @apply !text-3xl !font-bold !leading-tight !text-zinc-400 md:!text-4xl md:!leading-tight;
+  @apply !text-3xl !font-bold !leading-tight !text-zinc-400 md:!text-4xl md:!leading-tight dark:!text-zinc-500;
 }
 
 .yoopta-heading-two {
-  @apply !text-2xl !font-bold !leading-tight !text-zinc-700 md:!text-3xl md:!leading-tight;
+  @apply !text-2xl !font-bold !leading-tight !text-zinc-700 md:!text-3xl md:!leading-tight dark:!text-white;
 }
 
 .yoopta-heading-two .yoopta-placeholder::after {
-  @apply !text-2xl !font-bold !leading-tight !text-zinc-400 md:!text-3xl md:!leading-tight;
+  @apply !text-2xl !font-bold !leading-tight !text-zinc-400 md:!text-3xl md:!leading-tight dark:!text-zinc-500;
 }
 
 .yoopta-heading-three {
-  @apply !text-xl !font-bold !leading-tight !text-zinc-700 md:!text-2xl md:!leading-tight;
+  @apply !text-xl !font-bold !leading-tight !text-zinc-700 md:!text-2xl md:!leading-tight dark:!text-white;
 }
 
 .yoopta-heading-three .yoopta-placeholder::after {
-  @apply !text-xl !font-bold !leading-tight !text-zinc-400 md:!text-2xl md:!leading-tight;
+  @apply !text-xl !font-bold !leading-tight !text-zinc-400 md:!text-2xl md:!leading-tight dark:!text-zinc-500;
 }
 
 .yoopta-link {
   @apply !text-blue-500;
 }
 
-/* Yoopta Editor */
-
-.yoopta-toolbar-item,
-.yoopta-toolbar-item-mark:not([aria-label="Highlight"]),
-.yoopta-action-menu-list-content,
-.yoopta-link-tool-label,
-.yoopta-link-tool-input,
-.yoopta-link-tool .yoopta-button:nth-child(2),
-.yoo-toolbar-text-gray-600 {
-  @apply !text-zinc-700;
+.yoopta-block-actions-drag,
+.yoopta-block-actions-plus {
+  @apply !text-zinc-400 dark:!text-zinc-500;
 }
 
-.yoopta-link-tool-input::placeholder {
-  @apply !text-zinc-400;
+.yoopta-block-actions-drag:hover,
+.yoopta-block-actions-plus:hover {
+  @apply !bg-zinc-100 dark:!bg-zinc-800;
 }
 
-.yoopta-link-tool .yoopta-button:nth-child(1) {
-  @apply !bg-blue-500;
+.yoopta-block-options-menu-content {
+  @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
 }
 
-.yoopta-paragraph {
-  @apply !text-lg !text-zinc-700;
+.yoopta-action-menu-list-content {
+  @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
 }
 
-.yoopta-paragraph .yoopta-placeholder::after {
-  @apply !text-lg !tracking-normal !text-zinc-400;
+.yoopta-button {
+  @apply hover:!bg-zinc-200 hover:dark:!bg-zinc-700;
 }
 
-.yoopta-heading-one {
-  @apply !text-3xl !font-bold !leading-tight !text-zinc-700 md:!text-4xl md:!leading-tight;
+.yoopta-button[aria-selected="true"] {
+  @apply !bg-zinc-200 dark:!bg-zinc-700;
 }
 
-.yoopta-heading-one .yoopta-placeholder::after {
-  @apply !text-3xl !font-bold !leading-tight !text-zinc-400 md:!text-4xl md:!leading-tight;
+.yoopta-button[aria-label="Text"],
+.yoopta-button[aria-label="LinkTool"],
+.yoopta-button[aria-label="Highlight"] {
+  @apply !bg-zinc-100 dark:!bg-zinc-800;
 }
 
-.yoopta-heading-two {
-  @apply !text-2xl !font-bold !leading-tight !text-zinc-700 md:!text-3xl md:!leading-tight;
+.yoopta-button[aria-label="Text"][tabindex="0"],
+.yoopta-button[aria-label="LinkTool"][tabindex="0"],
+.yoopta-button[aria-label="Highlight"][tabindex="0"] {
+  @apply !bg-zinc-200 dark:!bg-zinc-700;
 }
 
-.yoopta-heading-two .yoopta-placeholder::after {
-  @apply !text-2xl !font-bold !leading-tight !text-zinc-400 md:!text-3xl md:!leading-tight;
+.yoopta-button > div:first-child {
+  @apply !border-zinc-200 !bg-zinc-100 dark:!border-zinc-700 dark:!bg-zinc-800;
 }
 
-.yoopta-heading-three {
-  @apply !text-xl !font-bold !leading-tight !text-zinc-700 md:!text-2xl md:!leading-tight;
+.yoo-toolbar-bg-\[\#FFFFFF\] {
+  @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
 }
 
-.yoopta-heading-three .yoopta-placeholder::after {
-  @apply !text-xl !font-bold !leading-tight !text-zinc-400 md:!text-2xl md:!leading-tight;
+.yoo-toolbar-bg-\[\#FFFFFF\] .yoo-toolbar-grid button {
+  @apply !border-zinc-200 dark:!border-zinc-700;
 }
 
-.yoopta-link {
-  @apply !text-blue-500;
+.yoo-toolbar-bg-\[\#FFFFFF\]
+  .yoo-toolbar-flex
+  button.yoo-toolbar-text-gray-600 {
+  @apply hover:!bg-zinc-200 hover:dark:!bg-zinc-700;
+}
+
+.yoo-toolbar-bg-\[\#FFFFFF\] .yoo-toolbar-flex button.yoo-toolbar-bg-blue-50 {
+  @apply !bg-blue-100 !text-blue-500 dark:!bg-blue-700 dark:!text-blue-300;
 }
