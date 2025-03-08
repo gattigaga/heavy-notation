@@ -73,8 +73,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.lang = user.lang;
       }
 
-      if (trigger === "update" && session?.lang) {
-        token.lang = session.lang;
+      if (trigger === "update") {
+        if (session?.name) {
+          token.name = session.name;
+        }
+
+        if (session?.lang) {
+          token.lang = session.lang;
+        }
       }
 
       return token;

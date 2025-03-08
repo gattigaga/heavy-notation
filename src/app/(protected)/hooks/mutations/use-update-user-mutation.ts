@@ -2,7 +2,8 @@ import { Language } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 
 export type ActionPayload = {
-  lang: Language;
+  name?: string;
+  lang?: Language;
 };
 
 type Response = {
@@ -13,11 +14,11 @@ type Response = {
   lang: string;
 };
 
-const action = async ({ lang }: ActionPayload): Promise<Response> => {
+const action = async ({ name, lang }: ActionPayload): Promise<Response> => {
   try {
     const response = await fetch("/api/me", {
       method: "PUT",
-      body: JSON.stringify({ lang }),
+      body: JSON.stringify({ name, lang }),
     });
 
     const json = await response.json();

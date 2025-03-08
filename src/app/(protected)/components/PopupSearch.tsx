@@ -30,7 +30,7 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-11/12 rounded-lg border-0 bg-white p-0 data-[state=open]:text-zinc-700 md:w-1/2 lg:w-1/3 dark:bg-zinc-900 data-[state=open]:dark:text-white">
+      <DialogContent className="w-11/12 rounded-lg border border-zinc-200 bg-white p-0 data-[state=open]:text-zinc-700 md:w-1/2 lg:w-1/3 dark:border-zinc-700 dark:bg-zinc-900 data-[state=open]:dark:text-white">
         <DialogTitle className="hidden">
           <Trans>Search a page</Trans>
         </DialogTitle>

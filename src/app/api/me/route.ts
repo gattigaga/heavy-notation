@@ -11,6 +11,7 @@ export const PUT = async (request: Request) => {
     },
     data: {
       lang: body.lang,
+      name: body.name,
     },
   });
 

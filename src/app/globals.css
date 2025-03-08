@@ -87,7 +87,7 @@ body {
   }
 }
 
-[cmdk-input-wrapper] svg {
+[role="dialog"] svg {
   @apply text-zinc-700 dark:text-white;
 }
 
