@@ -116,31 +116,36 @@ const Header = () => {
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 px-4">
       {/* Left navigation bar */}
-      <SidebarTrigger className="-ml-1" />
-      <Separator orientation="vertical" className="mr-2 h-4" />
+      <SidebarTrigger className="-ml-1 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-700 dark:text-white hover:dark:bg-zinc-800 hover:dark:text-white" />
+      <Separator
+        orientation="vertical"
+        className="mr-2 h-4 bg-zinc-200 dark:bg-zinc-700"
+      />
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem className="text-zinc-700">{title}</BreadcrumbItem>
+          <BreadcrumbItem className="text-zinc-700 dark:text-white">
+            {title}
+          </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
       {/* Right navigation bar */}
       <div className="ml-auto flex items-center gap-2 text-sm">
-        <div className="hidden text-muted-foreground md:inline-block">
+        <div className="hidden text-zinc-400 md:inline-block dark:text-zinc-500">
           {formattedDate ? <Trans>Edited {formattedDate}</Trans> : ""}
         </div>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger asChild>
+          <PopoverTrigger asChild={true}>
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 data-[state=open]:bg-accent"
+              className="h-7 w-7 hover:bg-zinc-100 data-[state=open]:bg-zinc-100 hover:dark:bg-zinc-800 data-[state=open]:dark:bg-zinc-800"
             >
-              <MoreHorizontal />
+              <MoreHorizontal className="text-zinc-700 dark:text-white" />
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-56 overflow-hidden rounded-lg p-0"
+            className="w-56 overflow-hidden rounded-lg border-zinc-200 bg-zinc-100 p-0 dark:border-zinc-700 dark:bg-zinc-800"
             align="end"
           >
             <Sidebar collapsible="none" className="bg-transparent">
@@ -157,7 +162,10 @@ const Header = () => {
 
                           return (
                             <SidebarMenuItem key={index}>
-                              <SidebarMenuButton onClick={item.onClick}>
+                              <SidebarMenuButton
+                                className="!text-zinc-700 hover:!bg-zinc-200 hover:!text-zinc-700 dark:!text-white dark:hover:!bg-zinc-700 dark:hover:!text-white"
+                                onClick={item.onClick}
+                              >
                                 <Icon /> <span>{item.label}</span>
                               </SidebarMenuButton>
                             </SidebarMenuItem>

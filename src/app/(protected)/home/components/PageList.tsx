@@ -95,12 +95,12 @@ const PageList = () => {
             </div>
           ))}
           <button
-            className="col-span-1 flex h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-white bg-zinc-200 hover:bg-zinc-300"
+            className="col-span-1 flex h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200 hover:bg-zinc-300 dark:border-zinc-800 dark:bg-zinc-800 hover:dark:bg-zinc-700"
             type="button"
             onClick={addPage}
           >
-            <Plus className="mb-4 text-zinc-700" size={48} />
-            <p className="text-base text-zinc-700">
+            <Plus className="mb-4 text-zinc-700 dark:text-white" size={48} />
+            <p className="text-base text-zinc-700 dark:text-white">
               <Trans>Add new page</Trans>
             </p>
           </button>

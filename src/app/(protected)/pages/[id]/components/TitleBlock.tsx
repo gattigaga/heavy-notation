@@ -18,7 +18,7 @@ const TitleBlock = ({ defaultValue, onPressEnter, onChange }: Props) => {
   return (
     <TextareaAutosize
       ref={refInput}
-      className="mb-4 h-fit w-full resize-none text-4xl font-bold leading-tight text-zinc-700 outline-none placeholder:text-zinc-400 md:text-5xl md:leading-tight"
+      className="mb-4 h-fit w-full resize-none bg-transparent text-4xl font-bold leading-tight text-zinc-700 outline-none placeholder:text-zinc-400 md:text-5xl md:leading-tight dark:text-white placeholder:dark:text-zinc-500"
       placeholder={t`New Page`}
       value={value}
       onChange={(event) => {

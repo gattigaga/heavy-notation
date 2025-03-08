@@ -42,7 +42,9 @@ const Layout = async ({ children }: Props) => {
         <Provider>
           <SidebarProvider>
             <AppSidebar />
-            <SidebarInset>{children}</SidebarInset>
+            <SidebarInset className="bg-white dark:bg-zinc-900">
+              {children}
+            </SidebarInset>
           </SidebarProvider>
         </Provider>
         <Toaster />

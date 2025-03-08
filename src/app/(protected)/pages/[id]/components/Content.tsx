@@ -167,8 +167,10 @@ const Content = () => {
       )}
       {pageQuery.isError && (
         <div className="flex w-full flex-col items-center justify-center">
-          <h1 className="mb-2 text-7xl font-bold text-zinc-700">404</h1>
-          <p className="text-center text-sm text-zinc-400">
+          <h1 className="mb-2 text-7xl font-bold text-zinc-700 dark:text-white">
+            404
+          </h1>
+          <p className="text-center text-sm text-zinc-400 dark:text-zinc-500">
             <Trans>The page you are looking for does not exist.</Trans>
           </p>
         </div>

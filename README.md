@@ -36,6 +36,7 @@ Key features include:
 - 🔐 User authentication
 - 🌐 Client-side localization
 - 📱 Responsive design
+- 🌅 Toggle light/dark mode
 
 The project serves as a practical exploration of frontend development concepts, showcasing fundamental note-taking application capabilities.
 

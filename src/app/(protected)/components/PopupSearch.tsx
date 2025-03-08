@@ -30,20 +30,26 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-11/12 rounded-lg p-0 md:w-1/2 lg:w-1/3">
+      <DialogContent className="w-11/12 rounded-lg border-0 bg-white p-0 data-[state=open]:text-zinc-700 md:w-1/2 lg:w-1/3 dark:bg-zinc-900 data-[state=open]:dark:text-white">
         <DialogTitle className="hidden">
           <Trans>Search a page</Trans>
         </DialogTitle>
-        <Command>
+        <Command className="bg-white dark:bg-zinc-900">
           <CommandInput
-            className="h-16 text-base"
+            className="h-16 text-base text-zinc-700 dark:text-white"
             placeholder={t`Search a page...`}
           />
           <CommandList>
-            <CommandEmpty>
+            <CommandEmpty className="my-4 text-center text-sm text-zinc-700 dark:text-white">
               <Trans>No results found.</Trans>
             </CommandEmpty>
-            <CommandGroup heading={t`Pages`}>
+            <CommandGroup
+              heading={
+                <p className="text-zinc-400 dark:text-zinc-500">
+                  <Trans>Pages</Trans>
+                </p>
+              }
+            >
               {pages.map((page) => {
                 const formattedTitle = (() => {
                   if (!page.title) return t`New Page`;
@@ -60,7 +66,7 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
                 return (
                   <CommandItem
                     key={page.id}
-                    className="flex w-full items-center gap-x-2 py-2"
+                    className="flex w-full items-center gap-x-2 py-2 data-[selected=true]:bg-zinc-100 data-[selected=true]:dark:bg-zinc-800"
                     value={`${page.title}-${page.id}`}
                   >
                     <button
@@ -71,11 +77,11 @@ export const PopupSearch = ({ isOpen, onOpenChange }: Props) => {
                         router.push(`/pages/${page.id}`);
                       }}
                     >
-                      <File className="text-zinc-700" />
-                      <span className="mr-auto text-base text-zinc-700">
+                      <File className="text-zinc-700 dark:text-white" />
+                      <span className="mr-auto text-base text-zinc-700 dark:text-white">
                         {formattedTitle}
                       </span>
-                      <span className="text-sm text-zinc-400">
+                      <span className="text-sm text-zinc-400 dark:text-zinc-500">
                         {formattedDate}
                       </span>
                     </button>
