@@ -29,6 +29,7 @@ import Spinner from "@/app/components/Spinner";
 import AvatarPicker from "./AvatarPicker";
 import { getUpdateAccountSchema } from "../validations";
 import useUpdateUserMutation from "../hooks/mutations/use-update-user-mutation";
+import usePagesQuery from "../hooks/queries/use-pages-query";
 
 type Props = {
   isOpen?: boolean;
@@ -38,6 +39,7 @@ type Props = {
 const PopupAccount = ({ isOpen, onOpenChange }: Props) => {
   const { t, i18n } = useLingui();
   const { data: session, update: updateSession } = useSession();
+  const pagesQuery = usePagesQuery();
   const updateUserMutation = useUpdateUserMutation();
 
   const updateAccountSchema = getUpdateAccountSchema(i18n);
@@ -45,42 +47,41 @@ const PopupAccount = ({ isOpen, onOpenChange }: Props) => {
   const form = useForm<z.infer<typeof updateAccountSchema>>({
     resolver: zodResolver(updateAccountSchema),
     defaultValues: {
-      name: session?.user.name,
-      avatar: null,
+      name: "",
+      image: null,
     },
   });
 
-  const avatar = form.watch("avatar");
+  const image = form.watch("image");
 
   const submit = (data: z.infer<typeof updateAccountSchema>) => {
-    updateUserMutation.mutate(
-      {
-        name: data.name,
+    updateUserMutation.mutate(data, {
+      onError: () => {
+        toast.error(t`Failed to update your account.`);
       },
-      {
-        onError: () => {
-          toast.error(t`Failed to update your account.`);
-        },
-        onSuccess: () => {
-          updateSession({
-            name: data.name,
-          });
+      onSuccess: (response) => {
+        updateSession({
+          name: response.name,
+          image: response.image,
+        });
 
-          toast.success(t`Your account has been updated.`);
-        },
-        onSettled: () => {
-          onOpenChange?.(false);
-        },
+        pagesQuery.refetch();
+        toast.success(t`Your account has been updated.`);
       },
-    );
+      onSettled: () => {
+        onOpenChange?.(false);
+      },
+    });
   };
 
   // Reset form when popup is closed.
   useEffect(() => {
     if (!isOpen) {
       form.reset();
+    } else {
+      form.setValue("name", session?.user.name);
     }
-  }, [isOpen]);
+  }, [isOpen, session?.user.name]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -98,12 +99,18 @@ const PopupAccount = ({ isOpen, onOpenChange }: Props) => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(submit)} className="space-y-8">
               <div className="grid gap-4">
-                <div className="flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                   <AvatarPicker
                     placeholder={session?.user.name[0]?.toUpperCase() || ""}
-                    value={avatar}
-                    onChange={(value) => form.setValue("avatar", value)}
+                    preview={session?.user.image}
+                    value={image}
+                    onChange={(value) => form.setValue("image", value)}
                   />
+                  {form.formState.errors.image && (
+                    <FormMessage className="mt-4 text-red-500">
+                      {form.formState.errors.image.message}
+                    </FormMessage>
+                  )}
                 </div>
                 <div className="grid gap-2">
                   <FormField

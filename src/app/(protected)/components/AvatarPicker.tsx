@@ -1,29 +1,45 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ImageBlobReduce from "image-blob-reduce";
 import { useEffect, useRef, useState } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+const reduce = ImageBlobReduce();
+
 type Props = {
+  preview?: string;
   value?: File | null;
   placeholder: string;
   onChange?: (value: File) => void;
 };
 
-const AvatarPicker: React.FC<Props> = ({ value, placeholder, onChange }) => {
-  const [preview, setPreview] = useState("");
+const AvatarPicker: React.FC<Props> = ({
+  preview,
+  value,
+  placeholder,
+  onChange,
+}) => {
+  const [imagePreview, setImagePreview] = useState("");
   const refInput = useRef<HTMLInputElement>(null);
 
-  const pickFile = () => {
+  const pickFile = async () => {
     const file = refInput.current?.files?.[0];
 
     if (!file) {
       return;
     }
 
-    onChange?.(file);
+    const blob = await reduce.toBlob(file, { max: 128 });
+
+    const result = new File([blob], file.name, {
+      type: blob.type,
+    });
+
+    onChange?.(result);
   };
 
   useEffect(() => {
     if (value) {
-      setPreview(URL.createObjectURL(value));
+      setImagePreview(URL.createObjectURL(value));
     }
   }, [value]);
 
@@ -36,8 +52,8 @@ const AvatarPicker: React.FC<Props> = ({ value, placeholder, onChange }) => {
         {placeholder}
       </AvatarFallback>
       <AvatarImage
-        className="rounded-full bg-zinc-300 text-zinc-700 dark:bg-zinc-600 dark:text-white"
-        src={preview}
+        className="rounded-full bg-zinc-300 object-cover text-zinc-700 dark:bg-zinc-600 dark:text-white"
+        src={imagePreview || preview}
         alt="Avatar Picker"
       />
       <input

@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useMutationState } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { createId } from "@paralleldrive/cuid2";
@@ -20,7 +19,6 @@ const PageList = () => {
   const { t } = useLingui();
   const sidebar = useSidebar();
   const router = useRouter();
-  const { data: session } = useSession();
   const pagesQuery = usePagesQuery();
   const addPageMutation = useAddPageMutation();
 
@@ -87,7 +85,7 @@ const PageList = () => {
           {pages.map((page) => (
             <div key={page.id} className="col-span-1">
               <PageCard
-                user={session?.user}
+                user={page.user}
                 title={page.title}
                 updatedAt={page.updatedAt}
                 href={`/pages/${page.id}`}

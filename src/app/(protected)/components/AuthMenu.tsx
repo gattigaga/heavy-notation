@@ -19,7 +19,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "../actions";
 import PopupAccount from "./PopupAccount";
 
@@ -48,6 +48,11 @@ const AuthMenu = () => {
                 className="hover:bg-zinc-200 data-[state=open]:bg-zinc-100 data-[state=open]:text-zinc-700 hover:dark:bg-zinc-700 data-[state=open]:dark:bg-zinc-700 data-[state=open]:dark:text-white"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
+                  <AvatarImage
+                    className="object-cover"
+                    src={user.image}
+                    alt={user.name}
+                  />
                   <AvatarFallback className="rounded-lg bg-zinc-300 text-zinc-700 dark:bg-zinc-600 dark:text-white">
                     {user.name[0]?.toUpperCase()}
                   </AvatarFallback>
@@ -72,6 +77,11 @@ const AuthMenu = () => {
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="h-8 w-8 rounded-lg">
+                    <AvatarImage
+                      className="object-cover"
+                      src={user.image}
+                      alt={user.name}
+                    />
                     <AvatarFallback className="rounded-lg bg-zinc-300 text-zinc-700 dark:bg-zinc-600 dark:text-white">
                       {user.name[0]?.toUpperCase()}
                     </AvatarFallback>

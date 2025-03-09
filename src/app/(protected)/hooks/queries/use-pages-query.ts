@@ -7,6 +7,10 @@ type Response = {
   body: string;
   createdAt: string;
   updatedAt: string;
+  user: {
+    name: string;
+    image: string | null;
+  };
 }[];
 
 const action = async (): Promise<Response> => {
