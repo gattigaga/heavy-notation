@@ -62,6 +62,8 @@ The project is built using the following tech stacks:
 - [Auth.js](https://authjs.dev)
 - [Shadcn UI](https://ui.shadcn.com)
 - [Next Safe Action](https://next-safe-action.dev)
+- [Sentry](https://sentry.io)
+- [Cloudinary](https://cloudinary.com)
 - [Turso](https://turso.tech)
 - [Lingui.js](https://lingui.dev)
 - [Lucide Icons](https://lucide.dev)

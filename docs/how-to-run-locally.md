@@ -27,6 +27,10 @@ SENTRY_AUTH_TOKEN=
 SENTRY_ORG=
 SENTRY_DSN=
 
+CLOUDINARY_CLOUD_NAME=get_it_by_yourself
+CLOUDINARY_API_KEY=get_it_by_yourself
+CLOUDINARY_API_SECRET=get_it_by_yourself
+
 DATABASE_URL=file:./dev.db
 ```
 
@@ -40,6 +44,9 @@ Descriptions:
 - SENTRY_AUTH_TOKEN: The authentication token for Sentry. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
 - SENTRY_ORG: The organization you created on Sentry. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
 - SENTRY_DSN: The DSN (Data Source Name) of Sentry and it tells the SDK where to send events. You got it when you set up the project on Sentry. Make it empty because we don't need it for local development.
+- CLOUDINARY_CLOUD_NAME: Unique identifier of your Cloudinary account. You got it when you set up the project on Cloudinary.
+- CLOUDINARY_API_KEY: The API key of the Cloudinary. You got it when you set up the project on Cloudinary.
+- CLOUDINARY_API_SECRET: The API secret of the Cloudinary. You got it when you set up the project on Cloudinary.
 - DATABASE_URL: The URL of the local sqlite database and it will be used by Prisma to apply migrations.
 
 3. Run this command in the terminal to install the node_modules.
