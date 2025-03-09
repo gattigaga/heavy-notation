@@ -2,7 +2,9 @@ import { Language } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 
 export type ActionPayload = {
-  lang: Language;
+  name?: string;
+  lang?: Language;
+  image?: File | null;
 };
 
 type Response = {
@@ -11,13 +13,23 @@ type Response = {
   username: string;
   email: string;
   lang: string;
+  image: string;
 };
 
-const action = async ({ lang }: ActionPayload): Promise<Response> => {
+const action = async ({
+  name,
+  lang,
+  image,
+}: ActionPayload): Promise<Response> => {
   try {
+    const formData = new FormData();
+    if (name) formData.append("name", name);
+    if (lang) formData.append("lang", lang);
+    if (image) formData.append("image", image);
+
     const response = await fetch("/api/me", {
       method: "PUT",
-      body: JSON.stringify({ lang }),
+      body: formData,
     });
 
     const json = await response.json();

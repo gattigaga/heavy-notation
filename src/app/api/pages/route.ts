@@ -8,6 +8,14 @@ export const GET = async () => {
     where: {
       userId: session?.user.id,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
   });
 
   return Response.json({ data: pages });
@@ -23,6 +31,14 @@ export const POST = async (request: Request) => {
       userId: session?.user.id,
       title: body.title,
       body: body.body,
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
     },
   });
 

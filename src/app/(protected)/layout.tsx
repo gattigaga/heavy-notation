@@ -47,7 +47,11 @@ const Layout = async ({ children }: Props) => {
             </SidebarInset>
           </SidebarProvider>
         </Provider>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            className: "bg-zinc-100 dark:bg-zinc-800",
+          }}
+        />
       </body>
     </html>
   );

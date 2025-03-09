@@ -13,6 +13,14 @@ export const GET = async (
       id,
       userId: session?.user.id,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
   });
 
   if (!page) {
@@ -59,6 +67,14 @@ export const PUT = async (
       title: body.title,
       body: body.body,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
   });
 
   return Response.json({ data: newPage });
@@ -87,11 +103,19 @@ export const DELETE = async (
     );
   }
 
-  await prisma.page.delete({
+  const deletedPage = await prisma.page.delete({
     where: {
       id: page.id,
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
   });
 
-  return Response.json({ data: page });
+  return Response.json({ data: deletedPage });
 };

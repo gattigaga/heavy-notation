@@ -272,7 +272,7 @@ const SignUpForm = ({ lang }: Props) => {
       )}
       {signUpAction.isPending && (
         <div className="flex h-screen w-full flex-col items-center justify-center">
-          <Spinner className="mb-8 h-16 w-16" />
+          <Spinner className="mb-8 h-16 w-16 text-zinc-700 dark:text-white" />
           <p className="text-sm text-zinc-700 dark:text-white">
             <Trans>Submitting...</Trans>
           </p>

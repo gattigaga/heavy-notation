@@ -71,10 +71,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.id = user.id;
         token.username = user.username;
         token.lang = user.lang;
+        token.image = user.image;
       }
 
-      if (trigger === "update" && session?.lang) {
-        token.lang = session.lang;
+      if (trigger === "update") {
+        if (session?.name) {
+          token.name = session.name;
+        }
+
+        if (session?.lang) {
+          token.lang = session.lang;
+        }
+
+        if (session?.image) {
+          token.image = session.image;
+        }
       }
 
       return token;
@@ -84,6 +95,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.id as string;
         session.user.username = token.username as string;
         session.user.lang = token.lang as Language;
+        session.user.image = token.image as string;
       }
 
       return session;

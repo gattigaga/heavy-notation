@@ -100,7 +100,7 @@ const PageList = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                className="text-xs text-zinc-500 dark:text-zinc-400"
+                className="!text-zinc-500 hover:!bg-zinc-200 hover:!text-zinc-700 data-[active=true]:!bg-zinc-200 dark:!text-zinc-400 dark:hover:!bg-zinc-700 dark:hover:!text-white data-[active=true]:dark:!bg-zinc-700"
                 onClick={() => setIsPagesSectionShow(!isPagesSectionShow)}
               >
                 <Trans>Pages</Trans>

@@ -3,11 +3,12 @@ import { File } from "lucide-react";
 import { useLingui } from "@lingui/react/macro";
 
 import { formatToClientTimeAndAgo } from "../../helpers/datetime";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type Props = {
   user: {
     name: string;
+    image: string | null;
   };
   title: string;
   updatedAt: string;
@@ -39,6 +40,13 @@ const PageCard = ({ user, title, updatedAt, href }: Props) => {
           </p>
           <div className="flex items-center gap-x-2">
             <Avatar className="h-6 w-6">
+              {user.image && (
+                <AvatarImage
+                  className="object-cover"
+                  src={user.image}
+                  alt={user.name}
+                />
+              )}
               <AvatarFallback className="bg-zinc-300 text-sm text-zinc-700 dark:bg-zinc-600 dark:text-white">
                 {user?.name[0]?.toUpperCase()}
               </AvatarFallback>
