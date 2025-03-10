@@ -250,3 +250,7 @@ body {
 .yoo-toolbar-bg-\[\#FFFFFF\] .yoo-toolbar-flex button.yoo-toolbar-bg-blue-50 {
   @apply !bg-blue-100 !text-blue-500 dark:!bg-blue-700 dark:!text-blue-300;
 }
+
+.yoopta-mark-code {
+  @apply !bg-zinc-200 dark:!bg-zinc-700;
+}
