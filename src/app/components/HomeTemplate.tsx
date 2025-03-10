@@ -369,6 +369,12 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-zinc-900"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-zinc-900"></div>
           </div>
+          <p className="mx-auto mb-8 mt-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2 dark:text-zinc-500">
+            <Trans>
+              Note that these reviews are used only for demonstration purposes
+              and do not reflect the actual experience of all users.
+            </Trans>
+          </p>
         </div>
 
         <div className="flex flex-col items-center rounded-lg bg-zinc-100 p-8 md:p-16 lg:p-24 dark:bg-zinc-800">
