@@ -45,28 +45,33 @@ msgstr "{years} tahun yang lalu"
 msgid "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you."
 msgstr "Alat baru yang menggabungkan aplikasi kerja Anda. Ini adalah workspace yang lengkap untuk Anda."
 
-#: src/app/(protected)/home/components/PageList.tsx:104
+#: src/app/(protected)/components/PopupAccount.tsx:91
+#: src/app/(protected)/components/AuthMenu.tsx:105
+msgid "Account"
+msgstr "Akun"
+
+#: src/app/(protected)/home/components/PageList.tsx:102
 msgid "Add new page"
 msgstr "Tambah halaman baru"
 
-#: src/app/components/HomeTemplate.tsx:235
+#: src/app/components/HomeTemplate.tsx:255
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "Semua proyek, tujuan, roadmap, dan lain-lain—dalam satu alat—khusus untuk bagaimana Anda bekerja."
 
-#: src/app/components/SignUpForm.tsx:255
+#: src/app/components/SignUpForm.tsx:261
 msgid "Already have an account?"
 msgstr "Sudah punya akun?"
 
-#: src/app/components/HomeTemplate.tsx:195
+#: src/app/components/HomeTemplate.tsx:205
 msgid "Build perfect docs."
 msgstr "Buat dokumen yang sempurna."
 
-#: src/app/(protected)/home/components/PageList.tsx:112
-#: src/app/(protected)/components/PageList.tsx:177
+#: src/app/(protected)/home/components/PageList.tsx:110
+#: src/app/(protected)/components/PageList.tsx:192
 msgid "Cannot fetch pages data."
 msgstr "Tidak dapat mengambil data halaman."
 
-#: src/app/components/HomeTemplate.tsx:198
+#: src/app/components/HomeTemplate.tsx:208
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Kami menyediakan antarmuka yang mudah digunakan dan sederhana untuk membantu Anda menghasilkan dokumen yang sempurna."
 
@@ -91,19 +96,19 @@ msgid "Create a new Heavy Notation account."
 msgstr "Buat akun Heavy Notation baru."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
-#: src/app/(protected)/components/PageList.tsx:142
+#: src/app/(protected)/components/PageList.tsx:153
 msgid "Delete"
 msgstr "Hapus"
 
-#: src/app/components/SignInForm.tsx:165
+#: src/app/components/SignInForm.tsx:171
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Belum punya akun? <0>Daftar</0>"
 
-#: src/app/components/HomeTemplate.tsx:306
+#: src/app/components/HomeTemplate.tsx:350
 msgid "Don't just take our word for it."
 msgstr "Lihat apa yang mereka katakan tentang kami."
 
-#: src/app/(protected)/pages/[id]/components/Header.tsx:130
+#: src/app/(protected)/pages/[id]/components/Header.tsx:135
 msgid "Edited {formattedDate}"
 msgstr "Diubah {formattedDate}"
 
@@ -147,6 +152,7 @@ msgid "Enter your email"
 msgstr "Masukkan email Anda"
 
 #: src/app/components/SignUpForm.tsx:135
+#: src/app/(protected)/components/PopupAccount.tsx:127
 msgid "Enter your name"
 msgstr "Masukkan nama Anda"
 
@@ -163,7 +169,7 @@ msgstr "Masukkan kata sandi Anda kembali"
 msgid "Enter your username"
 msgstr "Masukkan nama pengguna Anda"
 
-#: src/app/(protected)/home/components/PageList.tsx:65
+#: src/app/(protected)/home/components/PageList.tsx:63
 #: src/app/(protected)/components/PageList.tsx:60
 msgid "Failed to add a new page."
 msgstr "Gagal menambahkan halaman baru."
@@ -173,15 +179,19 @@ msgstr "Gagal menambahkan halaman baru."
 msgid "Failed to remove the page."
 msgstr "Gagal menghapus halaman."
 
-#: src/app/components/HomeTemplate.tsx:269
+#: src/app/(protected)/components/PopupAccount.tsx:60
+msgid "Failed to update your account."
+msgstr "Gagal memperbarui akun Anda."
+
+#: src/app/components/HomeTemplate.tsx:301
 msgid "Find everything. Instantly."
 msgstr "Temukan semua. Secara instan."
 
-#: src/app/components/HomeTemplate.tsx:272
+#: src/app/components/HomeTemplate.tsx:304
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Temukan apa yang Anda butuhkan dengan cepat dengan fitur pencarian. Akses konten Anda yang disimpan dalam Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:332
+#: src/app/components/HomeTemplate.tsx:382
 msgid "Get Started."
 msgstr "Mulai"
 
@@ -201,7 +211,7 @@ msgstr "Selamat pagi"
 msgid "Good night"
 msgstr "Selamat malam"
 
-#: src/app/components/HomeTemplate.tsx:309
+#: src/app/components/HomeTemplate.tsx:353
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Kita bisa mendengar dari orang-orang yang telah menggunakan Heavy Notation untuk mengolah tulisan dan pikiran mereka lebih baik."
 
@@ -210,31 +220,35 @@ msgid "Home"
 msgstr "Beranda"
 
 #: src/app/components/SignUpForm.tsx:130
+#: src/app/(protected)/components/PopupAccount.tsx:122
 msgid "Name"
 msgstr "Nama"
 
 #: src/app/validations.ts:10
+#: src/app/(protected)/validations.ts:9
 msgid "Name is required"
 msgstr "Nama harus diisi"
 
 #: src/app/validations.ts:11
+#: src/app/(protected)/validations.ts:10
 msgid "Name should be at least 5 characters"
 msgstr "Nama harus memiliki panjang minimal 5 karakter"
 
 #: src/app/validations.ts:12
+#: src/app/(protected)/validations.ts:11
 msgid "Name should be at most 50 characters"
 msgstr "Nama harus memiliki panjang maksimal 50 karakter"
 
 #: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:22
 #: src/app/(protected)/pages/[id]/components/Header.tsx:65
-#: src/app/(protected)/home/components/PageCard.tsx:21
-#: src/app/(protected)/components/PopupSearch.tsx:49
-#: src/app/(protected)/components/PageList.tsx:125
-#: src/app/(protected)/components/PageList.tsx:157
+#: src/app/(protected)/home/components/PageCard.tsx:22
+#: src/app/(protected)/components/PopupSearch.tsx:55
+#: src/app/(protected)/components/PageList.tsx:130
+#: src/app/(protected)/components/PageList.tsx:172
 msgid "New Page"
 msgstr "Halaman Baru"
 
-#: src/app/(protected)/components/PageList.tsx:166
+#: src/app/(protected)/components/PageList.tsx:181
 msgid "No pages found."
 msgstr "Tidak ada halaman yang ditemukan."
 
@@ -242,16 +256,24 @@ msgstr "Tidak ada halaman yang ditemukan."
 msgid "No results found."
 msgstr "Tidak ada hasil yang ditemukan."
 
-#: src/app/components/HomeTemplate.tsx:173
+#: src/app/components/HomeTemplate.tsx:183
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Perhatian bahwa logo perusahaan ini hanya digunakan untuk tujuan demonstrasi dan tidak ada afiliasi dari pihak yang sebenarnya."
 
-#: src/app/components/SignUpForm.tsx:241
-#: src/app/components/SignInForm.tsx:151
+#: src/app/components/HomeTemplate.tsx:373
+msgid "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
+msgstr "Perhatian bahwa ulasan ini hanya digunakan untuk tujuan demonstrasi dan tidak refleksi pengalaman sebenarnya dari semua pengguna."
+
+#: src/app/(protected)/validations.ts:31
+msgid "Only image files are allowed (e.g. .jpg, .png, .bmp, .webp)"
+msgstr "Hanya file gambar yang diperbolehkan (misalnya .jpg, .png, .bmp, .webp)"
+
+#: src/app/components/SignUpForm.tsx:244
+#: src/app/components/SignInForm.tsx:154
 msgid "Or continue with"
 msgstr "Atau lanjutkan dengan"
 
-#: src/app/components/HomeTemplate.tsx:109
+#: src/app/components/HomeTemplate.tsx:113
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Atur pikiran, catatan, dan ide Anda dalam satu tempat"
 
@@ -260,8 +282,8 @@ msgstr "Atur pikiran, catatan, dan ide Anda dalam satu tempat"
 msgid "Page successfully removed."
 msgstr "Halaman berhasil dihapus."
 
-#: src/app/(protected)/components/PopupSearch.tsx:46
-#: src/app/(protected)/components/PageList.tsx:105
+#: src/app/(protected)/components/PopupSearch.tsx:49
+#: src/app/(protected)/components/PageList.tsx:106
 msgid "Pages"
 msgstr "Halaman"
 
@@ -285,9 +307,9 @@ msgstr "Kata Sandi harus memiliki panjang minimal 8 karakter"
 msgid "Password should be at most 50 characters"
 msgstr "Kata Sandi harus memiliki panjang maksimal 50 karakter"
 
-#: src/app/components/HomeTemplate.tsx:217
-#: src/app/components/HomeTemplate.tsx:254
-#: src/app/components/HomeTemplate.tsx:291
+#: src/app/components/HomeTemplate.tsx:227
+#: src/app/components/HomeTemplate.tsx:274
+#: src/app/components/HomeTemplate.tsx:323
 msgid "Replaces"
 msgstr "Menggantikan"
 
@@ -308,9 +330,9 @@ msgstr "Cari halaman..."
 msgid "Server can't process your request."
 msgstr "Server tidak dapat memproses permintaan Anda."
 
-#: src/app/components/SignUpForm.tsx:261
-#: src/app/components/SignInForm.tsx:144
-#: src/app/components/HomeTemplate.tsx:98
+#: src/app/components/SignUpForm.tsx:267
+#: src/app/components/SignInForm.tsx:147
+#: src/app/components/HomeTemplate.tsx:102
 #: src/app/[lang]/auth/signin/page.tsx:16
 msgid "Sign In"
 msgstr "Masuk"
@@ -323,41 +345,50 @@ msgstr "Masuk ke akun Anda"
 msgid "Sign in to your Heavy Notation account."
 msgstr "Masuk ke akun Heavy Notation Anda."
 
-#: src/app/components/SignUpForm.tsx:251
-#: src/app/components/SignInForm.tsx:161
+#: src/app/components/SignUpForm.tsx:257
+#: src/app/components/SignInForm.tsx:167
 msgid "Sign in with Google"
 msgstr "Masuk dengan Google"
 
-#: src/app/(protected)/components/AuthMenu.tsx:81
+#: src/app/(protected)/components/AuthMenu.tsx:113
 msgid "Sign Out"
 msgstr "Keluar"
 
-#: src/app/components/SignUpForm.tsx:234
+#: src/app/components/SignUpForm.tsx:237
 #: src/app/[lang]/auth/signup/page.tsx:16
 msgid "Sign Up"
 msgstr "Daftar"
 
-#: src/app/components/HomeTemplate.tsx:335
+#: src/app/components/HomeTemplate.tsx:385
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Mulai mengatur pekerjaan Anda lebih baik. Akses konten Anda dengan mudah dengan fitur pencarian yang kuat."
 
-#: src/app/components/HomeTemplate.tsx:125
-#: src/app/components/HomeTemplate.tsx:348
+#: src/app/components/HomeTemplate.tsx:129
+#: src/app/components/HomeTemplate.tsx:398
 msgid "Start Writing Now"
 msgstr "Mulai Menulis Sekarang"
 
-#: src/app/components/SignUpForm.tsx:271
-#: src/app/components/SignInForm.tsx:183
+#: src/app/components/SignUpForm.tsx:277
+#: src/app/components/SignInForm.tsx:189
+#: src/app/(protected)/components/PopupAccount.tsx:151
 msgid "Submitting..."
 msgstr "Mengirim..."
 
-#: src/app/(protected)/pages/[id]/components/Content.tsx:172
+#: src/app/(protected)/pages/[id]/components/Content.tsx:174
 msgid "The page you are looking for does not exist."
 msgstr "Halaman yang Anda cari tidak ada."
 
-#: src/app/components/HomeTemplate.tsx:130
+#: src/app/components/HomeTemplate.tsx:134
 msgid "Trusted by teams at"
 msgstr "Dipercaya oleh tim di"
+
+#: src/app/(protected)/components/PopupAccount.tsx:141
+msgid "Update"
+msgstr "Ubah"
+
+#: src/app/(protected)/components/PopupAccount.tsx:94
+msgid "Update your account information."
+msgstr "Ubah informasi akun Anda."
 
 #: src/app/components/SignUpForm.tsx:152
 msgid "Username"
@@ -379,15 +410,19 @@ msgstr "Nama Pengguna harus memiliki panjang minimal 8 karakter"
 msgid "Username should be at most 10 characters"
 msgstr "Nama Pengguna harus memiliki panjang maksimal 10 karakter"
 
-#: src/app/components/HomeTemplate.tsx:112
+#: src/app/components/HomeTemplate.tsx:116
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Tulis dokumen, buat basis pengetahuan, dan atur pikiran Anda."
 
-#: src/app/components/HomeTemplate.tsx:189
+#: src/app/(protected)/components/PopupAccount.tsx:69
+msgid "Your account has been updated."
+msgstr "Akun Anda telah diperbarui."
+
+#: src/app/components/HomeTemplate.tsx:199
 msgid "Your browser does not support the video tag."
 msgstr "Browser Anda tidak mendukung video tag."
 
-#: src/app/components/HomeTemplate.tsx:232
+#: src/app/components/HomeTemplate.tsx:252
 msgid "Your workflow. Your way."
 msgstr "Alur kerja Anda. Cara Anda."
 

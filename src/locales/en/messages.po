@@ -45,28 +45,33 @@ msgstr "{years} years ago"
 msgid "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you."
 msgstr "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you."
 
-#: src/app/(protected)/home/components/PageList.tsx:104
+#: src/app/(protected)/components/PopupAccount.tsx:91
+#: src/app/(protected)/components/AuthMenu.tsx:105
+msgid "Account"
+msgstr "Account"
+
+#: src/app/(protected)/home/components/PageList.tsx:102
 msgid "Add new page"
 msgstr "Add new page"
 
-#: src/app/components/HomeTemplate.tsx:235
+#: src/app/components/HomeTemplate.tsx:255
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 
-#: src/app/components/SignUpForm.tsx:255
+#: src/app/components/SignUpForm.tsx:261
 msgid "Already have an account?"
 msgstr "Already have an account?"
 
-#: src/app/components/HomeTemplate.tsx:195
+#: src/app/components/HomeTemplate.tsx:205
 msgid "Build perfect docs."
 msgstr "Build perfect docs."
 
-#: src/app/(protected)/home/components/PageList.tsx:112
-#: src/app/(protected)/components/PageList.tsx:177
+#: src/app/(protected)/home/components/PageList.tsx:110
+#: src/app/(protected)/components/PageList.tsx:192
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
 
-#: src/app/components/HomeTemplate.tsx:198
+#: src/app/components/HomeTemplate.tsx:208
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 
@@ -91,19 +96,19 @@ msgid "Create a new Heavy Notation account."
 msgstr "Create a new Heavy Notation account."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:73
-#: src/app/(protected)/components/PageList.tsx:142
+#: src/app/(protected)/components/PageList.tsx:153
 msgid "Delete"
 msgstr "Delete"
 
-#: src/app/components/SignInForm.tsx:165
+#: src/app/components/SignInForm.tsx:171
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Don't have an account? <0>Sign Up</0>"
 
-#: src/app/components/HomeTemplate.tsx:306
+#: src/app/components/HomeTemplate.tsx:350
 msgid "Don't just take our word for it."
 msgstr "Don't just take our word for it."
 
-#: src/app/(protected)/pages/[id]/components/Header.tsx:130
+#: src/app/(protected)/pages/[id]/components/Header.tsx:135
 msgid "Edited {formattedDate}"
 msgstr "Edited {formattedDate}"
 
@@ -147,6 +152,7 @@ msgid "Enter your email"
 msgstr "Enter your email"
 
 #: src/app/components/SignUpForm.tsx:135
+#: src/app/(protected)/components/PopupAccount.tsx:127
 msgid "Enter your name"
 msgstr "Enter your name"
 
@@ -163,7 +169,7 @@ msgstr "Enter your password again"
 msgid "Enter your username"
 msgstr "Enter your username"
 
-#: src/app/(protected)/home/components/PageList.tsx:65
+#: src/app/(protected)/home/components/PageList.tsx:63
 #: src/app/(protected)/components/PageList.tsx:60
 msgid "Failed to add a new page."
 msgstr "Failed to add a new page."
@@ -173,15 +179,19 @@ msgstr "Failed to add a new page."
 msgid "Failed to remove the page."
 msgstr "Failed to remove the page."
 
-#: src/app/components/HomeTemplate.tsx:269
+#: src/app/(protected)/components/PopupAccount.tsx:60
+msgid "Failed to update your account."
+msgstr "Failed to update your account."
+
+#: src/app/components/HomeTemplate.tsx:301
 msgid "Find everything. Instantly."
 msgstr "Find everything. Instantly."
 
-#: src/app/components/HomeTemplate.tsx:272
+#: src/app/components/HomeTemplate.tsx:304
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:332
+#: src/app/components/HomeTemplate.tsx:382
 msgid "Get Started."
 msgstr "Get Started."
 
@@ -201,7 +211,7 @@ msgstr "Good morning"
 msgid "Good night"
 msgstr "Good night"
 
-#: src/app/components/HomeTemplate.tsx:309
+#: src/app/components/HomeTemplate.tsx:353
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
@@ -210,31 +220,35 @@ msgid "Home"
 msgstr "Home"
 
 #: src/app/components/SignUpForm.tsx:130
+#: src/app/(protected)/components/PopupAccount.tsx:122
 msgid "Name"
 msgstr "Name"
 
 #: src/app/validations.ts:10
+#: src/app/(protected)/validations.ts:9
 msgid "Name is required"
 msgstr "Name is required"
 
 #: src/app/validations.ts:11
+#: src/app/(protected)/validations.ts:10
 msgid "Name should be at least 5 characters"
 msgstr "Name should be at least 5 characters"
 
 #: src/app/validations.ts:12
+#: src/app/(protected)/validations.ts:11
 msgid "Name should be at most 50 characters"
 msgstr "Name should be at most 50 characters"
 
 #: src/app/(protected)/pages/[id]/components/TitleBlock.tsx:22
 #: src/app/(protected)/pages/[id]/components/Header.tsx:65
-#: src/app/(protected)/home/components/PageCard.tsx:21
-#: src/app/(protected)/components/PopupSearch.tsx:49
-#: src/app/(protected)/components/PageList.tsx:125
-#: src/app/(protected)/components/PageList.tsx:157
+#: src/app/(protected)/home/components/PageCard.tsx:22
+#: src/app/(protected)/components/PopupSearch.tsx:55
+#: src/app/(protected)/components/PageList.tsx:130
+#: src/app/(protected)/components/PageList.tsx:172
 msgid "New Page"
 msgstr "New Page"
 
-#: src/app/(protected)/components/PageList.tsx:166
+#: src/app/(protected)/components/PageList.tsx:181
 msgid "No pages found."
 msgstr "No pages found."
 
@@ -242,16 +256,24 @@ msgstr "No pages found."
 msgid "No results found."
 msgstr "No results found."
 
-#: src/app/components/HomeTemplate.tsx:173
+#: src/app/components/HomeTemplate.tsx:183
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 
-#: src/app/components/SignUpForm.tsx:241
-#: src/app/components/SignInForm.tsx:151
+#: src/app/components/HomeTemplate.tsx:373
+msgid "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
+msgstr "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
+
+#: src/app/(protected)/validations.ts:31
+msgid "Only image files are allowed (e.g. .jpg, .png, .bmp, .webp)"
+msgstr "Only image files are allowed (e.g. .jpg, .png, .bmp, .webp)"
+
+#: src/app/components/SignUpForm.tsx:244
+#: src/app/components/SignInForm.tsx:154
 msgid "Or continue with"
 msgstr "Or continue with"
 
-#: src/app/components/HomeTemplate.tsx:109
+#: src/app/components/HomeTemplate.tsx:113
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Organize your thoughts, notes and ideas in one place"
 
@@ -260,8 +282,8 @@ msgstr "Organize your thoughts, notes and ideas in one place"
 msgid "Page successfully removed."
 msgstr "Page successfully removed."
 
-#: src/app/(protected)/components/PopupSearch.tsx:46
-#: src/app/(protected)/components/PageList.tsx:105
+#: src/app/(protected)/components/PopupSearch.tsx:49
+#: src/app/(protected)/components/PageList.tsx:106
 msgid "Pages"
 msgstr "Pages"
 
@@ -285,9 +307,9 @@ msgstr "Password should be at least 8 characters"
 msgid "Password should be at most 50 characters"
 msgstr "Password should be at most 50 characters"
 
-#: src/app/components/HomeTemplate.tsx:217
-#: src/app/components/HomeTemplate.tsx:254
-#: src/app/components/HomeTemplate.tsx:291
+#: src/app/components/HomeTemplate.tsx:227
+#: src/app/components/HomeTemplate.tsx:274
+#: src/app/components/HomeTemplate.tsx:323
 msgid "Replaces"
 msgstr "Replaces"
 
@@ -308,9 +330,9 @@ msgstr "Search a page..."
 msgid "Server can't process your request."
 msgstr "Server can't process your request."
 
-#: src/app/components/SignUpForm.tsx:261
-#: src/app/components/SignInForm.tsx:144
-#: src/app/components/HomeTemplate.tsx:98
+#: src/app/components/SignUpForm.tsx:267
+#: src/app/components/SignInForm.tsx:147
+#: src/app/components/HomeTemplate.tsx:102
 #: src/app/[lang]/auth/signin/page.tsx:16
 msgid "Sign In"
 msgstr "Sign In"
@@ -323,41 +345,50 @@ msgstr "Sign in to your account"
 msgid "Sign in to your Heavy Notation account."
 msgstr "Sign in to your Heavy Notation account."
 
-#: src/app/components/SignUpForm.tsx:251
-#: src/app/components/SignInForm.tsx:161
+#: src/app/components/SignUpForm.tsx:257
+#: src/app/components/SignInForm.tsx:167
 msgid "Sign in with Google"
 msgstr "Sign in with Google"
 
-#: src/app/(protected)/components/AuthMenu.tsx:81
+#: src/app/(protected)/components/AuthMenu.tsx:113
 msgid "Sign Out"
 msgstr "Sign Out"
 
-#: src/app/components/SignUpForm.tsx:234
+#: src/app/components/SignUpForm.tsx:237
 #: src/app/[lang]/auth/signup/page.tsx:16
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: src/app/components/HomeTemplate.tsx:335
+#: src/app/components/HomeTemplate.tsx:385
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Start organizing your work better. Access your content easily with our powerful search features."
 
-#: src/app/components/HomeTemplate.tsx:125
-#: src/app/components/HomeTemplate.tsx:348
+#: src/app/components/HomeTemplate.tsx:129
+#: src/app/components/HomeTemplate.tsx:398
 msgid "Start Writing Now"
 msgstr "Start Writing Now"
 
-#: src/app/components/SignUpForm.tsx:271
-#: src/app/components/SignInForm.tsx:183
+#: src/app/components/SignUpForm.tsx:277
+#: src/app/components/SignInForm.tsx:189
+#: src/app/(protected)/components/PopupAccount.tsx:151
 msgid "Submitting..."
 msgstr "Submitting..."
 
-#: src/app/(protected)/pages/[id]/components/Content.tsx:172
+#: src/app/(protected)/pages/[id]/components/Content.tsx:174
 msgid "The page you are looking for does not exist."
 msgstr "The page you are looking for does not exist."
 
-#: src/app/components/HomeTemplate.tsx:130
+#: src/app/components/HomeTemplate.tsx:134
 msgid "Trusted by teams at"
 msgstr "Trusted by teams at"
+
+#: src/app/(protected)/components/PopupAccount.tsx:141
+msgid "Update"
+msgstr "Update"
+
+#: src/app/(protected)/components/PopupAccount.tsx:94
+msgid "Update your account information."
+msgstr "Update your account information."
 
 #: src/app/components/SignUpForm.tsx:152
 msgid "Username"
@@ -379,15 +410,19 @@ msgstr "Username should be at least 8 characters"
 msgid "Username should be at most 10 characters"
 msgstr "Username should be at most 10 characters"
 
-#: src/app/components/HomeTemplate.tsx:112
+#: src/app/components/HomeTemplate.tsx:116
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Write documents, create knowledge bases, and organize your thoughts."
 
-#: src/app/components/HomeTemplate.tsx:189
+#: src/app/(protected)/components/PopupAccount.tsx:69
+msgid "Your account has been updated."
+msgstr "Your account has been updated."
+
+#: src/app/components/HomeTemplate.tsx:199
 msgid "Your browser does not support the video tag."
 msgstr "Your browser does not support the video tag."
 
-#: src/app/components/HomeTemplate.tsx:232
+#: src/app/components/HomeTemplate.tsx:252
 msgid "Your workflow. Your way."
 msgstr "Your workflow. Your way."
 
