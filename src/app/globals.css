@@ -93,12 +93,40 @@ body {
 
 /* Yoopta Editor */
 
+/*
+  It's a popup that appears when user click on "Turn into" menu.
+  I want to position it on top of the action menu when the viewport is mobile
+  to avoid cut by the right edge of the screen.
+*/
+[data-floating-ui-portal] div > div:has([role="listbox"]) {
+  @apply !-left-36 md:!left-0;
+}
+
+/* 
+  It's a toolbar popup. I want to position it on the bottom of 
+  the highlighted text when the viewport is mobile. It's needed
+  to prevent toolbar overlap by browser built-in menu (e.g. Chrome mobile)
+  that appears when the text highlighted.
+*/
+[data-floating-ui-portal] div:has([role="toolbar"]) {
+  @apply !top-24 md:!top-0;
+}
+
 .yoopta-toolbar-root {
   @apply !border-zinc-200 !bg-zinc-100 !text-zinc-700 dark:!border-zinc-700 dark:!bg-zinc-800 dark:!text-white;
 }
 
 .yoopta-toolbar-separator {
   @apply !bg-zinc-200 dark:!bg-zinc-700;
+}
+
+.yoopta-toolbar-group button,
+.yoopta-toolbar-group span {
+  @apply !text-sm;
+}
+
+.yoopta-toolbar-group svg {
+  @apply !h-4 !w-4;
 }
 
 .yoopta-link-tool {
