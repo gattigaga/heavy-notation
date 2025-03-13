@@ -40,7 +40,7 @@ Key features include:
 
 ## 💡 Motivation
 
-I built Heavy Notation to push my frontend skills and explore cutting-edge tools to web development. Inspired by Notion’s seamless elegance, I threw myself into learning user authentication, untangling the mess of dynamic app state, shaping a responsive interface that adapts effortlessly across screens, etc.
+I built Heavy Notation to grow my frontend skills and try out modern web dev tools. Inspired by Notion’s clean design, I worked on adding user auth, managing dynamic state, and making it responsive across devices, among other things.
 
 ## 🛠️ Tech Stacks
 

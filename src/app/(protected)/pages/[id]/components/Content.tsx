@@ -110,7 +110,7 @@ const Content = () => {
   return (
     <>
       {pageQuery.isSuccess && (
-        <div className="mx-auto max-w-xl px-20 md:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
+        <div className="mx-auto max-w-sm px-20 md:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
           <TitleBlock
             defaultValue={title}
             onPressEnter={(values) => {
