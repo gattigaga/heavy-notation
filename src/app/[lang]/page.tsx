@@ -20,26 +20,40 @@ export const generateMetadata = async ({
     i18n,
   )`A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you.`;
 
+  const urls: Record<string, string> = {
+    en: "/en",
+    id: "/id",
+  };
+
+  const currentUrl = urls[lang] || "";
+
   return {
+    metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
     title,
     description,
+    alternates: {
+      canonical: currentUrl,
+      languages: {
+        ...urls,
+        "x-default": "/",
+      },
+    },
     openGraph: {
       title,
       description,
       type: "website",
+      locale: lang,
+      siteName: "Heavy Notation",
+      url: currentUrl,
       images: [
         {
           url: "/images/home/screenshot.webp",
           type: "image/webp",
           width: 1665,
           height: 951,
-          alt: "Heavy Notation website homepage",
+          alt: "Heavy Notation website home page",
         },
       ],
-      url:
-        lang !== "en"
-          ? `https://heavynotation.vercel.app/${lang}`
-          : "https://heavynotation.vercel.app",
     },
   };
 };
