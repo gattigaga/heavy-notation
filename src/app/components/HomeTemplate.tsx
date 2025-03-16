@@ -233,7 +233,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-zinc-900"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-zinc-900"></div>
           </div>
-          <p className="mx-auto mb-8 mt-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2 dark:text-zinc-500">
+          <p className="mx-auto mt-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2 dark:text-zinc-500">
             <Trans>
               Note that these reviews are used only for demonstration purposes
               and do not reflect the actual experience of all users.
@@ -265,7 +265,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
         </div>
       </div>
 
-      <footer className="flex h-16 items-center justify-between px-24">
+      <footer className="flex max-w-screen-2xl flex-col items-center gap-y-2 px-8 py-8 md:h-16 md:flex-row md:justify-between md:px-8 md:py-0 2xl:mx-auto">
         <p className="text-center text-sm text-zinc-700 dark:text-white">
           © {new Date().getFullYear()} Gattigaga Hayyuta Dewa
         </p>
@@ -277,7 +277,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             )}
             href="/"
           >
-            English
+            EN
           </Link>
           <span className="text-zinc-400 dark:text-zinc-500">|</span>
           <Link
@@ -287,7 +287,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
             )}
             href="/id"
           >
-            Bahasa Indonesia
+            ID
           </Link>
         </div>
       </footer>
