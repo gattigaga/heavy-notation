@@ -3,15 +3,7 @@ import { useEffect, useState } from "react";
 type ColorScheme = "light" | "dark";
 
 const useColorScheme = (): ColorScheme => {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    }
-
-    return "light";
-  });
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
 
   useEffect(() => {
     let mediaQuery: MediaQueryList | null = null;
