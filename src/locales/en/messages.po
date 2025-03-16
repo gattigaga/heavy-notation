@@ -54,7 +54,7 @@ msgstr "Account"
 msgid "Add new page"
 msgstr "Add new page"
 
-#: src/app/components/HomeTemplate.tsx:255
+#: src/app/components/HomeTemplate.tsx:167
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 
@@ -62,7 +62,7 @@ msgstr "All your projects, goals, roadmaps, and more—in one tool—personalize
 msgid "Already have an account?"
 msgstr "Already have an account?"
 
-#: src/app/components/HomeTemplate.tsx:205
+#: src/app/components/HomeTemplate.tsx:139
 msgid "Build perfect docs."
 msgstr "Build perfect docs."
 
@@ -71,7 +71,7 @@ msgstr "Build perfect docs."
 msgid "Cannot fetch pages data."
 msgstr "Cannot fetch pages data."
 
-#: src/app/components/HomeTemplate.tsx:208
+#: src/app/components/HomeTemplate.tsx:142
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 
@@ -104,7 +104,7 @@ msgstr "Delete"
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Don't have an account? <0>Sign Up</0>"
 
-#: src/app/components/HomeTemplate.tsx:350
+#: src/app/components/HomeTemplate.tsx:214
 msgid "Don't just take our word for it."
 msgstr "Don't just take our word for it."
 
@@ -183,15 +183,15 @@ msgstr "Failed to remove the page."
 msgid "Failed to update your account."
 msgstr "Failed to update your account."
 
-#: src/app/components/HomeTemplate.tsx:301
+#: src/app/components/HomeTemplate.tsx:189
 msgid "Find everything. Instantly."
 msgstr "Find everything. Instantly."
 
-#: src/app/components/HomeTemplate.tsx:304
+#: src/app/components/HomeTemplate.tsx:192
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:382
+#: src/app/components/HomeTemplate.tsx:246
 msgid "Get Started."
 msgstr "Get Started."
 
@@ -211,7 +211,7 @@ msgstr "Good morning"
 msgid "Good night"
 msgstr "Good night"
 
-#: src/app/components/HomeTemplate.tsx:353
+#: src/app/components/HomeTemplate.tsx:217
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
@@ -256,11 +256,11 @@ msgstr "No pages found."
 msgid "No results found."
 msgstr "No results found."
 
-#: src/app/components/HomeTemplate.tsx:183
+#: src/app/components/TrustedByTeams.tsx:64
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 
-#: src/app/components/HomeTemplate.tsx:373
+#: src/app/components/HomeTemplate.tsx:237
 msgid "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
 msgstr "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
 
@@ -273,7 +273,7 @@ msgstr "Only image files are allowed (e.g. .jpg, .png, .bmp, .webp)"
 msgid "Or continue with"
 msgstr "Or continue with"
 
-#: src/app/components/HomeTemplate.tsx:113
+#: src/app/components/HomeTemplate.tsx:103
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Organize your thoughts, notes and ideas in one place"
 
@@ -307,9 +307,7 @@ msgstr "Password should be at least 8 characters"
 msgid "Password should be at most 50 characters"
 msgstr "Password should be at most 50 characters"
 
-#: src/app/components/HomeTemplate.tsx:227
-#: src/app/components/HomeTemplate.tsx:274
-#: src/app/components/HomeTemplate.tsx:323
+#: src/app/components/Replacement.tsx:26
 msgid "Replaces"
 msgstr "Replaces"
 
@@ -332,7 +330,7 @@ msgstr "Server can't process your request."
 
 #: src/app/components/SignUpForm.tsx:267
 #: src/app/components/SignInForm.tsx:147
-#: src/app/components/HomeTemplate.tsx:102
+#: src/app/components/HomeTemplate.tsx:91
 #: src/app/[lang]/auth/signin/page.tsx:16
 msgid "Sign In"
 msgstr "Sign In"
@@ -359,12 +357,12 @@ msgstr "Sign Out"
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: src/app/components/HomeTemplate.tsx:385
+#: src/app/components/HomeTemplate.tsx:249
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Start organizing your work better. Access your content easily with our powerful search features."
 
-#: src/app/components/HomeTemplate.tsx:129
-#: src/app/components/HomeTemplate.tsx:398
+#: src/app/components/HomeTemplate.tsx:119
+#: src/app/components/HomeTemplate.tsx:262
 msgid "Start Writing Now"
 msgstr "Start Writing Now"
 
@@ -378,7 +376,7 @@ msgstr "Submitting..."
 msgid "The page you are looking for does not exist."
 msgstr "The page you are looking for does not exist."
 
-#: src/app/components/HomeTemplate.tsx:134
+#: src/app/components/TrustedByTeams.tsx:51
 msgid "Trusted by teams at"
 msgstr "Trusted by teams at"
 
@@ -410,7 +408,7 @@ msgstr "Username should be at least 8 characters"
 msgid "Username should be at most 10 characters"
 msgstr "Username should be at most 10 characters"
 
-#: src/app/components/HomeTemplate.tsx:116
+#: src/app/components/HomeTemplate.tsx:106
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Write documents, create knowledge bases, and organize your thoughts."
 
@@ -418,11 +416,11 @@ msgstr "Write documents, create knowledge bases, and organize your thoughts."
 msgid "Your account has been updated."
 msgstr "Your account has been updated."
 
-#: src/app/components/HomeTemplate.tsx:199
+#: src/app/components/HomeTemplate.tsx:133
 msgid "Your browser does not support the video tag."
 msgstr "Your browser does not support the video tag."
 
-#: src/app/components/HomeTemplate.tsx:252
+#: src/app/components/HomeTemplate.tsx:164
 msgid "Your workflow. Your way."
 msgstr "Your workflow. Your way."
 
