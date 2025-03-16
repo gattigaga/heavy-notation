@@ -4,24 +4,34 @@ type ColorScheme = "light" | "dark";
 
 const useColorScheme = (): ColorScheme => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    return "light";
   });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    setColorScheme(mediaQuery.matches ? "dark" : "light");
+    let mediaQuery: MediaQueryList | null = null;
 
     const handler = (event: MediaQueryListEvent) => {
       setColorScheme(event.matches ? "dark" : "light");
     };
 
-    mediaQuery.addEventListener("change", handler);
+    if (typeof window !== "undefined") {
+      mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+      setColorScheme(mediaQuery.matches ? "dark" : "light");
+
+      mediaQuery.addEventListener("change", handler);
+    }
 
     return () => {
-      mediaQuery.removeEventListener("change", handler);
+      if (typeof window !== "undefined") {
+        mediaQuery?.removeEventListener("change", handler);
+      }
     };
   }, []);
 

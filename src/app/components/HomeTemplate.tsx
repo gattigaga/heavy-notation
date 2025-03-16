@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Trans, useLingui } from "@lingui/react/macro";
@@ -8,17 +6,10 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/magicui/marquee";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
-import LogoDuckDuckGo from "../components/LogoDuckDuckGo";
-import LogoTwitch from "../components/LogoTwitch";
-import LogoShopify from "../components/LogoShopify";
-import LogoDiscord from "../components/LogoDiscord";
-import LogoEvernote from "../components/LogoEvernote";
-import LogoCoda from "../components/LogoCoda";
-import LogoTrello from "../components/LogoTrello";
-import LogoAsana from "../components/LogoAsana";
-import LogoConfluence from "../components/LogoConfluence";
-import GoogleTagScript from "../components/GoogleTagScript";
-import ReviewCard from "../components/ReviewCard";
+import GoogleTagScript from "./GoogleTagScript";
+import ReviewCard from "./ReviewCard";
+import TrustedByTeams from "./TrustedByTeams";
+import Replacement from "./Replacement";
 import imgLogoHeavyNotation from "../../../public/images/logo-text-heavy-notation.png";
 import imgFeatureEditorMobile from "../../../public/images/home/feature-editor-mobile.webp";
 import imgFeatureHomeMobile from "../../../public/images/home/feature-home-mobile.webp";
@@ -26,7 +17,6 @@ import imgFeatureSearchMobile from "../../../public/images/home/feature-search-m
 import imgFeatureEditorDesktop from "../../../public/images/home/feature-editor-desktop.webp";
 import imgFeatureHomeDesktop from "../../../public/images/home/feature-home-desktop.webp";
 import imgFeatureSearchDesktop from "../../../public/images/home/feature-search-desktop.webp";
-import useColorScheme from "@/hooks/use-color-scheme";
 
 type Props = {
   lang?: string;
@@ -34,7 +24,6 @@ type Props = {
 
 const HomeTemplate = ({ lang = "en" }: Props) => {
   const { t } = useLingui();
-  const theme = useColorScheme();
 
   const reviews = [
     {
@@ -103,6 +92,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </Link>
         </Button>
       </header>
+
       <div className="flex max-w-screen-2xl flex-col gap-y-24 px-8 pt-4 md:gap-y-40 md:pt-10 lg:pt-16 2xl:mx-auto">
         <div className="flex flex-col md:px-16 lg:px-24 2xl:px-40">
           <TypingAnimation
@@ -129,63 +119,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
               <Trans>Start Writing Now</Trans>
             </Link>
           </Button>
-
-          <p className="mb-2 text-center text-base text-zinc-700 dark:text-white">
-            <Trans>Trusted by teams at</Trans>
-          </p>
-          <div className="mb-4 flex flex-wrap justify-center gap-4 lg:gap-8">
-            <div className="flex items-center gap-x-2">
-              <LogoDuckDuckGo
-                className="shrink-0"
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#fff" : "#3f3f46"}
-              />
-              <p className="text-base font-semibold text-zinc-700 dark:text-white">
-                DuckDuckGo
-              </p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <LogoTwitch
-                className="shrink-0"
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#fff" : "#3f3f46"}
-              />
-              <p className="text-base font-semibold text-zinc-700 dark:text-white">
-                Twitch
-              </p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <LogoShopify
-                className="shrink-0"
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#fff" : "#3f3f46"}
-              />
-              <p className="text-base font-semibold text-zinc-700 dark:text-white">
-                Shopify
-              </p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <LogoDiscord
-                className="shrink-0"
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#fff" : "#3f3f46"}
-              />
-              <p className="text-base font-semibold text-zinc-700 dark:text-white">
-                Discord
-              </p>
-            </div>
-          </div>
-          <p className="mx-auto mb-8 text-center text-xs text-zinc-400 md:w-3/4 lg:w-1/2 dark:text-zinc-500">
-            <Trans>
-              Note that these company logos are used only for demonstration
-              purposes and do not imply any real-world endorsement or
-              affiliation.
-            </Trans>
-          </p>
+          <TrustedByTeams />
 
           <video
             className="aspect-[1678/912] w-full rounded-lg border shadow-lg"
@@ -222,29 +156,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
               loading="lazy"
             />
           </picture>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
-              <Trans>Replaces</Trans>
-            </p>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoEvernote
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">
-                Evernote
-              </p>
-            </div>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoCoda
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">Coda</p>
-            </div>
-          </div>
+          <Replacement items={["evernote", "coda"]} />
         </div>
 
         <div className="md:px-16 lg:px-24 2xl:px-40">
@@ -269,31 +181,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
               loading="lazy"
             />
           </picture>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
-              <Trans>Replaces</Trans>
-            </p>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoTrello
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">
-                Trello
-              </p>
-            </div>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoAsana
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">
-                Asana
-              </p>
-            </div>
-          </div>
+          <Replacement items={["trello", "asana"]} />
         </div>
 
         <div className="md:px-16 lg:px-24 2xl:px-40">
@@ -318,31 +206,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
               loading="lazy"
             />
           </picture>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <p className="w-full shrink-0 text-center text-base font-semibold text-zinc-700 md:w-auto dark:text-white">
-              <Trans>Replaces</Trans>
-            </p>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoConfluence
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">
-                Confluence
-              </p>
-            </div>
-            <div className="col-span-1 flex items-center gap-x-2">
-              <LogoAsana
-                width={24}
-                height={24}
-                fill={theme === "dark" ? "#71717a" : "#a1a1aa"}
-              />
-              <p className="text-base text-zinc-400 dark:text-zinc-500">
-                Asana
-              </p>
-            </div>
-          </div>
+          <Replacement items={["confluence", "asana"]} />
         </div>
 
         <div className="flex w-full flex-col">

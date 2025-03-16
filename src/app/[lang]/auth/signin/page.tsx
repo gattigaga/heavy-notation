@@ -16,13 +16,31 @@ export const generateMetadata = async ({
   const title = t(i18n)`Sign In` + " | Heavy Notation";
   const description = t(i18n)`Sign in to your Heavy Notation account.`;
 
+  const urls: Record<string, string> = {
+    en: "/en/auth/signin",
+    id: "/id/auth/signin",
+  };
+
+  const currentUrl = urls[lang] || "";
+
   return {
+    metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
     title,
     description,
+    alternates: {
+      canonical: currentUrl,
+      languages: {
+        ...urls,
+        "x-default": "/auth/signin",
+      },
+    },
     openGraph: {
       title,
       description,
       type: "website",
+      locale: lang,
+      siteName: "Heavy Notation",
+      url: currentUrl,
       images: [
         {
           url: "/images/home/screenshot.webp",
@@ -32,10 +50,6 @@ export const generateMetadata = async ({
           alt: "Heavy Notation website homepage",
         },
       ],
-      url:
-        lang !== "en"
-          ? `https://heavynotation.vercel.app/${lang}/auth/signin`
-          : "https://heavynotation.vercel.app/auth/signin",
     },
   };
 };

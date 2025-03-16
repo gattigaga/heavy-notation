@@ -5,12 +5,24 @@ import { auth } from "@/helpers/auth";
 import SignInTemplate from "@/app/components/SignInTemplate";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
   title: "Sign In | Heavy Notation",
   description: "Sign in to your Heavy Notation account.",
+  alternates: {
+    canonical: "/auth/signin",
+    languages: {
+      en: "/en/auth/signin",
+      id: "/id/auth/signin",
+      "x-default": "/auth/signin",
+    },
+  },
   openGraph: {
     title: "Sign In | Heavy Notation",
     description: "Sign in to your Heavy Notation account.",
     type: "website",
+    locale: "en",
+    siteName: "Heavy Notation",
+    url: "/auth/signin",
     images: [
       {
         url: "/images/home/screenshot.webp",
@@ -20,7 +32,6 @@ export const metadata: Metadata = {
         alt: "Heavy Notation website homepage",
       },
     ],
-    url: "https://heavynotation.vercel.app/auth/signin",
   },
 };
 

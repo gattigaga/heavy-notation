@@ -6,7 +6,36 @@ import Greeting from "./components/Greeting";
 import PageList from "./components/PageList";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
   title: "Home | Heavy Notation",
+  description:
+    "This page is for authenticated user. Please enter your credentials to access.",
+  alternates: {
+    canonical: "/home",
+  },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: "noindex",
+  },
+  openGraph: {
+    title: "Home | Heavy Notation",
+    description:
+      "This page is for authenticated user. Please enter your credentials to access.",
+    type: "website",
+    locale: "en",
+    siteName: "Heavy Notation",
+    url: "/home",
+    images: [
+      {
+        url: "/images/home/screenshot.webp",
+        type: "image/webp",
+        width: 1665,
+        height: 951,
+        alt: "Heavy Notation website home page",
+      },
+    ],
+  },
 };
 
 const HomePage = async () => {
