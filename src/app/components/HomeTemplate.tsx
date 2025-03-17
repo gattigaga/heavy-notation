@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { Trans, useLingui } from "@lingui/react/macro";
 
@@ -24,6 +24,99 @@ type Props = {
 
 const HomeTemplate = ({ lang = "en" }: Props) => {
   const { t } = useLingui();
+
+  const imgFeatureEditorProps = (() => {
+    const common = {
+      alt: "Editor feature",
+      loading: "lazy" as const,
+    };
+
+    const {
+      props: { srcSet: desktop },
+    } = getImageProps({
+      ...common,
+      width: 2066,
+      height: 1298,
+      src: imgFeatureEditorDesktop,
+    });
+
+    const {
+      props: { srcSet: mobile, ...rest },
+    } = getImageProps({
+      ...common,
+      width: 762,
+      height: 1203,
+      src: imgFeatureEditorMobile,
+    });
+
+    return {
+      mobile,
+      desktop,
+      rest,
+    };
+  })();
+
+  const imgFeatureHomeProps = (() => {
+    const common = {
+      alt: "Home feature",
+      loading: "lazy" as const,
+    };
+
+    const {
+      props: { srcSet: desktop },
+    } = getImageProps({
+      ...common,
+      width: 2066,
+      height: 1298,
+      src: imgFeatureHomeDesktop,
+    });
+
+    const {
+      props: { srcSet: mobile, ...rest },
+    } = getImageProps({
+      ...common,
+      width: 762,
+      height: 1203,
+      src: imgFeatureHomeMobile,
+    });
+
+    return {
+      mobile,
+      desktop,
+      rest,
+    };
+  })();
+
+  const imgFeatureSearchProps = (() => {
+    const common = {
+      alt: "Search feature",
+      loading: "lazy" as const,
+    };
+
+    const {
+      props: { srcSet: desktop },
+    } = getImageProps({
+      ...common,
+      width: 2066,
+      height: 1298,
+      src: imgFeatureSearchDesktop,
+    });
+
+    const {
+      props: { srcSet: mobile, ...rest },
+    } = getImageProps({
+      ...common,
+      width: 762,
+      height: 1203,
+      src: imgFeatureSearchMobile,
+    });
+
+    return {
+      mobile,
+      desktop,
+      rest,
+    };
+  })();
 
   const reviews = [
     {
@@ -73,7 +166,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
         <Link href={lang !== "en" ? `/${lang}` : "/"}>
           <Image
             src={imgLogoHeavyNotation}
-            alt="Heavy Notation logo"
+            alt={t`Heavy Notation logo`}
             className="h-8 w-auto dark:invert"
           />
         </Link>
@@ -144,14 +237,14 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </p>
           <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
             <source
-              srcSet={imgFeatureEditorDesktop.src}
+              srcSet={imgFeatureEditorProps.desktop}
               media="(min-width: 768px)"
             />
-            <Image
+            <source srcSet={imgFeatureEditorProps.mobile} />
+            <img
+              {...imgFeatureEditorProps.rest}
               className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
-              src={imgFeatureEditorMobile}
-              alt="Editor feature"
-              loading="lazy"
+              alt={t`Editor feature`}
             />
           </picture>
           <Replacement items={["evernote", "coda"]} />
@@ -169,14 +262,14 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </p>
           <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
             <source
-              srcSet={imgFeatureHomeDesktop.src}
+              srcSet={imgFeatureHomeProps.desktop}
               media="(min-width: 768px)"
             />
-            <Image
+            <source srcSet={imgFeatureHomeProps.mobile} />
+            <img
+              {...imgFeatureHomeProps.rest}
               className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
-              src={imgFeatureHomeMobile}
-              alt="Editor feature"
-              loading="lazy"
+              alt={t`Home feature`}
             />
           </picture>
           <Replacement items={["trello", "asana"]} />
@@ -194,14 +287,14 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </p>
           <picture className="mb-8 block aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
             <source
-              srcSet={imgFeatureSearchDesktop.src}
+              srcSet={imgFeatureSearchProps.desktop}
               media="(min-width: 768px)"
             />
-            <Image
+            <source srcSet={imgFeatureSearchProps.mobile} />
+            <img
+              {...imgFeatureSearchProps.rest}
               className="h-full w-full scale-150 object-cover object-top md:scale-100 md:object-center"
-              src={imgFeatureSearchMobile}
-              alt="Editor feature"
-              loading="lazy"
+              alt={t`Search feature`}
             />
           </picture>
           <Replacement items={["confluence", "asana"]} />

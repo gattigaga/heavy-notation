@@ -29,6 +29,10 @@ msgstr "{minutes} menit yang lalu"
 msgid "{months} months ago"
 msgstr "{months} bulan yang lalu"
 
+#: src/app/components/ReviewCard.tsx:23
+msgid "{name} avatar"
+msgstr "Avatar {name}"
+
 #: src/app/(protected)/helpers/datetime.ts:18
 msgid "{seconds} seconds ago"
 msgstr "{seconds} detik yang lalu"
@@ -54,7 +58,7 @@ msgstr "Akun"
 msgid "Add new page"
 msgstr "Tambah halaman baru"
 
-#: src/app/components/HomeTemplate.tsx:167
+#: src/app/components/HomeTemplate.tsx:258
 msgid "All your projects, goals, roadmaps, and more—in one tool—personalized to how you work."
 msgstr "Semua proyek, tujuan, roadmap, dan lain-lain—dalam satu alat—khusus untuk bagaimana Anda bekerja."
 
@@ -62,7 +66,7 @@ msgstr "Semua proyek, tujuan, roadmap, dan lain-lain—dalam satu alat—khusus 
 msgid "Already have an account?"
 msgstr "Sudah punya akun?"
 
-#: src/app/components/HomeTemplate.tsx:139
+#: src/app/components/HomeTemplate.tsx:230
 msgid "Build perfect docs."
 msgstr "Buat dokumen yang sempurna."
 
@@ -71,7 +75,7 @@ msgstr "Buat dokumen yang sempurna."
 msgid "Cannot fetch pages data."
 msgstr "Tidak dapat mengambil data halaman."
 
-#: src/app/components/HomeTemplate.tsx:142
+#: src/app/components/HomeTemplate.tsx:233
 msgid "Capture your ideas and create perfect documentation with our simple and intuitive interface."
 msgstr "Kami menyediakan antarmuka yang mudah digunakan dan sederhana untuk membantu Anda menghasilkan dokumen yang sempurna."
 
@@ -104,13 +108,17 @@ msgstr "Hapus"
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Belum punya akun? <0>Daftar</0>"
 
-#: src/app/components/HomeTemplate.tsx:214
+#: src/app/components/HomeTemplate.tsx:305
 msgid "Don't just take our word for it."
 msgstr "Lihat apa yang mereka katakan tentang kami."
 
 #: src/app/(protected)/pages/[id]/components/Header.tsx:135
 msgid "Edited {formattedDate}"
 msgstr "Diubah {formattedDate}"
+
+#: src/app/components/HomeTemplate.tsx:247
+msgid "Editor feature"
+msgstr "Fitur editor"
 
 #: src/app/components/SignUpForm.tsx:174
 #: src/app/components/SignInForm.tsx:106
@@ -183,15 +191,15 @@ msgstr "Gagal menghapus halaman."
 msgid "Failed to update your account."
 msgstr "Gagal memperbarui akun Anda."
 
-#: src/app/components/HomeTemplate.tsx:189
+#: src/app/components/HomeTemplate.tsx:280
 msgid "Find everything. Instantly."
 msgstr "Temukan semua. Secara instan."
 
-#: src/app/components/HomeTemplate.tsx:192
+#: src/app/components/HomeTemplate.tsx:283
 msgid "Find what you need quickly with our powerful search. Access your content stored in Heavy Notation."
 msgstr "Temukan apa yang Anda butuhkan dengan cepat dengan fitur pencarian. Akses konten Anda yang disimpan dalam Heavy Notation."
 
-#: src/app/components/HomeTemplate.tsx:246
+#: src/app/components/HomeTemplate.tsx:337
 msgid "Get Started."
 msgstr "Mulai"
 
@@ -211,13 +219,21 @@ msgstr "Selamat pagi"
 msgid "Good night"
 msgstr "Selamat malam"
 
-#: src/app/components/HomeTemplate.tsx:217
+#: src/app/components/HomeTemplate.tsx:308
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Kita bisa mendengar dari orang-orang yang telah menggunakan Heavy Notation untuk mengolah tulisan dan pikiran mereka lebih baik."
+
+#: src/app/components/HomeTemplate.tsx:169
+msgid "Heavy Notation logo"
+msgstr "Logo Heavy Notation"
 
 #: src/app/(protected)/components/AppSidebar.tsx:40
 msgid "Home"
 msgstr "Beranda"
+
+#: src/app/components/HomeTemplate.tsx:272
+msgid "Home feature"
+msgstr "Fitur beranda"
 
 #: src/app/components/SignUpForm.tsx:130
 #: src/app/(protected)/components/PopupAccount.tsx:122
@@ -260,7 +276,7 @@ msgstr "Tidak ada hasil yang ditemukan."
 msgid "Note that these company logos are used only for demonstration purposes and do not imply any real-world endorsement or affiliation."
 msgstr "Perhatian bahwa logo perusahaan ini hanya digunakan untuk tujuan demonstrasi dan tidak ada afiliasi dari pihak yang sebenarnya."
 
-#: src/app/components/HomeTemplate.tsx:237
+#: src/app/components/HomeTemplate.tsx:328
 msgid "Note that these reviews are used only for demonstration purposes and do not reflect the actual experience of all users."
 msgstr "Perhatian bahwa ulasan ini hanya digunakan untuk tujuan demonstrasi dan tidak refleksi pengalaman sebenarnya dari semua pengguna."
 
@@ -273,7 +289,7 @@ msgstr "Hanya file gambar yang diperbolehkan (misalnya .jpg, .png, .bmp, .webp)"
 msgid "Or continue with"
 msgstr "Atau lanjutkan dengan"
 
-#: src/app/components/HomeTemplate.tsx:103
+#: src/app/components/HomeTemplate.tsx:194
 msgid "Organize your thoughts, notes and ideas in one place"
 msgstr "Atur pikiran, catatan, dan ide Anda dalam satu tempat"
 
@@ -323,6 +339,10 @@ msgstr "Cari halaman"
 msgid "Search a page..."
 msgstr "Cari halaman..."
 
+#: src/app/components/HomeTemplate.tsx:297
+msgid "Search feature"
+msgstr "Fitur pencarian"
+
 #: src/app/components/SignUpForm.tsx:99
 #: src/app/components/SignInForm.tsx:75
 msgid "Server can't process your request."
@@ -330,7 +350,7 @@ msgstr "Server tidak dapat memproses permintaan Anda."
 
 #: src/app/components/SignUpForm.tsx:267
 #: src/app/components/SignInForm.tsx:147
-#: src/app/components/HomeTemplate.tsx:91
+#: src/app/components/HomeTemplate.tsx:182
 #: src/app/[lang]/auth/signin/page.tsx:16
 msgid "Sign In"
 msgstr "Masuk"
@@ -357,12 +377,12 @@ msgstr "Keluar"
 msgid "Sign Up"
 msgstr "Daftar"
 
-#: src/app/components/HomeTemplate.tsx:249
+#: src/app/components/HomeTemplate.tsx:340
 msgid "Start organizing your work better. Access your content easily with our powerful search features."
 msgstr "Mulai mengatur pekerjaan Anda lebih baik. Akses konten Anda dengan mudah dengan fitur pencarian yang kuat."
 
-#: src/app/components/HomeTemplate.tsx:119
-#: src/app/components/HomeTemplate.tsx:262
+#: src/app/components/HomeTemplate.tsx:210
+#: src/app/components/HomeTemplate.tsx:353
 msgid "Start Writing Now"
 msgstr "Mulai Menulis Sekarang"
 
@@ -408,7 +428,7 @@ msgstr "Nama Pengguna harus memiliki panjang minimal 8 karakter"
 msgid "Username should be at most 10 characters"
 msgstr "Nama Pengguna harus memiliki panjang maksimal 10 karakter"
 
-#: src/app/components/HomeTemplate.tsx:106
+#: src/app/components/HomeTemplate.tsx:197
 msgid "Write documents, create knowledge bases, and organize your thoughts."
 msgstr "Tulis dokumen, buat basis pengetahuan, dan atur pikiran Anda."
 
@@ -416,11 +436,11 @@ msgstr "Tulis dokumen, buat basis pengetahuan, dan atur pikiran Anda."
 msgid "Your account has been updated."
 msgstr "Akun Anda telah diperbarui."
 
-#: src/app/components/HomeTemplate.tsx:133
+#: src/app/components/HomeTemplate.tsx:224
 msgid "Your browser does not support the video tag."
 msgstr "Browser Anda tidak mendukung video tag."
 
-#: src/app/components/HomeTemplate.tsx:164
+#: src/app/components/HomeTemplate.tsx:255
 msgid "Your workflow. Your way."
 msgstr "Alur kerja Anda. Cara Anda."
 
