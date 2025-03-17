@@ -172,8 +172,8 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
         </Link>
         <Button
           className="border-zinc-200 bg-white font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white hover:dark:bg-zinc-800 hover:dark:text-white"
-          type="button"
           variant="outline"
+          asChild={true}
         >
           <Link
             href={lang !== "en" ? `/${lang}/auth/signin` : "/auth/signin"}
@@ -201,7 +201,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </p>
           <Button
             className="mb-12 h-12 w-full self-center bg-blue-500 text-base font-semibold text-white hover:bg-blue-600 md:w-fit lg:w-auto"
-            type="button"
+            asChild={true}
           >
             <Link
               href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}
@@ -344,7 +344,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           </p>
           <Button
             className="h-12 w-full bg-blue-500 text-base font-semibold text-white hover:bg-blue-600 md:w-fit md:self-center lg:w-auto"
-            type="button"
+            asChild={true}
           >
             <Link
               href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}

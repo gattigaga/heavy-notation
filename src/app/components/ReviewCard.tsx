@@ -25,9 +25,9 @@ const ReviewCard = ({
           height={32}
         />
         <div className="flex flex-col">
-          <figcaption className="text-sm font-medium text-zinc-700 dark:text-white">
+          <p className="text-sm font-medium text-zinc-700 dark:text-white">
             {name}
-          </figcaption>
+          </p>
           <p className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
             {username}
           </p>
