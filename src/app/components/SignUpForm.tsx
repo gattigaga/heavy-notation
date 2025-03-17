@@ -262,7 +262,6 @@ const SignUpForm = ({ lang }: Props) => {
               <Link
                 className="underline"
                 href={lang !== "en" ? `/${lang}/auth/signin` : "/auth/signin"}
-                prefetch={true}
               >
                 <Trans>Sign In</Trans>
               </Link>

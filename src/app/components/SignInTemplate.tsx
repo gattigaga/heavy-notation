@@ -17,7 +17,7 @@ const SignInTemplate = ({ lang = "en" }: Props) => {
     <>
       <div className="min-h-screen w-full bg-white dark:bg-zinc-900">
         <header className="flex h-16 items-center px-4">
-          <Link href={lang !== "en" ? `/${lang}` : "/"} prefetch={true}>
+          <Link href={lang !== "en" ? `/${lang}` : "/"}>
             <Image
               src={imgLogoHeavyNotation}
               alt={t`Heavy Notation logo`}

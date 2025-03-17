@@ -175,10 +175,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           variant="outline"
           asChild={true}
         >
-          <Link
-            href={lang !== "en" ? `/${lang}/auth/signin` : "/auth/signin"}
-            prefetch={true}
-          >
+          <Link href={lang !== "en" ? `/${lang}/auth/signin` : "/auth/signin"}>
             <Trans>Sign In</Trans>
           </Link>
         </Button>
@@ -205,7 +202,6 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           >
             <Link
               href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}
-              prefetch={true}
             >
               <Trans>Start Writing Now</Trans>
             </Link>
@@ -348,7 +344,6 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           >
             <Link
               href={lang !== "en" ? `/${lang}/auth/signup` : "/auth/signup"}
-              prefetch={true}
             >
               <Trans>Start Writing Now</Trans>
             </Link>
