@@ -80,7 +80,7 @@ const SignInForm = ({ lang }: Props) => {
   }, [signInAction.hasErrored, signInAction.result.validationErrors, form]);
 
   return (
-    <>
+    <main>
       {!signInAction.isPending && (
         <div className="flex flex-col items-center px-6 py-24">
           <div className="min-w-80 max-w-sm">
@@ -190,7 +190,7 @@ const SignInForm = ({ lang }: Props) => {
           </p>
         </div>
       )}
-    </>
+    </main>
   );
 };
 

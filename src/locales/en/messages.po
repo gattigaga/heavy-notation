@@ -223,6 +223,8 @@ msgstr "Good night"
 msgid "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 msgstr "Hear from people who have used Heavy Notation to revolutionize their writing and thinking."
 
+#: src/app/components/SignUpTemplate.tsx:23
+#: src/app/components/SignInTemplate.tsx:23
 #: src/app/components/HomeTemplate.tsx:169
 msgid "Heavy Notation logo"
 msgstr "Heavy Notation logo"
