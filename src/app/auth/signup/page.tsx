@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { setI18n } from "@lingui/react/server";
 
-import { auth } from "@/helpers/auth";
 import SignUpTemplate from "@/app/components/SignUpTemplate";
+import { getI18nInstance } from "@/app/helpers/i18n";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL || "http://localhost:3000"),
@@ -36,13 +36,10 @@ export const metadata: Metadata = {
 };
 
 const SignUpPage = async () => {
-  const session = await auth();
+  const lang = "en";
+  const i18n = getI18nInstance(lang);
 
-  // If user is authenticated,
-  // redirect them to the home page in protected routes.
-  if (session) {
-    redirect("/home");
-  }
+  setI18n(i18n);
 
   return <SignUpTemplate />;
 };

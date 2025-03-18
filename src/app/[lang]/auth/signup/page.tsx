@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { setI18n } from "@lingui/react/server";
 import { t } from "@lingui/core/macro";
 
-import { auth } from "@/helpers/auth";
 import SignUpTemplate from "@/app/components/SignUpTemplate";
 import { getI18nInstance } from "@/app/helpers/i18n";
 
@@ -59,14 +57,6 @@ type Props = {
 };
 
 const SignUpPage = async ({ params }: Props) => {
-  const session = await auth();
-
-  // If user is authenticated,
-  // redirect them to the home page in protected routes.
-  if (session) {
-    redirect("/home");
-  }
-
   const lang = (await params).lang;
   const i18n = getI18nInstance(lang);
 

@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
-import { setI18n } from "@lingui/react/server";
 
 import { auth } from "@/helpers/auth";
 import { getI18nInstance } from "../helpers/i18n";
@@ -32,8 +31,6 @@ const Layout = async ({ children }: Props) => {
 
   const lang = "en";
   const i18n = getI18nInstance(lang);
-
-  setI18n(i18n);
 
   return (
     <html lang={lang}>
