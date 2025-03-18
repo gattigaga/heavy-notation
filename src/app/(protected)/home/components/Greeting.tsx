@@ -3,6 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useLingui } from "@lingui/react/macro";
 
+import { Skeleton } from "@/components/ui/skeleton";
+
 const Greeting = () => {
   const { t } = useLingui();
   const { data: session } = useSession();
@@ -16,6 +18,12 @@ const Greeting = () => {
 
     return t`Good night`;
   })();
+
+  if (!session?.user?.name) {
+    return (
+      <Skeleton className="h-24 w-full rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10" />
+    );
+  }
 
   return (
     <h1 className="mb-8 whitespace-pre text-center text-2xl font-semibold text-zinc-700 md:text-4xl dark:text-white">

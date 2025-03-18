@@ -194,12 +194,12 @@ const PageList = () => {
         </div>
       )}
       {pagesQuery.isLoading && (
-        <div className="mt-4 flex flex-col gap-y-2 px-4">
-          <Skeleton className="h-6 w-1/2 rounded-lg" />
+        <div className="my-4 flex flex-col gap-y-2 px-4">
+          <Skeleton className="h-6 w-1/2 rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10" />
           {[...Array(20)].map((_, index) => (
             <div key={index} className="flex items-center gap-x-2">
-              <Skeleton className="h-6 w-6 rounded-lg" />
-              <Skeleton className="h-6 flex-1 rounded-lg" />
+              <Skeleton className="h-6 w-6 rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10" />
+              <Skeleton className="h-6 flex-1 rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10" />
             </div>
           ))}
         </div>

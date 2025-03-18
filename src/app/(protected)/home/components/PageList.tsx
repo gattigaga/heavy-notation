@@ -121,7 +121,10 @@ const PageList = () => {
           })}
         >
           {[...Array(10)].map((_, index) => (
-            <Skeleton key={index} className="col-span-1 h-52 rounded-lg" />
+            <Skeleton
+              key={index}
+              className="col-span-1 h-52 rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10"
+            />
           ))}
         </div>
       )}

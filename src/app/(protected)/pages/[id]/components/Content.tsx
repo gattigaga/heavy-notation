@@ -177,7 +177,7 @@ const Content = () => {
       )}
       {pageQuery.isLoading && (
         <div className="mx-auto max-w-xl px-20 md:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
-          <Skeleton className="h-12 w-full rounded-lg" />
+          <Skeleton className="h-24 w-full rounded-lg bg-zinc-400/10 dark:bg-zinc-500/10" />
         </div>
       )}
     </>
