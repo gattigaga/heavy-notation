@@ -1,6 +1,6 @@
-# How to Run Locally
+# How to Run Development Environment Locally
 
-This is a guide for running this project locally on your machine.
+This is a guide for running this project development environment locally on your machine.
 
 ## Prerequisites
 
@@ -16,6 +16,8 @@ Follow these steps to run this project on your local machine.
 2. Create a new file called `.env.development` and add the following content to it:
 
 ```
+BASE_URL=http://localhost:3000
+
 TURSO_DATABASE_URL=file:./prisma/dev.db
 TURSO_AUTH_TOKEN=
 
@@ -35,8 +37,8 @@ DATABASE_URL=file:./dev.db
 ```
 
 Descriptions:
-
-- TURSO_DATABASE_URL: The URL of the Turso online database. Here we will use the local sqlite database instead of the online database.
+- BASE_URL: The base URL of the application. It possibly be `localhost:3000` if you are running it locally.
+- TURSO_DATABASE_URL: The URL of the Turso online database. Here we will use the local sqlite database instead of the Turso online database.
 - TURSO_AUTH_TOKEN: The authentication token for the Turso online database. Make it empty because we are using local sqlite database for development.
 - AUTH_SECRET: The random token used to encrypt cookies and tokens by AuthJS. Please run `npx auth secret --raw` to get it and paste it in `.env.development` file.
 - AUTH_GOOGLE_ID: The ID of the Google OAuth client.
@@ -68,20 +70,3 @@ pnpm dev
 ```
 
 6. Open http://localhost:3000/ in your browser.
-
-## NPM Scripts
-
-The following npm scripts are available:
-
-- `dev`: Start the development server.
-- `build`: Build the application for production.
-- `start`: Start the production server.
-- `lint`: Run the linter.
-- `prepare`: Run the pre-commit hook. This will be run when we create a new commit.
-- `postinstall`: Run the post-install script. This will be run by Vercel when deploying the application.
-- `lingui:extract`: Extract the i18n strings from source code into messages file (.po).
-- `lingui:compile`: Compile the i18n messages (.po) to typescript file, so it can be used by the application.
-- `dev:db-show`: Open the database viewer (Prisma Studio) in the browser.
-- `dev:db-migrate`: Apply the migrations to the local sqlite database.
-- `dev:db-reset`: Reset the local sqlite database.
-- `production:db-shell`: Connect to your database on Turso.
