@@ -7,6 +7,7 @@ This is a guide for deploy this project production on Vercel.
 Prepare your environment variables first in `.env.production` file and make sure all these variables has value. Later we need to copy it to Vercel when we deploy.
 
 ```
+BASE_URL=
 TURSO_DATABASE_URL=
 TURSO_AUTH_TOKEN=
 AUTH_SECRET=

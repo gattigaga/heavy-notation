@@ -111,7 +111,8 @@ Lint Staged is employed to run linters on staged files before committing. This e
 
 ## 🌟 Other Resources
 
-- [How to Run Locally](./docs/how-to-run-locally.md)
+- [NPM Scripts](./docs/npm-scripts.md)
+- [How to Run Development Environment Locally](./docs/how-to-run-development-environment-locally.md)
 - [How to Setup Turso](./docs/how-to-setup-turso.md)
 - [How to Deploy on Vercel](./docs/how-to-deploy-on-vercel.md)
 
