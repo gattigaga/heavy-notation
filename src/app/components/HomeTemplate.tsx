@@ -209,7 +209,7 @@ const HomeTemplate = ({ lang = "en" }: Props) => {
           <TrustedByTeams />
 
           <video
-            className="aspect-[1678/912] w-full rounded-lg border shadow-lg"
+            className="aspect-[1280/696] w-full rounded-lg border shadow-lg"
             preload="none"
             controls={false}
             loop={true}
