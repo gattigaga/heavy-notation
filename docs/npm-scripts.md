@@ -6,7 +6,7 @@ These are the npm scripts you will use often:
 - `build`: Build the application for production.
 - `start`: Start the production server.
 - `lint`: Run the linter.
-- `prepare`: Run the pre-commit hook. This will be run when we create a new commit.
+- `prepare`: It was set up by `husky`. You don't need to run it manually. 
 - `postinstall`: Run the post-install script. This will be run by Vercel when deploying the application.
 - `lingui:extract`: Extract the i18n strings from source code into messages file (.po).
 - `lingui:compile`: Compile the i18n messages (.po) to typescript file, so it can be used by the application.

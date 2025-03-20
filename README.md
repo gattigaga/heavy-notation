@@ -97,18 +97,6 @@ React Query is used for data fetching and mutations, providing a powerful and de
 [Luxon](https://moment.github.io/luxon):
 Luxon is used for date and time formatting, offering a modern API that simplifies handling date manipulations.
 
-[ESLint](https://eslint.org):
-ESLint is used to enforce coding standards, ensuring code quality and consistency throughout the project.
-
-[Prettier](https://prettier.io):
-By integrating Prettier into the development workflow, we enhance code readability and reduce the time spent on manual formatting.
-
-[Husky](https://typicode.github.io/husky):
-Husky is utilized to enforce pre-commit hooks, allowing us to run scripts before Git commits. This ensures that code quality checks and other necessary tasks are completed automatically, enhancing the development workflow.
-
-[Lint Staged](https://github.com/okonet/lint-staged):
-Lint Staged is employed to run linters on staged files before committing. This ensures that only properly formatted and error-free code is committed, maintaining high code quality and consistency throughout the project.
-
 ## 🌟 Other Resources
 
 - [NPM Scripts](./docs/npm-scripts.md)
