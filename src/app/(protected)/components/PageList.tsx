@@ -106,7 +106,11 @@ const PageList = () => {
                 <Trans>Pages</Trans>
               </SidebarMenuButton>
               {!addPageMutation.isPending && (
-                <SidebarMenuAction showOnHover={true} onClick={addPage}>
+                <SidebarMenuAction
+                  className="hover:bg-transparent"
+                  showOnHover={true}
+                  onClick={addPage}
+                >
                   <Plus className="text-zinc-700 dark:text-white" />
                 </SidebarMenuAction>
               )}
